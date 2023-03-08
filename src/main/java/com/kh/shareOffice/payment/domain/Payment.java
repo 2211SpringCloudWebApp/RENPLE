@@ -1,6 +1,7 @@
 package com.kh.shareOffice.payment.domain;
 
 public class Payment {
+	// 테스트
 	private int paymentNo;
 	private String userId;
 	private int productNo;
