@@ -1,0 +1,50 @@
+body {
+	margin: 0;
+}
+
+#outter {
+	padding-top: 20vh;  /* 헤더 공간 */
+	height: 80vh;
+	width: 50vw;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+#inner {
+	margin: auto;
+	width: 50%;
+}
+
+a:visited, a:link {
+	text-decoration: none;
+	color: black;
+}
+
+.input-box input {
+	padding: 0;
+	height: 45px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.input-box:nth-child(1){
+	margin-bottom: 10px;
+}
+
+#input-find {
+	padding: 20px 0;
+	text-align: right;
+}
+
+#input-btn button {
+	padding: 0;
+	height: 45px;
+	width: 100%;
+}
+
+#input-btn button:nth-child(1){
+	margin-bottom: 10px;
+}

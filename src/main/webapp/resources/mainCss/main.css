@@ -1,0 +1,183 @@
+html {
+	/* 스크롤 내리는 속도를 천천히 */
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+}
+
+#container {
+	margin: auto;
+}
+
+#img-box {
+	overflow: hidden;
+	margin: 0 auto;
+	height: 100vh;
+}
+
+.img {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
+.img.on {
+	display: block;
+}
+
+#box1 {
+	padding: 10vh 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.box11 {
+	width: 30%;
+	text-align: center;
+}
+
+.rabbit1 {
+	height: 50%;
+	width: 40%;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+}
+
+#box2 {
+	padding: 10vh 0;
+	background-color: #e5e5cb;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#box21 {
+	background-color: white;
+	border-radius: 20px;
+	padding: 30px;
+	width: 40%;
+	text-align: center;
+	box-sizing: border-box;
+	margin: 10px 0;
+	font-size: large;
+}
+
+#box22 {
+	background-color: white;
+	border-radius: 20px;
+	padding: 30px;
+	width: 40%;
+	text-align: center;
+	box-sizing: border-box;
+	margin: 10px 0;
+	font-size: large;
+}
+
+#box3 {
+	padding: 10vh 0;
+	background-color: #f9f5e7;
+	text-align: center;
+}
+
+.ticket {
+	width: 400px;
+	height: 200px;
+	margin: auto;
+}
+
+.box3-btn {
+	background-color: white;
+	border: none;
+	padding: 15px 30px;
+	border-radius: 15px;
+}
+
+.box3-btn a:after,
+.box3-btn a:link {
+	text-decoration-line: none;
+	color: black;
+}
+
+#box4 {
+	padding: 10vh 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#slideShow {
+	width: 500px;
+	height: 400px;
+	position: relative;
+	margin: 50px auto;
+	overflow: hidden;
+}
+
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 500px;
+	transition: left 0.5s ease-out;
+}
+
+.slides-box img {
+	width: 300px;
+	height: 300px;
+}
+
+.slides-box p,
+h2 {
+	text-align: center;
+	color: #3c2a21;
+}
+
+.slides-box:first-child {
+	margin-left: 100px;
+}
+
+.slides-box:not(:last-child) {
+	float: left;
+	margin-right: 100px;
+}
+
+.slides-box {
+	float: left;
+}
+
+.controller span {
+	position: absolute;
+	background-color: transparent;
+	color: black;
+	text-align: center;
+	border-radius: 50%;
+	padding: 50px 70px;
+	top: 15%;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.controller span:hover {
+	background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+	left: 0px;
+}
+
+.prev:hover {
+	transform: translateX(-10px);
+}
+
+.next {
+	right: 0px;
+}
+
+.next:hover {
+	transform: translateX(10px);
+}

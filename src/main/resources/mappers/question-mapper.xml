@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="QuestionMapper">
+	<resultMap type="Question" id="questionResultMap">
+		<id property="questionNo" column="QUESTION_NO"></id>
+		<result property="userId" column="USER_ID"/>
+		<result property="questionTitle" column="QUESTION_TITLE"/>
+		<result property="questionContent" column="QUESTION_CONTENT"/>
+		<result property="viewCount" column="VIEW_COUNT"/>
+		<result property="qCreateDate" column="Q_CREATE_DATE"/>
+		<result property="questionFilename" column="QUESTION_FILENAME"/>
+		<result property="questionFilepath" column="QUESTION_FILEPATH"/>
+	</resultMap>
+	
+	<!-- 쿼리문 작성 부분 -->
+</mapper>

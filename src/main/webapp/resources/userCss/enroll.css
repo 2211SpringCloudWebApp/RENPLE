@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+}
+
+#outter {
+	padding-top: 20vh;	/* 헤더 공간 */
+	height: 80vh;
+	width: 50vw;
+	margin: 0 auto;
+}
+
+#inner {
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	margin: 10px 0;
+}
+
+label {
+	font-size: large;
+}
+
+h1 {
+	text-align: center;
+}
+
+#required {
+	text-align: end;
+}
+
+#inputForm {
+	margin: auto;
+}
+
+.input-box {
+	height: 45px;
+	width: 100%;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.content {
+	display: flex;
+	margin: 10px 0;
+}
+
+.content-name {
+	width: 25%;
+	display: flex;
+	align-items: center;
+}
+
+.content-text {
+	width: 50%;
+}
+
+.content-btn {
+	width: 25%;
+	text-align: center;
+}
+
+.content-btn button {
+	width: 90%;
+	height: 100%;
+}
+
+.star {
+	color: red;
+}
+
+#enroll-box {
+	text-align: center;
+}
+
+#enroll-btn {
+	height: 45px;
+	width: 40%;
+}

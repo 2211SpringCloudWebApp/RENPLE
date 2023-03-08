@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+	<resultMap type="Product" id="productResultMap">
+		<id property="productNo" column="PRODUCT_NO"></id>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productPrice" column="PRODUCT_PRICE"/>
+		<result property="productDescription" column="PRODUCT_DESCRIPTION"/>
+		<result property="productSize" column="PRODUCT_SIZE"/>
+		<result property="productUserMax" column="PRODUCT_USER_MAX"/>
+		<result property="productUserMin" column="PRODUCT_USER_MIN"/>
+		<result property="pRentalDate" column="R_RENTAL_DATE"/>
+	</resultMap>
+	
+	<!-- 쿼리문 작성 부분 -->
+</mapper>

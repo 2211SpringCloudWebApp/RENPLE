@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+	<resultMap type="Review" id="reviewResultMap">
+		<id property="reviewNo" column="REVIEW_NO"></id>
+		<result property="userId" column="USER_ID"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="reviewTitle" column="REVIEW_TITLE"/>
+		<result property="reviewContent" column="REVIEW_CONTENT"/>
+		<result property="reviewRating" column="REVIEW_RATING"/>
+		<result property="viewCount" column="VIEW_COUNT"/>
+		<result property="rCreateDate" column="R_CREATE_DATE"/>
+		<result property="reviewFilename" column="REVIEW_FILENAME"/>
+		<result property="reviewFilepath" column="REVIEW_FILEPATH"/>
+	</resultMap>
+	
+	<!-- 쿼리문 작성 부분 -->
+</mapper>

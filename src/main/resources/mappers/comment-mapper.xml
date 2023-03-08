@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentMapper">
+	<resultMap type="Comment" id="commentResultMap">
+		<id property="commentNo" column="COMMENT_NO"></id>
+		<result property="userId" column="USER_ID"/>
+		<result property="questionNo" column="QUESTION_NO"/>
+		<result property="reviewNo" column="REVIEW_NO"/>
+		<result property="noticeNo" column="NOTICE_NO"/>
+		<result property="commnetContent" column="COMMENT_CONTENT"/>
+		<result property="cCreateDate" column="C_CREATE_DATE"/>
+	</resultMap>
+	
+	<!-- 쿼리문 작성 부분 -->
+</mapper>
