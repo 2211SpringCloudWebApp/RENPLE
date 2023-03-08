@@ -8,7 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.kh.shareOffice.comment.domain.Comment" alias="Comment" />
 		<typeAlias type="com.kh.shareOffice.notice.domain.Notice" alias="Notice" />
-		<typeAlias type="com.kh.shareOffice.payment.domain.Payment" alias="Payment" />
+		<typeAlias type="com.kh.shareOffice.reservation.domain.Reservation" alias="Reservation" />
 		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.question.domain.Question" alias="Question" />
 		<typeAlias type="com.kh.shareOffice.review.domain.Review" alias="Review" />
@@ -17,7 +17,7 @@
 	<mappers>
 		<mapper resource="mappers/comment-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
-		<mapper resource="mappers/payment-mapper.xml" />
+		<mapper resource="mappers/reservation-mapper.xml" />
 		<mapper resource="mappers/product-mapper.xml" />
 		<mapper resource="mappers/question-mapper.xml" />
 		<mapper resource="mappers/review-mapper.xml" />
