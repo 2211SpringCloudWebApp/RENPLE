@@ -13,4 +13,10 @@ public class ReservationController {
 		
 		return "reservation/office/gangnam1";
 	}
+	
+	@RequestMapping(value = "/officeMap", method = RequestMethod.GET)
+	public String officeMap() {
+		
+		return "reservation/office/officeMap";
+	}
 }
