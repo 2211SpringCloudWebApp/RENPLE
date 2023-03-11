@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원 상세 페이지</title>
 <link rel="stylesheet" href="../../resources/userCss/enroll.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -24,12 +24,12 @@
 	font-family: 'Chosunilbo_myungjo';
 }
 
-#id_ok, #email_ok {
+#email_ok {
 	color: #008000;
 	display: none;
 }
 
-#id_already, #email_already, #pw_not_ok {
+#email_already, #pw_not_ok {
 	color: #6A82FB;
 	display: none;
 }
@@ -37,36 +37,25 @@
 </head>
 
 <body>
-	<jsp:include page="../header.jsp"></jsp:include>
-	<!-- <form action="/user/enroll" method="post" onsubmit="retutn totalChk()"> -->
-	<form action="/user/enroll" method="post">
+	<!-- <form action="/user/select" method="post" onsubmit="retutn totalChk()"> -->
+	<form action="/user/select" method="post">
 		<div id="outter">
-			<h1>회원가입</h1>
+			<h1>회원 상세 페이지</h1>
 			<div id="required">
-				<span class="star">*</span> 필수입력사항
+				<span class="star">*</span> 수정 가능 목록
 			</div>
 			<div id="inner">
 				<div id="inputForm">
 					<div class="content">
 						<div class="content-name">
-							<label>아이디<span class="star">*</span></label>
+							<label>아이디</label>
 						</div>
-						<input type="hidden" name="chkUserId">
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userId"
-									placeholder="아이디를 입력해주세요" required autofocus> 
+									value="${user.userId}" readonly>
 							</div>
 						</div>
-						<div class="content-btn">
-							<button type="button" onclick="chkId()">
-								<span>중복확인</span>
-							</button>
-						</div>
-					</div>
-					<div class="chkMessge">
-						<span id="id_ok">사용 가능한 아이디입니다</span> 
-						<span id="id_already">사용 불가능한 아이디입니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -75,7 +64,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="userPw"
-									placeholder="비밀번호를 입력해주세요" required>
+									value="${user.userPw}" required>
 							</div>
 						</div>
 					</div>
@@ -86,7 +75,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="reUserPw"
-									placeholder="비밀번호를 한번 더 입력해주세요" required
+									value="${user.userPw}" required
 									oninput = "checkPw()">
 							</div>
 						</div>
@@ -96,12 +85,12 @@
 					</div>
 					<div class="content">
 						<div class="content-name">
-							<label>이름<span class="star">*</span></label>
+							<label>이름</label>
 						</div>
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userName"
-									placeholder="이름을 입력해 주세요" required>
+									value="${user.userName}" readonly>
 							</div>
 						</div>
 					</div>
@@ -112,7 +101,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userEmail"
-									placeholder="green@apple.com" required>
+									value="${user.userEmail}" required>
 							</div>
 						</div>
 						<div class="content-btn">
@@ -127,12 +116,12 @@
 					</div>
 					<div class="content">
 						<div class="content-name">
-							<label>전화번호<span class="star">*</span></label>
+							<label>휴대폰<span class="star">*</span></label>
 						</div>
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="tel" name="userPhone"
-									placeholder="숫자만 입력해주세요." required>
+									value="${user.userPhone}" required>
 							</div>
 						</div>
 					</div>
@@ -142,44 +131,45 @@
 						</div>
 						<div class="content-text">
 							<input class="input-box" type="text" name="userAddress"
-								placeholder="주소를 입력해주세요" required>
+								value="${user.userAddress}" required>
 						</div>
-						<div class="content-btn">
-							<button type="button">
-								<span>주소검색</span>
-							</button>
+					</div>
+					<div class="content">
+						<div class="content-name">
+							<label>가입날짜</label>
+						</div>
+						<div class="content-text">
+							<input class="input-box" type="datetime" name="uCreateDate"
+								value="${user.uCreateDate}" readonly>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="enroll-box">
 				<button id="enroll-btn">
-					<span>가입하기</span>
+					<span>수정하기</span>
 				</button>
 			</div>
 		</div>
 	</form>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	
 	<script type="text/javascript">
-		/* 아이디 중복 확인 */
-		function chkId() {
-			var id = $('input[name=userId]').val();
-			/* console.log(id); */
+		/* 비밀번호 확인 */
+		function checkPw() {
+			var pw = $('input[name=userPw]').val();
+			var repw = $('input[name=reUserPw]').val();
 			$.ajax({
-				url : '/user/idChk',
+				url : '/user/pwChk',
 				type : 'post',
 				data : {
-					"userId" : id
+					"userPw" : pw,
+					"reUserPw" : repw
 				},
-				success : function(data) { // 컨트롤러에서 넘어온 result값을 받는다 
-					/* console.log(data) */
-					if (data == 0) { // result가 1이 아니면(0일 경우) -> 사용 가능한 아이디 
-						$('#id_ok').css("display", "inline-block");
-						$('#id_already').css("display", "none");
-					} else { // result가 1일 경우 -> 이미 존재하는 아이디
-						$('#id_already').css("display", "inline-block");
-						$('#id_ok').css("display", "none");
-						$('input[name=userId]').val('');
+				success : function(data) { 
+					if (data == 0) { 
+						$('#pw_not_ok').css("display", "none");
+					} else {
+						$('#pw_not_ok').css("display", "inline-block");
 					}
 				},
 				error : function() {
@@ -205,30 +195,6 @@
 						$('#email_already').css("display", "inline-block");
 						$('#email_ok').css("display", "none");
 						$('input[name=userEmail]').val('');
-					}
-				},
-				error : function() {
-					alert("에러발생");
-				}
-			});
-		};
-		
-		/* 비밀번호 확인 */
-		function checkPw() {
-			var pw = $('input[name=userPw]').val();
-			var repw = $('input[name=reUserPw]').val();
-			$.ajax({
-				url : '/user/pwChk',
-				type : 'post',
-				data : {
-					"userPw" : pw,
-					"reUserPw" : repw
-				},
-				success : function(data) { 
-					if (data == 0) { 
-						$('#pw_not_ok').css("display", "none");
-					} else {
-						$('#pw_not_ok').css("display", "inline-block");
 					}
 				},
 				error : function() {

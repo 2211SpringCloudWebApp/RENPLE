@@ -96,7 +96,7 @@ nav img {
 					<ul>
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
-						<li><a>회원 관리</a></li>
+						<li><a href="/user/selectAll">회원 관리</a></li>
 						<li class="dropdown"><a>지점 관리</a>
 							<ul>
 								<li><a>예약 관리</a></li>
@@ -129,8 +129,9 @@ nav img {
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
 								<li><a>마이페이지</a></li>
-								<li><a href="/user/logout" onclick="return logout()">로그아웃</a>
-								</li>
+								<li><a>문의하기</a></li>
+								<li><a>예약내역</a></li>
+								<li><a href="/user/logout" onclick="return logout()">로그아웃</a></li>
 							</ul></li>
 					</ul>
 				</nav>
