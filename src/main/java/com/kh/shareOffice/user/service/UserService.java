@@ -3,6 +3,7 @@ package com.kh.shareOffice.user.service;
 import java.util.List;
 
 import com.kh.shareOffice.PageInfo;
+import com.kh.shareOffice.Search;
 import com.kh.shareOffice.user.domain.User;
 
 public interface UserService {
@@ -13,10 +14,6 @@ public interface UserService {
 
 	User selectUserById(String userId);
 
-	List<User> selectAll(PageInfo pi);
-	
-	int getListCnt();
-
 	int updateUser(User user);
 
 	User findPw(User user);
@@ -26,5 +23,13 @@ public interface UserService {
 	int checkId(String userId);
 
 	int checkEmail(String userEmail);
+
+	int getListCnt();
+
+	int getListCnt(Search search);
+	
+	List<User> selectAll(PageInfo pi);
+	
+	List<User> selectAll(PageInfo pi, Search search);
 
 }

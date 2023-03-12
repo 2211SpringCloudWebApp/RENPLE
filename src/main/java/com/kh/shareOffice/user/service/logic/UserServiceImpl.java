@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.PageInfo;
+import com.kh.shareOffice.Search;
 import com.kh.shareOffice.user.domain.User;
 import com.kh.shareOffice.user.service.UserService;
 import com.kh.shareOffice.user.store.UserStore;
@@ -32,18 +33,6 @@ public class UserServiceImpl implements UserService{
 	public User selectUserById(String userId) {
 		User user = uStore.selectUserById(userId);
 		return user;
-	}
-
-	@Override
-	public List<User> selectAll(PageInfo pi) {
-		List<User> list = uStore.selectAll(pi);
-		return list;
-	}
-	
-	@Override
-	public int getListCnt() {
-		int result = uStore.getListCnt();
-		return result;
 	}
 
 	@Override
@@ -76,4 +65,27 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	@Override
+	public int getListCnt() {
+		int result = uStore.getListCnt();
+		return result;
+	}
+	
+	@Override
+	public int getListCnt(Search search) {
+		int result = uStore.getListCnt(search);
+		return result;
+	}
+
+	@Override
+	public List<User> selectAll(PageInfo pi) {
+		List<User> list = uStore.selectAll(pi);
+		return list;
+	}
+	
+	@Override
+	public List<User> selectAll(PageInfo pi, Search search) {
+		List<User> list = uStore.selectAll(pi, search);
+		return list;
+	}
 }

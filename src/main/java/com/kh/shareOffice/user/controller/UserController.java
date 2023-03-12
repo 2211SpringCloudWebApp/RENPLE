@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.PageInfo;
+import com.kh.shareOffice.Search;
 import com.kh.shareOffice.user.domain.User;
 import com.kh.shareOffice.user.service.UserService;
 
@@ -107,7 +108,7 @@ public class UserController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 		try {
 			int totalCnt = uService.getListCnt();
-			// 페이징 처리 메서드 
+			// 페이징 처리 메서드
 			PageInfo pi = this.getPageInfo(page, totalCnt);
 			List<User> userList = uService.selectAll(pi);
 			if (userList.size() == 0) {
@@ -126,10 +127,43 @@ public class UserController {
 		}
 	}
 
+	// 회원조회 조건부 검색
+	@RequestMapping("/selectSearchAll")
+	public String selectSearchAll(Model model, @ModelAttribute Search search,
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+		try {
+			// search에는 키워드와 키워드값이 포함되어있는 상태
+			int totalCnt = uService.getListCnt(search);
+			// System.out.println(totalCnt);
+			// 페이징 처리 메서드
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<User> userList = uService.selectAll(pi, search);
+			/*
+			for(User user : userList) {
+				System.out.println(user);
+			}
+			*/
+			if (userList.size() == 0) {
+				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				model.addAttribute("pi", pi);
+				model.addAttribute("search", search);
+				model.addAttribute("list", userList);
+				return "user/userList";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 	// 페이징처리 관련 메서드
 	private PageInfo getPageInfo(int currPage, int totalCnt) {
-		int boardLimit = 10;	// 현재 페이지
-		int naviLimit = 5;		// 전체 게시글 갯수
+		int boardLimit = 10; // 현재 페이지
+		int naviLimit = 5; // 전체 게시글 갯수
 
 		int lastPage = (int) Math.ceil((double) totalCnt / boardLimit);
 		int startNavi = ((currPage - 1) / naviLimit) * naviLimit + 1;

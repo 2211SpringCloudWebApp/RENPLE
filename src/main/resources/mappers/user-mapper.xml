@@ -37,10 +37,55 @@
 		ORDER BY U_CREATE_DATE DESC
 	</select>
 	
+	<select id="selectAllSearch" resultMap="userResultMap">
+		SELECT *
+		FROM USER_TBL
+		<choose>
+			<when test="searchCondition == 'all'">
+				WHERE (USER_ID LIKE '%' || #{searchValue} || '%' OR
+				USER_NAME LIKE '%' || #{searchValue} || '%' OR
+				USER_PHONE LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userId'">
+				WHERE (USER_ID LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userName'">
+				WHERE (USER_NAME LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userPhone'">
+				WHERE (USER_PHONE LIKE '%' || #{searchValue} || '%')
+			</when>
+		</choose>
+		AND USER_ID != 'admin'
+		ORDER BY U_CREATE_DATE DESC
+	</select>
+	
 	<select id="getListCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM USER_TBL
 		WHERE USER_ID != 'admin'
+	</select>
+	
+	<select id="getListCntSearch" resultType="_int">
+		SELECT COUNT(*)
+		FROM USER_TBL
+		<choose>
+			<when test="searchCondition == 'all'">
+				WHERE (USER_ID LIKE '%' || #{searchValue} || '%' OR
+				USER_NAME LIKE '%' || #{searchValue} || '%' OR
+				USER_PHONE LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userId'">
+				WHERE (USER_ID LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userName'">
+				WHERE (USER_NAME LIKE '%' || #{searchValue} || '%')
+			</when>
+			<when test="searchCondition == 'userPhone'">
+				WHERE (USER_PHONE LIKE '%' || #{searchValue} || '%')
+			</when>
+		</choose>
+		AND USER_ID != 'admin'
 	</select>
 	
 	<update id="updateUser">

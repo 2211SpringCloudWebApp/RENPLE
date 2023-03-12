@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.shareOffice.PageInfo;
+import com.kh.shareOffice.Search;
 import com.kh.shareOffice.user.domain.User;
 import com.kh.shareOffice.user.store.UserStore;
 
@@ -35,23 +36,6 @@ public class UserStoreImpl implements UserStore{
 		return user;
 	}
 	
-	@Override
-	public List<User> selectAll(PageInfo pi) {
-		int limit = pi.getBoardLimit();
-		int currentPage = pi.getCurrentPage();
-		int offset = (currentPage - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		List<User> list = session.selectList("UserMapper.selectAll", "admin", rowBounds);
-		return list;
-	}
-	
-	@Override
-	public int getListCnt() {
-		int result = session.selectOne("UserMapper.getListCnt");
-		return result;
-	}
-
 	@Override
 	public int updateUser(User user) {
 		int result = session.update("UserMapper.updateUser", user);
@@ -81,5 +65,41 @@ public class UserStoreImpl implements UserStore{
 		int result = session.selectOne("UserMapper.checkEmail", userEmail);
 		return result;
 	}
+
+	@Override
+	public int getListCnt() {
+		int result = session.selectOne("UserMapper.getListCnt");
+		return result;
+	}
+	
+	@Override
+	public int getListCnt(Search search) {
+		int result = session.selectOne("UserMapper.getListCntSearch", search);
+		return result;
+	}
+
+	@Override
+	public List<User> selectAll(PageInfo pi) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<User> list = session.selectList("UserMapper.selectAll", "admin", rowBounds);
+		return list;
+	}
+	
+	@Override
+	public List<User> selectAll(PageInfo pi, Search search) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<User> list = session.selectList("UserMapper.selectAllSearch", search , rowBounds);
+		return list;
+	}
+	
+	
 
 }
