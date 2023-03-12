@@ -65,11 +65,11 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
-	@Override
-	public int getListCnt() {
-		int result = uStore.getListCnt();
-		return result;
-	}
+//	@Override
+//	public int getListCnt() {
+//		int result = uStore.getListCnt();
+//		return result;
+//	}
 	
 	@Override
 	public int getListCnt(Search search) {
@@ -77,11 +77,11 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
-	@Override
-	public List<User> selectAll(PageInfo pi) {
-		List<User> list = uStore.selectAll(pi);
-		return list;
-	}
+//	@Override
+//	public List<User> selectAll(PageInfo pi) {
+//		List<User> list = uStore.selectAll(pi);
+//		return list;
+//	}
 	
 	@Override
 	public List<User> selectAll(PageInfo pi, Search search) {

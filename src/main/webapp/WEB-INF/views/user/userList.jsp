@@ -37,7 +37,7 @@
 			</thead>
 			<!-- 조건 필터링 하지 않은 경우 -->
 			<form action="/user/selectSearchAll" method="get">
-				<c:if test="${search eq null }">
+				<%-- <c:if test="${search eq null }">
 					<tbody>
 						<c:forEach var="user" items="${list }" varStatus="status">
 							<tr>
@@ -97,7 +97,7 @@
 							</td>
 						</tr>
 					</tfoot>
-				</c:if>
+				</c:if> --%>
 
 				<!-- 조건 필터링을 한 경우 -->
 				<c:if test="${search ne null }">

@@ -96,7 +96,7 @@ nav img {
 					<ul>
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
-						<li><a href="/user/selectAll">회원 관리</a></li>
+						<li><a href="/user/selectSearchAll">회원 관리</a></li>
 						<li class="dropdown"><a>지점 관리</a>
 							<ul>
 								<li><a>예약 관리</a></li>

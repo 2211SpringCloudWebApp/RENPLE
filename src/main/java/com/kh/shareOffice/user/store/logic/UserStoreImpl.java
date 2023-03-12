@@ -66,11 +66,11 @@ public class UserStoreImpl implements UserStore{
 		return result;
 	}
 
-	@Override
-	public int getListCnt() {
-		int result = session.selectOne("UserMapper.getListCnt");
-		return result;
-	}
+//	@Override
+//	public int getListCnt() {
+//		int result = session.selectOne("UserMapper.getListCnt");
+//		return result;
+//	}
 	
 	@Override
 	public int getListCnt(Search search) {
@@ -78,16 +78,16 @@ public class UserStoreImpl implements UserStore{
 		return result;
 	}
 
-	@Override
-	public List<User> selectAll(PageInfo pi) {
-		int limit = pi.getBoardLimit();
-		int currentPage = pi.getCurrentPage();
-		int offset = (currentPage - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		List<User> list = session.selectList("UserMapper.selectAll", "admin", rowBounds);
-		return list;
-	}
+//	@Override
+//	public List<User> selectAll(PageInfo pi) {
+//		int limit = pi.getBoardLimit();
+//		int currentPage = pi.getCurrentPage();
+//		int offset = (currentPage - 1) * limit;
+//		RowBounds rowBounds = new RowBounds(offset, limit);
+//		
+//		List<User> list = session.selectList("UserMapper.selectAll", "admin", rowBounds);
+//		return list;
+//	}
 	
 	@Override
 	public List<User> selectAll(PageInfo pi, Search search) {

@@ -103,6 +103,7 @@ public class UserController {
 	}
 
 	// 회원조회
+	/*
 	@RequestMapping("/selectAll")
 	public String selectAll(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
@@ -126,23 +127,26 @@ public class UserController {
 			return "common/error";
 		}
 	}
+	*/
 
 	// 회원조회 조건부 검색
 	@RequestMapping("/selectSearchAll")
-	public String selectSearchAll(Model model, @ModelAttribute Search search,
-			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+	public String selectSearchAll(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			@RequestParam(value = "searchCondition", required = false, defaultValue = "all") String searchCondition,
+			@RequestParam(value = "searchValue", required = false, defaultValue = "") String searchValue
+			/* @ModelAttribute Search search */) {
 		try {
 			// search에는 키워드와 키워드값이 포함되어있는 상태
+			Search search = new Search(searchValue, searchCondition);
 			int totalCnt = uService.getListCnt(search);
 			// System.out.println(totalCnt);
 			// 페이징 처리 메서드
 			PageInfo pi = this.getPageInfo(page, totalCnt);
 			List<User> userList = uService.selectAll(pi, search);
 			/*
-			for(User user : userList) {
-				System.out.println(user);
-			}
-			*/
+			 * for(User user : userList) { System.out.println(user); }
+			 */
 			if (userList.size() == 0) {
 				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
 				model.addAttribute("alert", alert);

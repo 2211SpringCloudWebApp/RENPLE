@@ -24,11 +24,11 @@ public interface UserService {
 
 	int checkEmail(String userEmail);
 
-	int getListCnt();
+//	int getListCnt();
 
 	int getListCnt(Search search);
 	
-	List<User> selectAll(PageInfo pi);
+//	List<User> selectAll(PageInfo pi);
 	
 	List<User> selectAll(PageInfo pi, Search search);
 

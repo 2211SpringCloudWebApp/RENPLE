@@ -30,12 +30,12 @@
 	</select>
 	
 	<!-- #{userId} 자리에는 admin이 들어가도록 storeImpl의 파라미터값에 넣어줬음 -->
-	<select id="selectAll" resultMap="userResultMap">
+	<!-- <select id="selectAll" resultMap="userResultMap">
 		SELECT *
 		FROM USER_TBL
 		WHERE USER_ID != #{userId}
 		ORDER BY U_CREATE_DATE DESC
-	</select>
+	</select> -->
 	
 	<select id="selectAllSearch" resultMap="userResultMap">
 		SELECT *
@@ -60,11 +60,11 @@
 		ORDER BY U_CREATE_DATE DESC
 	</select>
 	
-	<select id="getListCnt" resultType="_int">
+	<!-- <select id="getListCnt" resultType="_int">
 		SELECT COUNT(*)
 		FROM USER_TBL
 		WHERE USER_ID != 'admin'
-	</select>
+	</select> -->
 	
 	<select id="getListCntSearch" resultType="_int">
 		SELECT COUNT(*)
