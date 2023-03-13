@@ -13,4 +13,25 @@
 	</resultMap>
 	
 	<!-- 쿼리문 작성 부분 -->
+	<insert id="insertQuestion">
+		INSERT INTO QUESTION_TBL 
+		VALUES(SEQ_QUESTIONNO.NEXTVAL, #{userId}, #{questionTitle}, #{questionContent}, DEFAULT, DEFAULT, NULL, NULL)
+	</insert>
+	<select id="questionView" resultMap="questionResultMap">
+		SELECT * FROM QUESTION_TBL WHERE USER_ID=#{userId} 
+	</select>
+	<select id="questionViewAdmin" resultMap="questionResultMap">
+		SELECT * FROM QUESTION_TBL
+	</select>
+	<select id="selectOneById" resultMap="questionResultMap">
+		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
+	</select>
+	<delete id="deleteQuestion">
+		DELETE FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
+	</delete>
+	<update id="updateQuestion">
+		UPDATE QUESTION_TBL SET QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT=#{questionContent} WHERE QUESTION_NO=#{questionNo}
+	</update>
+	
+	
 </mapper>
