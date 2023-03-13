@@ -14,7 +14,7 @@
 		<input type="hidden" name="noticeFilepath" value="${notice.noticeFilepath }">
 		제목 : <input type="text" name="noticeTitle" value="${notice.noticeTitle }"> <br>
 		내용 : <textarea rows="10" cols="50" name="noticeContent">${notice.noticeContent }</textarea><br>
-		첨부파일 : <input type="file" name="reloadFile"><br>
+		첨부파일 : <input type="file" name="reloadFile">&nbsp; &nbsp; ${notice.noticeFilename } <br>
 		<br>
 		<input type="submit" value="수정하기">
 	</form>

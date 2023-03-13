@@ -17,6 +17,10 @@
 		<c:param name="questionNo" value="${question.questionNo }"></c:param>
 	</c:url>
 	<a href="/question/viewAdmin">목록으로</a>
-	<a>댓글 달기</a>
+	<hr>
+	<h2>댓글 작성</h2>
+	<inpuut type="hidden" name="questionNo" value="${question.questionNo }">
+	내용 : <textarea rows="" cols="" name="commentContent"></textarea><br>
+	<button type="submit">작성하기</button>
 </body>
 </html>

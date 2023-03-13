@@ -3,12 +3,10 @@
 <mapper namespace="CommentMapper">
 	<resultMap type="Comment" id="commentResultMap">
 		<id property="commentNo" column="COMMENT_NO"></id>
-		<result property="userId" column="USER_ID"/>
-		<result property="questionNo" column="QUESTION_NO"/>
-		<result property="reviewNo" column="REVIEW_NO"/>
-		<result property="noticeNo" column="NOTICE_NO"/>
 		<result property="commnetContent" column="COMMENT_CONTENT"/>
-		<result property="cCreateDate" column="C_CREATE_DATE"/>
+		<result property="commentDate" column="COMMENT_DATE"/>
+		<result property="questionNo" column="QUESTO_NO"/>
+		<result property="userId" column = "USER_ID"/>
 	</resultMap>
 	
 	<!-- 쿼리문 작성 부분 -->

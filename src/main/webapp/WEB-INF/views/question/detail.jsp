@@ -17,7 +17,7 @@
 		<c:param name="questionNo" value="${question.questionNo }"></c:param>
 	</c:url>
 	<a href="/question/view">목록으로</a>
-	<a href="/question/modify">수정하기</a>
+	<a href="/question/modify?questionNo=${question.questionNo }">수정하기</a>
 	<a href="javascript:void(0);" onclick="removeCheck(${question.questionNo });">삭제</a>
 	<script>
 			function removeCheck(questionNo) {
