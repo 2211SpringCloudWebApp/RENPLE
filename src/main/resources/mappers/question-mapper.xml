@@ -15,7 +15,7 @@
 	<!-- 쿼리문 작성 부분 -->
 	<insert id="insertQuestion">
 		INSERT INTO QUESTION_TBL 
-		VALUES(SEQ_QUESTIONNO.NEXTVAL, #{userId}, #{questionTitle}, #{questionContent}, DEFAULT, DEFAULT, NULL, NULL)
+		VALUES(SEQ_QUESTIONNO.NEXTVAL, #{userId}, #{questionTitle}, #{questionContent}, DEFAULT, DEFAULT, #{questionFilename}, #{questionFilepath})
 	</insert>
 	<select id="questionView" resultMap="questionResultMap">
 		SELECT * FROM QUESTION_TBL WHERE USER_ID=#{userId} 
@@ -30,8 +30,12 @@
 		DELETE FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
 	</delete>
 	<update id="updateQuestion">
-		UPDATE QUESTION_TBL SET QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT=#{questionContent} WHERE QUESTION_NO=#{questionNo}
+		UPDATE QUESTION_TBL SET QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT=#{questionContent} 
+		WHERE QUESTION_NO=#{questionNo}
 	</update>
 	
+	<select id="selectQnaByNo" resultMap="questionResultMap">
+		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
+	</select>
 	
 </mapper>

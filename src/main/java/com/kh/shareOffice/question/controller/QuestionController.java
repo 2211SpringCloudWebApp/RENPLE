@@ -1,5 +1,6 @@
 package com.kh.shareOffice.question.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.question.domain.Question;
@@ -23,36 +25,57 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionService qService;
-	
+
 	////////// 이용자 //////////
 	// 문의글 작성 페이지 이동
 	@RequestMapping("/insert")
 	public String insertQuestion() {
 		return "question/write";
 	}
-	
+
 	// 문의글 작성
-	@RequestMapping(value="/insert", method = RequestMethod.POST)
-	public String insertQuestion(HttpServletRequest request, Model model, String questionTitle, String questionContent) {
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insertQuestion(@ModelAttribute Question qna, HttpServletRequest request, Model model,
+			@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile) {
 		try {
-			HttpSession session = request.getSession();
-			String userId = (String) session.getAttribute("user");
-			Question question = new Question();
-			question.setQuestionTitle(questionTitle);
-			question.setQuestionContent(questionContent);
-			question.setUserId(userId);
-			int result = qService.insertQuestion(question);
-		if(result > 0) {
-			return "question/list";
-		} else {
-			Alert alert = new Alert("/home", "문의사항 작성에 실패했습니다");
-			model.addAttribute("alert", alert);
-			return "common/alert";
-		}
+			if (!uploadFile.getOriginalFilename().equals("")) {
+				String filePath = saveFile(uploadFile, request);
+				if (filePath != null) {
+					qna.setQuestionFilename(uploadFile.getOriginalFilename());
+					qna.setQuestionFilepath(filePath);
+				}
+			}
+			int result = qService.insertQuestion(qna);
+			if (result > 0) {
+				return "redirect:/notice/listAdmin";
+			} else {
+				model.addAttribute("msg", "공지사항 작성에 실패했습니다.");
+				return "common/error";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
+		}
+	}
+
+	// 첨부파일
+	// 이름, 경로 표시하기
+	private String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "/uploadFiles";
+		File folder = new File(savePath);
+		if (!folder.exists()) {
+			folder.mkdir();
+		}
+		String filePath = savePath + "/" + uploadFile.getOriginalFilename();
+		File file = new File(filePath);
+		try {
+			uploadFile.transferTo(file);
+			return filePath;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
@@ -63,7 +86,7 @@ public class QuestionController {
 			HttpSession session = request.getSession();
 			String userId = (String) session.getAttribute("user");
 			List<Question> qList = qService.questionView(userId);
-			if(qList != null) {
+			if (qList != null) {
 				model.addAttribute("qList", qList);
 				return "question/list";
 			} else {
@@ -77,7 +100,7 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
-	
+
 	// 문의글 상세 조회
 	@RequestMapping("/detail")
 	public String questionDetail(@RequestParam("questionNo") int questionNo, Model model) {
@@ -91,13 +114,13 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
-	
+
 	// 문의글 삭제
 	@RequestMapping("/remove")
 	public String removeDetail(@RequestParam("questionNo") int questionNo, Model model) {
 		try {
 			int result = qService.deleteQuestion(questionNo);
-			if(result > 0) {
+			if (result > 0) {
 				Alert alert = new Alert("/question/view", "삭제 성공했습니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
@@ -111,57 +134,99 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
-	
-	// 문의글 수정페이지 이동
-	@RequestMapping("/modify")
-	public String questionModify() {
-		return "question/modify";
+
+	// 문의글 수정하기 버튼누르면 수정화면 띄우기
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String questionModify(@RequestParam("questionNo") int questionNo, Model model) {
+		try {
+			// question 객체 가져와서 questionNo 하나꺼내기
+			Question qna = qService.selectQnaByNo(questionNo);
+			System.out.println(qna);
+			System.out.println(questionNo);
+			// question 값이 빈 값이 아니라면
+			if (qna != null) {
+				// qna 객체에서 가져와서 qna 목록표시해주기
+				model.addAttribute("qna", qna);
+				return "question/modify";
+			} else {
+				// 에러알림창띄우기
+				Alert alert = new Alert("/home", "문의글 조회에 실패하였습니다.");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 문의글 수정하기
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute Question qna, @RequestParam("questionNo") int questionNo,
+			@RequestParam("questionTitle") String questionTitle,
+			@RequestParam("questionContent") String questionContent, @RequestParam("userId") String userId,
+			Model model) {
+		try {
+			int result = qService.updateQuestion(qna);
+			System.out.println(qna);
+			if (result > 0) {
+				Alert alert = new Alert("/question/view", "문의글 수정이 완료되었습니다.");
+				model.addAttribute("alert", alert);
+
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/question/view", "문의글 수정이 완료되지 않았습니다.");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
 	}
 	
-//	// 문의글 수정하기
-//	@RequestMapping(value="/modify", method = RequestMethod.POST)
-//	public String questionModify(@ModelAttribute Question question, Model model, HttpServletRequest request) {
-//		try {
-//			int result = qService.updateQuestion(question);
-//			if(result > 0) {
-//				return "redirect:/question/detail?questionNo=" + question.getQuestionNo();
-//			} else {
-//				model.addAttribute("msg", "문의글이 수정되지 않았습니다.");
-//				return "common/error";
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			model.addAttribute("msg", e.getMessage());
-//			return "common/error";		
-//			}
-//	}
+	// 파일 삭제하기
+	private void deleteFile(String filename,  HttpServletRequest request) throws Exception {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String delPath = root + "nuploadFiles";
+		String delFilepath = delPath + "/" + filename;
+		File delFile = new File(delFilepath);
+		if(delFile.exists()) {
+			delFile.delete();
+		}
+	}
 	
+	
+	
+
 	////////// 관리자 //////////
 	// 관리자 문의글 조회
-		@RequestMapping("/viewAdmin")
-		public String questionViewAdmin(Model model) {
-			try {
-				List<Question> qList = qService.questionViewAdmin();
-				model.addAttribute("qList", qList);
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", e.getMessage());
-				return "common/error";	
-			}
-			return "question/listAdmin";
+	@RequestMapping("/viewAdmin")
+	public String questionViewAdmin(Model model) {
+		try {
+			List<Question> qList = qService.questionViewAdmin();
+			model.addAttribute("qList", qList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
 		}
-	
+		return "question/listAdmin";
+	}
+
 	// 관리자 문의글 상세 조회
-		@RequestMapping("/detailAdmin")
-		public String questionDetailAdmin(@RequestParam("questionNo") int questionNo, Model model) {
-			try {
-				Question question = qService.selectOneById(questionNo);
-				model.addAttribute("question", question);
-				return "question/detailAdmin";
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", e.getMessage());
-				return "common/error";
-			}
+	@RequestMapping("/detailAdmin")
+	public String questionDetailAdmin(@RequestParam("questionNo") int questionNo, Model model) {
+		try {
+			Question question = qService.selectOneById(questionNo);
+			model.addAttribute("question", question);
+			return "question/detailAdmin";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
 		}
+	}
 }

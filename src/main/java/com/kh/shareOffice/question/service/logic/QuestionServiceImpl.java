@@ -9,14 +9,13 @@ import org.springframework.stereotype.Service;
 import com.kh.shareOffice.question.domain.Question;
 import com.kh.shareOffice.question.service.QuestionService;
 import com.kh.shareOffice.question.store.QuestionStore;
+import com.kh.shareOffice.user.domain.User;
 
 @Service
 public class QuestionServiceImpl implements QuestionService{
 
 	@Autowired
 	private QuestionStore qStore;
-	@Autowired
-	private SqlSession session;
 
 	 // 문의사항 작성 Service
 	@Override
@@ -35,28 +34,37 @@ public class QuestionServiceImpl implements QuestionService{
 	// 문의사항 상세 조회
 	@Override
 	public Question selectOneById(int questionNo) {
-		Question question = qStore.selectOneById(session, questionNo);
+		Question question = qStore.selectOneById(questionNo);
 		return question;
 	}
 
 	// 문의사항 삭제
 	@Override
 	public int deleteQuestion(int questionNo) {
-		int result = qStore.deleteQuestion(session, questionNo);
+		int result = qStore.deleteQuestion(questionNo);
 		return result;
 	}
 
-	// 문의사항 수정
-	@Override
-	public int updateQuestion(Question question) {
-		return qStore.updateQuestion(session, question);
-	}
-
-	// 관리자 문의사항 목록 조
+	// 관리자 문의사항 목록 조회 
 	@Override
 	public List<Question> questionViewAdmin() {
 		List<Question> list = qStore.questionViewAdmin();
 		return list;
 	}
+
+	// questionNo로 화면띄우기 
+	@Override
+	public Question selectQnaByNo(int questionNo) {
+		Question qna = qStore.selectQnaByNo(questionNo);
+		return qna;
+	}
+
+	// 문의사항 수정하기
+	@Override
+	public int updateQuestion(Question qna) {
+		int result = qStore.update(qna);
+		return result;
+	}
+	
 
 }
