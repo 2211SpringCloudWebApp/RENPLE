@@ -128,7 +128,7 @@ nav img {
 						<li><a>공지</a></li>
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
-								<li><a>마이페이지</a></li>
+								<li><a href="/user/mypage?userId=${sessionScope.user}">마이페이지</a></li>
 								<li><a href="/user/logout" onclick="return logout()">로그아웃</a>
 								</li>
 							</ul></li>

@@ -31,4 +31,19 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
+	@Override
+	public int modify(User user) {
+		int result = uStore.modify(user);
+		return result;
+	}
+
+	@Override
+	public User findId(User user) {
+		User getUser = uStore.findId(user);
+		return getUser;
+	}
+
+	
+	
+	
 }

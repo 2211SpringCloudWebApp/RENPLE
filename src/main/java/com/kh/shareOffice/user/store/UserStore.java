@@ -9,5 +9,9 @@ public interface UserStore {
 	int login(User user);
 
 	User selectUserById(String userId);
+	
+	int modify(User user);
+
+	User findId(User user);
 
 }
