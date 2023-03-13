@@ -12,4 +12,19 @@
 	</resultMap>
 	
 	<!-- 쿼리문 작성 부분 -->
+	<select id="noticeView" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL
+	</select>
+	<select id="selectOneById" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+	</select>
+	<update id="updateNotice">
+		UPDATE NOTICE_TBL SET NOTICE_TITLE=#{noticeTitle}, NOTICE_CONTENT=#{noticeContent} WHERE NOTICE_NO=#{noticeNo} 
+	</update>
+	<insert id="insertNotice">
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL, #{noticeTitle}, #{noticeContent}, DEFAULT, DEFAULT, NULL, NULL)
+	</insert>
+	<delete id="deleteNotice">
+		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+	</delete>
 </mapper>
