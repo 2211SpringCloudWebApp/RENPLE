@@ -31,5 +31,9 @@ public interface UserStore {
 //	List<User> selectAll(PageInfo pi);
 	
 	List<User> selectAll(PageInfo pi, Search search);
+
+	int modify(User user);
+
+	User findId(User user);
 	
 }

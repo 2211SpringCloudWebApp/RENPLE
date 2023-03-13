@@ -88,4 +88,16 @@ public class UserServiceImpl implements UserService{
 		List<User> list = uStore.selectAll(pi, search);
 		return list;
 	}
+
+	@Override
+	public int modify(User user) {
+		int result = uStore.modify(user);
+		return result;
+	}
+
+	@Override
+	public User findId(User user) {
+		User getUser = uStore.findId(user);
+		return getUser;
+	}
 }

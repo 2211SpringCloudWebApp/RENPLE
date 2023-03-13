@@ -38,9 +38,9 @@
 
 <body>
 	<!-- <form action="/user/select" method="post" onsubmit="retutn totalChk()"> -->
-	<form action="/user/modifyUser" method="post">
+	<form action="/user/modify" method="post">
 		<div id="outter">
-			<h1>회원 상세 페이지</h1>
+			<h1>마이페이지</h1>
 			<div id="required">
 				<span class="star">*</span> 수정 가능 목록
 			</div>

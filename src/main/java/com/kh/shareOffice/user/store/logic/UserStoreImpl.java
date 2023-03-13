@@ -99,6 +99,18 @@ public class UserStoreImpl implements UserStore{
 		List<User> list = session.selectList("UserMapper.selectAllSearch", search , rowBounds);
 		return list;
 	}
+
+	@Override
+	public int modify(User user) {
+		int result = session.update("UserMapper.modify", user);
+		return result;
+	}
+
+	@Override
+	public User findId(User user) {
+		User getUser = session.selectOne("UserMapper.findId", user);
+		return getUser;
+	}
 	
 	
 
