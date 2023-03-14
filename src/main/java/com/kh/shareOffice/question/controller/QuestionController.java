@@ -8,12 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.question.domain.Question;
@@ -114,44 +111,6 @@ public class QuestionController {
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
 		}
-	}
-	
-//	// 문의글 수정페이지 이동
-//	@RequestMapping("/modify")
-//	public String questionModify(@RequestParam(value = "questionNo", required = false) Integer questionNo, Model model) {
-//		System.out.println(questionNo);
-//		try {
-//			Question question = qService.selectOneById(questionNo);
-//			if(question != null) {
-//				model.addAttribute("question", question);
-//				return "question/modify";
-//			} else {
-//				model.addAttribute("msg", "데이터 조회에 실패했습니다.");
-//				return "common/error";
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			model.addAttribute("msg", e.getMessage());
-//			return "common/error";
-//		}
-//	}
-	
-	// 문의글 수정하기
-	@RequestMapping(value="/modify", method = RequestMethod.POST)
-	public String questionModify(@ModelAttribute Question question, Model model, HttpServletRequest request) {
-		try {
-			int result = qService.updateQuestion(question);
-			if(result > 0) {
-				return "redirect:/question/detail?questionNo=" + question.getQuestionNo();
-			} else {
-				model.addAttribute("msg", "문의글이 수정되지 않았습니다.");
-				return "common/error";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("msg", e.getMessage());
-			return "common/error";		
-			}
 	}
 	
 	////////// 관리자 //////////

@@ -3,11 +3,14 @@
 <mapper namespace="CommentMapper">
 	<resultMap type="Comment" id="commentResultMap">
 		<id property="commentNo" column="COMMENT_NO"></id>
-		<result property="commnetContent" column="COMMENT_CONTENT"/>
+		<result property="commentContent" column="COMMENT_CONTENT"/>
 		<result property="commentDate" column="COMMENT_DATE"/>
 		<result property="questionNo" column="QUESTO_NO"/>
 		<result property="userId" column = "USER_ID"/>
 	</resultMap>
 	
 	<!-- 쿼리문 작성 부분 -->
+	<insert id="insertComment">
+		INSERT INTO COMMENTS_TBL VALUES (SEQ_COMMENTNO.NEXTVAL, #{commentContent}, DEFAULT, #{questionNo}, #{userId})
+	</insert>
 </mapper>

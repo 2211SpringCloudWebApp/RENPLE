@@ -18,9 +18,15 @@
 	</c:url>
 	<a href="/question/viewAdmin">목록으로</a>
 	<hr>
-	<h2>댓글 작성</h2>
-	<inpuut type="hidden" name="questionNo" value="${question.questionNo }">
-	내용 : <textarea rows="" cols="" name="commentContent"></textarea><br>
-	<button type="submit">작성하기</button>
+	<h2>답글 작성</h2>
+	<!-- 	관리자가 답글을 작성하는 경우 -->
+	<form action="/comment/insert" method="post">
+		<input type="hidden" name="userId" value="${question.userId }">
+		<input type="hidden" name="questionNo" value="${question.questionNo }">
+		<textarea rows="" cols="" name="commentContent"></textarea><br>
+		<button type="submit">작성하기</button>
+	</form>
+	<!-- 	답글 작성 후 조회 -->
+	
 </body>
 </html>
