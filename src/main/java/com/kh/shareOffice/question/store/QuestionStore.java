@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.domain.Search;
 
 public interface QuestionStore {
 
@@ -21,5 +22,7 @@ public interface QuestionStore {
 	Question selectQnaByNo(int questionNo);
 
 	int update(Question qna);
+
+	int getListCount(Search search);
 
 }

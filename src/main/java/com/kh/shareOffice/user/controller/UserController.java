@@ -50,6 +50,13 @@ public class UserController {
 			return "common/error";
 		}
 	}
+	
+	// 회원가입 유효성 체크 
+	// 아이디 
+	
+	
+	
+	
 
 	// 로그인
 	@RequestMapping("/login")
@@ -186,6 +193,8 @@ public class UserController {
 			return "common/error";
 		}
 	}
+	
+	
 	
 	
 	

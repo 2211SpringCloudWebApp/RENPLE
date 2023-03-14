@@ -89,7 +89,7 @@
 						</div>
 						<div class="content-text">
 							<div>
-								<input class="input-box" type="text" name="userEmail"
+								<input class="input-box" type="email" name="userEmail"
 									placeholder="예: green@apple.com" required>
 							</div>
 						</div>
@@ -126,7 +126,7 @@
 				</div>
 			</div>
 			<div id="enroll-box">
-				<button id="enroll-btn">
+				<button id="enroll-btn" onclick="joinform_check();">
 					<span>가입하기</span>
 				</button>
 			</div>
@@ -185,7 +185,6 @@
 				   }).open();
 			}
 			
-			
 			function submitForm() {
 				  var form = document.getElementById("address");
 				  var formData = new FormData(form);
@@ -198,6 +197,15 @@
 				  console.log(data);
 				  // form 데이터를 처리하는 코드를 작성합니다.
 				}
+			
+			// 회원가입 유효성 검사 
+		function joinform_check(){
+				// 아이디 입력값 가져오기 
+				var userId = document.forms["registrationForm"]["username"].value;
+			}
+			
+			
+			
 		</script>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>

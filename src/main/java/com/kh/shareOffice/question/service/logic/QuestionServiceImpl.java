@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.domain.Search;
 import com.kh.shareOffice.question.service.QuestionService;
 import com.kh.shareOffice.question.store.QuestionStore;
 import com.kh.shareOffice.user.domain.User;
@@ -65,6 +66,14 @@ public class QuestionServiceImpl implements QuestionService{
 		int result = qStore.update(qna);
 		return result;
 	}
+
+	// 문의사항 검색하기
+	@Override
+	public int getListCount(Search search) {
+		int totalCount = qStore.getListCount(search);
+		return totalCount;
+	}
+
 	
 
 }

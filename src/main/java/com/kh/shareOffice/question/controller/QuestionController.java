@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.domain.Search;
 import com.kh.shareOffice.question.service.QuestionService;
 
 @Controller
@@ -47,9 +48,11 @@ public class QuestionController {
 			}
 			int result = qService.insertQuestion(qna);
 			if (result > 0) {
-				return "redirect:/notice/listAdmin";
+				Alert alert = new Alert("/question/view", "문의글 작성에 성공했습니다.");
+				model.addAttribute("alert", alert);
+				return "common/alert";
 			} else {
-				model.addAttribute("msg", "공지사항 작성에 실패했습니다.");
+				model.addAttribute("msg", "문의글 작성에 실패했습니다.");
 				return "common/error";
 			}
 		} catch (Exception e) {
@@ -90,7 +93,7 @@ public class QuestionController {
 				model.addAttribute("qList", qList);
 				return "question/list";
 			} else {
-				Alert alert = new Alert("/home", "문의사항 조회에 실패했습니다");
+				Alert alert = new Alert("/home", "문의글 조회에 실패했습니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			}
@@ -121,11 +124,11 @@ public class QuestionController {
 		try {
 			int result = qService.deleteQuestion(questionNo);
 			if (result > 0) {
-				Alert alert = new Alert("/question/view", "삭제 성공했습니다");
+				Alert alert = new Alert("/question/view", "문의글 삭제에 성공하였습니다.");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			} else {
-				model.addAttribute("msg", "문의사항이 삭제되지 않았습니다.");
+				model.addAttribute("msg", "문의글이 삭제되지 않았습니다.");
 				return "common/error";
 			}
 		} catch (Exception e) {
@@ -135,14 +138,12 @@ public class QuestionController {
 		}
 	}
 
-	// 문의글 수정하기 버튼누르면 수정화면 띄우기
+	// 문의글 수정화면 띄우기
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String questionModify(@RequestParam("questionNo") int questionNo, Model model) {
 		try {
 			// question 객체 가져와서 questionNo 하나꺼내기
 			Question qna = qService.selectQnaByNo(questionNo);
-			System.out.println(qna);
-			System.out.println(questionNo);
 			// question 값이 빈 값이 아니라면
 			if (qna != null) {
 				// qna 객체에서 가져와서 qna 목록표시해주기
@@ -163,17 +164,33 @@ public class QuestionController {
 
 	// 문의글 수정하기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@ModelAttribute Question qna, @RequestParam("questionNo") int questionNo,
-			@RequestParam("questionTitle") String questionTitle,
-			@RequestParam("questionContent") String questionContent, @RequestParam("userId") String userId,
-			Model model) {
+	public String update(@ModelAttribute Question qna
+			, @RequestParam("questionNo") int questionNo
+			,@RequestParam("questionTitle") String questionTitle
+			,@RequestParam("questionContent") String questionContent
+			,@RequestParam("userId") String userId
+			,Model model
+			,@RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile
+			, HttpServletRequest request) {
 		try {
+			if (!reloadFile.isEmpty()) {
+				// 기존 업로드된 파일 체크 후
+				if (qna.getQuestionFilename() != null) {
+					// 기존 파일 삭제
+					this.deleteFile(qna.getQuestionFilename(), request);
+				}
+				// 새로 업로드된 파일 복사(지정된 경로 업로드)
+				String modifyPath = this.saveFile(reloadFile, request);
+				if (modifyPath != null) {
+					// notice에 새로운 파일 이름, 파일 경로 set
+					qna.setQuestionFilename(reloadFile.getOriginalFilename());
+					qna.setQuestionFilepath(modifyPath);
+				}
+			}
 			int result = qService.updateQuestion(qna);
-			System.out.println(qna);
 			if (result > 0) {
 				Alert alert = new Alert("/question/view", "문의글 수정이 완료되었습니다.");
 				model.addAttribute("alert", alert);
-
 				return "common/alert";
 			} else {
 				Alert alert = new Alert("/question/view", "문의글 수정이 완료되지 않았습니다.");
@@ -186,22 +203,36 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
-	
+
 	// 파일 삭제하기
-	private void deleteFile(String filename,  HttpServletRequest request) throws Exception {
+	private void deleteFile(String filename, HttpServletRequest request) throws Exception {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String delPath = root + "nuploadFiles";
 		String delFilepath = delPath + "/" + filename;
 		File delFile = new File(delFilepath);
-		if(delFile.exists()) {
+		if (delFile.exists()) {
 			delFile.delete();
 		}
 	}
 	
+	// 이용자 문의글 목록 페이징
+	
+	
+	// 이용자 문의글 목록 검색 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
-	////////// 관리자 //////////
+	////////// 관리자 //////////// 
 	// 관리자 문의글 조회
 	@RequestMapping("/viewAdmin")
 	public String questionViewAdmin(Model model) {
@@ -229,4 +260,6 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
+	
+	
 }

@@ -129,21 +129,36 @@ public class NoticeController {
 	}
 
 	// 관리자 공지사항 수정
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String noticeModify(@ModelAttribute Notice notice, Model model, HttpServletRequest request) {
-		try {
-			int result = nService.updateNotice(notice);
-			if (result > 0) {
-				return "notice/detailAdmin?noticeNo=" + notice.getNoticeNo();
-			} else {
-				model.addAttribute("msg", "공지사항이 수정되지 않았습니다.");
-				return "common/error";
-			}
-		} catch (Exception e) {
-			model.addAttribute("msg", e.getMessage());
-			return "common/error";
-		}
-	}
+//		@RequestMapping(value = "/modify", method = RequestMethod.POST)
+//		public String noticeModify(
+//				@ModelAttribute Notice notice
+//				, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
+//				, Model model
+//				, HttpServletRequest request) {
+//			try {
+//				if(!reloadFile.isEmpty()) {
+//					if(notice.getNoticeFilename() != null) {
+//						this.deleteFile(notice.getNoticeFilename(), request);
+//					}
+//					String modifyPath = this.saveFile(reloadFile, request);
+//					if(modifyPath != null) {
+//						notice.setNoticeFilename(reloadFile.getOriginalFilename());
+//						notice.setNoticeFilepath(modifyPath);
+//					}
+//				}
+//				int result = nService.updateNotice(notice);
+//				if (result > 0) {
+//					return "redirect:/notice/detailAdmin?noticeNo=" + notice.getNoticeNo();
+//				} else {
+//					model.addAttribute("msg", "공지사항이 수정되지 않았습니다.");
+//					return "common/error";
+//				}
+//			} catch (Exception e) {
+//				model.addAttribute("msg", e.getMessage());
+//				return "common/error";
+//			}
+//		}
+
 
 	// 관리자 공지사항 삭제
 	@RequestMapping("/remove")
