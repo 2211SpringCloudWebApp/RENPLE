@@ -1,4 +1,4 @@
-package com.kh.shareOffice.user.service.logic;
+package com.kh.shareOffice.user;
 
 import java.util.List;
 
@@ -7,9 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
-import com.kh.shareOffice.user.domain.User;
-import com.kh.shareOffice.user.service.UserService;
-import com.kh.shareOffice.user.store.UserStore;
 
 @Service
 public class UserServiceImpl implements UserService{

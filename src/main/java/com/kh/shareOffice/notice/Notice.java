@@ -1,4 +1,4 @@
-package com.kh.shareOffice.notice.domain;
+package com.kh.shareOffice.notice;
 
 import java.sql.Timestamp;
 

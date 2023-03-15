@@ -1,4 +1,4 @@
-package com.kh.shareOffice.user.store.logic;
+package com.kh.shareOffice.user;
 
 import java.util.List;
 
@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
-import com.kh.shareOffice.user.domain.User;
-import com.kh.shareOffice.user.store.UserStore;
 
 @Repository
 public class UserStoreImpl implements UserStore{

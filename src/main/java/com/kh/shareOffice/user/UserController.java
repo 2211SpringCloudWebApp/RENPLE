@@ -1,4 +1,4 @@
-package com.kh.shareOffice.user.controller;
+package com.kh.shareOffice.user;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
-import com.kh.shareOffice.user.domain.User;
-import com.kh.shareOffice.user.service.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -38,6 +36,7 @@ public class UserController {
 	public String enroll(Model model, @ModelAttribute User user, String userId, String userPw, String userName,
 			String userEmail, String userPhone, String userAddress, Timestamp uCreateDate) {
 		try {
+			user.setUserAddress(userAddress.replace(",", ", "));
 			int result = uService.insertUser(user);
 			if (result > 0) {
 				Alert alert = new Alert("/user/login", "회원가입에 성공했습니다");
@@ -275,7 +274,7 @@ public class UserController {
 			 * for(User user : userList) { System.out.println(user); }
 			 */
 			if (userList.size() == 0) {
-				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
+				Alert alert = new Alert("/", "이용자가 존재하지 않습니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			} else {

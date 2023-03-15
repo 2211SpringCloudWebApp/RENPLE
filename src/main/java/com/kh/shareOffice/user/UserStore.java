@@ -1,10 +1,9 @@
-package com.kh.shareOffice.user.store;
+package com.kh.shareOffice.user;
 
 import java.util.List;
 
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
-import com.kh.shareOffice.user.domain.User;
 
 public interface UserStore {
 

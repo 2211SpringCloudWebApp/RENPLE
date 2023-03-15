@@ -7,10 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>이용자 조회</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 </head>
+<link rel="stylesheet" href="../../resources/mainCss/table.css">
 <style>
 	a:after, a:link {
 		text-decoration-line: none;
@@ -20,7 +18,7 @@
 <body>
 	<h1>이용자 조회</h1>
 	<div id="tableBox">
-		<table class="table table-hover table-condensed">
+		<table>
 			<colgroup>
 				<col width="25%">
 				<col width="25%">
