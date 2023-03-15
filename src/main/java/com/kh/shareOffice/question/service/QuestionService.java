@@ -14,9 +14,10 @@ public interface QuestionService {
 
 	int deleteQuestion(int questionNo);
 
-	int updateQuestion(Question question);
-
 	List<Question> questionViewAdmin();
 
+	Question selectQnaByNo(int questionNo);
+
+	int updateQuestion(Question qna);
 	
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.comments.domain.Comment;
 import com.kh.shareOffice.comments.service.CommentsService;
 
@@ -30,9 +29,7 @@ import com.kh.shareOffice.comments.service.CommentsService;
 	        comment.setUserId(userId);
 	        int result = cService.insertComment(comment);
 	        if (result > 0) {
-	        	Alert alert = new Alert("redirect:/question/detailAdmin?questionNo=\"+comment.getQuestionNo()","답글이 등록되었습니다.");
-				model.addAttribute("alert", alert);
-	        	return "common/alert";
+	            return "redirect:/question/detailAdmin?questionNo="+comment.getQuestionNo();
 	        } else {
 	            model.addAttribute("msg", "댓글 작성에 실패했습니다.");
 	            return "common/error";

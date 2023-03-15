@@ -27,4 +27,7 @@
 	<delete id="deleteNotice">
 		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 	</delete>
+	<update id="updateNoticeFile">
+		UPDATE NOTICE_TBL SET NOTICE_FILENAME = NULL, NOTICE_FILEPATH = NULL WHERE NOTICE_NO = #{noticeNo}
+	</update>
 </mapper>

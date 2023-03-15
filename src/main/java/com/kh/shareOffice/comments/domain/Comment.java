@@ -9,6 +9,7 @@ public class Comment {
 	private int questionNo;
 	private String userId;
 	
+	
 	public Comment() {
 		super();
 	}

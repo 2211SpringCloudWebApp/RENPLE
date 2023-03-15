@@ -12,12 +12,15 @@ public interface QuestionStore {
 
 	List<Question> questionView(String userId);
 
-	Question selectOneById(SqlSession session, int questionNo);
+	Question selectOneById(int questionNo);
 
-	int deleteQuestion(SqlSession session, int questionNo);
-
-	int updateQuestion(SqlSession session, Question question);
+	int deleteQuestion(int questionNo);
 
 	List<Question> questionViewAdmin();
+
+	Question selectQnaByNo(int questionNo);
+
+	int update(Question qna);
+
 
 }

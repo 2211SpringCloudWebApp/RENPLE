@@ -46,4 +46,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return nStore.insertNotice(session, notice);
 	}
 
+	@Override
+	public int updateFileStatus(int noticeNo) {
+		return nStore.updateFileStatus(session, noticeNo);
+	}
+
+
 }

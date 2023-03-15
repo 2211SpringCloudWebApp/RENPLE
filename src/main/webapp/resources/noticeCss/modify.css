@@ -11,7 +11,7 @@
 }
 #outter {
 	padding-top: 20vh;	/* 헤더 공간 */
-	height: 40vh;
+	height: 80vh;
 	width: 70vw;
 	margin: 0 auto;
 }
@@ -24,9 +24,9 @@
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 60vh;
+	height: 40vh;
 	width: 60vw;
-	line-height : 5vh;
+	line-height : 8vh;
 }
 a {
 	text-decoration : none;	
@@ -36,7 +36,7 @@ a {
 
 .content-btn {
 	text-align: center;
-	margin-top : 13vh;
+	margin-top : 5vh;
 }
 
 .content-btn button {
@@ -54,6 +54,9 @@ a {
 button + button {
 	margin-left : 3vh;
 }
-.img {
-	width : 200px;
+textarea {
+	resize : none;
+}
+input, textarea {
+	width : 30%;
 }

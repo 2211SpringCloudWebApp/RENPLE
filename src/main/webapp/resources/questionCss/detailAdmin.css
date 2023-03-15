@@ -11,7 +11,7 @@
 }
 #outter {
 	padding-top: 20vh;	/* 헤더 공간 */
-	height: 40vh;
+	height: 80vh;
 	width: 70vw;
 	margin: 0 auto;
 }
@@ -24,7 +24,7 @@
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 60vh;
+	height: 40vh;
 	width: 60vw;
 	line-height : 5vh;
 }
@@ -36,15 +36,16 @@ a {
 
 .content-btn {
 	text-align: center;
-	margin-top : 13vh;
+	margin-top : 12vh;
 }
 
-.content-btn button {
+.content-btn {
 	width: 150px;
 	height: 40px;;
 	background-color : #e5e5cb;
 	border: none;
 }
+
 .content-btn input {
 	width: 150px;
 	height: 40px;;
@@ -53,7 +54,4 @@ a {
 }
 button + button {
 	margin-left : 3vh;
-}
-.img {
-	width : 200px;
 }

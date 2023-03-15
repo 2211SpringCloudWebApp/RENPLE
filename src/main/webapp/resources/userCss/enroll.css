@@ -61,6 +61,17 @@ h1 {
 .content-btn button {
 	width: 90%;
 	height: 100%;
+	background-color : #e5e5cb;
+	border: none;
+}
+.content-btn input{
+	width: 90%;
+	height: 45%;
+	background-color : #e5e5cb;
+	border: none;
+}
+.box {
+	margin-bottom: 9px;
 }
 
 .star {
@@ -74,4 +85,6 @@ h1 {
 #enroll-btn {
 	height: 45px;
 	width: 40%;
+	background-color: #e5e5cb;
+	border: none;
 }

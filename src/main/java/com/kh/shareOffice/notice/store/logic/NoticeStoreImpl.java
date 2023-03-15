@@ -44,4 +44,11 @@ public class NoticeStoreImpl implements NoticeStore{
 		int result = session.insert("NoticeMapper.insertNotice", notice);
 		return result;
 	}
+
+	@Override
+	public int updateFileStatus(SqlSession session, int noticeNo) {
+		int result = session.update("NoticeMapper.updateNoticeFile", noticeNo);
+		return result;
+	}
+
 }

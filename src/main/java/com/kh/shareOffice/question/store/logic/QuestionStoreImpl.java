@@ -17,7 +17,7 @@ public class QuestionStoreImpl implements QuestionStore{
 
 	@Override
 	public int insertQuestion(Question question) {
-		int result = session.insert("QuestionMapper.insertQuestion",question );
+		int result = session.insert("QuestionMapper.insertQuestion", question);
 		return result;
 	}
 
@@ -28,20 +28,14 @@ public class QuestionStoreImpl implements QuestionStore{
 	}
 
 	@Override
-	public Question selectOneById(SqlSession session, int questionNo) {
+	public Question selectOneById(int questionNo) {
 		Question question = session.selectOne("QuestionMapper.selectOneById", questionNo);
 		return question;
 	}
 
 	@Override
-	public int deleteQuestion(SqlSession session, int questionNo) {
+	public int deleteQuestion(int questionNo) {
 		int result = session.delete("QuestionMapper.deleteQuestion", questionNo);
-		return result;
-	}
-
-	@Override
-	public int updateQuestion(SqlSession session, Question question) {
-		int result = session.update("QuestionMapper.updateQuestion", question);
 		return result;
 	}
 
@@ -50,4 +44,18 @@ public class QuestionStoreImpl implements QuestionStore{
 		List<Question> qlist = session.selectList("QuestionMapper.questionViewAdmin");
  		return qlist;
 	}
+
+	@Override
+	public Question selectQnaByNo(int questionNo) {
+		Question qna = session.selectOne("QuestionMapper.selectQnaByNo", questionNo);
+		return qna;
+	}
+
+	@Override
+	public int update(Question qna) {
+		int result = session.update("QuestionMapper.updateQuestion", qna);
+		return result;
+	}
+
+
 }
