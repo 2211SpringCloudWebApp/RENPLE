@@ -21,8 +21,6 @@ public interface QuestionService {
 
 	int updateQuestion(Question qna);
 
-	int getListCount(Search search);
-
 
 	
 }

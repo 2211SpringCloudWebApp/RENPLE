@@ -41,7 +41,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userId"
-									placeholder="아이디를 입력해주세요" required autofocus>
+									placeholder="아이디를 입력해주세요"  autofocus>
 							</div>
 						</div>
 						<div class="content-btn">
@@ -57,7 +57,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="userPw"
-									placeholder="비밀번호를 입력해주세요" required>
+									placeholder="비밀번호를 입력해주세요" >
 							</div>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="reUserPw"
-									placeholder="비밀번호를 한번 더 입력해주세요" required>
+									placeholder="비밀번호를 한번 더 입력해주세요" >
 							</div>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userName"
-									placeholder="이름을 입력해 주세요" required>
+									placeholder="이름을 입력해 주세요" >
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="email" name="userEmail"
-									placeholder="예: green@apple.com" required>
+									placeholder="예: green@apple.com" >
 							</div>
 						</div>
 						<div class="content-btn">
@@ -107,7 +107,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="tel" name="userPhone"
-									placeholder="숫자만 입력해주세요." required>
+									placeholder="숫자만 입력해주세요." >
 							</div>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 						</div>
 						<div class="content-text">
 							<input id="address" class="input-box box" type="text" name="userAddress" placeholder="주소를 검색해주세요" >
-							<input id="detailAddress" class="input-box" type="text" name="userAddress" placeholder="상세주소를 입력해주세요" required>
+							<input id="detailAddress" class="input-box" type="text" name="userAddress" placeholder="상세주소를 입력해주세요" >
 						</div>
 						<div class="content-btn">
 							<input type="button" onclick="sample4_execDaumPostcode()" onclick="submitForm();" value="주소 찾기">
@@ -198,12 +198,41 @@
 				  // form 데이터를 처리하는 코드를 작성합니다.
 				}
 			
-			// 회원가입 유효성 검사 
-		function joinform_check(){
-				// 아이디 입력값 가져오기 
-				var userId = document.forms["registrationForm"]["username"].value;
-			}
 			
+			
+			// 회원가입 유효성 검사 
+	/* 	function joinform_check() {
+			  var userId = document.getElementById("userId");
+			  var userPw = document.getElementById("userPw");
+			  var reUserPw = document.getElementById("reUserPw");
+			  var userName = document.getElementById("userName");
+			  var userEmail = document.getElementById("userEmail");
+			  var userPhone = document.getElementById("userPhone");
+			  var userPhone = document.getElementById("userPhone");
+			  var userAddress = document.getElementById("userAddress");
+
+			  if (userId == "") { 
+				    alert("아이디를 입력하세요.");
+				    userId.focus(); 
+				    return false; 
+				    };
+				    
+				    if (username.length < 4 || username.length > 25) {
+		                alert("아이디는 4~25자여야 합니다.");
+		                return false;
+		            }
+		            if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
+		                alert("아이디는 영문 대소문자, 숫자, 특수문자(_, -)만 허용됩니다.");
+		                return false;
+		            } */
+		            
+		            
+		            
+				  
+				
+			  
+			}
+				
 			
 			
 		</script>

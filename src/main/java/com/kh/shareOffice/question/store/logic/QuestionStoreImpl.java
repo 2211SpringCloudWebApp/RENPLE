@@ -58,10 +58,5 @@ public class QuestionStoreImpl implements QuestionStore{
 		return result;
 	}
 
-	@Override
-	public int getListCount(Search search) {
-		int result = session.selectOne("QuestionMapper.searchListCount", search);
-		return result;
-	}
 
 }

@@ -67,12 +67,6 @@ public class QuestionServiceImpl implements QuestionService{
 		return result;
 	}
 
-	// 문의사항 검색하기
-	@Override
-	public int getListCount(Search search) {
-		int totalCount = qStore.getListCount(search);
-		return totalCount;
-	}
 
 	
 

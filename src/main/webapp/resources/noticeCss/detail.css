@@ -9,17 +9,48 @@
 * {
     font-family: 'Chosunilbo_myungjo';
 }
-.viewtop{
-    align-items: center;
+#outter {
+	padding-top: 20vh;	/* 헤더 공간 */
+	height: 80vh;
+	width: 70vw;
+	margin: 0 auto;
 }
-.viewtop h1 {
-    color: #3c2a21;
-}
-.viewtop p {
-    color : #e5e5cb;
+#outter h1, p {
+	text-align : center;
 }
 
-.viewmiddle {
-    border-top: 1px;
-    border-color: #3c2a21;
+#inner{
+	padding-top: 2vh;
+    border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	margin: 0 auto;
+	height: 35vh;
+	width: 60vw;
+	line-height : 5vh;
+}
+a {
+	text-decoration : none;	
+	color : black;
+	text-align : center;
+}
+
+.content-btn {
+	text-align: center;
+	margin-top : 13vh;
+}
+
+.content-btn button {
+	width: 150px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+}
+.content-btn input {
+	width: 150px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+}
+button + button {
+	margin-left : 3vh;
 }

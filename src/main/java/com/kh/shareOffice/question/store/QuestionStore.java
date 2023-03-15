@@ -23,6 +23,5 @@ public interface QuestionStore {
 
 	int update(Question qna);
 
-	int getListCount(Search search);
 
 }

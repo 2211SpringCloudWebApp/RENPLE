@@ -14,21 +14,21 @@ h1 {
     text-align: center;
 }
 table {
-   	padding-top: 2vh;
+	padding-top: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
 	height: 70vh;
 	width: 60vw;
 }
-a{
-	text-decoration: none;
-	color: black;
-}
-table a:hover{
-	color: #BDC8A6;
+a {
+	text-decoration : none;	
+	color : black;
 }
 
+table a:hover {
+	color : #BDC8A6;
+}
 .content-btn {
 	text-align: center;
 	margin-top : 3vh;

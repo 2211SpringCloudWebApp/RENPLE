@@ -6,16 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항 목록</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<style>
-	<table class="table table-hover">
-	...
-	</table>
-</style>
+<link rel="stylesheet" href="../../../resources/questionCss/listAdmin.css">
 </head>
 <body>
+	<jsp:include page="../header.jsp"></jsp:include>
+	<br><br><br><br>
 	<h1>문의 목록</h1>
-	<table class="table">
+	<table>
 		<thead>
 			<tr>
 				<th>번호</th>

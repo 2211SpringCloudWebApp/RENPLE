@@ -85,18 +85,19 @@ public class NoticeController {
 
 	// 공지사항 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String noticeRegister(@ModelAttribute Notice notice
-//			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
-			, HttpServletRequest request,
-			Model model) {
+	public String noticeRegister(
+			@ModelAttribute Notice notice
+			,@RequestParam(value = "uploadFile", required = false) MultipartFile uploadFile
+			, HttpServletRequest request
+			,Model model) {
 		try {
-////			if (!uploadFile.getOriginalFilename().equals("")) {
-////				String filePath = saveFile(uploadFile, request);
-////				if (filePath != null) {
-////					notice.setNoticeFilename(uploadFile.getOriginalFilename());
-////					notice.setNoticeFilepath(filePath);
-//				}
-//			}
+			if (!uploadFile.getOriginalFilename().equals("")) {
+				String filePath = saveFile(uploadFile, request);
+				if (filePath != null) {
+					notice.setNoticeFilename(uploadFile.getOriginalFilename());
+					notice.setNoticeFilepath(filePath);
+				}
+			}
 			int result = nService.insertNotice(notice);
 			if (result > 0) {
 				return "redirect:/notice/listAdmin";
@@ -105,6 +106,7 @@ public class NoticeController {
 				return "common/error";
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
 		}
@@ -129,36 +131,35 @@ public class NoticeController {
 	}
 
 	// 관리자 공지사항 수정
-//		@RequestMapping(value = "/modify", method = RequestMethod.POST)
-//		public String noticeModify(
-//				@ModelAttribute Notice notice
-//				, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
-//				, Model model
-//				, HttpServletRequest request) {
-//			try {
-//				if(!reloadFile.isEmpty()) {
-//					if(notice.getNoticeFilename() != null) {
-//						this.deleteFile(notice.getNoticeFilename(), request);
-//					}
-//					String modifyPath = this.saveFile(reloadFile, request);
-//					if(modifyPath != null) {
-//						notice.setNoticeFilename(reloadFile.getOriginalFilename());
-//						notice.setNoticeFilepath(modifyPath);
-//					}
-//				}
-//				int result = nService.updateNotice(notice);
-//				if (result > 0) {
-//					return "redirect:/notice/detailAdmin?noticeNo=" + notice.getNoticeNo();
-//				} else {
-//					model.addAttribute("msg", "공지사항이 수정되지 않았습니다.");
-//					return "common/error";
-//				}
-//			} catch (Exception e) {
-//				model.addAttribute("msg", e.getMessage());
-//				return "common/error";
-//			}
-//		}
-
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String noticeModify(
+			@ModelAttribute Notice notice
+			, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
+			, Model model
+			, HttpServletRequest request) {
+		try {
+			if(!reloadFile.isEmpty()) {
+				if(notice.getNoticeFilename() != null) {
+					this.deleteFile(notice.getNoticeFilename(), request);
+				}
+				String modifyPath = this.saveFile(reloadFile, request);
+				if(modifyPath != null) {
+					notice.setNoticeFilename(reloadFile.getOriginalFilename());
+					notice.setNoticeFilepath(modifyPath);
+				}
+			}
+			int result = nService.updateNotice(notice);
+			if (result > 0) {
+				return "redirect:/notice/detailAdmin?noticeNo=" + notice.getNoticeNo();
+			} else {
+				model.addAttribute("msg", "공지사항이 수정되지 않았습니다.");
+				return "common/error";
+			}
+		} catch (Exception e) {
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
 
 	// 관리자 공지사항 삭제
 	@RequestMapping("/remove")
@@ -179,21 +180,31 @@ public class NoticeController {
 		}
 	}
 
-//	private String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
-//		try {
-//			String root = request.getSession().getServletContext().getRealPath("resources"); // resources의 경로
-//			String savePath = root + "\nuploadFiles"; // 맥의 경우 /
-//			File folder = new File(savePath);
-//			if (!folder.exists()) {
-//				folder.mkdir();
-//			}
-//			String filePath = savePath + "\\" + uploadFile.getOriginalFilename();
-//			File file = new File(filePath);
-//			uploadFile.transferTo(file);
-//			return filePath;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
+	private String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
+		try {
+			String root = request.getSession().getServletContext().getRealPath("resources"); // resources의 경로
+			String savePath = root + "/noticeUploadFiles"; // 맥의 경우 /
+			File folder = new File(savePath);
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
+			String filePath = savePath + "/" + uploadFile.getOriginalFilename();
+			File file = new File(filePath);
+			uploadFile.transferTo(file);
+			return filePath;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	private void deleteFile(String filename, HttpServletRequest request) throws Exception{
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String delPath = root + "/noticeUploadFiles";
+		String delFilepath = delPath + "/" + filename;
+		File delFile = new File(delFilepath);
+		if(delFile.exists()) {
+			delFile.delete();
+		}
+	}
 }

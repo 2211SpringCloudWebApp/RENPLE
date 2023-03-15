@@ -6,13 +6,8 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>관리자 공지사항</title>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 			<link rel="stylesheet" href="../../../resources/noticeCss/list.css">
-			<style>
-				<table class="table table-hover">
-				...
-				</table>
-			</style>
+			
 		</head>
 
 		<body>
@@ -39,7 +34,11 @@
 				</c:forEach>
 			</tbody>
 			</table>
-			<a href="/notice/writeView">작성하기</a>
+			<div class="content-btn">
+			<button>
+				<a href="/notice/writeView">작성하기</a>
+			</button>
+		</div>
 		</body>
 
 		</html>

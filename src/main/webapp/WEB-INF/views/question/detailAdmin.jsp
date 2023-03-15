@@ -7,16 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항 상세</title>
+<link rel="stylesheet" href="../../../resources/noticeCss/detail.css">
 </head>
 <body>
+<jsp:include page="../header.jsp"></jsp:include>
+<div id="outter">
 	<h1>문의사항 상세</h1>
+	<div id="inner">
 	제목 : ${question.questionTitle }<br>
 	내용 : ${question.questionContent }<br>
 	아이디 : ${question.userId }<br>
 	<c:url var="qModify" value="/question/modify">
 		<c:param name="questionNo" value="${question.questionNo }"></c:param>
 	</c:url>
-	<a href="/question/viewAdmin">목록으로</a>
-	<a>댓글 달기</a>
+	</div>
+	<div class="content-btn">
+		<button>
+			<a href="/question/viewAdmin">목록으로</a>
+		</button>
+	</div>
+	</div>
 </body>
 </html>

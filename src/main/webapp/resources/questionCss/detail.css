@@ -8,30 +8,35 @@
 
 * {
     font-family: 'Chosunilbo_myungjo';
-    text-align: center;
 }
-h1 {
-    text-align: center;
+#outter {
+	padding-top: 20vh;	/* 헤더 공간 */
+	height: 80vh;
+	width: 70vw;
+	margin: 0 auto;
 }
-table {
-   	padding-top: 2vh;
+#outter h1, p {
+	text-align : center;
+}
+
+#inner{
+	padding-top: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 70vh;
+	height: 40vh;
 	width: 60vw;
+	line-height : 5vh;
 }
-a{
-	text-decoration: none;
-	color: black;
-}
-table a:hover{
-	color: #BDC8A6;
+a {
+	text-decoration : none;	
+	color : black;
+	text-align : center;
 }
 
 .content-btn {
 	text-align: center;
-	margin-top : 3vh;
+	margin-top : 13vh;
 }
 
 .content-btn button {
@@ -39,4 +44,13 @@ table a:hover{
 	height: 40px;;
 	background-color : #e5e5cb;
 	border: none;
+}
+.content-btn input {
+	width: 150px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+}
+button + button {
+	margin-left : 3vh;
 }
