@@ -157,7 +157,7 @@
                 </div>
               </dl>
             </div>
-            <button> 예약하기 </button>
+            <button onclick="location.href='/gangnam1/payment'"> 예약하기 </button>
           </header>
         </div>
       </div>

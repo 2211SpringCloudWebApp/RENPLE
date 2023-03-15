@@ -17,6 +17,7 @@ main{
   width: 100%;
   height: 730px;
   display: flex !important;
+  margin-bottom: 100px !important;
 } 
   #menu{
     width: 430px;

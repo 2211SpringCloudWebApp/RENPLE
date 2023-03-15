@@ -8,7 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.kh.shareOffice.comment.domain.Comment" alias="Comment" />
 		<typeAlias type="com.kh.shareOffice.notice.domain.Notice" alias="Notice" />
-		<typeAlias type="com.kh.shareOffice.reservation.domain.Reservation" alias="Reservation" />
+		<typeAlias type="com.kh.shareOffice.reservation.domain.Order" alias="Order" />
 		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.question.domain.Question" alias="Question" />
 		<typeAlias type="com.kh.shareOffice.review.domain.Review" alias="Review" />

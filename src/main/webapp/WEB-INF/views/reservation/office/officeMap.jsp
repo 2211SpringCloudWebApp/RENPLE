@@ -251,12 +251,11 @@
       </div>
     </div>
     <div id="map"></div>
+    
   </main>
-  
-
- <!--  <jsp:include page="../../footer.jsp"></jsp:include>  -->
-  <p style="font-size: 30px; font-weight: 600; text-align: center;">푸터</p>
-
+  <jsp:include page="../../footer.jsp"></jsp:include>
+  </div>
+ 
   <script>
     window.onload = function(){
       sample5_execDaumPostcode('서울 강남구 강남대로 지하 396');
@@ -404,7 +403,5 @@
     }
 
   </script>
-  
-  </div>
 </body>
 </html>

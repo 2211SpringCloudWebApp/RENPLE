@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReservationMapper">
-	<!-- 
-	<resultMap type="Payment" id="paymentResultMap">
-		<id property="paymentNo" column="PAYMENT_NO"></id>
-		<result property="userId" column="USER_ID"/>
+	 
+	<resultMap type="Order" id="orderResultMap">
+		<id property="orderNo" column="ORDER_NO"></id>
+		<result property="orderName" column="ORDER_NAME"/>
+		<result property="orderPhone" column="ORDER_PHONE"/>
+		<result property="orderEmail" column="ORDER_EMAIL"/>
+		<result property="postCode" column="ORDER_POSTCODE"/>
+		<result property="roadAddress" column="ORDER_ROADADDRESS"/>
+		<result property="detailAddress" column="ORDER_DETAILADDRESS"/>
+		<result property="orderRequest" column="ORDER_REQUEST"/>
+		<result property="orderUserCount" column="ORDER_USERCOUNT"/>
+		<result property="reservationDate" column="RESERVATION_DATE"/>
+		<result property="orderDate" column="ORDER_DATE"/>
 		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="userId" column="USER_ID"/>
 	</resultMap>  
-	-->
 	
+	<!-- 주문정보 등록 -->
+	<insert id="insertOrder">
+		INSERT INTO ORDER_TBL 
+		VALUES(SEQ_ORDERNO.NEXTVAL, #{orderName}, #{orderPhone}, #{orderEmail}, #{postCode}
+		, #{roadAddress}, #{detailAddress}, #{orderRequest}, #{orderUserCount}
+		, #{reservationDate}, DEFAULT, #{productNo}, #{userId})
+	</insert>
 	
-	<!-- 쿼리문 작성 부분 -->
+	<!-- 예약된 날짜 목록 조회 -->
+	<select id="selectReservationDateList" resultType="String">
+		SELECT RESERVATION_DATE FROM ORDER_TBL WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
 </mapper>
