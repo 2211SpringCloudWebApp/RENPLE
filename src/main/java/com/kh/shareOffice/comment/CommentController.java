@@ -79,16 +79,21 @@ public class CommentController {
 	@RequestMapping("/update")
 	public String update(@ModelAttribute Comment comment, int commentNo, String commentContent, Model model) {
 		try {
-			System.out.println(comment);
-			int result = cService.updateComment(comment);
-			if (result > 0) {
-				Alert alert = new Alert("/comment/list", "댓글 수정 성공했습니다");
+			if(commentContent.isBlank()) {
+				Alert alert = new Alert("/comment/list", "공백으로 이루어진 댓글은 불가합니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
-			} else {
-				Alert alert = new Alert("/comment/list", "댓글 수정 실패했습니다");
-				model.addAttribute("alert", alert);
-				return "common/alert";
+			}else {
+				int result = cService.updateComment(comment);
+				if (result > 0) {
+					Alert alert = new Alert("/comment/list", "댓글 수정 성공했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				} else {
+					Alert alert = new Alert("/comment/list", "댓글 수정 실패했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

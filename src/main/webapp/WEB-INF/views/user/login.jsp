@@ -8,28 +8,14 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="../../resources/userCss/login.css">
-<style>
-	@font-face {
-		font-family: 'Chosunilbo_myungjo';
-		src:
-			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
-			format('woff');
-		font-weight: normal;
-		font-style: normal;
-	}
-	
-	* {
-		font-family: 'Chosunilbo_myungjo';
-	}
-</style>
 </head>
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<form action="/user/login" method="post">
 		<div id="outter">
-			<h1>로그인</h1>
 			<div id="inner">
+				<h1>로그인</h1>
 				<div id="input-main">
 					<div class="input-box">
 						<input type="text" name="userId" placeholder="아이디를 입력해주세요"

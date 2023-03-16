@@ -133,9 +133,9 @@
 				<div class="footer_bottom_left">
 					<div class="footer_info1">
 						<ul>
-							<li class="footer_btm_info1"><a href="#">이용약관</a></li>
-							<li class="footer_btm_info2"><a href="#">개인정보 처리방침</a></li>
-							<li class="footer_btm_info3"><a href="#">운영정책</a></li>
+							<li class="footer_btm_info1">이용약관</li>
+							<li class="footer_btm_info2">개인정보 처리방침</li>
+							<li class="footer_btm_info3">운영정책</li>
 						</ul>
 					</div>
 					<div class="footer_info2">

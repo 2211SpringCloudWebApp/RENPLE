@@ -1,11 +1,23 @@
+@font-face {
+	font-family: 'Chosunilbo_myungjo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Chosunilbo_myungjo';
+}
+
 body {
 	margin: 0;
 }
 
 #outter {
-	padding-top: 20vh;
-	/* 헤더 공간 */
-	height: 80vh;
+	padding-top: 15vh;
+	height: 85vh;
 	width: 50vw;
 	margin: 0 auto;
 }

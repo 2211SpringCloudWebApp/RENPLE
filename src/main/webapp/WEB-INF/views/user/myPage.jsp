@@ -37,6 +37,7 @@
 </head>
 
 <body>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- <form action="/user/select" method="post" onsubmit="retutn totalChk()"> -->
 	<form action="/user/modify" method="post">
 		<div id="outter">
@@ -75,8 +76,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="reUserPw"
-									value="${user.userPw}" required
-									oninput = "checkPw()">
+									value="${user.userPw}" required oninput="checkPw()">
 							</div>
 						</div>
 					</div>
@@ -111,8 +111,8 @@
 						</div>
 					</div>
 					<div class="chkMessge">
-						<span id="email_ok">사용 가능한 이메일입니다</span> 
-						<span id="email_already">사용 불가능한 이메일입니다</span>
+						<span id="email_ok">사용 가능한 이메일입니다</span> <span id="email_already">사용
+							불가능한 이메일입니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -152,7 +152,8 @@
 			</div>
 		</div>
 	</form>
-	
+	<jsp:include page="../footer.jsp"></jsp:include>
+
 	<script type="text/javascript">
 		/* 비밀번호 확인 */
 		function checkPw() {
@@ -165,8 +166,8 @@
 					"userPw" : pw,
 					"reUserPw" : repw
 				},
-				success : function(data) { 
-					if (data == 0) { 
+				success : function(data) {
+					if (data == 0) {
 						$('#pw_not_ok').css("display", "none");
 					} else {
 						$('#pw_not_ok').css("display", "inline-block");
@@ -177,7 +178,7 @@
 				}
 			});
 		};
-		
+
 		/* 이메일 중복 확인 */
 		function chkEmail() {
 			var email = $('input[name=userEmail]').val();
@@ -187,8 +188,8 @@
 				data : {
 					"userEmail" : email
 				},
-				success : function(data) { 
-					if (data == 0) { 
+				success : function(data) {
+					if (data == 0) {
 						$('#email_ok').css("display", "inline-block");
 						$('#email_already').css("display", "none");
 					} else {
@@ -202,7 +203,7 @@
 				}
 			});
 		};
-		
+
 		/* 유효성 체크 통과시 회원가입이 가능하게함 */
 		/* function totalChk() {
 			return true;
