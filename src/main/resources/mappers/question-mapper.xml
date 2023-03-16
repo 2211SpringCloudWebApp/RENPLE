@@ -37,7 +37,7 @@
 		SELECT * FROM QUESTION_TBL
 	</select>
 	
-	<select id="selectOneById" resultMap="questionResultMap">
+	<select id="selectOneByNo" resultMap="questionResultMap">
 		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
 	</select>
 	

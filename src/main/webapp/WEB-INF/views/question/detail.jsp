@@ -27,6 +27,7 @@
 			<c:url var="qModify" value="/question/detail">
 				<c:param name="questionNo" value="${question.questionNo }"></c:param>
 			</c:url>
+		</div>
 			<div class="content-btn">
 				<button>
 					<a href="/question/view">목록으로</a>
@@ -35,14 +36,11 @@
 					<a href="/question/modify?questionNo=${question.questionNo }">수정하기</a>
 				</button>
 				<button>
-					<a href="javascript:void(0);"
-						onclick="removeCheck(${question.questionNo });">삭제</a>
+					<a href="javascript:void(0);" onclick="removeCheck(${question.questionNo });">삭제</a>
 				</button>
-
 			</div>
-
-		</div>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<script>
 			function removeCheck(questionNo) {
 				if(confirm("정말 삭제하시겠습니까?")) {

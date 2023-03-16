@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항 수정</title>
-<link rel="stylesheet" href="../../resources/noticeCss/modify.css">
+<link rel="stylesheet" href="../../../resources/noticeCss/modify.css">
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br>
 <div id="outter">
 	<h1>문의사항 수정</h1>
 	<div id="inner">
@@ -37,6 +36,7 @@
 	</form>
 	</div>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<script>
 			function removeCheckImg(questionFilename, questionNo) {
 				if(confirm("정말 삭제하시겠습니까?")) {
