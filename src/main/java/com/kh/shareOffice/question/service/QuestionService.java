@@ -3,7 +3,6 @@ package com.kh.shareOffice.question.service;
 import java.util.List;
 
 import com.kh.shareOffice.question.domain.Question;
-import com.kh.shareOffice.question.domain.Search;
 
 public interface QuestionService {
 
@@ -21,6 +20,6 @@ public interface QuestionService {
 
 	int updateQuestion(Question qna);
 
-
+	int updateFileStatus(int questionNo);
 	
 }

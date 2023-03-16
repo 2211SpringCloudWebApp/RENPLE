@@ -17,5 +17,7 @@ public interface NoticeStore {
 	int deleteNotice(SqlSession session, int noticeNo);
 
 	int insertNotice(SqlSession session, Notice notice);
+
+	int updateFileStatus(SqlSession session, int noticeNo);
 	
 }

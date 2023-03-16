@@ -2,15 +2,12 @@ package com.kh.shareOffice.question.service.logic;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.question.domain.Question;
-import com.kh.shareOffice.question.domain.Search;
 import com.kh.shareOffice.question.service.QuestionService;
 import com.kh.shareOffice.question.store.QuestionStore;
-import com.kh.shareOffice.user.domain.User;
 
 @Service
 public class QuestionServiceImpl implements QuestionService{
@@ -65,6 +62,12 @@ public class QuestionServiceImpl implements QuestionService{
 	public int updateQuestion(Question qna) {
 		int result = qStore.update(qna);
 		return result;
+	}
+
+	// 업로드된 파일 삭제
+	@Override
+	public int updateFileStatus(int questionNo) {
+		return qStore.updateFileStatus(questionNo);
 	}
 
 

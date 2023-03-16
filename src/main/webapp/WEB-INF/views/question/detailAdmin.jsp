@@ -11,6 +11,7 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
+<br><br><br><br>
 <div id="outter">
 	<h1>문의사항 상세</h1>
 	<div id="inner">
@@ -27,5 +28,6 @@
 		</button>
 	</div>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

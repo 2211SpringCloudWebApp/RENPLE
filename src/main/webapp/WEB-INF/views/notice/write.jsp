@@ -9,7 +9,6 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<br><br><br><br>
 	<div id="outter">
 		<h1>공지사항 작성</h1>
 		<div id="inner">
@@ -24,5 +23,6 @@
 			</form>
 		</div>
 	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 </html>

@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.notice.domain.Notice;
@@ -134,11 +137,14 @@ public class NoticeController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String noticeModify(
 			@ModelAttribute Notice notice
+			, @RequestParam("noticeNo") int noticeNo
+			, @RequestParam("noticeTitle") String noticeTitle
+			, @RequestParam("noticeContent") String noticeContent
 			, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
 			, Model model
 			, HttpServletRequest request) {
 		try {
-			if(!reloadFile.isEmpty()) {
+			if(reloadFile != null && !reloadFile.isEmpty()) {
 				if(notice.getNoticeFilename() != null) {
 					this.deleteFile(notice.getNoticeFilename(), request);
 				}
@@ -150,12 +156,16 @@ public class NoticeController {
 			}
 			int result = nService.updateNotice(notice);
 			if (result > 0) {
-				return "redirect:/notice/detailAdmin?noticeNo=" + notice.getNoticeNo();
+				Alert alert = new Alert("/notice/detailAdmin?noticeNo=" + notice.getNoticeNo(), "공지글 수정이 완료되었습니다.");
+				model.addAttribute("alert", alert);
+				return "common/alert";
 			} else {
-				model.addAttribute("msg", "공지사항이 수정되지 않았습니다.");
-				return "common/error";
+				Alert alert = new Alert("/notice/listAdmin", "공지글 수정이 완료되지 않았습니다.");
+				model.addAttribute("alert", alert);
+				return "common/alert";
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
 		}
@@ -180,6 +190,7 @@ public class NoticeController {
 		}
 	}
 
+	// 파일 저장
 	private String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
 		try {
 			String root = request.getSession().getServletContext().getRealPath("resources"); // resources의 경로
@@ -198,13 +209,33 @@ public class NoticeController {
 		}
 	}
 	
-	private void deleteFile(String filename, HttpServletRequest request) throws Exception{
+	// 파일 삭제
+	private void deleteFile(String noticeFilename, HttpServletRequest request) throws Exception{
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String delPath = root + "/noticeUploadFiles";
-		String delFilepath = delPath + "/" + filename;
+		String delFilepath = delPath + "/" + noticeFilename;
 		File delFile = new File(delFilepath);
 		if(delFile.exists()) {
 			delFile.delete();
+		}
+	}
+	
+	// 업로드된 파일만 삭제
+	@RequestMapping("/removeFile")
+	private String deleteUploadFile(
+			@RequestParam String noticeFilename
+			, @RequestParam int noticeNo
+			, HttpServletRequest request
+			, Model model) throws Exception{
+		this.deleteFile(noticeFilename, request);
+		int result = nService.updateFileStatus(noticeNo);
+		if(result > 0) {
+			Alert alert = new Alert("/notice/listAdmin", "삭제 성공했습니다");
+			model.addAttribute("alert", alert);
+			return "common/alert";
+		}else {
+			model.addAttribute("msg", "파일이 삭제되지 않았습니다.");
+			return "common/error";
 		}
 	}
 }

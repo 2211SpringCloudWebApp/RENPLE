@@ -19,6 +19,7 @@
 				<th>제목</th>
 				<th>조회수</th>
 				<th>등록일</th>
+				<th>첨부파일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,6 +29,10 @@
 					<td><a href="/question/detailAdmin?questionNo=${question.questionNo }">${question.questionTitle }</a></td>
 					<td>${question.viewCount }</td>
 					<td>${question.qCreateDate }</td>
+					<td>
+						<c:if test="${!empty question.questionFilename }">O</c:if>	
+						<c:if test="${empty question.questionFilename }">X</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

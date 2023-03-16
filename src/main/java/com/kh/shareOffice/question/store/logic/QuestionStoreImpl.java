@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.shareOffice.question.domain.Question;
-import com.kh.shareOffice.question.domain.Search;
 import com.kh.shareOffice.question.store.QuestionStore;
 
 @Repository
@@ -55,6 +54,12 @@ public class QuestionStoreImpl implements QuestionStore{
 	@Override
 	public int update(Question qna) {
 		int result = session.update("QuestionMapper.updateQuestion", qna);
+		return result;
+	}
+
+	@Override
+	public int updateFileStatus(int questionNo) {
+		int result = session.update("QuestionMapper.updateFileStatus", questionNo);
 		return result;
 	}
 
