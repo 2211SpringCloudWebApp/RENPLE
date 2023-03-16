@@ -10,8 +10,8 @@
     font-family: 'Chosunilbo_myungjo';
 }
 #outter {
-	padding-top: 20vh;	/* 헤더 공간 */
-	height: 40vh;
+	padding-top : 72px;
+	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
@@ -36,7 +36,7 @@ a {
 
 .content-btn {
 	text-align: center;
-	margin-top : 13vh;
+	margin-top : 15px;
 }
 
 .content-btn button {

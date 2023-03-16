@@ -19,5 +19,7 @@ public interface QuestionService {
 	Question selectQnaByNo(int questionNo);
 
 	int updateQuestion(Question qna);
+
+	int updateFileStatus(int questionNo);
 	
 }

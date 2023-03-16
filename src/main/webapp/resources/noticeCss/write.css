@@ -10,8 +10,8 @@
     font-family: 'Chosunilbo_myungjo';
 }
 #outter {
-	padding-top: 20vh;	/* 헤더 공간 */
-	height: 80vh;
+	padding-top : 72px;
+	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }

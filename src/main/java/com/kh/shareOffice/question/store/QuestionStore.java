@@ -22,5 +22,7 @@ public interface QuestionStore {
 
 	int update(Question qna);
 
+	int updateFileStatus(int questionNo);
+
 
 }

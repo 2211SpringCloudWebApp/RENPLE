@@ -139,12 +139,12 @@ public class NoticeController {
 			@ModelAttribute Notice notice
 			, @RequestParam("noticeNo") int noticeNo
 			, @RequestParam("noticeTitle") String noticeTitle
-			, @RequestParam("noticeContent") String questionContent
-			, @RequestParam(value="noticeFilename", required=false) MultipartFile reloadFile
+			, @RequestParam("noticeContent") String noticeContent
+			, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
 			, Model model
 			, HttpServletRequest request) {
 		try {
-			if(!reloadFile.isEmpty()) {
+			if(reloadFile != null && !reloadFile.isEmpty()) {
 				if(notice.getNoticeFilename() != null) {
 					this.deleteFile(notice.getNoticeFilename(), request);
 				}
@@ -230,7 +230,7 @@ public class NoticeController {
 		this.deleteFile(noticeFilename, request);
 		int result = nService.updateFileStatus(noticeNo);
 		if(result > 0) {
-			Alert alert = new Alert("/notice/detailAdmin?noticeNo="+noticeNo, "삭제 성공했습니다");
+			Alert alert = new Alert("/notice/listAdmin", "삭제 성공했습니다");
 			model.addAttribute("alert", alert);
 			return "common/alert";
 		}else {

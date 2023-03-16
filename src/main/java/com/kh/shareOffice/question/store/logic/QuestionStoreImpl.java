@@ -57,5 +57,11 @@ public class QuestionStoreImpl implements QuestionStore{
 		return result;
 	}
 
+	@Override
+	public int updateFileStatus(int questionNo) {
+		int result = session.update("QuestionMapper.updateFileStatus", questionNo);
+		return result;
+	}
+
 
 }

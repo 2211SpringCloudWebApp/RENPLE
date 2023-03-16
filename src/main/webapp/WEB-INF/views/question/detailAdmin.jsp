@@ -22,7 +22,7 @@
 		<c:param name="questionNo" value="${question.questionNo }"></c:param>
 	</c:url>
 	 <!-- 		<hr> -->
-<!-- 		<!-- 	관리자가 답글을 작성하는 경우 --> -->
+<!-- 		<!-- 	관리자가 답글을 작성하는 경우 -->
 <!-- 		<h2>답글 작성</h2> -->
 <!-- 		<form action="/comment/insert" method="post"> -->
 <%-- 			<input type="hidden" name="userId" value="${question.userId }"> --%>

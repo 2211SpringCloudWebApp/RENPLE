@@ -24,7 +24,7 @@
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 40vh;
+	height: 30vh;
 	width: 60vw;
 	line-height : 5vh;
 }
@@ -39,7 +39,7 @@ a {
 	margin-top : 12vh;
 }
 
-.content-btn {
+.content-btn button{
 	width: 150px;
 	height: 40px;;
 	background-color : #e5e5cb;

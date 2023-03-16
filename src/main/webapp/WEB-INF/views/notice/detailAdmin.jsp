@@ -11,6 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
+	
 	<div id="outter">
 		<h1>공지사항 상세</h1>
 		<p>레플의 새로운 소식들과 유용한 정보들을 확인해 보세요.</p>
@@ -41,7 +42,7 @@
 			</button>
 		</div>
 	</div>
-	
+<jsp:include page="../footer.jsp"></jsp:include>
 	<script>
 			function removeCheck(noticeNo) {
 				if(confirm("정말 삭제하시겠습니까?")) {

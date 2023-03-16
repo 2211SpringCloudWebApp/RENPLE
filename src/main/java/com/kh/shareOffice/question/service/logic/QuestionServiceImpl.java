@@ -64,6 +64,12 @@ public class QuestionServiceImpl implements QuestionService{
 		return result;
 	}
 
+	// 업로드된 파일 삭제
+	@Override
+	public int updateFileStatus(int questionNo) {
+		return qStore.updateFileStatus(questionNo);
+	}
+
 
 	
 

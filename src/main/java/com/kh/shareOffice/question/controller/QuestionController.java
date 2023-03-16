@@ -163,7 +163,8 @@ public class QuestionController {
 
 	// 문의글 수정하기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@ModelAttribute Question qna
+	public String update(
+			@ModelAttribute Question qna
 			, @RequestParam("questionNo") int questionNo
 			,@RequestParam("questionTitle") String questionTitle
 			,@RequestParam("questionContent") String questionContent
@@ -172,7 +173,7 @@ public class QuestionController {
 			,@RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile
 			, HttpServletRequest request) {
 		try {
-			if (!reloadFile.isEmpty()) {
+			if (reloadFile != null && !reloadFile.isEmpty()) {
 				// 기존 업로드된 파일 체크 후
 				if (qna.getQuestionFilename() != null) {
 					// 기존 파일 삭제
@@ -213,12 +214,25 @@ public class QuestionController {
 			delFile.delete();
 		}
 	}
-	
-	// 이용자 문의글 목록 페이징
-	
-	
-	// 이용자 문의글 목록 검색 
-	
+
+	// 업로드된 파일만 삭제
+	@RequestMapping("/deleteFile")
+	private String deleteUploadFile(
+			@RequestParam String questionFilename
+			, @RequestParam int questionNo
+			, HttpServletRequest request
+			, Model model) throws Exception{
+		this.deleteFile(questionFilename, request);
+		int result = qService.updateFileStatus(questionNo);
+		if(result > 0) {
+			Alert alert = new Alert("/question/detail?questionNo="+questionNo, "삭제 성공했습니다");
+			model.addAttribute("alert", alert);
+			return "common/alert";
+		} else {
+			model.addAttribute("msg", "파일이 삭제되지 않았습니다.");
+			return "common/error";
+		}
+	}
 
 	////////// 관리자 //////////// 
 	// 관리자 문의글 조회
