@@ -6,6 +6,8 @@ public class Review {
 	private int reviewNo;
 	private String userId;
 	private int productNo;
+	private int parentNo;
+	private int reviewLikeCount;
 	private String reviewTitle;
 	private String reviewContent;
 	private int reviewRating;
@@ -18,12 +20,14 @@ public class Review {
 		super();
 	}
 
-	public Review(int reviewNo, String userId, int productNo, String reviewTitle, String reviewContent,
+	public Review(int reviewNo, String userId, int productNo, int parentNo, int reviewLikeCount, String reviewTitle, String reviewContent,
 			int reviewRating, int viewCount, Timestamp rCreateDate, String reviewFilename, String reviewFilepath) {
 		super();
 		this.reviewNo = reviewNo;
 		this.userId = userId;
 		this.productNo = productNo;
+		this.parentNo = parentNo;
+		this.reviewLikeCount = reviewLikeCount;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewRating = reviewRating;
@@ -56,7 +60,23 @@ public class Review {
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
 	}
+	
+	public int getParentNo() {
+		return parentNo;
+	}
 
+	public void setParentNo(int parentNo) {
+		this.parentNo = parentNo;
+	}
+
+	public int getReviewLikeCount() {
+		return reviewLikeCount;
+	}
+
+	public void setReviewLikeCount(int reviewLikeCount) {
+		this.reviewLikeCount = reviewLikeCount;
+	}
+	
 	public String getReviewTitle() {
 		return reviewTitle;
 	}
@@ -115,10 +135,11 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", userId=" + userId + ", productNo=" + productNo + ", reviewTitle="
-				+ reviewTitle + ", reviewContent=" + reviewContent + ", reviewRating=" + reviewRating + ", viewCount="
-				+ viewCount + ", rCreateDate=" + rCreateDate + ", reviewFilename=" + reviewFilename
-				+ ", reviewFilepath=" + reviewFilepath + "]";
+		return "Review [reviewNo=" + reviewNo + ", userId=" + userId + ", productNo=" + productNo + ", parentNo="
+				+ parentNo + ", reviewLikeCount=" + reviewLikeCount + ", reviewTitle=" + reviewTitle
+				+ ", reviewContent=" + reviewContent + ", reviewRating=" + reviewRating + ", viewCount=" + viewCount
+				+ ", rCreateDate=" + rCreateDate + ", reviewFilename=" + reviewFilename + ", reviewFilepath="
+				+ reviewFilepath + "]";
 	}
-	
+
 }
