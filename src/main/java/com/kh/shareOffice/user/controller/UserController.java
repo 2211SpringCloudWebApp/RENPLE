@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.user.domain.User;
@@ -194,6 +195,33 @@ public class UserController {
 		}
 	}
 	
+	// ========================================== ajax ========================================== 
+		// 아이디 중복 체크
+		@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+		@ResponseBody
+		public int idCheck(String userId) {
+			int result = uService.checkId(userId);
+			return result;
+		}
+
+		// 이메일 중복 체크
+		@RequestMapping(value = "/emailChk", method = RequestMethod.POST)
+		@ResponseBody
+		public int emailCheck(String userEmail) {
+			int result = uService.checkEmail(userEmail);
+			return result;
+		}
+
+		// 회원가입시 비밀번호 확인 체크
+		@RequestMapping(value = "/pwChk", method = RequestMethod.POST)
+		@ResponseBody
+		public int pwCheck(String userPw, @RequestParam("reUserPw") String reUserPw) {
+			int result = -1;
+			if (userPw.equals(reUserPw)) {
+				result = 0;
+			}
+			return result;
+		}
 	
 	
 	

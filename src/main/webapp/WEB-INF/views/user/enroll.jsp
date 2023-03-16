@@ -8,6 +8,8 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="../../resources/userCss/enroll.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
 @font-face {
 	font-family: 'Chosunilbo_myungjo';
@@ -21,12 +23,22 @@
 * {
 	font-family: 'Chosunilbo_myungjo';
 }
+
+#id_ok, #email_ok {
+	color: #008000;
+	display: none;
+}
+
+#id_already, #email_already, #pw_not_ok {
+	color: #6A82FB;
+	display: none;
+}
 </style>
 </head>
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<form action="/user/enroll" method="post" name="joinform">
+	<form action="/user/enroll" method="post" onsubmit="return joinform_check()">
 		<div id="outter">
 			<h1>회원가입</h1>
 			<div id="required">
@@ -38,17 +50,22 @@
 						<div class="content-name">
 							<label>아이디<span class="star">*</span></label>
 						</div>
+						<input type="hidden" name="chkUserId">
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userId"
-									placeholder="아이디를 입력해주세요"  autofocus>
+									placeholder="아이디를 입력해주세요" required autofocus>
 							</div>
 						</div>
 						<div class="content-btn">
-							<button type="button">
+							<button type="button" onclick="chkId()">
 								<span>중복확인</span>
 							</button>
 						</div>
+					</div>
+					<div class="chkMessge">
+						<span id="id_ok">사용 가능한 아이디입니다</span> <span id="id_already">사용
+							불가능한 아이디입니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -57,7 +74,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="userPw"
-									placeholder="비밀번호를 입력해주세요" >
+									placeholder="비밀번호를 입력해주세요" required>
 							</div>
 						</div>
 					</div>
@@ -68,9 +85,12 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="reUserPw"
-									placeholder="비밀번호를 한번 더 입력해주세요" >
+									placeholder="비밀번호를 한번 더 입력해주세요" required oninput="checkPw()">
 							</div>
 						</div>
+					</div>
+					<div class="chkMessge">
+						<span id="pw_not_ok">비밀번호가 일치하지 않습니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -79,7 +99,7 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userName"
-									placeholder="이름을 입력해 주세요" >
+									placeholder="이름을 입력해 주세요" required>
 							</div>
 						</div>
 					</div>
@@ -89,25 +109,28 @@
 						</div>
 						<div class="content-text">
 							<div>
-								<input class="input-box" type="email" name="userEmail"
-									placeholder="예: green@apple.com" >
+								<input class="input-box" type="text" name="userEmail"
+									placeholder="green@apple.com" required>
 							</div>
 						</div>
 						<div class="content-btn">
-							<button>
+							<button type="button" onclick="chkEmail()">
 								<span>중복확인</span>
 							</button>
 						</div>
-						<input type="hidden" name="chkUserEmail">
+					</div>
+					<div class="chkMessge">
+						<span id="email_ok">사용 가능한 이메일입니다</span> <span id="email_already">사용
+							불가능한 이메일입니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
-							<label>휴대폰<span class="star">*</span></label>
+							<label>전화번호<span class="star">*</span></label>
 						</div>
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="tel" name="userPhone"
-									placeholder="숫자만 입력해주세요." >
+									placeholder="숫자만 입력해주세요." required>
 							</div>
 						</div>
 					</div>
@@ -116,133 +139,266 @@
 							<label>주소<span class="star">*</span></label>
 						</div>
 						<div class="content-text">
-							<input id="address" class="input-box box" type="text" name="userAddress" placeholder="주소를 검색해주세요" >
-							<input id="detailAddress" class="input-box" type="text" name="userAddress" placeholder="상세주소를 입력해주세요" >
+							<input id="address" class="input-box box" type="text"
+								name="userAddress" placeholder="주소를 검색해주세요"
+								style="margin-bottom: 5px;"> 
+							<input id="detailAddress" class="input-box" type="text"
+								name="userAddress" placeholder="상세주소를 입력해주세요" required>
 						</div>
 						<div class="content-btn">
-							<input type="button" onclick="sample4_execDaumPostcode()" onclick="submitForm();" value="주소 찾기">
+							<button type="button" onclick="sample4_execDaumPostcode()"
+								onclick="submitForm();" style="height: 50%;">주소찾기</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div id="enroll-box">
-				<button id="enroll-btn" onclick="joinform_check();">
+				<button id="enroll-btn">
 					<span>가입하기</span>
 				</button>
 			</div>
 		</div>
 	</form>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
-			function sample4_execDaumPostcode(){
-				new daum.Postcode({
-				       oncomplete: function(data) {
-				           // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-				           console.log(data);
-				           
-				        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-			            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-			                var addr = ''; // 주소 변수
-			                var extraAddr = ''; // 참고항목 변수
-				           
-				         //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-			                if (data.userSelectedType === 'R') { 
-			                	// 사용자가 도로명 주소를 선택했을 경우
-			                    addr = data.roadAddress;
-			                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-			                    addr = data.jibunAddress;
-			                }
-			                
-			             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-			                if(data.userSelectedType === 'R'){
-			                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-			                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-			                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-			                        extraAddr += data.bname;
-			                    }
-			                    // 건물명이 있고, 공동주택일 경우 추가한다.
-			                    if(data.buildingName !== '' && data.apartment === 'Y'){
-			                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-			                    }
-			                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-			                    if(extraAddr !== ''){
-			                        extraAddr = ' (' + extraAddr + ')';
-			                    }
-			                    // 조합된 참고항목을 해당 필드에 넣는다.
-			                    document.getElementById("address").value = extraAddr;
-			                
-			                } else {
-			                    document.getElementById("address").value = '';
-			                }
-			                
-			             
-			                // 우편번호 + 주소(도로명,지번) + 참고항목
-	 			           document.getElementById("address").value = addr + extraAddr;
-			                // 위에가 다 입력될시 커서포커스를 상세주소입력칸으로 이동 
-	 			          document.getElementById("detailAddress").focus();
-			                
-				       }
-				   }).open();
-			}
-			
-			function submitForm() {
-				  var form = document.getElementById("address");
-				  var formData = new FormData(form);
-				  var data = {};
-				  for (var pair of formData.entries()) {
-				    data[pair[0]] = ' ';
-				    data[pair[0]] += pair[1];
-					  /* data[pair[0]] = pair[1]; */
-				  }
-				  console.log(data);
-				  // form 데이터를 처리하는 코드를 작성합니다.
+	<jsp:include page="../footer.jsp"></jsp:include>
+
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript">
+		/* 아이디 중복 확인 */
+		function chkId() {
+			var id = $('input[name=userId]').val();
+			/* console.log(id); */
+			$.ajax({
+				url : '/user/idChk',
+				type : 'post',
+				data : {
+					"userId" : id
+				},
+				success : function(data) { // 컨트롤러에서 넘어온 result값을 받는다 
+					/* console.log(data) */
+					if (data == 0) { // result가 1이 아니면(0일 경우) -> 사용 가능한 아이디 
+						$('#id_ok').css("display", "inline-block");
+						$('#id_already').css("display", "none");
+					} else { // result가 1일 경우 -> 이미 존재하는 아이디
+						$('#id_already').css("display", "inline-block");
+						$('#id_ok').css("display", "none");
+						$('input[name=userId]').val('');
+					}
+				},
+				error : function() {
+					alert("에러발생");
 				}
-			
-			
-			
-			// 회원가입 유효성 검사 
-	/* 	function joinform_check() {
+			});
+		};
+		
+		/* 이메일 중복 확인 */
+		function chkEmail() {
+			var email = $('input[name=userEmail]').val();
+			$.ajax({
+				url : '/user/emailChk',
+				type : 'post',
+				data : {
+					"userEmail" : email
+				},
+				success : function(data) { 
+					if (data == 0) { 
+						$('#email_ok').css("display", "inline-block");
+						$('#email_already').css("display", "none");
+					} else {
+						$('#email_already').css("display", "inline-block");
+						$('#email_ok').css("display", "none");
+						$('input[name=userEmail]').val('');
+					}
+				},
+				error : function() {
+					alert("에러발생");
+				}
+			});
+		};
+		
+		/* 비밀번호 확인 */
+		function checkPw() {
+			var pw = $('input[name=userPw]').val();
+			var repw = $('input[name=reUserPw]').val();
+			$.ajax({
+				url : '/user/pwChk',
+				type : 'post',
+				data : {
+					"userPw" : pw,
+					"reUserPw" : repw
+				},
+				success : function(data) { 
+					if (data == 0) { 
+						$('#pw_not_ok').css("display", "none");
+					} else {
+						$('#pw_not_ok').css("display", "inline-block");
+					}
+				},
+				error : function() {
+					alert("에러발생");
+				}
+			});
+		};
+		
+		// 주소 api 부분
+		function sample4_execDaumPostcode(){
+			new daum.Postcode({
+	       		oncomplete: function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+		           
+		        	// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	           		// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	                var addr = ''; // 주소 변수
+	                var extraAddr = ''; // 참고항목 변수
+		           
+		         	//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                if (data.userSelectedType === 'R') { 
+	                	// 사용자가 도로명 주소를 선택했을 경우
+	                    addr = data.roadAddress;
+	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                    addr = data.jibunAddress;
+	                }
+	                
+	             	// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                if(data.userSelectedType === 'R'){
+	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                        extraAddr += data.bname;
+	                    }
+	                    // 건물명이 있고, 공동주택일 경우 추가한다.
+	                    if(data.buildingName !== '' && data.apartment === 'Y'){
+	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                    }
+	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	                    if(extraAddr !== ''){
+	                        extraAddr = ' (' + extraAddr + ')';
+	                    }
+	                    // 조합된 참고항목을 해당 필드에 넣는다.
+	                    document.getElementById("address").value = extraAddr;
+	                
+	                } else {
+	                    document.getElementById("address").value = '';
+	                }
+	             
+               		// 우편번호 + 주소(도로명,지번) + 참고항목
+		           	document.getElementById("address").value = addr + extraAddr;
+                	// 위에가 다 입력될시 커서포커스를 상세주소입력칸으로 이동 
+		          	document.getElementById("detailAddress").focus();
+	                
+		       }
+		   }).open();
+		}
+		
+		
+		///// 회원가입 유효성 검사 /////
+	 	function joinform_check() {
 			  var userId = document.getElementById("userId");
 			  var userPw = document.getElementById("userPw");
 			  var reUserPw = document.getElementById("reUserPw");
 			  var userName = document.getElementById("userName");
 			  var userEmail = document.getElementById("userEmail");
 			  var userPhone = document.getElementById("userPhone");
-			  var userPhone = document.getElementById("userPhone");
 			  var userAddress = document.getElementById("userAddress");
-
-			  if (userId == "") { 
-				    alert("아이디를 입력하세요.");
-				    userId.focus(); 
-				    return false; 
-				    };
-				    
-				    if (username.length < 4 || username.length > 25) {
-		                alert("아이디는 4~25자여야 합니다.");
-		                return false;
-		            }
-		            if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
-		                alert("아이디는 영문 대소문자, 숫자, 특수문자(_, -)만 허용됩니다.");
-		                return false;
-		            } */
-		            
-		            
-		            
-				  
-				
 			  
-			}
-				
-			
-			
-		</script>
-	<jsp:include page="../footer.jsp"></jsp:include>
+			  // 아이디 확인
+			  if (joinform.userId.value == "") { 
+				    alert("아이디를 입력하세요.");
+				    joinform.userId.focus(); 
+				    return false; 
+				}
+				    else if (joinform.userId.value.length < 4 || joinform.userId.value.length > 25) {
+	                alert("아이디는 4~25자여야 합니다.");
+	                joinform.userId.focus(); 
+	                return false;
+	            }
+	      			else if (!/^[a-zA-Z0-9_-]+$/.test(joinform.userId.value)) {
+	                alert("아이디는 영문 대소문자, 숫자, 특수문자(_, -)만 허용됩니다.");
+	                joinform.userId.focus(); 
+	                return false;
+	            };
+		            
+// 	            if (joinform.userPw.value == "") {
+// 	                alert("비밀번호를 입력하세요.");
+// 	                joinform.userPw.focus();
+// 	                return false;
+// 	              };
+
+// 	              //비밀번호 영문자+숫자+특수조합(8~25자리 입력)
+// 	              var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+// 	              if (!pwdCheck.test(joinform.userPw.value)) {
+// 	                alert("비밀번호는 영문자+숫자+특수문자 조합으로 8~25자리 사용해야 합니다.");
+// 	                joinform.userPw.focus();
+// 	                return false;
+// 	              };
+	              
+// 	                if (joinform.reUserPw.value !== joinform.userPw.value) {
+// 	            	    alert("비밀번호가 일치하지 않습니다.");
+// 	            	    joinform. reUserPw.focus();
+// 	            	    return false;
+// 	            	  };  
+	            	  
+	            	if (joinform.userName.value == "") {
+	            		   alert("이름을 입력하세요.");
+	            		   joinform.userName.focus();
+	            		    return false;
+	            	};
+	            	
+	            	
+	            	if (joinform.userEmail.value == "") {
+	            		 alert("이메일 주소를 입력하세요.");
+	            		 joinform.userEmail.focus();
+	            		return false;
+	            }		
+	            	
+	            	// input type이 email로 해주면 불필요한 부분. text이면 필요한 부분.
+	            	 if(userEmail.value.indexOf('@') == -1){ // 존재한다면 -1이 아닌 숫자가 반환됨
+	            		alert("이메일 형식이 아닙니다.");
+	            		userEmail.focus(); 
+	            		return false;
+	            	} 
+	            	
+	        		//이메일 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식		
+	        		var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+	        			if(emailCheck.test(joinform.userEmail.value)==false){
+	        			alert("이메일 형식이 올바르지 않습니다.");
+	        			joinform.userEmail.focus();
+	        			return false;
+	        }
+	        			
+	        			if (joinform.userPhone.value == "") {
+		            		 alert("전화번호를 입력하세요.");
+		            		 joinform.userPhone.focus();
+		            		return false;
+		            }		
+	        			//숫자만 입력하는 정규식
+	        			var phoneCheck  = /^[0-9]+/g; 
+	        			
+	        			  if (!phoneCheck.test(joinform.userPhone.value)) {
+	        			    alert("전화번호는 숫자만 입력할 수 있습니다.");
+	        			    joinform.userPhone.focus();
+	        			    return false;
+	        			  }
+	        			  
+	        			   if(joinform.address.value == ""){
+	        					 alert("주소찾기 버튼을 눌러주세요.");
+	        					 joinform.address.focus();
+	        					 return false;
+	        				 }
+	        			  
+	        			  if(joinform.detailAddress.value == ""){
+	        					 alert("상세주소를 입력하세요.");
+	        					 joinform.detailAddress.focus();
+	        					 return false;
+	        				 } 
+	        			  
+	            // 입력값 전송
+	            document.getElementById("joinForm").submit();
+	            
+		}
+
+	</script>
 </body>
-
-
-
-
-
-
 
 </html>

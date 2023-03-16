@@ -14,5 +14,9 @@ public interface UserService {
 
 	User findId(User user);
 
+	int checkId(String userId);
+
+	int checkEmail(String userEmail);
+
 
 }

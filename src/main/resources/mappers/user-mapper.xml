@@ -34,6 +34,18 @@
 		WHERE USER_NAME = #{userName} AND USER_EMAIL = #{userEmail} AND USER_PHONE = #{userPhone}
 	</select>
 	
+	<select id="checkId" resultType="_int">
+		SELECT COUNT(*) 
+		FROM USER_TBL 
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="checkEmail" resultType="_int">
+		SELECT COUNT(*) 
+		FROM USER_TBL 
+		WHERE USER_EMAIL = #{userEmail}
+	</select>
+	
 	<update id="modifyUser">
 		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_EMAIL = #{userEmail}, USER_PHONE = #{userPhone}, USER_ADDRESS = #{userAddress}
 		WHERE USER_ID = #{userId}

@@ -14,4 +14,8 @@ public interface UserStore {
 
 	User findId(User user);
 
+	int checkId(String userId);
+
+	int checkEmail(String userEmail);
+
 }
