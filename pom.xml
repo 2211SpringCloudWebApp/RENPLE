@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kh</groupId>
@@ -20,7 +21,16 @@
 		</repository>
 	</repositories>	
 	<dependencies>
-		<!-- ojbc6.jar, mybatis, spring-mybatis, spring-jdbc, common-dbcp -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.7</version>
+		</dependency>
+		<!-- 주의!!! ojdbc는 본인이 사용하고 있는 버전에 맞게 설정하세요 -->
+		<!-- 주의!!! 6버전 사용자들은 가상 레포 저장소 + 6버전 -->
+
+		<!-- 마이바티스 관련 관련 라이브러리 -->
+		<!-- ojdbc8.jar, mybatis, mybatis-spring, spring-jdbc, common-dbcp -->
 		<dependency>
 		    <groupId>oracle</groupId>
 		    <artifactId>ojdbc6</artifactId>
@@ -48,6 +58,12 @@
 		    <groupId>commons-dbcp</groupId>
 		    <artifactId>commons-dbcp</artifactId>
 		    <version>1.4</version>
+		</dependency>
+		<!-- jstl 관련 라이브러리 -->
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
+			<version>1.2</version>
 		</dependency>
 		<!-- 파일 업로드 관련 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->

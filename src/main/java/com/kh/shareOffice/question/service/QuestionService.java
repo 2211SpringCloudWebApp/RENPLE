@@ -2,7 +2,7 @@ package com.kh.shareOffice.question.service;
 
 import java.util.List;
 
-import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.Question;
 
 public interface QuestionService {
 

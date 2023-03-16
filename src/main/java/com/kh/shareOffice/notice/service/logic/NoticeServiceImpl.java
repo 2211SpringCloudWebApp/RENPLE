@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.shareOffice.notice.domain.Notice;
+import com.kh.shareOffice.notice.Notice;
 import com.kh.shareOffice.notice.service.NoticeService;
 import com.kh.shareOffice.notice.store.NoticeStore;
 

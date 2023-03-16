@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.Question;
 import com.kh.shareOffice.question.store.QuestionStore;
 
 @Repository

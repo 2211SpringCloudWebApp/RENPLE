@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.kh.shareOffice.notice.domain.Notice;
+import com.kh.shareOffice.notice.Notice;
 
 public interface NoticeStore {
 

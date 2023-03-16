@@ -2,9 +2,7 @@ package com.kh.shareOffice.question.store;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.kh.shareOffice.question.domain.Question;
+import com.kh.shareOffice.question.Question;
 
 public interface QuestionStore {
 

@@ -37,15 +37,17 @@
 		SELECT * FROM QUESTION_TBL
 	</select>
 	
-	<select id="selectOneById" resultMap="questionResultMap">
+	<update id="updateFileStatus">
+		UPDATE QUESTION_TBL SET QUESTION_FILENAME = NULL, QUESTION_FILEPATH = NULL WHERE QUESTION_NO=#{questionNo}
+	</update>
+	
+	<select id="selectOneByNo" resultMap="questionResultMap">
 		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
 	</select>
 	
 	<select id="selectQnaByNo" resultMap="questionResultMap">
 		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
 	</select>
-	<update id="updateFileStatus">
-		UPDATE QUESTION_TBL SET QUESTION_FILENAME = NULL, QUESTION_FILEPATH = NULL WHERE QUESTION_NO=#{questionNo}
-	</update>
+	
 	
 </mapper>

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shareOffice.Alert;
-import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.User;
 import com.kh.shareOffice.user.service.UserService;
 
 @Controller

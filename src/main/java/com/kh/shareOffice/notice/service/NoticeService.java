@@ -2,7 +2,7 @@ package com.kh.shareOffice.notice.service;
 
 import java.util.List;
 
-import com.kh.shareOffice.notice.domain.Notice;
+import com.kh.shareOffice.notice.Notice;
 
 public interface NoticeService {
 

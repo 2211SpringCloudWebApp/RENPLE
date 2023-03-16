@@ -29,7 +29,7 @@
 						<td>${notice.noticeTitle }</td>
 						<td>${notice.viewCount }</td>
 						<td>${notice.nCreateDate }</td>
-						<td>
+					<td>
 							<c:if test="${!empty notice.noticeFilename }">O</c:if>
 							<c:if test="${empty notice.noticeFilename }">X</c:if></td>
 					</tr>

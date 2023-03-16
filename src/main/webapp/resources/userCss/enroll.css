@@ -1,10 +1,23 @@
-body{
-    margin: 0;
+@font-face {
+	font-family: 'Chosunilbo_myungjo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Chosunilbo_myungjo';
+}
+
+body {
+	margin: 0;
 }
 
 #outter {
-	padding-top: 20vh;	/* 헤더 공간 */
-	height: 80vh;
+	padding-top: 15vh;
+	height: 85vh;
 	width: 50vw;
 	margin: 0 auto;
 }
@@ -58,6 +71,10 @@ h1 {
 	text-align: center;
 }
 
+.chkMessge {
+	margin-left: 25%;
+}
+
 .content-btn button {
 	width: 90%;
 	height: 100%;
@@ -87,4 +104,13 @@ h1 {
 	width: 40%;
 	background-color: #e5e5cb;
 	border: none;
+}
+
+button {
+	background-color: #E5E5CB;
+	border: none;
+}
+
+input:focus {
+	outline: 1px solid #695D58;
 }

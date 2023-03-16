@@ -1,10 +1,15 @@
-package com.kh.shareOffice.question.domain;
+package com.kh.shareOffice.comment;
 
 import java.sql.Timestamp;
 
-public class Question {
+public class Comment {
+	private int commentNo;
+	private String commentContent;
+	private Timestamp commentDate;
 	private int questionNo;
 	private String userId;
+	
+	// question의 일부분
 	private String questionTitle;
 	private String questionContent;
 	private int viewCount;
@@ -12,13 +17,17 @@ public class Question {
 	private String questionFilename;
 	private String questionFilepath;
 	
-	public Question() {
+	public Comment() {
 		super();
 	}
 
-	public Question(int questionNo, String userId, String questionTitle, String questionContent, int viewCount,
-			Timestamp qCreateDate, String questionFilename, String questionFilepath) {
+	public Comment(int commentNo, String commentContent, Timestamp commentDate, int questionNo, String userId,
+			String questionTitle, String questionContent, int viewCount, Timestamp qCreateDate, String questionFilename,
+			String questionFilepath) {
 		super();
+		this.commentNo = commentNo;
+		this.commentContent = commentContent;
+		this.commentDate = commentDate;
 		this.questionNo = questionNo;
 		this.userId = userId;
 		this.questionTitle = questionTitle;
@@ -27,6 +36,30 @@ public class Question {
 		this.qCreateDate = qCreateDate;
 		this.questionFilename = questionFilename;
 		this.questionFilepath = questionFilepath;
+	}
+
+	public int getCommentNo() {
+		return commentNo;
+	}
+
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
+
+	public String getCommentContent() {
+		return commentContent;
+	}
+
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
+
+	public Timestamp getCommentDate() {
+		return commentDate;
+	}
+
+	public void setCommentDate(Timestamp commentDate) {
+		this.commentDate = commentDate;
 	}
 
 	public int getQuestionNo() {
@@ -95,7 +128,8 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionNo=" + questionNo + ", userId=" + userId + ", questionTitle=" + questionTitle
+		return "Comment [commentNo=" + commentNo + ", commentContent=" + commentContent + ", commentDate=" + commentDate
+				+ ", questionNo=" + questionNo + ", userId=" + userId + ", questionTitle=" + questionTitle
 				+ ", questionContent=" + questionContent + ", viewCount=" + viewCount + ", qCreateDate=" + qCreateDate
 				+ ", questionFilename=" + questionFilename + ", questionFilepath=" + questionFilepath + "]";
 	}

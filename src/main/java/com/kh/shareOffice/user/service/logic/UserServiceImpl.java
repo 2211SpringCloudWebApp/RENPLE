@@ -3,7 +3,7 @@ package com.kh.shareOffice.user.service.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.User;
 import com.kh.shareOffice.user.service.UserService;
 import com.kh.shareOffice.user.store.UserStore;
 

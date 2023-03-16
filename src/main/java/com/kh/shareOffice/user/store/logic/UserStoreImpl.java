@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.User;
 import com.kh.shareOffice.user.store.UserStore;
 
 @Repository

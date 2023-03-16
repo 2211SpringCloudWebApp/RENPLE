@@ -1,4 +1,4 @@
-package com.kh.shareOffice.user.domain;
+package com.kh.shareOffice.user;
 
 import java.sql.Timestamp;
 

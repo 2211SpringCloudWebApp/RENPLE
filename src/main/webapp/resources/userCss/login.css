@@ -1,9 +1,23 @@
+@font-face {
+	font-family: 'Chosunilbo_myungjo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Chosunilbo_myungjo';
+}
+
 body {
 	margin: 0;
 }
 
 #outter {
-	padding-top: 20vh;  /* 헤더 공간 */
+	padding-top: 20vh;
+	/* 헤더 공간 */
 	height: 80vh;
 	width: 50vw;
 	margin: 0 auto;
@@ -18,7 +32,8 @@ h1 {
 	width: 50%;
 }
 
-a:visited, a:link {
+a:visited,
+a:link {
 	text-decoration: none;
 	color: black;
 }
@@ -30,7 +45,7 @@ a:visited, a:link {
 	box-sizing: border-box;
 }
 
-.input-box:nth-child(1){
+.input-box:nth-child(1) {
 	margin-bottom: 10px;
 }
 
@@ -43,10 +58,17 @@ a:visited, a:link {
 	padding: 0;
 	height: 45px;
 	width: 100%;
-	background-color: #e5e5cb;
+}
+
+#input-btn button:nth-child(1) {
+	margin-bottom: 10px;
+}
+
+button {
+	background-color: #E5E5CB;
 	border: none;
 }
 
-#input-btn button:nth-child(1){
-	margin-bottom: 10px;
+input:focus {
+	outline: 1px solid #695D58;
 }
