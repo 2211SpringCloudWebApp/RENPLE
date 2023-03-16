@@ -8,18 +8,29 @@
 	<name>SpringMVC</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	
+	
 	<properties>
 		<java-version>11</java-version>
 		<org.springframework-version>5.2.18.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
-	<repositories>
+	
+	<!-- ojdbc6 같은경우 원격저장소가 없기 때문에 사설저장소를 이용해야함. -->
+	<repositories>  
 		<repository>
 			<id>oracle</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
+	</repository>
+		
+	<!-- 포트원 결제 용도 -->		
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
 		</repository>
-	</repositories>	
+	</repositories>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -72,6 +83,14 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.3.3</version>
 		</dependency>
+
+		<!-- 결제 라이브러리 -->
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.22</version>
+		</dependency>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
