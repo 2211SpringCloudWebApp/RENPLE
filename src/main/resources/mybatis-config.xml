@@ -6,7 +6,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"></setting>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.kh.shareOffice.comment.domain.Comment" alias="Comment" />
+		<typeAlias type="com.kh.shareOffice.comments.domain.Comment" alias="Comment" />
 		<typeAlias type="com.kh.shareOffice.notice.domain.Notice" alias="Notice" />
 		<typeAlias type="com.kh.shareOffice.reservation.domain.Order" alias="Order" />
 		<typeAlias type="com.kh.shareOffice.reservation.domain.ReservationList" alias="ReservationList" />

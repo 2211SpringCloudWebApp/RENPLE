@@ -19,17 +19,14 @@
 			제목 : ${question.questionTitle }<br> 
 			내용 : ${question.questionContent }<br> 
 			아이디 : ${question.userId }<br>
-		<div>
-          <img class="img" src="../../../resources/uploadFiles/${question.questionFilename} " alt="이미지"/>
-        </div>
 			<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
-			<%-- <c:if test="${not empty question.questionFilename}">
+			<c:if test="${not empty question.questionFilename}">
 				첨부파일 : <a href="/question?questionNo=${qna.questionNo }">${question.questionFilename }</a><br>
 				<img class="img" src="../../../resources/questionUploadFiles/${question.questionFilename }" alt="문의 이미지">
 			</c:if>
 			<c:url var="qModify" value="/question/detail">
 				<c:param name="questionNo" value="${question.questionNo }"></c:param>
-			</c:url> --%>
+			</c:url>
 		</div>
 			<div class="content-btn">
 				<button>

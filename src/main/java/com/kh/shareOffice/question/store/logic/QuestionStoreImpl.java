@@ -28,12 +28,6 @@ public class QuestionStoreImpl implements QuestionStore{
 	}
 
 	@Override
-	public Question selectOneById(int questionNo) {
-		Question question = session.selectOne("QuestionMapper.selectOneById", questionNo);
-		return question;
-	}
-
-	@Override
 	public int deleteQuestion(int questionNo) {
 		int result = session.delete("QuestionMapper.deleteQuestion", questionNo);
 		return result;
@@ -63,5 +57,10 @@ public class QuestionStoreImpl implements QuestionStore{
 		return result;
 	}
 
+	@Override
+	public Question selectOneByNo(int questionNo) {
+		Question question = session.selectOne("QuestionMapper.selectOneByNo", questionNo);
+		return question;
+	}
 
 }

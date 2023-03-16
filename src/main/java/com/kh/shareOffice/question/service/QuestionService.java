@@ -10,8 +10,6 @@ public interface QuestionService {
 
 	List<Question> questionView(String userId);
 
-	Question selectOneById(int questionNo);
-
 	int deleteQuestion(int questionNo);
 
 	List<Question> questionViewAdmin();
@@ -21,5 +19,7 @@ public interface QuestionService {
 	int updateQuestion(Question qna);
 
 	int updateFileStatus(int questionNo);
+
+	Question selectOneByNo(int questionNo);
 	
 }

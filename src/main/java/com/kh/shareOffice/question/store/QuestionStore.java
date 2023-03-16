@@ -10,7 +10,7 @@ public interface QuestionStore {
 
 	List<Question> questionView(String userId);
 
-	Question selectOneById(int questionNo);
+	Question selectOneByNo(int questionNo);
 
 	int deleteQuestion(int questionNo);
 

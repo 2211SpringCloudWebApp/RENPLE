@@ -10,6 +10,12 @@
     font-family: 'Chosunilbo_myungjo';
     text-align: center;
 }
+#outter {
+	padding-top : 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
+}
 h1 {
     text-align: center;
 }

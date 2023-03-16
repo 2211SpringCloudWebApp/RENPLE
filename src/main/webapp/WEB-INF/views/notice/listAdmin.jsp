@@ -24,14 +24,15 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${nList }" var="notice" varStatus="i">
-					<tr onclick="location.href='/notice/detailAdmin?noticeNo=${notice.noticeNo }'"style="cursor: pointer;">
+					<tr
+						onclick="location.href='/notice/detailAdmin?noticeNo=${notice.noticeNo }'"
+						style="cursor: pointer;">
 						<td>${i.count}</td>
 						<td>${notice.noticeTitle }</td>
 						<td>${notice.viewCount }</td>
 						<td>${notice.nCreateDate }</td>
-					<td>
-							<c:if test="${!empty notice.noticeFilename }">O</c:if>
-							<c:if test="${empty notice.noticeFilename }">X</c:if></td>
+						<td><c:if test="${!empty notice.noticeFilename }">O</c:if> <c:if
+								test="${empty notice.noticeFilename }">X</c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -107,7 +107,7 @@ public class QuestionController {
 	@RequestMapping("/detail")
 	public String questionDetail(@RequestParam("questionNo") int questionNo, Model model) {
 		try {
-			Question question = qService.selectOneById(questionNo);
+			Question question = qService.selectOneByNo(questionNo);
 			model.addAttribute("question", question);
 			return "question/detail";
 		} catch (Exception e) {
@@ -253,7 +253,7 @@ public class QuestionController {
 	@RequestMapping("/detailAdmin")
 	public String questionDetailAdmin(@RequestParam("questionNo") int questionNo, Model model) {
 		try {
-			Question question = qService.selectOneById(questionNo);
+			Question question = qService.selectOneByNo(questionNo);
 			model.addAttribute("question", question);
 			return "question/detailAdmin";
 		} catch (Exception e) {
@@ -262,6 +262,5 @@ public class QuestionController {
 			return "common/error";
 		}
 	}
-	
 	
 }

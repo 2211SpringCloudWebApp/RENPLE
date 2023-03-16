@@ -29,13 +29,6 @@ public class QuestionServiceImpl implements QuestionService{
 		return list;
 	}
 
-	// 문의사항 상세 조회
-	@Override
-	public Question selectOneById(int questionNo) {
-		Question question = qStore.selectOneById(questionNo);
-		return question;
-	}
-
 	// 문의사항 삭제
 	@Override
 	public int deleteQuestion(int questionNo) {
@@ -70,7 +63,11 @@ public class QuestionServiceImpl implements QuestionService{
 		return qStore.updateFileStatus(questionNo);
 	}
 
-
-	
+	// 문의사항 상세 조회
+	@Override
+	public Question selectOneByNo(int questionNo) {
+		Question question = qStore.selectOneByNo(questionNo);
+		return question;
+	}
 
 }
