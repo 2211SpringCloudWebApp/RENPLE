@@ -25,9 +25,14 @@
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 </head>
 <body>
-
+  <c:if test="${sessionScope.user eq null }">
+  	<script>
+    	alert("로그인이 필요합니다.");
+    	location.href="/user/login";
+  	</script>
+  </c:if>
   <div id="container">
-    <jsp:include page="../header.jsp"></jsp:include>
+    <jsp:include page="../../header.jsp"></jsp:include>
 
     <main>
     <form id="form1" action="/payment" method="post">
@@ -214,7 +219,7 @@
 		</c:forEach>
     
     </main>
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../../footer.jsp"></jsp:include>
   </div>
   
   <script>

@@ -2,8 +2,8 @@ package com.kh.shareOffice.reservation.domain;
 
 import java.sql.Timestamp;
 
-public class Order {
-
+public class ReservationList {
+	
 	private int orderNo;
 	private String orderName;
 	private String orderPhone;
@@ -17,9 +17,17 @@ public class Order {
 	private Timestamp orderDate;	// 결제시간
 	
 	private int productNo;
-	private String userId;
+	private String productName;
+	private int productPrice;
+	private String productDescription;
+	private String productSize;
+	private int productUserMax;
+	private int productUserMin;
+	private Timestamp productCreateDate;
 	
-	public Order() {}
+	// 예약번호, 예약자, 예약인원, 예약날짜, 상품이름, 상품가격, 결제날짜
+	
+	public ReservationList() {}
 
 	public int getOrderNo() {
 		return orderNo;
@@ -117,23 +125,73 @@ public class Order {
 		this.productNo = productNo;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+
+	public String getProductSize() {
+		return productSize;
+	}
+
+	public void setProductSize(String productSize) {
+		this.productSize = productSize;
+	}
+
+	public int getProductUserMax() {
+		return productUserMax;
+	}
+
+	public void setProductUserMax(int productUserMax) {
+		this.productUserMax = productUserMax;
+	}
+
+	public int getProductUserMin() {
+		return productUserMin;
+	}
+
+	public void setProductUserMin(int productUserMin) {
+		this.productUserMin = productUserMin;
+	}
+
+	public Timestamp getProductCreateDate() {
+		return productCreateDate;
+	}
+
+	public void setProductCreateDate(Timestamp productCreateDate) {
+		this.productCreateDate = productCreateDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [orderNo=" + orderNo + ", orderName=" + orderName + ", orderPhone=" + orderPhone + ", orderEmail="
-				+ orderEmail + ", postCode=" + postCode + ", roadAddress=" + roadAddress + ", detailAddress="
-				+ detailAddress + ", orderRequest=" + orderRequest + ", orderUserCount=" + orderUserCount
-				+ ", reservationDate=" + reservationDate + ", orderDate=" + orderDate + ", productNo=" + productNo
-				+ ", userId=" + userId + "]";
+		return "ReservationList [orderNo=" + orderNo + ", orderName=" + orderName + ", orderPhone=" + orderPhone
+				+ ", orderEmail=" + orderEmail + ", postCode=" + postCode + ", roadAddress=" + roadAddress
+				+ ", detailAddress=" + detailAddress + ", orderRequest=" + orderRequest + ", orderUserCount="
+				+ orderUserCount + ", reservationDate=" + reservationDate + ", orderDate=" + orderDate + ", productNo="
+				+ productNo + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", productDescription=" + productDescription + ", productSize=" + productSize + ", productUserMax="
+				+ productUserMax + ", productUserMin=" + productUserMin + ", productCreateDate=" + productCreateDate
+				+ "]";
 	}
-
 	
 	
 	

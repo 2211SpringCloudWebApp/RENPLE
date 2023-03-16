@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.reservation.domain.Order;
+import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.reservation.store.ReservationStore;
 import com.kh.shareOffice.reservation.store.logic.ReservationStoreLogic;
@@ -27,5 +28,24 @@ public class ReservationServiceImpl implements ReservationService{
 		List<String> rList = rStore.selectReservationDateList(ProductNo);
 		return rList;
 	}
+
+	@Override
+	public List<ReservationList> selectReservationList(String userId) {
+		List<ReservationList> rList = rStore.selectReservationList(userId);
+		return rList;
+	}
+
+	@Override
+	public ReservationList selectOneByOrderNo(int orderNo) {
+		ReservationList order = rStore.selectOneByOrderNo(orderNo);
+		return order;
+	}
+
+	@Override
+	public int deleteReservation(int orderNo) {
+		int result = rStore.deleteReservation(orderNo);
+		return result;
+	}
+
 	
 }
