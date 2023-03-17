@@ -218,6 +218,6 @@ public class ReservationController {
 	public String adminProductList() {
 		
 		
-		return "/reservation/detail/adminProductList";
+		return "/reservation/admin/adminProductList";
 	}
 }
