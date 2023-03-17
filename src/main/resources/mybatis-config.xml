@@ -6,24 +6,24 @@
 		<setting name="jdbcTypeForNull" value="NULL"></setting>
 	</settings>
 	<typeAliases>
+		<typeAlias type="com.kh.shareOffice.user.User" alias="User" />
 		<typeAlias type="com.kh.shareOffice.comment.Comment" alias="Comment" />
 		<typeAlias type="com.kh.shareOffice.notice.Notice" alias="Notice" />
-		<typeAlias type="com.kh.shareOffice.reservation.domain.Order" alias="Order" />
-		<typeAlias type="com.kh.shareOffice.reservation.domain.ReservationList" alias="ReservationList" />
-		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.question.Question" alias="Question" />
+		<typeAlias type="com.kh.shareOffice.reservation.Order" alias="Order" />
+		<typeAlias type="com.kh.shareOffice.reservation.ReservationList" alias="ReservationList" />
+		<typeAlias type="com.kh.shareOffice.reservation.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.review.Review" alias="Review" />
-		<typeAlias type="com.kh.shareOffice.user.User" alias="User" />
 		<typeAlias type="com.kh.shareOffice.reviewComment.ReviewComment" alias="ReviewComment" />
 	</typeAliases>
 	<mappers>
+		<mapper resource="mappers/user-mapper.xml" />
 		<mapper resource="mappers/comment-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
-		<mapper resource="mappers/product-mapper.xml" />
 		<mapper resource="mappers/question-mapper.xml" />
 		<mapper resource="mappers/reservation-mapper.xml" />
+		<mapper resource="mappers/product-mapper.xml" />
 		<mapper resource="mappers/review-mapper.xml" />
-		<mapper resource="mappers/user-mapper.xml" />
 		<mapper resource="mappers/reviewComment-mapper.xml" />
 	</mappers>
 </configuration>
