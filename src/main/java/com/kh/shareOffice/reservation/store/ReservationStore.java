@@ -22,5 +22,7 @@ public interface ReservationStore {
 
 	List<Order> selectOrderNo(String userId);
 
+	List<ReservationList> selectAllReservationList();
+
 
 }

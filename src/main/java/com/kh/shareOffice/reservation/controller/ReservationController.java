@@ -130,22 +130,50 @@ public class ReservationController {
 	
 	/* ============== 관리자 ============= */
 	
-	// 관리자 - 예약 내역 목록 조회
-	@RequestMapping(value = "/reservation/admin/adminReservationList", method = RequestMethod.GET)
-	public String adminReservationList(HttpServletRequest request,  Model model) {
+	// 유효성 검사
+	public String checkAdmin(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("user");
 		User user = rService.selectOneById(userId);
-		if(userId == null) {  // 로그인 안하고 접근시 로그인페이지 이동
-			return "redirect:/user/login";
+		if(userId == null) {  			      // 로그인 안하고 접근시 로그인페이지 이동
+			return "notLogin";
 		} else if(user.getUserType() == 1) {  // 관리자가 아니고 접근시 홈페이지로 이동
+			return "notAdmin";
+		} else {
+			return "";
+		}
+	}
+	// 관리자 - 예약 내역 목록 조회
+	@RequestMapping(value = "/reservation/admin/adminReservationList", method = RequestMethod.GET)
+	public String adminReservationList(HttpServletRequest request,  Model model) {
+		String checkAdmin = checkAdmin(request);
+		
+		if(checkAdmin.equals("notLogin")) {  
+			return "redirect:/user/login";
+		} else if(checkAdmin.equals("notAdmin")) {  
 			return "redirect:/";
 		} else {
-			List<ReservationList> rList = rService.selectReservationList(userId);
+			List<ReservationList> rList = rService.selectAllReservationList();
 			model.addAttribute("rList", rList);
 			return "reservation/admin/adminReservationList";
 		}
-	}
+	}	
+//	// 관리자 - 예약 내역 목록 조회
+//	@RequestMapping(value = "/reservation/admin/adminReservationList", method = RequestMethod.GET)
+//	public String adminReservationList(HttpServletRequest request,  Model model) {
+//		HttpSession session = request.getSession();
+//		String userId = (String)session.getAttribute("user");
+//		User user = rService.selectOneById(userId);
+//		if(userId == null) {  // 로그인 안하고 접근시 로그인페이지 이동
+//			return "redirect:/user/login";
+//		} else if(user.getUserType() == 1) {  // 관리자가 아니고 접근시 홈페이지로 이동
+//			return "redirect:/";
+//		} else {
+//			List<ReservationList> rList = rService.selectReservationList(userId);
+//			model.addAttribute("rList", rList);
+//			return "reservation/admin/adminReservationList";
+//		}
+//	}
 	
 	// 관리자 - 예약 내역 상세 조회
 	@RequestMapping(value = "/reservation/admin/adminReservationDetail", method = RequestMethod.GET)
@@ -190,4 +218,12 @@ public class ReservationController {
 			return "/reservation/admin/adminReservationList";
 		}
 	}	
+	
+	// 관리자 - 상품 목록 조회
+	@RequestMapping(value = "/reservation/admin/adminProductList", method = RequestMethod.GET)
+	public String adminProductList() {
+		
+		
+		return "/reservation/detail/adminProductList";
+	}
 }

@@ -71,6 +71,12 @@ public class ReservationStoreLogic implements ReservationStore{
 		List<Order> checkOrderNo = session.selectList("ReservationMapper.selectOrderNo",userId);
 		return checkOrderNo;
 	}
+
+	@Override
+	public List<ReservationList> selectAllReservationList() {
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectAllReservationList");
+		return rList;
+	}
 	
 	
 }

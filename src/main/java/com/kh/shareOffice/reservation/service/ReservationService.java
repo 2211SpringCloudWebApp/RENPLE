@@ -22,4 +22,6 @@ public interface ReservationService {
 
 	List<Order> selectOrderNo(String userId);
 
+	List<ReservationList> selectAllReservationList();
+
 }

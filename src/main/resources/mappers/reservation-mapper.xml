@@ -97,4 +97,11 @@
 		SELECT * FROM ORDER_TBL WHERE USER_ID = #{userId}
 	</select>
 	
+	<select id="selectAllReservationList" resultMap="ReservationListResultMap">
+		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
+		(O.ORDER_DATE)
+		FROM ORDER_TBL O 
+		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
+	</select>
+	
 </mapper>

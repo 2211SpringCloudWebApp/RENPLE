@@ -60,5 +60,11 @@ public class ReservationServiceImpl implements ReservationService{
 		return checkOrderNo;
 	}
 
+	@Override
+	public List<ReservationList> selectAllReservationList() {
+		List<ReservationList> rList = rStore.selectAllReservationList();
+		return rList;
+	}
+
 	
 }
