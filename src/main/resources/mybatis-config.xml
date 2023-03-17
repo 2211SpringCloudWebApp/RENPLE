@@ -12,8 +12,9 @@
 		<typeAlias type="com.kh.shareOffice.reservation.domain.ReservationList" alias="ReservationList" />
 		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.question.Question" alias="Question" />
-		<typeAlias type="com.kh.shareOffice.review.domain.Review" alias="Review" />
+		<typeAlias type="com.kh.shareOffice.review.Review" alias="Review" />
 		<typeAlias type="com.kh.shareOffice.user.User" alias="User" />
+		<typeAlias type="com.kh.shareOffice.reviewComment.ReviewComment" alias="ReviewComment" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/comment-mapper.xml" />
@@ -23,5 +24,6 @@
 		<mapper resource="mappers/reservation-mapper.xml" />
 		<mapper resource="mappers/review-mapper.xml" />
 		<mapper resource="mappers/user-mapper.xml" />
+		<mapper resource="mappers/reviewComment-mapper.xml" />
 	</mappers>
 </configuration>

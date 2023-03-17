@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>후기글 목록</title>
+		<h1>${user }</h1>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     	<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
 		<style>
@@ -83,10 +84,10 @@
 				</tfoot>
 			</table>
 			<div class="button-area">
-			<c:if test="${loginUser eq null}">
+			<c:if test="${user eq null}">
 				<button type="button" class="btn btn-primary" onclick="javascript:btn('로그인이 필요합니다.')">후기글 작성</button>
 			</c:if>
-			<c:if test="${loginUser ne null}">
+			<c:if test="${user ne null}">
 				<button type="button" class="btn btn-primary" onclick="location.href='/review/writeView.do'">후기글 작성</button>
 			</c:if>
 				<button type="button" class="btn btn-primary" onclick="location.href='/home'">홈으로 가기</button>

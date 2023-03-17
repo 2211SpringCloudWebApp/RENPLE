@@ -84,7 +84,7 @@ nav img {
 					<li><img src="../../resources/img/main/logo.png" alt="logo"
 						onclick="goHome()"></li>
 					<li><a href="/officeMap">예약</a></li>
-					<li><a>후기</a></li>
+					<li><a href="/review/list.do">후기</a></li>
 					<li><a href="/notice/view">공지</a></li>
 					<li><a href="/user/login">로그인</a></li>
 				</ul>
@@ -107,7 +107,7 @@ nav img {
 							</ul></li>
 						<li class="dropdown"><a>게시판 관리</a>
 							<ul>
-								<li><a>후기 관리</a></li>
+								<li><a href="/review/list.do">후기 관리</a></li>
 								<li><a href="/notice/listAdmin">공지 관리</a></li>
 								<li><a href="/comment/list">문의 관리</a></li>
 							</ul></li>
@@ -127,7 +127,7 @@ nav img {
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
 						<li><a href="/officeMap">예약</a></li>
-						<li><a>후기</a></li>
+						<li><a href="/review/list.do">후기</a></li>
 						<li><a href="/notice/view">공지</a></li>
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>

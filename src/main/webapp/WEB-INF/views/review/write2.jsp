@@ -16,7 +16,7 @@
 				history.back();
 			}
 		</script>
-		<c:if test="${loginUser == null }">
+		<c:if test="${user == null }">
 			<body onload = "add()">
 		</c:if>
 		<jsp:include page="../header.jsp"></jsp:include>
