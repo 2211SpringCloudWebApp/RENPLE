@@ -106,7 +106,7 @@ public class ReviewStoreLogic implements ReviewStore{
 	}
 
 	@Override
-	public void updateLikeCount(SqlSession session, Integer reviewNo) throws Exception {
+	public void updateLikeCount(SqlSession session, int reviewNo) throws Exception {
 		session.update("ReviewMapper.updateLikeCount", reviewNo);
 	}
 

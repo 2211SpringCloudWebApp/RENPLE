@@ -13,9 +13,10 @@
 		<style>
 			.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
 			.link-icon.twitter { background-image: url(/resources/img/review/icon-twitter.png); background-repeat: no-repeat; }
-			.link-icon.facebook { background-image: url(/resources/img/review/icon-facebook); background-repeat: no-repeat; } 
+			.link-icon.facebook { background-image: url(/resources/img/review/icon-facebook.png); background-repeat: no-repeat; } 
 			.link-icon.like-btn { background-image: url(/resources/img/review/like.png); background-repeat: no-repeat; } 
 		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	</head>
 	<body>
 		<!-- 헤더 -->
@@ -65,12 +66,23 @@
 				<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">Twitter</a>&nbsp;&nbsp;&nbsp;
 				<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">facebook</a> &nbsp;&nbsp;&nbsp;
 				<c:if test="${loginUser != null }">
+				
+				
 					<form action="/review/likeUp.do" method="post">
 						<button type="button" class="link-icon like-btn" >Like!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</form>
+					
+					
 				</c:if>
 				<c:if test="${loginUser == null }">
-					<button type="button" class="link-icon like-btn" onclick="alert('로그인이 필요한 기능입니다.');">Like!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				
+<!-- 					<button type="button" class="link-icon like-btn" onclick="alert('로그인이 필요한 기능입니다.');">Like!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+					<form action="/review/likeUp.do" method="post">
+						<input type="hidden" name="reviewNo" value="${review.reviewNo }">
+						<button type="submit" class="link-icon like-btn" >Like!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					</form>
+				
 				</c:if>
 			</div>
 			<button type="button" class="btn btn-secondary" onclick="location.href='/review/list.do'">후기 목록</button>
@@ -80,13 +92,23 @@
 		
 		<h1 style="Color: white; text-align: center;"> 댓글 목록 </h1>
 		<div id="comment-area">
+			<div id="commentwrite">
+				<form action="/reviewcomment/write.do" method="post">
+					<h4 style="Color: white;">댓글입력</h4>
+					<input type="hidden" id="reviewNo" name="reviewNo" value=${review.reviewNo }>
+					<input type="hidden" id="userId" name="userId" value="admin">
+					<input type="text" id="commentContent" name="commentContent" placeholder="내용을 입력해주세요.">
+					<input type="submit" class="btn btn-secondary commentsubmit" value="작성">
+				</form>
+			</div>
 			<ol class="commentList">
 				<c:forEach items="${cList }" var="comment">
 					<li>
 						<p>
 							작성자 : ${comment.userId } / 작성 날짜 : <fmt:formatDate value="${comment.commentCreateDate}" pattern="yyyy-MM-dd" />
 						</p>
-						<p>${comment.content }</p>
+						<p>${comment.commentContent }</p>
+						<br>
 					</li>
 				</c:forEach>
 			</ol>
@@ -115,6 +137,12 @@
 			function btn(sample) {
 				alert(sample);
 			}
+			
+			$(".commentsubmit").on("click", function(){
+				var formObj = $("form[name='commentForm']");
+				formObj.attr("action", "/reviewcomment/write.do");
+				formObj.submit();
+			});
 		</script>
 	</body>
 </html>

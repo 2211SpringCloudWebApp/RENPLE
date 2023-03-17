@@ -87,4 +87,10 @@ public interface ReviewService {
 	 */
 	public List<Review> selectListByKeyword(PageInfo pi, Search search);
 
+	/**
+	 * 후기글 좋아요 Service
+	 * @param review
+	 */
+	public void updateReviewLike(int reviewNo) throws Exception;
+
 }

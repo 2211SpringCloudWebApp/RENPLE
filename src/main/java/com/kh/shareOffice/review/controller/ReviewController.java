@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-//import com.kh.shareOffice.comment.domain.Comment;
-//import com.kh.shareOffice.comment.service.CommentService;
 import com.kh.shareOffice.review.domain.PageInfo;
 import com.kh.shareOffice.review.domain.Review;
 import com.kh.shareOffice.review.domain.Search;
 import com.kh.shareOffice.review.service.ReviewService;
+import com.kh.shareOffice.reviewcomment.domain.Comment;
+import com.kh.shareOffice.reviewcomment.service.CommentService;
 
 @Controller
 public class ReviewController {
 	
 	@Autowired
 	private ReviewService rService;
-	//@Autowired
-	//private CommentService cService;
+	@Autowired
+	private CommentService cService;
 	
 //	==========================================================================================
 //	======================================= 첨부파일 관련 =======================================
@@ -123,6 +123,40 @@ public class ReviewController {
 	public String reviewWriteView() {
 		return "review/write2";
 	}
+//	==========================================================================================
+//	======================================== 댓글 작성 =========================================
+//	==========================================================================================
+	@RequestMapping(value = "/reviewcomment/write.do", method = RequestMethod.POST)
+	public String commentWrite(
+			
+			@ModelAttribute Comment comment
+			, Model model
+			
+			) {
+		
+		try {
+			int result = cService.insertComment(comment);
+			if(result > 0) {
+				return "redirect:/review/detail.do?reviewNo=" + comment.getReviewNo();
+			}
+			else {
+				model.addAttribute("msg", "댓글 작성 실패");
+				return "common/error";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 //	==========================================================================================
 //	======================================== 후기글 수정 ========================================
 //	==========================================================================================	
@@ -229,13 +263,13 @@ public class ReviewController {
 			) {
 		
 		try {
-			
 			Review review = rService.selectOneByNo(reviewNo);
-			//List<Comment> cList = cService.selectCommentList(reviewNo);
-			//model.addAttribute("cList", cList);
+			List<Comment> cList = cService.selectCommentList(reviewNo);
 			model.addAttribute("review", review);
+			model.addAttribute("cList", cList);
 			return "review/detail2";
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
 		}
@@ -351,12 +385,12 @@ public class ReviewController {
 	@RequestMapping(value = "/review/likeUp.do", method = RequestMethod.POST)
 	public void likeUp(
 			
-			@ModelAttribute Review review
+			@RequestParam(value="reviewNo", required=false) int reviewNo
 			, Model model
 			
-			) {
+			) throws Exception {
 		
-		rService.updateReview(review);	
+		rService.updateReviewLike(reviewNo);	
 	}
 	
 }

@@ -42,7 +42,6 @@ public class ReviewServiceImpl implements ReviewService{
 	public Review selectOneByNo(int reviewNo) throws Exception {
 		Review review = rStore.selectOneByNo(session, reviewNo);
 		rStore.updateViewCount(session, reviewNo);
-		rStore.updateLikeCount(session, reviewNo);
 		return review;
 	}
 
@@ -86,6 +85,11 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Review> selectListByKeyword(PageInfo pi, Search search) {
 		List<Review> searchList = rStore.selectListByKeyword(session, pi, search);
 		return searchList;
+	}
+
+	@Override
+	public void updateReviewLike(int reviewNo) throws Exception {
+		rStore.updateLikeCount(session, reviewNo);
 	}
 
  }

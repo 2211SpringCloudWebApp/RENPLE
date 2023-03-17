@@ -113,6 +113,6 @@ public interface ReviewStore {
 	 * @param reviewNo
 	 * @throws Exception
 	 */
-	public void updateLikeCount(SqlSession session, Integer reviewNo) throws Exception;
+	public void updateLikeCount(SqlSession session, int reviewNo) throws Exception;
 
 }

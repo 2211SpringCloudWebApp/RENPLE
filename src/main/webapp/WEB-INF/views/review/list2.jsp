@@ -59,7 +59,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${rList }" var="review" varStatus="i">
-						<tr onclick="location.href='/review/detail.do?reviewNo=${review.reviewNo }'">
+						<tr onclick="location.href='/review/detail.do?reviewNo=${review.reviewNo }'" style="cursor: pointer;">
 							<td class="review-number">${i.count }</td>
 							<td>${review.reviewTitle }</td>
 							<td>${review.userId }</td>
