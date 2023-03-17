@@ -6,9 +6,122 @@
 <head>
 <meta charset="UTF-8">
 <title>footer</title>
+<<<<<<< HEAD
 <!-- No mapping for GET /favicon.ico 안뜨게 설정 -->
 <link rel="icon" type="image/ico"
 	href="${pageContext.request.contextPath}/resources/static/images/favicon.ico">
+=======
+<style>
+	@font-face {
+		font-family: 'Chosunilbo_myungjo';
+		src:
+			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+			format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+	
+	* {
+		font-family: 'Chosunilbo_myungjo';
+	}
+	
+	footer a {
+		text-decoration: none;
+		color: #fff;
+	}
+	
+	#footer {
+		list-style: none;
+		color: #fff;
+		background-image: url("../../resources/img/main/num5.jpg");
+		height: calc(100vh - 72px);
+		background-size: cover;
+		background-position: center;
+	}
+	
+	.footer_container {
+		margin: 0 130px;
+		padding: 48px 30px;
+	}
+	
+	#footer_top>span {
+		writing-mode: vertical-rl;
+		font-size: x-large;
+		letter-spacing: 8px;
+		font-weight: 900;
+	}
+	
+	#footer_mid {
+		margin-top: 70px;
+		text-align: center;
+	}
+	
+	.footer_mid_logo_1 {
+		font-size: 56px;
+		margin-bottom: 5px;
+	}
+	
+	.footer_mid_logo_2 {
+		font-size: large;
+		float : left;
+	}
+	
+	#footer_bottom {
+		margin-top: 100px;
+		display: flex;
+	}
+	
+	.footer_bottom_left {
+		font-weight: 900;
+	}
+	
+	.footer_bottom_left>div {
+		margin-bottom: 48px;
+		line-height: 0.5;
+		pointer-events: none;
+	}
+	
+	.footer_info1 {
+		display: flex;
+	}
+	
+	.footer_info1 ul {
+		padding-left: 0;
+	}
+	
+	.footer_info1 li {
+		display: inline-block;
+		padding-right: 30px;
+	}
+	
+	.footer_bottom_right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-end;
+		margin-left: auto;
+	}
+	
+	.footer_sns ul {
+		padding-left: 0;
+	}
+	
+	.footer_sns li {
+		display: inline-block;
+		margin-left: 30px;
+	}
+	
+	.footer_sns_icon3 {
+		padding-right: 0;
+	}
+	
+	.rabbit {
+		width: 50px;
+		height: 63px;
+	}
+
+</style>
+>>>>>>> branch 'Eunji0318' of https://github.com/2211SpringCloudWebApp/RENPLE
 </head>
 <style>
 @font-face {
