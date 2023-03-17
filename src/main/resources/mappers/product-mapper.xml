@@ -9,7 +9,7 @@
 		<result property="productSize" column="PRODUCT_SIZE"/>
 		<result property="productUserMax" column="PRODUCT_USER_MAX"/>
 		<result property="productUserMin" column="PRODUCT_USER_MIN"/>
-		<result property="pRentalDate" column="R_RENTAL_DATE"/>
+		<result property="pRentalDate" column="P_CREATE_DATE"/>
 	</resultMap>
 	
 	<!-- 쿼리문 작성 부분 -->

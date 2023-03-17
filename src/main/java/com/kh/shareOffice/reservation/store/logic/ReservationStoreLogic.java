@@ -58,6 +58,24 @@ public class ReservationStoreLogic implements ReservationStore{
 		int result = session.delete("ReservationMapper.deleteReservation", orderNo);
 		return result;
 	}
+
+	@Override
+	public User selectOneById(String userId) {
+		User user = session.selectOne("ReservationMapper.selectOneById", userId);
+		return user;
+	}
+
+	@Override
+	public List<Order> selectOrderNo(String userId) {
+		List<Order> checkOrderNo = session.selectList("ReservationMapper.selectOrderNo",userId);
+		return checkOrderNo;
+	}
+
+	@Override
+	public List<ReservationList> selectAllReservationList() {
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectAllReservationList");
+		return rList;
+	}
 	
 	
 }

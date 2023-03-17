@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>예약 내역 리스트</title>
+  <title>관리자 - 예약 내역 리스트</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 부트스트랩 -->
@@ -33,7 +33,7 @@
 	      <th>상세조회</th>
 	    </tr>
 	    <c:forEach items="${rList }" var="item" >
-		    <tr onclick="location.href='/reservation/detail/reservationDetail?orderNo=${item.orderNo }'" style="cursor: pointer;">
+		    <tr onclick="location.href='/reservation/admin/adminReservationDetail?orderNo=${item.orderNo }'" style="cursor: pointer;">
 		      <td>${item.orderNo }</td>
 		      <td>${item.orderName }</td>
 		      <td>${item.orderUserCount }</td>
@@ -41,7 +41,7 @@
 		      <td>${item.productName }</td>
 		      <td>${item.productPrice }</td>
 		      <td>${item.orderDate }</td>
-		      <td><a href="/reservation/detail/reservationDetail?orderNo=${item.orderNo }">상세조회</a></td>
+		      <td><a href="/reservation/admin/adminReservationDetail?orderNo=${item.orderNo }">상세조회</a></td>
 		    </tr>
 	
 	    </c:forEach>

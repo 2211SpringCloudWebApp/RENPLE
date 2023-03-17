@@ -10,23 +10,10 @@ public class Product {
 	private int productSize;	// String -> int
 	private int productUserMax;
 	private int productUserMin;
-	private Timestamp pRentalDate;
+	private Timestamp pCreateDate;
 	
 	public Product() {
 		super();
-	}
-
-	public Product(int productNo, String productName, int productPrice, String productDescription, int productSize,
-			int productUserMax, int productUserMin, Timestamp pRentalDate) {
-		super();
-		this.productNo = productNo;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.productDescription = productDescription;
-		this.productSize = productSize;
-		this.productUserMax = productUserMax;
-		this.productUserMin = productUserMin;
-		this.pRentalDate = pRentalDate;
 	}
 
 	public int getProductNo() {
@@ -85,19 +72,19 @@ public class Product {
 		this.productUserMin = productUserMin;
 	}
 
-	public Timestamp getpRentalDate() {
-		return pRentalDate;
+	public Timestamp getpCreateDate() {
+		return pCreateDate;
 	}
 
-	public void setpRentalDate(Timestamp pRentalDate) {
-		this.pRentalDate = pRentalDate;
+	public void setpCreateDate(Timestamp pCreateDate) {
+		this.pCreateDate = pCreateDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", productName=" + productName + ", productPrice=" + productPrice
 				+ ", productDescription=" + productDescription + ", productSize=" + productSize + ", productUserMax="
-				+ productUserMax + ", productUserMin=" + productUserMin + ", pRentalDate=" + pRentalDate + "]";
+				+ productUserMax + ", productUserMin=" + productUserMin + ", pCreateDate=" + pCreateDate + "]";
 	}
 	
 }

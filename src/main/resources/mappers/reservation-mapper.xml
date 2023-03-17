@@ -41,6 +41,16 @@
 		<result property="productCreateDate" column="P_CREATE_DATE"/>
 	</resultMap>
 	
+	<resultMap type="User" id="userResultMap">
+		<id property="userId" column="USER_ID"></id>
+		<result property="userPw" column="USER_PW" />
+		<result property="userName" column="USER_NAME" />
+		<result property="userEmail" column="USER_EMAIL" />
+		<result property="userPhone" column="USER_PHONE" />
+		<result property="userAddress" column="USER_ADDRESS" />
+		<result property="userType" column="USER_TYPE" />
+		<result property="uCreateDate" column="U_CREATE_DATE" />
+	</resultMap>
 	
 	<!-- 주문정보 등록 -->
 	<insert id="insertOrder">
@@ -58,19 +68,40 @@
 	<!-- 예약 내역 리스트 조회 
 		 예약번호, 예약자, 예약인원, 예약날짜, 상품이름, 상품가격, 결제날짜 -->
 	<select id="selectReservationList" resultMap="ReservationListResultMap">
-		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, O.ORDER_DATE
+		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
+		(O.ORDER_DATE)
 		FROM ORDER_TBL O 
 		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
 		WHERE USER_ID = #{userId}
 	</select>
 	
+	<!-- 주문번호로 예약 정보 가져오기 -->
 	<select id="selectOneByOrderNo" resultMap="ReservationListResultMap">
 		SELECT * FROM ORDER_TBL O
 		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
 		WHERE ORDER_NO = #{orderNo}
 	</select>
 	
+	<!-- 주문번호로 예약 취소하기 -->
 	<delete id="deleteReservation">
 		DELETE FROM ORDER_TBL WHERE ORDER_NO = #{orderNo}
 	</delete>
+	
+	<!-- 아이디로 유저 정보 가져오기 -->
+	<select id="selectOneById" resultMap="userResultMap" >
+		SELECT * FROM USER_TBL WHERE USER_ID = #{userId}
+	</select>
+	
+	<!-- 아이디로 유저의 주문 정보 리스트 가져오기 -->
+	<select id="selectOrderNo" resultMap="userResultMap">
+		SELECT * FROM ORDER_TBL WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="selectAllReservationList" resultMap="ReservationListResultMap">
+		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
+		(O.ORDER_DATE)
+		FROM ORDER_TBL O 
+		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
+	</select>
+	
 </mapper>
