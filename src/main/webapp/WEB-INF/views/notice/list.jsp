@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="../../../resources/noticeCss/list.css">
-</style>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -18,7 +17,6 @@
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
-					<th>조회수</th>
 					<th>등록일</th>
 					<th>첨부파일</th>
 				</tr>
@@ -28,7 +26,6 @@
 					<tr onclick="location.href='/notice/detail?noticeNo=${notice.noticeNo }'"style="cursor: pointer;">
 						<td>${i.count}</td>
 						<td>${notice.noticeTitle }</td>
-						<td>${notice.viewCount }</td>
 						<td>${notice.nCreateDate }</td>
 						<td><c:if test="${!empty notice.noticeFilename }">O</c:if> 
 						<c:if test="${empty notice.noticeFilename }">X</c:if></td>

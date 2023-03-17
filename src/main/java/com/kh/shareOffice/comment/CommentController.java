@@ -10,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.shareOffice.Alert;
+import com.kh.shareOffice.PageInfo;
+import com.kh.shareOffice.Search;
 import com.kh.shareOffice.question.Question;
 import com.kh.shareOffice.question.QuestionService;
 
@@ -28,10 +31,46 @@ public class CommentController {
 	// 문의 목록 확인
 	// 조인이 들어감
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<Comment> commentList = cService.selectCnQAll();
-		model.addAttribute("commentList", commentList);
-		return "comment/list";
+	public String list(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			@RequestParam(value = "searchCondition", required = false, defaultValue = "all") String searchCondition,
+			@RequestParam(value = "searchValue", required = false, defaultValue = "") String searchValue) {
+		try {
+			// search에는 키워드와 키워드값이 포함되어있는 상태
+			Search search = new Search(searchValue, searchCondition);
+			int totalCnt = cService.getListCnt(search);
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<Comment> commentList = cService.selectCnQAll(search);
+			if (commentList.size() == 0) {
+				Alert alert = new Alert("/", "문의내역이 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				model.addAttribute("pi", pi);
+				model.addAttribute("search", search);
+				model.addAttribute("commentList", commentList);
+				return "comment/list";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+
+	}
+
+	// 페이징처리 관련 메서드
+	private PageInfo getPageInfo(int currPage, int totalCnt) {
+		int boardLimit = 10; // 현재 페이지
+		int naviLimit = 5; // 전체 게시글 갯수
+
+		int lastPage = (int) Math.ceil((double) totalCnt / boardLimit);
+		int startNavi = ((currPage - 1) / naviLimit) * naviLimit + 1;
+		int endNavi = startNavi + naviLimit - 1;
+		if (endNavi > lastPage) {
+			endNavi = lastPage;
+		}
+		PageInfo pi = new PageInfo(currPage, boardLimit, naviLimit, startNavi, endNavi, totalCnt, lastPage);
+		return pi;
 	}
 
 	// 문의 상세 보기
@@ -43,7 +82,7 @@ public class CommentController {
 			if (question != null) {
 				model.addAttribute("question", question);
 				model.addAttribute("comment", comment);
-				return "comment/insert";
+				return "comment/detail";
 			} else {
 				Alert alert = new Alert("/comment/list", "해당 문의가 존재하지 않습니다");
 				model.addAttribute("alert", alert);

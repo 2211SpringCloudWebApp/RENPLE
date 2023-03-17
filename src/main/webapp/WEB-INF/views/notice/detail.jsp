@@ -22,11 +22,8 @@
 			내용 : ${notice.noticeContent }<br>
 			<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
 			<c:if test="${not empty notice.noticeFilename}">
-				첨부파일 : <a href="/notice?noticeNo=${notice.noticeNo }">${notice.noticeFilename }</a><br>
+				첨부파일 : ${notice.noticeFilename }<br>
 			</c:if>
-			<c:url var="nModify" value="/notice/modifyView">
-				<c:param name="noticeNo" value="${notice.noticeNo }"></c:param>
-			</c:url>
 		</div>
 		<div class="content-btn">
 			<button>
@@ -36,6 +33,5 @@
 	</div>
 	
 	<jsp:include page="../footer.jsp"></jsp:include>
-</head>
 </body>
 </html>

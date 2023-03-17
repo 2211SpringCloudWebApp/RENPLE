@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.shareOffice.Search;
+
 @Repository
 public class CommentStoreImpl implements CommentStore{
 
@@ -19,8 +21,8 @@ public class CommentStoreImpl implements CommentStore{
 	}
 
 	@Override
-	public List<Comment> selectCnQAll() {
-		List<Comment> commetList = session.selectList("CommentMapper.selectCnQAll");
+	public List<Comment> selectCnQAll(Search search) {
+		List<Comment> commetList = session.selectList("CommentMapper.selectCnQAll", search);
 		return commetList;
 	}
 
@@ -39,6 +41,12 @@ public class CommentStoreImpl implements CommentStore{
 	@Override
 	public int updateComment(Comment comment) {
 		int result = session.update("CommentMapper.updateComment", comment);
+		return result;
+	}
+
+	@Override
+	public int getListCnt(Search search) {
+		int result = session.selectOne("CommentMapper.getListCnt", search);
 		return result;
 	}
 

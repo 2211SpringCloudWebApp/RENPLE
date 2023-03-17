@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>회원 상세 페이지</title>
+<title>마이페이지</title>
 <link rel="stylesheet" href="../../resources/userCss/enroll.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

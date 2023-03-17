@@ -175,12 +175,12 @@
 
 				/* 이메일 중복 확인 */
 				function chkEmail() {
-					var email = $('input[name=userEmail]').val();
+					var userEmail = $('input[name=userEmail]').val();
 					$.ajax({
 						url: '/user/emailChk',
 						type: 'post',
 						data: {
-							"userEmail": email
+							userEmail : userEmail
 						},
 						success: function (data) {
 							if (data == 0) {
@@ -200,14 +200,14 @@
 
 				/* 비밀번호 확인 */
 				function checkPw() {
-					var pw = $('input[name=userPw]').val();
-					var repw = $('input[name=reUserPw]').val();
+					var userPw = $('input[name=userPw]').val();
+					var reUserPw = $('input[name=reUserPw]').val();
 					$.ajax({
 						url: '/user/pwChk',
 						type: 'post',
 						data: {
-							"userPw": pw,
-							"reUserPw": repw
+							userPw: userPw,
+							reUserPw : reUserPw
 						},
 						success: function (data) {
 							if (data == 0) {

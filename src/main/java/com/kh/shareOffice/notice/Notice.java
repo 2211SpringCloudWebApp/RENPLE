@@ -6,7 +6,6 @@ public class Notice {
 	private int noticeNo;
 	private String noticeTitle;
 	private String noticeContent;
-	private int viewCount;
 	private Timestamp nCreateDate;
 	private String noticeFilename;
 	private String noticeFilepath;
@@ -15,13 +14,12 @@ public class Notice {
 		super();
 	}
 
-	public Notice(int noticeNo, String noticeTitle, String noticeContent, int viewCount, Timestamp nCreateDate,
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Timestamp nCreateDate,
 			String noticeFilename, String noticeFilepath) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
-		this.viewCount = viewCount;
 		this.nCreateDate = nCreateDate;
 		this.noticeFilename = noticeFilename;
 		this.noticeFilepath = noticeFilepath;
@@ -51,14 +49,6 @@ public class Notice {
 		this.noticeContent = noticeContent;
 	}
 
-	public int getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
-
 	public Timestamp getnCreateDate() {
 		return nCreateDate;
 	}
@@ -86,7 +76,7 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
-				+ ", viewCount=" + viewCount + ", nCreateDate=" + nCreateDate + ", noticeFilename=" + noticeFilename
+				+ ", nCreateDate=" + nCreateDate + ", noticeFilename=" + noticeFilename
 				+ ", noticeFilepath=" + noticeFilepath + "]";
 	}
 

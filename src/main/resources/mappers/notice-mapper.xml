@@ -3,31 +3,42 @@
 <mapper namespace="NoticeMapper">
 	<resultMap type="Notice" id="noticeResultMap">
 		<id property="noticeNo" column="NOTICE_NO"></id>
-		<result property="noticeTitle" column="NOTICE_TITLE"/>
-		<result property="noticeContent" column="NOTICE_CONTENT"/>
-		<result property="viewCount" column="VIEW_COUNT"/>
-		<result property="nCreateDate" column="N_CREATE_DATE"/>
-		<result property="noticeFilename" column="NOTICE_FILENAME"/>
-		<result property="noticeFilepath" column="NOTICE_FILEPATH"/>
+		<result property="noticeTitle" column="NOTICE_TITLE" />
+		<result property="noticeContent" column="NOTICE_CONTENT" />
+		<result property="nCreateDate" column="N_CREATE_DATE" />
+		<result property="noticeFilename" column="NOTICE_FILENAME" />
+		<result property="noticeFilepath" column="NOTICE_FILEPATH" />
 	</resultMap>
-	
+
 	<!-- 쿼리문 작성 부분 -->
 	<select id="noticeView" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL
 	</select>
+
 	<select id="selectOneById" resultMap="noticeResultMap">
-		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
+		SELECT * FROM NOTICE_TBL
+		WHERE NOTICE_NO = #{noticeNo}
 	</select>
+
 	<update id="updateNotice">
-		UPDATE NOTICE_TBL SET NOTICE_TITLE=#{noticeTitle}, NOTICE_CONTENT=#{noticeContent}, NOTICE_FILENAME = #{noticeFilename}, NOTICE_FILEPATH = #{noticeFilepath} WHERE NOTICE_NO=#{noticeNo} 
+		UPDATE NOTICE_TBL SET NOTICE_TITLE=#{noticeTitle},
+		NOTICE_CONTENT=#{noticeContent}, NOTICE_FILENAME = #{noticeFilename},
+		NOTICE_FILEPATH = #{noticeFilepath} WHERE NOTICE_NO=#{noticeNo}
 	</update>
+
 	<insert id="insertNotice">
-		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL, #{noticeTitle}, #{noticeContent}, DEFAULT, DEFAULT, #{noticeFilename}, #{noticeFilepath})
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL,
+		#{noticeTitle}, #{noticeContent}, DEFAULT, #{noticeFilename},
+		#{noticeFilepath})
 	</insert>
+
 	<delete id="deleteNotice">
 		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 	</delete>
+
 	<update id="updateNoticeFile">
-		UPDATE NOTICE_TBL SET NOTICE_FILENAME = NULL, NOTICE_FILEPATH = NULL WHERE NOTICE_NO = #{noticeNo}
+		UPDATE NOTICE_TBL SET NOTICE_FILENAME = NULL,
+		NOTICE_FILEPATH = NULL WHERE NOTICE_NO = #{noticeNo}
 	</update>
+
 </mapper>

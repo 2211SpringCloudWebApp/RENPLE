@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.shareOffice.Search;
-
 @Service
 public class QuestionServiceImpl implements QuestionService{
 
@@ -25,13 +23,6 @@ public class QuestionServiceImpl implements QuestionService{
 	public List<Question> questionView(String userId) {
 		List<Question> list = qStore.questionView(userId);
 		return list;
-	}
-
-	// 문의사항 상세 조회
-	@Override
-	public Question selectOneByNo(int questionNo) {
-		Question question = qStore.selectOneByNo(questionNo);
-		return question;
 	}
 
 	// 문의사항 삭제
@@ -62,13 +53,17 @@ public class QuestionServiceImpl implements QuestionService{
 		return result;
 	}
 
-	// 문의사항 검색하기
+	// 업로드된 파일 삭제
 	@Override
-	public int getListCount(Search search) {
-		int totalCount = qStore.getListCount(search);
-		return totalCount;
+	public int updateFileStatus(int questionNo) {
+		return qStore.updateFileStatus(questionNo);
 	}
 
-	
+	// 문의사항 상세 조회
+	@Override
+	public Question selectOneByNo(int questionNo) {
+		Question question = qStore.selectOneByNo(questionNo);
+		return question;
+	}
 
 }

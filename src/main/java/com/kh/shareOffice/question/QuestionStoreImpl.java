@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.shareOffice.Search;
-
 @Repository
 public class QuestionStoreImpl implements QuestionStore{
 
@@ -24,12 +22,6 @@ public class QuestionStoreImpl implements QuestionStore{
 	public List<Question> questionView(String userId) {
 		List<Question> nList = session.selectList("QuestionMapper.questionView", userId);
 		return nList;
-	}
-
-	@Override
-	public Question selectOneByNo(int questionNo) {
-		Question question = session.selectOne("QuestionMapper.selectOneByNo", questionNo);
-		return question;
 	}
 
 	@Override
@@ -57,9 +49,15 @@ public class QuestionStoreImpl implements QuestionStore{
 	}
 
 	@Override
-	public int getListCount(Search search) {
-		int result = session.selectOne("QuestionMapper.searchListCount", search);
+	public int updateFileStatus(int questionNo) {
+		int result = session.update("QuestionMapper.updateFileStatus", questionNo);
 		return result;
+	}
+
+	@Override
+	public Question selectOneByNo(int questionNo) {
+		Question question = session.selectOne("QuestionMapper.selectOneByNo", questionNo);
+		return question;
 	}
 
 }

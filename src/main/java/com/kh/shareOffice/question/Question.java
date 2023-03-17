@@ -7,26 +7,33 @@ public class Question {
 	private String userId;
 	private String questionTitle;
 	private String questionContent;
-	private int viewCount;
 	private Timestamp qCreateDate;
 	private String questionFilename;
 	private String questionFilepath;
+	
+	// Comment의 일부분
+	private int commentNo;
+	private String commentContent;
+	private Timestamp commentDate;
 	
 	public Question() {
 		super();
 	}
 
-	public Question(int questionNo, String userId, String questionTitle, String questionContent, int viewCount,
-			Timestamp qCreateDate, String questionFilename, String questionFilepath) {
+	public Question(int questionNo, String userId, String questionTitle, String questionContent, Timestamp qCreateDate,
+			String questionFilename, String questionFilepath, int commentNo, String commentContent,
+			Timestamp commentDate) {
 		super();
 		this.questionNo = questionNo;
 		this.userId = userId;
 		this.questionTitle = questionTitle;
 		this.questionContent = questionContent;
-		this.viewCount = viewCount;
 		this.qCreateDate = qCreateDate;
 		this.questionFilename = questionFilename;
 		this.questionFilepath = questionFilepath;
+		this.commentNo = commentNo;
+		this.commentContent = commentContent;
+		this.commentDate = commentDate;
 	}
 
 	public int getQuestionNo() {
@@ -61,14 +68,6 @@ public class Question {
 		this.questionContent = questionContent;
 	}
 
-	public int getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
-
 	public Timestamp getqCreateDate() {
 		return qCreateDate;
 	}
@@ -93,11 +92,36 @@ public class Question {
 		this.questionFilepath = questionFilepath;
 	}
 
+	public int getCommentNo() {
+		return commentNo;
+	}
+
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
+
+	public String getCommentContent() {
+		return commentContent;
+	}
+
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
+
+	public Timestamp getCommentDate() {
+		return commentDate;
+	}
+
+	public void setCommentDate(Timestamp commentDate) {
+		this.commentDate = commentDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [questionNo=" + questionNo + ", userId=" + userId + ", questionTitle=" + questionTitle
-				+ ", questionContent=" + questionContent + ", viewCount=" + viewCount + ", qCreateDate=" + qCreateDate
-				+ ", questionFilename=" + questionFilename + ", questionFilepath=" + questionFilepath + "]";
+				+ ", questionContent=" + questionContent + ", qCreateDate=" + qCreateDate + ", questionFilename="
+				+ questionFilename + ", questionFilepath=" + questionFilepath + ", commentNo=" + commentNo
+				+ ", commentContent=" + commentContent + ", commentDate=" + commentDate + "]";
 	}
 	
 }

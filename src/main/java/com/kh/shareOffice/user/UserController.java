@@ -36,6 +36,7 @@ public class UserController {
 	public String enroll(Model model, @ModelAttribute User user, String userId, String userPw, String userName,
 			String userEmail, String userPhone, String userAddress, Timestamp uCreateDate) {
 		try {
+			// userAddress가 2개 들어오는데 이때 ','로 구분되어 ', '로 변경
 			user.setUserAddress(userAddress.replace(",", ", "));
 			int result = uService.insertUser(user);
 			if (result > 0) {
@@ -109,9 +110,9 @@ public class UserController {
 			if (user != null) {
 				model.addAttribute("user", user);
 				if (user.getUserId().equals("admin")) {
-					return "user/myPage";
+					return "user/manageUser";
 				} else {
-					return "user/myPage";
+					return "user/mypage";
 				}
 			} else {
 				Alert alert = new Alert("/user/login", "일치하는 정보가 존재하지 않습니다");
@@ -231,30 +232,6 @@ public class UserController {
 	}
 
 	// ========================================== 관리자 전용 ==========================================
-//	회원조회 + 페이징
-//	@RequestMapping("/selectAll")
-//	public String selectAll(Model model,
-//			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
-//		try {
-//			int totalCnt = uService.getListCnt();
-//			// 페이징 처리 메서드
-//			PageInfo pi = this.getPageInfo(page, totalCnt);
-//			List<User> userList = uService.selectAll(pi);
-//			if (userList.size() == 0) {
-//				Alert alert = new Alert("/", "이용자가 존재하지 않습니다");
-//				model.addAttribute("alert", alert);
-//				return "common/alert";
-//			} else {
-//				model.addAttribute("pi", pi);
-//				model.addAttribute("list", userList);
-//				return "user/userList";
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			model.addAttribute("msg", e.getMessage());
-//			return "common/error";
-//		}
-//	}
 
 	// 회원조회 + 페이징 + 조건부 검색
 	@RequestMapping("/selectSearchAll")
@@ -348,8 +325,10 @@ public class UserController {
 	}
 
 	// ========================================== ajax ========================================== 
+	// produces = "application/json; charset=UTF-8" 사용으로 jackson-databind 라이브러리 생략
+	
 	// 아이디 중복 체크
-	@RequestMapping(value = "/idChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/idChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public int idCheck(String userId) {
 		int result = uService.checkId(userId);
@@ -357,7 +336,7 @@ public class UserController {
 	}
 
 	// 이메일 중복 체크
-	@RequestMapping(value = "/emailChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/emailChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public int emailCheck(String userEmail) {
 		int result = uService.checkEmail(userEmail);
@@ -365,7 +344,7 @@ public class UserController {
 	}
 
 	// 회원가입시 비밀번호 확인 체크
-	@RequestMapping(value = "/pwChk", method = RequestMethod.POST)
+	@RequestMapping(value = "/pwChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public int pwCheck(String userPw, @RequestParam("reUserPw") String reUserPw) {
 		int result = -1;

@@ -19,26 +19,33 @@ public class NoticeStoreImpl implements NoticeStore{
 	}
 
 	@Override
-	public Notice selectOneById(SqlSession session, int noticeNo) {
+	public Notice selectOneById(int noticeNo) {
 		Notice notice = session.selectOne("NoticeMapper.selectOneById", noticeNo);
 		return notice;
 	}
 
 	@Override
-	public int updateNotice(SqlSession session, Notice notice) {
+	public int updateNotice(Notice notice) {
 		int result = session.update("NoticeMapper.updateNotice", notice);
 		return result;
 	}
 
 	@Override
-	public int deleteNotice(SqlSession session, int noticeNo) {
+	public int deleteNotice(int noticeNo) {
 		int result = session.delete("NoticeMapper.deleteNotice", noticeNo);
 		return result; 
 	}
 
 	@Override
-	public int insertNotice(SqlSession session, Notice notice) {
+	public int insertNotice(Notice notice) {
 		int result = session.insert("NoticeMapper.insertNotice", notice);
 		return result;
 	}
+
+	@Override
+	public int updateFileStatus(int noticeNo) {
+		int result = session.update("NoticeMapper.updateNoticeFile", noticeNo);
+		return result;
+	}
+
 }

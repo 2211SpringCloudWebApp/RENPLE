@@ -14,5 +14,6 @@ public interface NoticeService {
 
 	int insertNotice(Notice notice);
 
+	int updateFileStatus(int noticeNo);
 
 }

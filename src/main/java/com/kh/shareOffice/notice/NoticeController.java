@@ -134,18 +134,17 @@ public class NoticeController {
 			@ModelAttribute Notice notice
 			, @RequestParam("noticeNo") int noticeNo
 			, @RequestParam("noticeTitle") String noticeTitle
-			, @RequestParam("noticeContent") String questionContent
+			, @RequestParam("noticeContent") String noticeContent
 			, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
 			, Model model
 			, HttpServletRequest request) {
 		try {
-			if(!reloadFile.isEmpty()) {
+			if(reloadFile != null && !reloadFile.isEmpty()) {
 				if(notice.getNoticeFilename() != null) {
 					this.deleteFile(notice.getNoticeFilename(), request);
 				}
 				String modifyPath = this.saveFile(reloadFile, request);
 				if(modifyPath != null) {
-					
 					notice.setNoticeFilename(reloadFile.getOriginalFilename());
 					notice.setNoticeFilepath(modifyPath);
 				}
@@ -217,21 +216,21 @@ public class NoticeController {
 	}
 	
 	// 업로드된 파일만 삭제
-//	@RequestMapping("/removeFile")
-//	private String deleteUploadFile(
-//			@RequestParam String noticeFilename
-//			, @RequestParam int noticeNo
-//			, HttpServletRequest request
-//			, Model model) throws Exception{
-//		this.deleteFile(noticeFilename, request);
-//		int result = nService.updateFileStatus(noticeNo);
-//		if(result > 0) {
-//			Alert alert = new Alert("/notice/detailAdmin?noticeNo="+noticeNo, "삭제 성공했습니다");
-//			model.addAttribute("alert", alert);
-//			return "common/alert";
-//		}else {
-//			model.addAttribute("msg", "파일이 삭제되지 않았습니다.");
-//			return "common/error";
-//		}
-//	}
+	@RequestMapping("/removeFile")
+	private String deleteUploadFile(
+			@RequestParam String noticeFilename
+			, @RequestParam int noticeNo
+			, HttpServletRequest request
+			, Model model) throws Exception{
+		this.deleteFile(noticeFilename, request);
+		int result = nService.updateFileStatus(noticeNo);
+		if(result > 0) {
+			Alert alert = new Alert("/notice/listAdmin", "삭제 성공했습니다");
+			model.addAttribute("alert", alert);
+			return "common/alert";
+		}else {
+			model.addAttribute("msg", "파일이 삭제되지 않았습니다.");
+			return "common/error";
+		}
+	}
 }

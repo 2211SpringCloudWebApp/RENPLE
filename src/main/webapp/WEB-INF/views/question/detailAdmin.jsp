@@ -11,16 +11,12 @@
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
-<br><br><br><br>
 <div id="outter">
 	<h1>문의사항 상세</h1>
 	<div id="inner">
 	제목 : ${question.questionTitle }<br>
 	내용 : ${question.questionContent }<br>
 	아이디 : ${question.userId }<br>
-	<c:url var="qModify" value="/question/modify">
-		<c:param name="questionNo" value="${question.questionNo }"></c:param>
-	</c:url>
 	</div>
 	<div class="content-btn">
 		<button>

@@ -9,22 +9,52 @@
 * {
     font-family: 'Chosunilbo_myungjo';
 }
+
 #outter {
 	padding-top : 72px;
 	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
+
 #outter h1, p {
 	text-align : center;
+}
+.img img {
+	height: 50%;
+	width: 50%;
+}
+
+#qna {
+	height: 50vh;
+	width: 100%;
+}
+
+#question, #answer{
+	display: flex;
+	height: 50%;
+	width: 100%;
+}
+
+.img{
+	width: 25%;
+	height: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notImg{
+	width: 75%;
+	height: 100%;
 }
 
 #inner{
 	padding-top: 2vh;
+	padding-bottom: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 40vh;
 	width: 60vw;
 	line-height : 5vh;
 }
@@ -55,6 +85,7 @@ a {
 button + button {
 	margin-left : 3vh;
 }
+
 img{
 	height: 200px;
 }

@@ -1,64 +1,74 @@
 @font-face {
-    font-family: 'Chosunilbo_myungjo';
-    src:
-        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Chosunilbo_myungjo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
-    font-family: 'Chosunilbo_myungjo';
+	font-family: 'Chosunilbo_myungjo';
 }
+
 #outter {
-	padding-top : 72px;
+	padding-top: 72px;
 	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
+
 #outter h1, p {
-	text-align : center;
+	text-align: center;
 }
 
-#inner{
+#inner {
 	padding-top: 2vh;
-    border-bottom: 1px solid black;
+	border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
 	height: 55vh;
 	width: 60vw;
-	line-height : 11vh;
+	line-height: 11vh;
 }
+
 a {
-	text-decoration : none;	
-	color : black;
-	text-align : center;
+	text-decoration: none;
+	color: black;
+	text-align: center;
 }
-input{
-	margin-left : 20px;
+
+input {
+	margin-left: 20px;
 }
+
 .content-btn {
 	text-align: center;
-	margin-top : 1vh;
+	margin-top: 1vh;
 }
 
 .content-btn button {
 	width: 150px;
 	height: 40px;;
-	background-color : #e5e5cb;
+	background-color: #e5e5cb;
 	border: none;
 }
+
 .content-btn input {
 	width: 150px;
 	height: 40px;;
-	background-color : #e5e5cb;
+	background-color: #e5e5cb;
 	border: none;
 }
-button + button {
-	margin-left : 3vh;
+
+button+button {
+	margin-left: 3vh;
 }
-#Container img{
+
+#Container img {
 	height: 100%;
 }
-#Container{
-height: 150px;
+
+#Container {
+	height: 150px;
 }

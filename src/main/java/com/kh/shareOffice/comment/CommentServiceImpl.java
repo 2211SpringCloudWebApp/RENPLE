@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.shareOffice.Search;
+
 @Service
 public class CommentServiceImpl implements CommentService{
 
@@ -18,8 +20,8 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<Comment> selectCnQAll() {
-		List<Comment> commetList = cStore.selectCnQAll();
+	public List<Comment> selectCnQAll(Search search) {
+		List<Comment> commetList = cStore.selectCnQAll(search);
 		return commetList;
 	}
 
@@ -38,6 +40,12 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public int updateComment(Comment comment) {
 		int result = cStore.updateComment(comment);
+		return result;
+	}
+
+	@Override
+	public int getListCnt(Search search) {
+		int result = cStore.getListCnt(search);
 		return result;
 	}
 

@@ -14,6 +14,13 @@
 	<br> 내용 : ${question.questionContent }
 	<br> 아이디 : ${question.userId }
 	<br>
+	<c:if test="${not empty notice.noticeFilename}">
+				첨부파일 : ${notice.noticeFilename }
+		<br>
+		<img class="img"
+			src="../../../resources/noticeUploadFiles/${notice.noticeFilename }"
+			alt="공지 이미지">
+	</c:if>
 
 	<form action="/comment/insert" method="post">
 		<input type="hidden" name="userId" value="${question.userId }">
@@ -36,18 +43,23 @@
 	<br>
 
 	<a href="/comment/list">목록으로</a>
-	
+
 	<script type="text/javascript">
 		function deleteChk() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
-				location.href = "/comment/delete?commentNo=" + ${comment.commentNo};
+				location.href = "/comment/delete?commentNo=" + $
+				{
+					comment.commentNo
+				}
+				;
 			}
 		}
-		
+
 		function updateChk() {
 			if (confirm("정말로 수정하시겠습니까?")) {
 				let msg = document.querySelector('[name=commentContent]').value;
-				location.href = "/comment/update?commentNo=${comment.commentNo}&commentContent="+msg;
+				location.href = "/comment/update?commentNo=${comment.commentNo}&commentContent="
+						+ msg;
 			}
 		}
 	</script>

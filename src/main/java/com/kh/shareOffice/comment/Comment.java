@@ -12,7 +12,6 @@ public class Comment {
 	// question의 일부분
 	private String questionTitle;
 	private String questionContent;
-	private int viewCount;
 	private Timestamp qCreateDate;
 	private String questionFilename;
 	private String questionFilepath;
@@ -22,7 +21,7 @@ public class Comment {
 	}
 
 	public Comment(int commentNo, String commentContent, Timestamp commentDate, int questionNo, String userId,
-			String questionTitle, String questionContent, int viewCount, Timestamp qCreateDate, String questionFilename,
+			String questionTitle, String questionContent, Timestamp qCreateDate, String questionFilename,
 			String questionFilepath) {
 		super();
 		this.commentNo = commentNo;
@@ -32,7 +31,6 @@ public class Comment {
 		this.userId = userId;
 		this.questionTitle = questionTitle;
 		this.questionContent = questionContent;
-		this.viewCount = viewCount;
 		this.qCreateDate = qCreateDate;
 		this.questionFilename = questionFilename;
 		this.questionFilepath = questionFilepath;
@@ -94,14 +92,6 @@ public class Comment {
 		this.questionContent = questionContent;
 	}
 
-	public int getViewCount() {
-		return viewCount;
-	}
-
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
-	}
-
 	public Timestamp getqCreateDate() {
 		return qCreateDate;
 	}
@@ -130,7 +120,7 @@ public class Comment {
 	public String toString() {
 		return "Comment [commentNo=" + commentNo + ", commentContent=" + commentContent + ", commentDate=" + commentDate
 				+ ", questionNo=" + questionNo + ", userId=" + userId + ", questionTitle=" + questionTitle
-				+ ", questionContent=" + questionContent + ", viewCount=" + viewCount + ", qCreateDate=" + qCreateDate
+				+ ", questionContent=" + questionContent + ", qCreateDate=" + qCreateDate
 				+ ", questionFilename=" + questionFilename + ", questionFilepath=" + questionFilepath + "]";
 	}
 	

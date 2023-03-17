@@ -2,18 +2,18 @@ package com.kh.shareOffice.notice;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-
 public interface NoticeStore {
 
 	List<Notice> noticeView();
 
-	Notice selectOneById(SqlSession session, int noticeNo);
+	Notice selectOneById(int noticeNo);
 
-	int updateNotice(SqlSession session, Notice notice);
+	int updateNotice(Notice notice);
 
-	int deleteNotice(SqlSession session, int noticeNo);
+	int deleteNotice(int noticeNo);
 
-	int insertNotice(SqlSession session, Notice notice);
+	int insertNotice(Notice notice);
+
+	int updateFileStatus(int noticeNo);
 	
 }

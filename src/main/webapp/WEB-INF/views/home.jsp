@@ -13,20 +13,6 @@
 <!-- No mapping for GET /favicon.ico 안뜨게 설정 -->
 <link rel="icon" type="image/ico"
 	href="${pageContext.request.contextPath}/resources/static/images/favicon.ico">
-<style>
-@font-face {
-	font-family: 'Chosunilbo_myungjo';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* {
-	font-family: 'Chosunilbo_myungjo';
-}
-</style>
 </head>
 
 <body>
@@ -53,7 +39,7 @@
 
 				</div>
 				<div class="box11">
-					<img src="../../resources/img/main/rabbit1.png" alt="rabbit1"
+					<img src="../../resources/img/main/rabbit.png" alt="rabbit1"
 						class="rabbit1">
 				</div>
 			</div>

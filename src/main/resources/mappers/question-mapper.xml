@@ -3,50 +3,85 @@
 <mapper namespace="QuestionMapper">
 	<resultMap type="Question" id="questionResultMap">
 		<id property="questionNo" column="QUESTION_NO"></id>
-		<result property="userId" column="USER_ID"/>
-		<result property="questionTitle" column="QUESTION_TITLE"/>
-		<result property="questionContent" column="QUESTION_CONTENT"/>
-		<result property="viewCount" column="VIEW_COUNT"/>
-		<result property="qCreateDate" column="Q_CREATE_DATE"/>
-		<result property="questionFilename" column="QUESTION_FILENAME"/>
-		<result property="questionFilepath" column="QUESTION_FILEPATH"/>
+		<result property="userId" column="USER_ID" />
+		<result property="questionTitle" column="QUESTION_TITLE" />
+		<result property="questionContent" column="QUESTION_CONTENT" />
+		<result property="qCreateDate" column="Q_CREATE_DATE" />
+		<result property="questionFilename" column="QUESTION_FILENAME" />
+		<result property="questionFilepath" column="QUESTION_FILEPATH" />
+		<!-- 아래는 comment꺼 가져온것 -->
+		<result property="commentNo" column="COMMENT_NO" />
+		<result property="commentContent" column="COMMENT_CONTENT" />
+		<result property="commentDate" column="COMMENT_DATE" />
 	</resultMap>
-	
+
 	<!-- 쿼리문 작성 부분 -->
 	<insert id="insertQuestion">
-		INSERT INTO QUESTION_TBL 
-		VALUES(SEQ_QUESTIONNO.NEXTVAL, #{userId}, #{questionTitle}, #{questionContent}, DEFAULT, DEFAULT, #{questionFilename}, #{questionFilepath})
+		INSERT INTO QUESTION_TBL
+		VALUES(SEQ_QUESTIONNO.NEXTVAL, #{userId}, #{questionTitle},
+		#{questionContent}, DEFAULT, #{questionFilename}, #{questionFilepath})
 	</insert>
-	
+
 	<update id="updateQuestion">
-		UPDATE QUESTION_TBL SET QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT=#{questionContent},
+		UPDATE QUESTION_TBL SET
+		QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT=#{questionContent},
 		Q_CREATE_DATE = DEFAULT,
-		QUESTION_FILENAME = #{questionFilename}, QUESTION_FILEPATH = #{questionFilepath}
-		WHERE QUESTION_NO = #{questionNo}
+		QUESTION_FILENAME = #{questionFilename},
+		QUESTION_FILEPATH = #{questionFilepath}
+		WHERE QUESTION_NO =
+		#{questionNo}
 	</update>
-	
+
 	<delete id="deleteQuestion">
-		DELETE FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
+		DELETE FROM QUESTION_TBL WHERE
+		QUESTION_NO=#{questionNo}
 	</delete>
-	
+
 	<select id="questionView" resultMap="questionResultMap">
-		SELECT * FROM QUESTION_TBL WHERE USER_ID=#{userId} 
+		SELECT C.COMMENT_NO,
+		C.COMMENT_CONTENT, C.COMMENT_DATE,
+		Q.QUESTION_NO, Q.USER_ID,
+		Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE,
+		Q.QUESTION_FILENAME, Q.QUESTION_FILEPATH
+		FROM QUESTION_TBL Q
+		LEFT JOIN
+		COMMENT_TBL C
+		ON C.QUESTION_NO =
+		Q.QUESTION_NO
+		WHERE Q.USER_ID=#{userId}
+		ORDER BY Q.Q_CREATE_DATE DESC
 	</select>
-	
+
 	<select id="questionViewAdmin" resultMap="questionResultMap">
-		SELECT * FROM QUESTION_TBL
+		SELECT * FROM
+		QUESTION_TBL
 	</select>
-	
-	<update id="updateFileStatus">
-		UPDATE QUESTION_TBL SET QUESTION_FILENAME = NULL, QUESTION_FILEPATH = NULL WHERE QUESTION_NO=#{questionNo}
-	</update>
-	
+
 	<select id="selectOneByNo" resultMap="questionResultMap">
-		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
+		SELECT C.COMMENT_NO,
+		C.COMMENT_CONTENT, C.COMMENT_DATE,
+		Q.QUESTION_NO,
+		Q.USER_ID,
+		Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE,
+		Q.QUESTION_FILENAME, Q.QUESTION_FILEPATH
+		FROM QUESTION_TBL Q
+		LEFT JOIN
+		COMMENT_TBL C
+		ON C.QUESTION_NO =
+		Q.QUESTION_NO
+		WHERE
+		Q.QUESTION_NO=#{questionNo}
 	</select>
-	
+
 	<select id="selectQnaByNo" resultMap="questionResultMap">
 		SELECT * FROM QUESTION_TBL WHERE QUESTION_NO=#{questionNo}
 	</select>
-	
+
+	<update id="updateFileStatus">
+		UPDATE QUESTION_TBL SET QUESTION_FILENAME = NULL,
+		QUESTION_FILEPATH = NULL WHERE QUESTION_NO=#{questionNo}
+	</update>
+
 </mapper>

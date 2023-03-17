@@ -11,8 +11,6 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired
 	private NoticeStore nStore;
-	@Autowired
-	private SqlSession session;
 
 	@Override
 	public List<Notice> noticeView() {
@@ -22,24 +20,29 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public Notice selectOneById(int noticeNo) {
-		Notice notice = nStore.selectOneById(session, noticeNo);
+		Notice notice = nStore.selectOneById(noticeNo);
 		return notice;
 	}
 
 	@Override
 	public int updateNotice(Notice notice) {
-		return nStore.updateNotice(session, notice);
+		return nStore.updateNotice(notice);
 	}
 
 	@Override
 	public int deleteNotice(int noticeNo) {
-		int result = nStore.deleteNotice(session, noticeNo);
+		int result = nStore.deleteNotice(noticeNo);
 		return result;
 	}
 
 	@Override
 	public int insertNotice(Notice notice) {
-		return nStore.insertNotice(session, notice);
+		return nStore.insertNotice(notice);
+	}
+
+	@Override
+	public int updateFileStatus(int noticeNo) {
+		return nStore.updateFileStatus(noticeNo);
 	}
 
 }

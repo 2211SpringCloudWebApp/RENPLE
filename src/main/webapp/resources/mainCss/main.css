@@ -1,3 +1,16 @@
+@font-face {
+	font-family: 'Chosunilbo_myungjo';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'Chosunilbo_myungjo';
+}
+
 html {
 	/* 스크롤 내리는 속도를 천천히 */
 	scroll-behavior: smooth;
@@ -41,7 +54,7 @@ body {
 
 .rabbit1 {
 	height: 50%;
-	width: 40%;
+	width: 65%;
 	margin: auto;
 	display: flex;
 	justify-content: center;

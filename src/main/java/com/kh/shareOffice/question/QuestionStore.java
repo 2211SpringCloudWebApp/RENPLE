@@ -2,8 +2,6 @@ package com.kh.shareOffice.question;
 
 import java.util.List;
 
-import com.kh.shareOffice.Search;
-
 public interface QuestionStore {
 
 	int insertQuestion(Question question);
@@ -20,6 +18,6 @@ public interface QuestionStore {
 
 	int update(Question qna);
 
-	int getListCount(Search search);
+	int updateFileStatus(int questionNo);
 
 }
