@@ -10,6 +10,7 @@ import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.reservation.store.ReservationStore;
 import com.kh.shareOffice.reservation.store.logic.ReservationStoreLogic;
+import com.kh.shareOffice.user.domain.User;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
@@ -45,6 +46,18 @@ public class ReservationServiceImpl implements ReservationService{
 	public int deleteReservation(int orderNo) {
 		int result = rStore.deleteReservation(orderNo);
 		return result;
+	}
+
+	@Override
+	public User selectOneById(String userId) {
+		User user = rStore.selectOneById(userId);
+		return user;
+	}
+
+	@Override
+	public List<Order> selectOrderNo(String userId) {
+		List<Order> checkOrderNo = rStore.selectOrderNo(userId);
+		return checkOrderNo;
 	}
 
 	
