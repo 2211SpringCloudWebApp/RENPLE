@@ -1,4 +1,4 @@
-package com.kh.shareOffice.review.domain;
+package com.kh.shareOffice.review;
 
 import java.sql.Timestamp;
 

@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../img/review/background.webp);
+    background-size: cover;
+}
+
+#container {
+    width: 60%;
+    margin: auto;
+    margin-top: 150px;
+}
+
+#container::before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(../img/review/background.webp);
+    background-size: cover;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -1;
+    content: "";
+}
+
+#maintitle {
+    color: ghostwhite;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#button-area {
+    margin-top: 30px;
+    margin-right: 30px;
+    float: right;
+}
+
+#main-contant {
+    margin: auto;
+    width: 100%;
+    height: 400px;
+    margin-top: 100px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#photo-area {
+    width: 35%;
+    height: inherit;
+    float: left;
+}
+#photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+#text-area {
+    width: 50%;
+    height: inherit;
+    float: left;
+}
+#text-area p {
+    color: ghostwhite;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#button-area2 {
+    display: flex;
+    justify-content : center;
+    padding-top: 30px;
+}
+
+#button-area3 {
+    padding-top: 30px;
+}
+
+#comment-area {
+	width: 100%;
+	height: 500px;
+	display: flex;
+    justify-content : center;
+}
+
+#commentwrite {
+	display: flex;
+    justify-content : center;
+}
+
+.commentList {
+	width: 100%;
+	Color: white;
+	display: flex;
+    justify-content : center;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
