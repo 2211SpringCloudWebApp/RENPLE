@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
+import com.kh.shareOffice.user.User;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;

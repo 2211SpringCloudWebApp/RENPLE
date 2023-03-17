@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
-import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.User;
 
 public interface ReservationStore {
 

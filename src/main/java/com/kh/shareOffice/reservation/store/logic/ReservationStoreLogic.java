@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.store.ReservationStore;
+import com.kh.shareOffice.user.User;
 
 @Repository
 public class ReservationStoreLogic implements ReservationStore{

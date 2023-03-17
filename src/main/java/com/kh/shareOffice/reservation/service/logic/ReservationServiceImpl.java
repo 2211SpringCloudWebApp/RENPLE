@@ -9,8 +9,7 @@ import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.reservation.store.ReservationStore;
-import com.kh.shareOffice.reservation.store.logic.ReservationStoreLogic;
-import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.User;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
