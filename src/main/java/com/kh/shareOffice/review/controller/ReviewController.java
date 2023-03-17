@@ -18,8 +18,8 @@ import com.kh.shareOffice.review.domain.PageInfo;
 import com.kh.shareOffice.review.domain.Review;
 import com.kh.shareOffice.review.domain.Search;
 import com.kh.shareOffice.review.service.ReviewService;
-import com.kh.shareOffice.reviewcomment.domain.Comment;
-import com.kh.shareOffice.reviewcomment.service.CommentService;
+import com.kh.shareOffice.reviewcomment.domain.ReviewComment;
+import com.kh.shareOffice.reviewcomment.service.ReviewCommentService;
 
 @Controller
 public class ReviewController {
@@ -27,7 +27,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rService;
 	@Autowired
-	private CommentService cService;
+	private ReviewCommentService cService;
 	
 //	==========================================================================================
 //	======================================= 첨부파일 관련 =======================================
@@ -129,7 +129,7 @@ public class ReviewController {
 	@RequestMapping(value = "/reviewcomment/write.do", method = RequestMethod.POST)
 	public String commentWrite(
 			
-			@ModelAttribute Comment comment
+			@ModelAttribute ReviewComment comment
 			, Model model
 			
 			) {
@@ -264,7 +264,7 @@ public class ReviewController {
 		
 		try {
 			Review review = rService.selectOneByNo(reviewNo);
-			List<Comment> cList = cService.selectCommentList(reviewNo);
+			List<ReviewComment> cList = cService.selectCommentList(reviewNo);
 			model.addAttribute("review", review);
 			model.addAttribute("cList", cList);
 			return "review/detail2";
