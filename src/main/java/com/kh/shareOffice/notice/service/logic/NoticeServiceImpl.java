@@ -51,5 +51,4 @@ public class NoticeServiceImpl implements NoticeService {
 		return nStore.updateFileStatus(session, noticeNo);
 	}
 
-
 }

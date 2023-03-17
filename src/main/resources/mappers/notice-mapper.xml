@@ -15,18 +15,23 @@
 	<select id="noticeView" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL
 	</select>
+	
 	<select id="selectOneById" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 	</select>
+	
 	<update id="updateNotice">
 		UPDATE NOTICE_TBL SET NOTICE_TITLE=#{noticeTitle}, NOTICE_CONTENT=#{noticeContent}, NOTICE_FILENAME = #{noticeFilename}, NOTICE_FILEPATH = #{noticeFilepath} WHERE NOTICE_NO=#{noticeNo} 
 	</update>
+	
 	<insert id="insertNotice">
 		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICENO.NEXTVAL, #{noticeTitle}, #{noticeContent}, DEFAULT, DEFAULT, #{noticeFilename}, #{noticeFilepath})
 	</insert>
+	
 	<delete id="deleteNotice">
 		DELETE FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo}
 	</delete>
+	
 	<update id="updateNoticeFile">
 		UPDATE NOTICE_TBL SET NOTICE_FILENAME = NULL, NOTICE_FILEPATH = NULL WHERE NOTICE_NO = #{noticeNo}
 	</update>

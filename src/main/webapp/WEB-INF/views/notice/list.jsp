@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <link rel="stylesheet" href="../../../resources/noticeCss/list.css">
-</style>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>

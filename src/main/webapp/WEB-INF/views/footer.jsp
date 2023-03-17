@@ -58,6 +58,7 @@
 	
 	.footer_mid_logo_2 {
 		font-size: large;
+		float : left;
 	}
 	
 	#footer_bottom {

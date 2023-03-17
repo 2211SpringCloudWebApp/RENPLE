@@ -41,7 +41,7 @@
 			if(confirm("정말 삭제하시겠습니까?")) {
 			location.href="/notice/removeFile?noticeFilename="+noticeFilename+"&noticeNo="+noticeNo;
 			}
-			}
+		}
 	</script>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
