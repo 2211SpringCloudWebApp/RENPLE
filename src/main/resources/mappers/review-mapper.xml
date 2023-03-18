@@ -5,7 +5,6 @@
 		<id property="reviewNo" column="REVIEW_NO"></id>
 		<result property="userId" column="USER_ID"/>
 		<result property="productNo" column="PRODUCT_NO"/>
-		<result property="parentNo" column="PARENT_NO"/>
 		<result property="reviewLikeCount" column="REVIEW_LIKE_COUNT"/>
 		<result property="reviewTitle" column="REVIEW_TITLE"/>
 		<result property="reviewContent" column="REVIEW_CONTENT"/>
@@ -17,7 +16,7 @@
 	</resultMap>
 	<!-- 쿼리문 작성 부분 -->
 	<insert id="insertReview">
-		INSERT INTO REVIEW_TBL VALUES(SEQ_REVIEW_NO.NEXTVAL, #{userId}, #{productNo}, DEFAULT, DEFAULT, #{reviewTitle}, #{reviewContent}, #{reviewRating}, DEFAULT, DEFAULT, #{reviewFilename}, #{reviewFilepath})
+		INSERT INTO REVIEW_TBL VALUES(SEQ_REVIEW_NO.NEXTVAL, #{userId}, #{productNo}, DEFAULT, #{reviewTitle}, #{reviewContent}, #{reviewRating}, DEFAULT, DEFAULT, #{reviewFilename}, #{reviewFilepath})
 	</insert>
 	<update id="updateReview">
 		UPDATE REVIEW_TBL SET REVIEW_TITLE = #{reviewTitle}, REVIEW_CONTENT = #{reviewContent}, REVIEW_RATING = #{reviewRating}, R_CREATE_DATE = DEFAULT, REVIEW_FILENAME = #{reviewFilename}, REVIEW_FILEPATH = #{reviewFilepath} WHERE REVIEW_NO = #{reviewNo}
@@ -26,7 +25,8 @@
 		UPDATE REVIEW_TBL SET VIEW_COUNT = VIEW_COUNT + 1 WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	<update id="updateLikeCount">
-		UPDATE REVIEW_TBL SET REVIEW_LIKE_COUNT = REVIEW_LIKE_COUNT +1 WHERE REVIEW_NO = #{reviewNo}
+		UPDATE REVIEW_TBL SET REVIEW_LIKE_COUNT = REVIEW_LIKE_COUNT +1 
+		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	<delete id="deleteReview">
 		DELETE FROM REVIEW_TBL WHERE REVIEW_NO = #{reviewNo}

@@ -10,7 +10,7 @@
     	<link rel="stylesheet" href="../../../../resources/reviewCss/write.css">
 	</head>
 	<body>
-	<c:if test="${loginUser == null }">
+	<c:if test="${user == null }">
 		<body onload = "add()">
 	</c:if>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -18,7 +18,7 @@
 			<p id="maintitle"><b>후기 수정</b></p>
 			<div id="input-area">
 				<form action="/review/modify.do" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="userId" value="${loginUser.userId }">
+				<input type="hidden" name="userId" value="${user }">
 				<input type="hidden" name="reviewNo" value="${review.reviewNo }">
 				<input type="text" id="reviewTitle" name="reviewTitle" value="${review.reviewTitle }" placeholder="  제목"> <br><br>
 				<input type="number" min="1" max="5" id="reviewRating" name="reviewRating" value="${review.reviewRating }" placeholder="  별점 (1~5 입력)"> <br><br>

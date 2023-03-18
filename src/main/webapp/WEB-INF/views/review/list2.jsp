@@ -6,8 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>후기글 목록</title>
-		<h1>${user }</h1>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
     	<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
 		<style>
 			table {
@@ -22,6 +21,7 @@
 	</head>
 	<body>
 	<jsp:include page="../header.jsp"></jsp:include>
+		<div id="outter">
 		<div id="container">
 			<div class="mainTitle">
 				<p><b>후기게시판 목록</b></p>
@@ -30,7 +30,7 @@
 			<div class="listnav">
 				<div class="search-area">
 					<form action="/review/search.do" method="get">
-						<input TYPE="IMAGE" src="../../../resources/img/review/list-search-icon.png" name="Submit" value="Submit" class="searchBtn" align="absmiddle">
+						<input TYPE="IMAGE" src="../../../resources/img/review/question-mark.png" name="Submit" value="Submit" class="searchBtn" align="absmiddle">
 						<select name="searchCondition" class="searchOption">
 							<option value="all">전체</option>
 							<option value="writer">작성자</option>
@@ -92,6 +92,7 @@
 			</c:if>
 				<button type="button" class="btn btn-primary" onclick="location.href='/home'">홈으로 가기</button>
 			</div>
+		</div>
 		</div>
 		<jsp:include page="../footer.jsp"></jsp:include>
 	</body>

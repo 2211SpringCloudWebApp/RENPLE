@@ -31,7 +31,7 @@
 					<c:param name="reviewNo" value="${review.reviewNo }" />
 				</c:url>
 				<c:choose>
-					<c:when test="${loginUser.userId == review.userId || loginUser.userType == 0}">
+					<c:when test="${user == review.userId || loginUser.userType == 0}">
 						<button type="button" class="btn btn-secondary" onclick="location.href='${rModify}'">후기 수정</button>&nbsp;&nbsp;&nbsp;
 						<button type="button" class="btn btn-danger" onclick="removeCheck(${review.reviewNo});">후기 삭제</button>
 					</c:when>

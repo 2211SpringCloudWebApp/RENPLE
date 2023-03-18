@@ -24,7 +24,7 @@
 			<p id="maintitle"><strong>후기 작성</strong></p>
 			<div id="input-area">
 				<form action="/review/write.do" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="userId" value="${loginUser.userId }">
+				<input type="hidden" name="userId" value="${sessionScope.user }">
 				<input type="hidden" name="productNo" value=1>
 				<input type="text" id="reviewTitle" name="reviewTitle" placeholder="  제목"> <br><br>
 				<input type="number" min="1" max="5" id="reviewRating" name="reviewRating" placeholder="  별점 (1~5 입력)"> <br><br>

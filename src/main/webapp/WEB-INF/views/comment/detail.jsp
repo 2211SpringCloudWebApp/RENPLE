@@ -47,11 +47,7 @@
 	<script type="text/javascript">
 		function deleteChk() {
 			if (confirm("정말로 삭제하시겠습니까?")) {
-				location.href = "/comment/delete?commentNo=" + $
-				{
-					comment.commentNo
-				}
-				;
+				location.href = "/comment/delete?commentNo=${comment.commentNo}";
 			}
 		}
 
