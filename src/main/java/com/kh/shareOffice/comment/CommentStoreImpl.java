@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
 
 @Repository
@@ -48,6 +49,24 @@ public class CommentStoreImpl implements CommentStore{
 	public int getListCnt(Search search) {
 		int result = session.selectOne("CommentMapper.getListCnt", search);
 		return result;
+	}
+
+	@Override
+	public int totalCnt() {
+		int result = session.selectOne("CommentMapper.totalCnt");
+		return result;
+	}
+
+	@Override
+	public List<Comment> selectCommentOk() {
+		List<Comment> list = session.selectList("CommentMapper.selectCommentOk");
+		return list;
+	}
+
+	@Override
+	public List<Comment> selectCommentNotOk(PageInfo pi) {
+		List<Comment> list = session.selectList("CommentMapper.selectCommentNotOk");
+		return list;
 	}
 
 }

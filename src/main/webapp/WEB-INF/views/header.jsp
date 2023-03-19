@@ -102,7 +102,8 @@ nav img {
 						<li><a href="/user/selectSearchAll">회원 관리</a></li>
 						<li class="dropdown"><a>지점 관리</a>
 							<ul>
-								<li><a href="/reservation/admin/adminReservationList">예약 관리</a></li>
+								<li><a href="/reservation/admin/adminReservationList">예약
+										관리</a></li>
 								<li><a href="/reservation/admin/adminProductList">상품 관리</a></li>
 							</ul></li>
 						<li class="dropdown"><a>게시판 관리</a>
@@ -145,16 +146,18 @@ nav img {
 		function goHome() {
 			location.href = "/";
 		}
-		
-		var dropdown = document.querySelector('.dropdown');
-		dropdown.addEventListener('click', function() {
-			var menu = dropdown.querySelector('#dropBox')[0];
-			if (menu.style.display === 'none') {
-				menu.style.display = 'block';
-			} else {
-				menu.style.display = 'none';
-			}
-		});
+
+		<c:if test="${sessionScope.user ne null }">
+			var dropdown = document.querySelector('.dropdown');
+			dropdown.addEventListener('click', function() {
+				var menu = dropdown.querySelector('#dropBox');
+				if (menu.style.display === 'none') {
+					menu.style.display = 'block';
+				} else {
+					menu.style.display = 'none';
+				}
+			});
+		</c:if>
 	</script>
 </body>
 </html>

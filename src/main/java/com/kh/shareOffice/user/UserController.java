@@ -19,6 +19,9 @@ import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -149,7 +152,7 @@ public class UserController {
 			return "common/error";
 		}
 	}
-	
+
 	// 아이디 찾기
 	@RequestMapping("findId")
 	public String findId() {
@@ -231,7 +234,8 @@ public class UserController {
 
 	}
 
-	// ========================================== 관리자 전용 ==========================================
+	// ========================================== 관리자 전용
+	// ==========================================
 
 	// 회원조회 + 페이징 + 조건부 검색
 	@RequestMapping("/selectSearchAll")
@@ -281,7 +285,7 @@ public class UserController {
 		PageInfo pi = new PageInfo(currPage, boardLimit, naviLimit, startNavi, endNavi, totalCnt, lastPage);
 		return pi;
 	}
-	
+
 	// 회원 상세보기
 	@RequestMapping("/select")
 	public String selectUser(Model model, String userId) {
@@ -324,14 +328,22 @@ public class UserController {
 		}
 	}
 
-	// ========================================== ajax ========================================== 
+	// ========================================== ajax
+	// ==========================================
 	// produces = "application/json; charset=UTF-8" 사용으로 jackson-databind 라이브러리 생략
-	
+
 	// 아이디 중복 체크
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public int idCheck(String userId) {
 		int result = uService.checkId(userId);
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,20}$");
+		Matcher matcher = pattern.matcher(userId);
+
+		if ((userId.length() < 4 || userId.length() > 20) || !matcher.matches()) {
+			return -2;
+		}
+
 		return result;
 	}
 
@@ -340,17 +352,17 @@ public class UserController {
 	@ResponseBody
 	public int emailCheck(String userEmail) {
 		int result = uService.checkEmail(userEmail);
+		Pattern pattern = Pattern
+				.compile("^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$");
+		Matcher matcher = pattern.matcher(userEmail);
+
+		if (userEmail.length() > 50) {
+			return -2;
+		} else if (!matcher.matches()) {
+			return -3;
+		}
+
 		return result;
 	}
 
-	// 회원가입시 비밀번호 확인 체크
-	@RequestMapping(value = "/pwChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public int pwCheck(String userPw, @RequestParam("reUserPw") String reUserPw) {
-		int result = -1;
-		if (userPw.equals(reUserPw)) {
-			result = 0;
-		}
-		return result;
-	}
 }

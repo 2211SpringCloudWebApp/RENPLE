@@ -17,7 +17,7 @@
 	
 	<insert id="commentInsert">
 		INSERT INTO REVIEW_COMMENT_TBL VALUES(
-		SEQ_COMMENT_NO.NEXTVAL, 
+		SEQ_REVIEW_COMMENT_NO.NEXTVAL, 
 		#{userId}, 
 		#{reviewNo}, 
 		#{commentContent}, 

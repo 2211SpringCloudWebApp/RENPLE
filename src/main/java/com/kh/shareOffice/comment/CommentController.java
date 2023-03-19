@@ -95,7 +95,55 @@ public class CommentController {
 		}
 	}
 
-	// 댓글 작성
+	// 문의 답변 등록만 보기
+	@RequestMapping("/selectOk")
+	public String selectOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			Model model) {
+		try {
+			int totalCnt = cService.totalCnt();
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<Comment> commentList = cService.selectCommentOk(pi);
+			if (commentList.size() != 0) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("commentList", commentList);
+				return "comment/list";
+			} else {
+				Alert alert = new Alert("/comment/list", "답변 등록 문의가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 문의 답변 미등록만 보기
+	@RequestMapping("/selectNotOk")
+	public String selectNotOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			Model model) {
+		try {
+			int totalCnt = cService.totalCnt();
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<Comment> commentList = cService.selectCommentNotOk(pi);
+			if (commentList.size() != 0) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("commentList", commentList);
+				return "comment/list";
+			} else {
+				Alert alert = new Alert("/comment/list", "답변 미등록 문의가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 답변 작성
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(@ModelAttribute Comment comment, String userId, String commentContent, Model model) {
 		try {
@@ -114,7 +162,7 @@ public class CommentController {
 		}
 	}
 
-	// 댓글 수정
+	// 답변 수정
 	@RequestMapping("/update")
 	public String update(@ModelAttribute Comment comment, int commentNo, String commentContent, Model model) {
 		try {
@@ -137,7 +185,7 @@ public class CommentController {
 
 	}
 
-	// 댓글 삭제
+	// 답변 삭제
 	@RequestMapping("/delete")
 	public String delete(int commentNo, Model model) {
 		try {

@@ -12,6 +12,10 @@
 	<form action="/comment/list" method="get">
 		<div id="outter">
 			<h1>문의 관리</h1>
+			<div id=selectBox>
+				<button type="button" onclick="location.href='/comment/selectOk'">답변 YES</button>
+				<button type="button" onclick="location.href='/comment/selectNotOk'">답변 NO</button>
+			</div>
 			<table>
 				<thead>
 					<tr>

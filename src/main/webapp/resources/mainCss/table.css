@@ -14,6 +14,16 @@ body {
 	margin: 0;
 }
 
+#selectBox {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+}
+
+#selectBox button:first-child {
+	margin-right: 20px;
+}
+
 #outter {
 	padding-top : 72px;
 	height: calc(100vh - 72px);
@@ -31,7 +41,7 @@ form table {
 	border-top: 1px solid black;
 	margin: 0 auto;
 	height: 70vh;
-	width: 60vw;
+	width: 100%;
 	text-align: center;
 }
 form a{
