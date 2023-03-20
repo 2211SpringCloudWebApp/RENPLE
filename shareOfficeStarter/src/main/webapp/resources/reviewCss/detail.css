@@ -1,0 +1,100 @@
+#container a:link, #container a:visited {
+    color: ghostwhite;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
+
+#outter {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.35)), url(../img/review/background.webp);
+    background-size: cover;
+}
+
+#container {
+    padding-top : 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
+}
+
+#maintitle {
+    color: ghostwhite;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#button-area {
+    margin-top: 30px;
+    margin-right: 30px;
+    float: right;
+}
+
+#main-contant {
+    margin: auto;
+    width: 100%;
+    height: 400px;
+    margin-top: 100px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#photo-area {
+    width: 35%;
+    height: inherit;
+    float: left;
+}
+#photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+#text-area {
+    width: 50%;
+    height: inherit;
+    float: left;
+}
+#text-area p {
+    color: ghostwhite;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#button-area2 {
+	display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;    
+}
+
+#button-area2 a {
+	height: 50px;
+	width: 75px;
+}
+
+#button-area3 {
+    padding-top: 30px;
+}
+
+#comment-area {
+	width: 100%;
+	height: 500px;
+	display: flex;
+    justify-content : center;
+}
+
+#commentwrite {
+	display: flex;
+    justify-content : center;
+}
+
+.commentList {
+	width: 100%;
+	Color: white;
+	display: flex;
+    justify-content : center;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
