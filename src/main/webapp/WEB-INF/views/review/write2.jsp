@@ -114,9 +114,7 @@
 				<form action="/review/write" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="userId" value="${user }">
 				<input type="hidden" name="productNo" value=1>
-				<input type="text" id="reviewTitle" name="reviewTitle" placeholder="  제목"> <br><br>
-				
-<!-- 				<input type="number" min="1" max="5" id="reviewRating" name="reviewRating" placeholder="  평점 (1~5 입력)"> <br><br> -->
+				<input type="text" id="reviewTitle" name="reviewTitle" placeholder="  제목" required> <br><br>
 				
 				<label style="color: white;">
 		            별점(아이콘을 클릭하여 조절) <input type="number" name="reviewRating" value="3" step="0.1" min="0.1" max="5" readonly/>
@@ -127,10 +125,7 @@
 		        	</div>
 		        </div>
 				
-				
-				
-				
-				<textarea name="reviewContent" id="reviewContent" placeholder="  내용 (최대 1000자까지 입력가능)"></textarea> <br><br>
+				<textarea name="reviewContent" id="reviewContent" placeholder="  내용 (최대 1000자까지 입력가능)" required></textarea> <br><br>
 				<input type="file" name="uploadFile"> <br><br>
 				<div id="button-area">
 					<button type="submit" class="btn btn-secondary">작성</button>
