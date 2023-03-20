@@ -31,7 +31,7 @@ public class ReviewController {
 	private String saveFile(MultipartFile uploadFile, HttpServletRequest request) {
 		try {
 			String root = request.getSession().getServletContext().getRealPath("resources");
-			String savePath = root + "/img/review";
+			String savePath = root + "/img/review/uploadimg";
 			File folder = new File(savePath);
 			if(!folder.exists()) {
 				folder.mkdir();
@@ -48,7 +48,7 @@ public class ReviewController {
 	
 	private void deleteFile(String fileName, HttpServletRequest request) throws Exception{
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String delPath = root + "/img/review";
+		String delPath = root + "/img/review/uploadimg";
 		String delFilepath = delPath + "/" + fileName;
 		File delFile = new File(delFilepath);
 		if(delFile.exists()) {
@@ -80,7 +80,7 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================== 후기글 작성 ========================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/write.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/review/write", method = RequestMethod.POST)
     public String reviewWrite(
     		
     		@ModelAttribute Review review
@@ -101,7 +101,7 @@ public class ReviewController {
 			}
 			int result = rService.insertReview(review);
 			if(result > 0) {
-				return "redirect:/review/list.do";
+				return "redirect:/review/list";
 			}
 			else {
 				model.addAttribute("msg", "작성 실패");
@@ -115,14 +115,14 @@ public class ReviewController {
 	}
 	
 	// 후기글 작성 화면
-	@RequestMapping(value = "/review/writeView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/writeView", method = RequestMethod.GET)
 	public String reviewWriteView() {
 		return "review/write2";
 	}
 //	==========================================================================================
 //	======================================== 댓글 작성 =========================================
 //	==========================================================================================
-	@RequestMapping(value = "/reviewcomment/write.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/reviewcomment/write", method = RequestMethod.POST)
 	public String commentWrite(
 			
 			@ModelAttribute ReviewComment comment
@@ -133,7 +133,7 @@ public class ReviewController {
 		try {
 			int result = cService.insertComment(comment);
 			if(result > 0) {
-				return "redirect:/review/detail.do?reviewNo=" + comment.getReviewNo();
+				return "redirect:/review/detail?reviewNo=" + comment.getReviewNo();
 			}
 			else {
 				model.addAttribute("msg", "댓글 작성 실패");
@@ -156,7 +156,7 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================== 후기글 수정 ========================================
 //	==========================================================================================	
-	@RequestMapping(value = "/review/modify.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/review/modify", method = RequestMethod.POST)
 	public String reviewModify(
 			
 			@ModelAttribute Review review
@@ -184,7 +184,7 @@ public class ReviewController {
 				}
 			int result = rService.updateReview(review);
 			if(result > 0) {
-				return "redirect:/review/detail.do?reviewNo=" + review.getReviewNo();
+				return "redirect:/review/detail?reviewNo=" + review.getReviewNo();
 			}
 			else {
 				model.addAttribute("msg", "수정이 정상적으로 완료되지 않았습니다.");
@@ -198,7 +198,7 @@ public class ReviewController {
 		
 	}
 	// 공지사항 수정 화면
-	@RequestMapping(value="/review/modifyView.do", method = RequestMethod.GET)
+	@RequestMapping(value="/review/modifyView", method = RequestMethod.GET)
 	public String reviewModifyView(
 			
 			@RequestParam("reviewNo") Integer reviewNo
@@ -225,7 +225,7 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================== 후기글 삭제 ========================================
 //	==========================================================================================
-	@RequestMapping(value="/review/remove.do", method = RequestMethod.GET)
+	@RequestMapping(value="/review/remove", method = RequestMethod.GET)
 	public String reviewRemove(
 			
 			@RequestParam("reviewNo") int reviewNo
@@ -235,7 +235,7 @@ public class ReviewController {
 		try {
 			int result = rService.deleteReview(reviewNo);
 			if(result > 0) {
-				return "redirect:/review/list.do";
+				return "redirect:/review/list";
 			}
 			else {
 				model.addAttribute("msg", "후기글이 정상적으로 삭제되지 않았습니다.");
@@ -249,7 +249,7 @@ public class ReviewController {
 //	==========================================================================================
 //	====================================== 후기글 상세 조회 ======================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/detail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/detail", method = RequestMethod.GET)
 	public String reviewDetailView(
 			
 			@RequestParam("reviewNo") int reviewNo
@@ -273,7 +273,7 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================== 후기글 목록 ========================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/list", method = RequestMethod.GET)
 	public String reviewListView(
 			
 			@RequestParam(value="page", required = false, defaultValue = "1")Integer page
@@ -291,7 +291,7 @@ public class ReviewController {
 //	==========================================================================================
 //	================================== 후기글 목록(오래된순 정렬) ==================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/listbyold.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/listbyold", method = RequestMethod.GET)
 	public String reviewListViewbyold(
 			
 			@RequestParam(value="page", required = false, defaultValue = "1")Integer page
@@ -309,7 +309,7 @@ public class ReviewController {
 //	==========================================================================================
 //	================================== 후기글 목록(좋아요순 정렬) ==================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/listbylike.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/listbylike", method = RequestMethod.GET)
 	public String reviewListViewByLikeCount(
 			
 			@RequestParam(value="page", required = false, defaultValue = "1")Integer page
@@ -327,7 +327,7 @@ public class ReviewController {
 //	==========================================================================================
 //	================================== 후기글 목록(조회수순 정렬) ==================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/listbyview.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/listbyview", method = RequestMethod.GET)
 	public String reviewListViewByViewCount(
 			
 			@RequestParam(value="page", required = false, defaultValue = "1")Integer page
@@ -345,7 +345,7 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================== 후기글 검색 ========================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/search.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/search", method = RequestMethod.GET)
 	public String reviewSearchView(
 			
 			@ModelAttribute ReviewSearch search
@@ -378,15 +378,15 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================= 게시글 좋아요 =======================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/likeUp.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/review/likeUp", method = RequestMethod.POST)
 	public void likeUp(
 			
-			@RequestParam(value="reviewNo", required=false) int reviewNo
+			@RequestParam(value="reviewNo", required=false) Integer reviewNo
 			, Model model
 			
 			) throws Exception {
 		
-		rService.updateReviewLike(reviewNo);	
+		rService.updateReviewLike(reviewNo);
 	}
 	
 }

@@ -82,7 +82,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public void updateReviewLike(int reviewNo) throws Exception {
+	public void updateReviewLike(Integer reviewNo) throws Exception {
 		rStore.updateLikeCount(session, reviewNo);
 	}
 
