@@ -1,66 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>후기글 목록</title>
-		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
-    	<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
-		<style>
-			table {
-				border : 1px solid black;
-				border-collapse : collapse;
-			}
-			td, th {
-				border : 1px solid black;
-				border-collapse : collapse;
-			}
-		</style>
-	</head>
-	<body>
+<head>
+<meta charset="UTF-8">
+<title>후기글 목록</title>
+<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
+<style>
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+td, th {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+</style>
+</head>
+<body>
 	<jsp:include page="../header.jsp"></jsp:include>
-		<div id="outter">
+	<div id="outter">
 		<div id="container">
 			<div class="mainTitle">
-				<p><b>후기게시판 목록</b></p>
+				<p>
+					<b>후기게시판 목록</b>
+				</p>
 			</div>
 
 			<div class="listnav">
 				<div class="search-area">
 					<form action="/review/search.do" method="get">
-						<input TYPE="IMAGE" src="../../../resources/img/review/question-mark.png" name="Submit" value="Submit" class="searchBtn" align="absmiddle">
 						<select name="searchCondition" class="searchOption">
 							<option value="all">전체</option>
 							<option value="writer">작성자</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
-						</select>
-						<input type="text" name="searchValue" class="searchValue" value="" placeholder="게시글 검색">
+						</select> 
+						<input style="color: ghostwhite" type="text" name="searchValue"
+							class="searchValue" value="" placeholder="게시글 검색">
+							<button type="submit">제출</button>
 					</form>
 				</div>
 				<div class="sortbtn" role="group">
-					<button type="button" class="btn btn-danger" onclick="location.href='/review/list.do'">최신순</button>
-					<button type="button" class="btn btn-warning" onclick="location.href='/review/listbyold.do'">오래된순</button>
-					<button type="button" class="btn btn-success" onclick="location.href='/review/listbyview.do'">조회수순</button>
-					<button type="button" class="btn btn-primary" onclick="location.href='/review/listbylike.do'">좋아요순</button>
+					<button type="button" class="btn btn-danger"
+						onclick="location.href='/review/list.do'">최신순</button>
+					<button type="button" class="btn btn-warning"
+						onclick="location.href='/review/listbyold.do'">오래된순</button>
+					<button type="button" class="btn btn-success"
+						onclick="location.href='/review/listbyview.do'">조회수순</button>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='/review/listbylike.do'">좋아요순</button>
 				</div>
 			</div>
 			<table class="table table-hover" id="list-tbl">
 				<thead>
 					<tr>
-						<th>No. 〒</th>
-						<th>Title ✍</th>
-						<th>Writer 👨</th>
-						<th>Date 📅</th>
-						<th>Like ❤️</th>
-						<th>View 👀</th>
+						<th>No</th>
+						<th>Title</th>
+						<th>Writer</th>
+						<th>Date</th>
+						<th>Like️</th>
+						<th>View</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${rList }" var="review" varStatus="i">
-						<tr onclick="location.href='/review/detail.do?reviewNo=${review.reviewNo }'" style="cursor: pointer;">
+						<tr
+							onclick="location.href='/review/detail.do?reviewNo=${review.reviewNo }'"
+							style="cursor: pointer;">
 							<td class="review-number">${i.count }</td>
 							<td>${review.reviewTitle }</td>
 							<td>${review.userId }</td>
@@ -72,33 +81,35 @@
 				</tbody>
 				<tfoot>
 					<tr align="center">
-						<td colspan="6">
-							<c:forEach begin="${pi.startNavi }" end="${pi.endNavi }" var="p">
+						<td colspan="6"><c:forEach begin="${pi.startNavi }"
+								end="${pi.endNavi }" var="p">
 								<c:url var="pageUrl" value="/review/list.do">
 									<c:param name="page" value="${p }"></c:param>
 								</c:url>
 								<a href="${pageUrl }">${p }</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							</c:forEach>
-						</td>				
+							</c:forEach></td>
 					</tr>
 				</tfoot>
 			</table>
 			<div class="button-area">
-			<c:if test="${user eq null}">
-				<button type="button" class="btn btn-primary" onclick="javascript:btn('로그인이 필요합니다.')">후기글 작성</button>
-			</c:if>
-			<c:if test="${user ne null}">
-				<button type="button" class="btn btn-primary" onclick="location.href='/review/writeView.do'">후기글 작성</button>
-			</c:if>
-				<button type="button" class="btn btn-primary" onclick="location.href='/home'">홈으로 가기</button>
+				<c:if test="${user eq null}">
+					<button type="button" class="btn btn-primary"
+						onclick="javascript:btn('로그인이 필요합니다.')">후기글 작성</button>
+				</c:if>
+				<c:if test="${user ne null}">
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='/review/writeView.do'">후기글 작성</button>
+				</c:if>
+				<button type="button" class="btn btn-primary"
+					onclick="location.href='/home'">홈으로 가기</button>
 			</div>
 		</div>
-		</div>
-		<jsp:include page="../footer.jsp"></jsp:include>
-	</body>
-	<script>
-		function btn(sample) {
-			alert(sample);
-		}
-	</script>
+	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
+</body>
+<script>
+	function btn(sample) {
+		alert(sample);
+	}
+</script>
 </html>

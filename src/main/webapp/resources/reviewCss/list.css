@@ -34,10 +34,9 @@ body {
 }
 
 .search-area {
-    width: 200px;
+/*     width: 200px; */
     height: 45px;
-    border: 1px solid gray;
-    border-radius: 5px;
+/*     border: 1px solid gray; */
     /* background-color: beige; */
     margin-left: 50px;
 }
@@ -69,6 +68,7 @@ body {
 
 .listnav .sortbtn {
     float: right;
+    margin-bottom: 10px;
 }
 
 #list-tbl {
@@ -91,4 +91,13 @@ body {
 .button-area {
     padding-top: 10px;
     padding-left: 30px;
+}
+button {
+	    width: 80px;
+    height: 20px;
+    background-color: #e5e5cb;
+    border: none;
+}
+tr{
+	height: 5vh;
 }

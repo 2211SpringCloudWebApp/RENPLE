@@ -1,41 +1,22 @@
-* {
-    margin: 0;
-    padding: 0;
+#container a:link, #container a:visited {
+    color: ghostwhite;
+    text-decoration: none;
 }
 
 body {
-    background-image: url(../img/review/background.webp);
-    background-size: cover;
+    margin: 0;
 }
 
-textarea {
-    width: 100%;
-    height: 6.25em;
-    border: none;
-    resize: none;
-  }
+#outter {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.35)), url(../img/review/background.webp);
+    background-size: cover;
+}
 
 #container {
-    width: 60%;
-    margin: auto;
-    margin-top: 150px;
-}
-
-#container::before {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url(../img/review/background.webp);
-    background-size: cover;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-    z-index: -1;
-    content: "";
+    padding-top : 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
 }
 
 #maintitle {

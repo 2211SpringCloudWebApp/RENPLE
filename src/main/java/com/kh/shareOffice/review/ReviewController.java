@@ -367,14 +367,15 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================= 게시글 좋아요 =======================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/likeUp.do", method = RequestMethod.POST)
-	public void likeUp(
+	@RequestMapping("/review/likeUp.do")
+	public String likeUp(
 
 			@RequestParam(value = "reviewNo", required = false) int reviewNo, Model model
 
 	) throws Exception {
 
 		rService.updateReviewLike(reviewNo);
+		return "redirect:/review/detail.do?reviewNo=" + reviewNo;
 	}
 
 }
