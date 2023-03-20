@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -8,6 +8,17 @@
 <meta charset="UTF-8">
 <title>공지사항 상세</title>
 <link rel="stylesheet" href="../../../resources/noticeCss/detail.css">
+<style>
+	#inner{
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+    border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	height: 60vh;
+	width: 60vw;
+	line-height : 2vh;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>

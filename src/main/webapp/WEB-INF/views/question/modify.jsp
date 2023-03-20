@@ -7,6 +7,17 @@
 <meta charset="UTF-8">
 <title>문의사항 수정</title>
 <link rel="stylesheet" href="../../../resources/questionCss/modify.css">
+<style>
+	#inner{
+	padding-top: 2vh;
+    border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	margin: 0 auto;
+	height: 55vh;
+	width: 60vw;
+	line-height : 8vh;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>

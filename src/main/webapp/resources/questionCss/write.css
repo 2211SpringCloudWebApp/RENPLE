@@ -72,3 +72,10 @@ button+button {
 #Container {
 	height: 150px;
 }
+textarea {
+	resize : none;
+	height : 50%;
+}
+input, textarea {
+	width : 50%;
+}
