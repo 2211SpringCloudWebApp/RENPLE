@@ -43,10 +43,10 @@
           <h3>예약 공간</h3>
           <div class="space-info">
             <div class="info-photo">
-              <h4>강남 1호점</h4>
-              <span><img src="/resources/img/reservation/reser_gangnam1.jpg"></span>
+              <h4>교대점</h4>
+              <span><img src="/resources/img/reservation/reser_gyodae.jpg"></span>
               <p>
-                1. 강남역 1분 거리! <br>
+                1. 교대역 3분 거리! <br>
                 2. 미팅룸 ,푸드바, 프린팅 스테이션, 사무 가구 구비 <br>
                 3. 외부음식 및 주류 반입, 포장, 배달 가능. <br>
                 4. 간단한 조리 가능. <br>
@@ -62,7 +62,7 @@
             </li>
             <li>
               <span class="tit">> &nbsp;&nbsp;예약인원</span>
-              <span class="data">최소 2명 ~ 최대 80명</span>
+              <span class="data">최소 2명 ~ 최대 40명</span>
             </li>
           </ul>
 
@@ -92,7 +92,7 @@
 
                 <dd class="flex-phone">
                   <div class="phone-col">
-                    <select name="phone1" name="Phone1" id="orderPhone1" title="휴대폰 앞자리">
+                    <select name="phone1" name="Phone1"  id="orderPhone1" title="휴대폰 앞자리">
                       <option value="010">010</option>
                       <option value="011">011</option>
                       <option value="016">016</option>
@@ -103,11 +103,11 @@
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone2" name="Phone2" value="${phone2 } id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
+                    <input name="phone2" name="Phone2" value="${phone2 }" id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone3" name="Phone3" value="${phone3 } id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
+                    <input name="phone3" name="Phone3" value="${phone3 }" id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
                   </div>
                 </dd>
               </dl>
@@ -118,10 +118,10 @@
                   <span class="ico-requ">*</span>
                 </dt>
                 <dd class="flex">
-                  <input type="email" name="orderEmail" value="${user.userEmail } id="orderEmail" required="required">
+                  <input type="email" name="orderEmail" value="${user.userEmail }" id="orderEmail" required="required">
                 </dd>
               </dl>
-
+			  
               <dl class="flex-box">
                 <dt class="flex-tit">
                   <label for="name">주소</label>
@@ -186,7 +186,7 @@
               <li>
                 <span class="info-pay-col1">예약인원</span>
                 <span class="info-pay-col2">
-               	  <input type="number" name="orderUserCount" id="reservationUserCount" class="totalCount" max="80" min="2" placeholder="0명"
+               	  <input type="number" name="orderUserCount" id="reservationUserCount" class="totalCount" max="40" min="2" placeholder="0명"
                	  	     onkeyup="this.value=this.value.replace(/[^0-9]/g,''); totalCount()" required="required" />
                 </span>
                 
@@ -199,17 +199,16 @@
               </li>
               <li id="pay-result">
                 <span id="pay-result-left">\</span>
-                <span id="pay-result-right">329,000</span>
+                <span id="pay-result-right">239,000</span>
               </li>
             </ul>
             <input type="button" id="payment" value="결제" onclick="iamport()">
-            
           </div>
         </div>
       </div>
       
       <input type="hidden" name="userId" value="${sessionScope.user }">
-      <input type="hidden" name="productNo" value="1">
+      <input type="hidden" name="productNo" value="21">
       <button type="submit" id="submit"></button>
     </form>
     
@@ -231,9 +230,9 @@
   		  if (value < 2) {
   		    inputNumber.value = 2;
   		    alert('2보다 작은 값을 입력할 수 없습니다.');
-  		  } else if (value > 80) {
-  		    inputNumber.value = 80;
-  		    alert('80보다 큰 값을 입력할 수 없습니다.');
+  		  } else if (value > 40) {
+  		    inputNumber.value = 40;
+  		    alert('40보다 큰 값을 입력할 수 없습니다.');
   		  }
   		});
   	}
@@ -338,8 +337,8 @@
 		    pg : 'kicc',         // pg사
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : '렌플 - 강남1호점 ' ,     //결제창에서 보여질 이름
-		    amount : 10,        //실제 결제되는 가격
+		    name : '렌플 - 교대점 ' ,     //결제창에서 보여질 이름
+		    amount : 20,        //실제 결제되는 가격
 		    buyer_email : orderEmail,
 		    buyer_name : orderName,
 		    buyer_tel : '010-1234-5678',

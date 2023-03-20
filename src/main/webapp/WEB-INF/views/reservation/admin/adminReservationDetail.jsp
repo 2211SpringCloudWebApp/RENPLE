@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>예약 내역 상세 조회</title>
+  <title>관리자 - 예약 내역 상세 조회</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../../../resources/reservationCss/detailAdmin.css">
   <!-- jquery -->

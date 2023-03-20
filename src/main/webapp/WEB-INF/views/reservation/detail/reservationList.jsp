@@ -21,7 +21,7 @@
 		      width: 1300px !important;
 		      margin-bottom: 100px !important;">
 	  <h1 style="margin-top:100px; text-align: center;">예약 내역 리스트</h1>
-	  <table class="table table-hover">
+	  <table class="table table-hover">	
 	    <tr>
 	      <th>예약번호</th>
 	      <th>예약자</th>

@@ -104,4 +104,9 @@
 		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
 	</select>
 	
+	<!-- 요청사항 수정 -->
+	<update id="modifyReservation">
+		UPDATE ORDER_TBL SET ORDER_REQUEST = #{orderRequest} WHERE ORDER_NO = #{orderNo}
+	</update>
+	
 </mapper>
