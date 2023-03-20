@@ -11,19 +11,19 @@ public class ReviewCommentStoreLogic implements ReviewCommentStore{
 
 	@Override
 	public int insertComment(SqlSession session, ReviewComment comment) {
-		int result = session.insert("ReviewCommentMapper.commentInsert", comment);
-		return result;
-	}
-
-	@Override
-	public int deleteComment(SqlSession session, int commentNo) {
-		int result = session.delete("CommentMapper.insertComment", commentNo);
+		int result = session.insert("ReviewCommentMapper.insertComment", comment);
 		return result;
 	}
 
 	@Override
 	public int updateComment(SqlSession session, ReviewComment comment) {
-		int result = session.update("CommentMapper.updateComment", comment);
+		int result = session.update("ReviewCommentMapper.updateComment", comment);
+		return result;
+	}
+
+	@Override
+	public int deleteComment(SqlSession session, ReviewComment comment) {
+		int result = session.delete("ReviewCommentMapper.deleteComment", comment);
 		return result;
 	}
 

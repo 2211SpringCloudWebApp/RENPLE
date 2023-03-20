@@ -20,7 +20,7 @@ public interface ReviewCommentStore {
 	 * @param commentNo
 	 * @return int
 	 */
-	public int deleteComment(SqlSession session, int commentNo);
+	public int deleteComment(SqlSession session, ReviewComment comment);
 
 	/**
 	 * 댓글 수정 Store

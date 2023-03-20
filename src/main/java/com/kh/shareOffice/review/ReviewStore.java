@@ -4,10 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.kh.shareOffice.review.ReviewPageInfo;
-import com.kh.shareOffice.review.Review;
-import com.kh.shareOffice.review.ReviewSearch;
-
 public interface ReviewStore {
 
 	/**
@@ -113,6 +109,6 @@ public interface ReviewStore {
 	 * @param reviewNo
 	 * @throws Exception
 	 */
-	public void updateLikeCount(SqlSession session, int reviewNo) throws Exception;
+	public void updateLikeCount(SqlSession session, Integer reviewNo) throws Exception;
 
 }

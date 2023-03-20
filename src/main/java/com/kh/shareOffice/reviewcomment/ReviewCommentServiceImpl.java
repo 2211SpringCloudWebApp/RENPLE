@@ -21,8 +21,8 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 	}
 
 	@Override
-	public int deleteComment(int commentNo) {
-		int result = cStore.deleteComment(session, commentNo);
+	public int deleteComment(ReviewComment comment) {
+		int result = cStore.deleteComment(session, comment);
 		return result;
 	}
 

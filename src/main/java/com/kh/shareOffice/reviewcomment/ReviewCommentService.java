@@ -16,7 +16,7 @@ public interface ReviewCommentService {
 	 * @param commentNo
 	 * @return int
 	 */
-	public int deleteComment(int commentNo);
+	public int deleteComment(ReviewComment comment);
 
 	/**
 	 * 댓글 수정 Service
