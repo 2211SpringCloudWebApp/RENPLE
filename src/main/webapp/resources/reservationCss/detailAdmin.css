@@ -9,36 +9,39 @@
 * {
     font-family: 'Chosunilbo_myungjo';
 }
+
+body {
+	margin: 0;
+}
+
 #outter {
 	padding-top : 72px;
 	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
-#outter h1, p {
-	text-align : center;
+h1 {
+	text-align: center;
 }
-
 #inner{
 	padding-top: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 50vh;
+	height: 60vh;
 	width: 60vw;
-	line-height : 11vh;
+	line-height : 3vh;
 }
+
 a {
 	text-decoration : none;	
 	color : black;
 	text-align : center;
 }
-input, textarea{
-	width : 50%
-}
+
 .content-btn {
 	text-align: center;
-    margin-top: 5vh;
+	margin-top : 15px;
 }
 
 .content-btn button {
@@ -55,13 +58,4 @@ input, textarea{
 }
 button + button {
 	margin-left : 3vh;
-}
-#Container img{
-	height: 100%;
-}
-#Container{
-height: 150px;
-}
-textarea {
-	resize : none;
 }

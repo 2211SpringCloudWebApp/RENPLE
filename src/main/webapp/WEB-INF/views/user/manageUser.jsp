@@ -37,6 +37,7 @@
 </head>
 
 <body>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- <form action="/user/select" method="post" onsubmit="retutn totalChk()"> -->
 	<form action="/user/modifyUser" method="post">
 		<div id="outter">
@@ -152,7 +153,7 @@
 			</div>
 		</div>
 	</form>
-	
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		/* 비밀번호 확인 */
 		function checkPw() {

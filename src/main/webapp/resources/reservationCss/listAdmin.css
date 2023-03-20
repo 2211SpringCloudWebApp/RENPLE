@@ -8,6 +8,7 @@
 
 * {
     font-family: 'Chosunilbo_myungjo';
+    text-align: center;
 }
 #outter {
 	padding-top : 72px;
@@ -15,30 +16,28 @@
 	width: 70vw;
 	margin: 0 auto;
 }
-#outter h1, p {
-	text-align : center;
+h1 {
+    text-align: center;
 }
-
-#inner{
-	padding-top: 2vh;
+table {
+	padding : 20px;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 50vh;
+	height: 70vh;
 	width: 60vw;
-	line-height : 11vh;
 }
 a {
 	text-decoration : none;	
 	color : black;
-	text-align : center;
 }
-input, textarea{
-	width : 50%
+
+table a:hover {
+	color : #BDC8A6;
 }
 .content-btn {
 	text-align: center;
-    margin-top: 5vh;
+	margin-top : 15px;
 }
 
 .content-btn button {
@@ -46,22 +45,4 @@ input, textarea{
 	height: 40px;;
 	background-color : #e5e5cb;
 	border: none;
-}
-.content-btn input {
-	width: 150px;
-	height: 40px;;
-	background-color : #e5e5cb;
-	border: none;
-}
-button + button {
-	margin-left : 3vh;
-}
-#Container img{
-	height: 100%;
-}
-#Container{
-height: 150px;
-}
-textarea {
-	resize : none;
 }
