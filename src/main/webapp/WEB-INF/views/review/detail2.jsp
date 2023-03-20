@@ -8,7 +8,6 @@
 		<meta charset="UTF-8">
 		<title>후기글 상세</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
     	<link rel="stylesheet" href="../../../resources/reviewCss/detail.css">
 		<style>
 			.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
@@ -164,7 +163,7 @@
 			
 			
 			<div id="commentList">
-				<table>
+				<table id="comment-tbl">
 					<c:forEach items="${cList }" var="reviewcomment" varStatus="i">
 						<tr>
 							<td>${i.count }.&nbsp;&nbsp;</td>

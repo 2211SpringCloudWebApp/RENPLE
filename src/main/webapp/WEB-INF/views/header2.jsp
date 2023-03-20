@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- No mapping for GET /favicon.ico 안뜨게 설정 -->
+<link rel="icon" type="image/ico"
+	href="${pageContext.request.contextPath}/resources/static/images/favicon.ico">
+</head>
 <style>
 @font-face {
 	font-family: 'Chosunilbo_myungjo';
@@ -71,7 +75,6 @@ nav img {
 	width: 125px;
 }
 </style>
-</head>
 <body>
 	<header>
 		<!-- 로그인을 하지 않은 경우 -->
@@ -80,9 +83,9 @@ nav img {
 				<ul>
 					<li><img src="../../resources/img/main/logo.png" alt="logo"
 						onclick="goHome()"></li>
-					<li><a>예약</a></li>
-					<li><a href="/review/list">후기</a></li>
-					<li><a>공지</a></li>
+					<li><a href="/officeMap">예약</a></li>
+					<li><a href="/review/list.do">후기</a></li>
+					<li><a href="/notice/view">공지</a></li>
 					<li><a href="/user/login">로그인</a></li>
 				</ul>
 			</nav>
@@ -96,21 +99,21 @@ nav img {
 					<ul>
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
-						<li><a>회원 관리</a></li>
+						<li><a href="/user/selectSearchAll">회원 관리</a></li>
 						<li class="dropdown"><a>지점 관리</a>
 							<ul>
-								<li><a>예약 관리</a></li>
-								<li><a>상품 관리</a></li>
+								<li><a href="/reservation/admin/adminReservationList">예약 관리</a></li>
+								<li><a href="/reservation/admin/adminProductList">상품 관리</a></li>
 							</ul></li>
 						<li class="dropdown"><a>게시판 관리</a>
 							<ul>
 								<li><a href="/review/list">후기 관리</a></li>
-								<li><a>공지 관리</a></li>
-								<li><a>문의 관리</a></li>
+								<li><a href="/notice/listAdmin">공지 관리</a></li>
+								<li><a href="/comment/list">문의 관리</a></li>
 							</ul></li>
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
-								<li><a>마이페이지</a></li>
+								<li><a href="/user/mypage?userId=${sessionScope.user }">마이페이지</a></li>
 								<li><a href="/user/logout" onclick="return logout()">로그아웃</a>
 								</li>
 							</ul></li>
@@ -123,14 +126,15 @@ nav img {
 					<ul>
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
-						<li><a>예약</a></li>
+						<li><a href="/officeMap">예약</a></li>
 						<li><a href="/review/list">후기</a></li>
-						<li><a>공지</a></li>
+						<li><a href="/notice/view">공지</a></li>
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
-								<li><a>마이페이지</a></li>
-								<li><a href="/user/logout" onclick="return logout()">로그아웃</a>
-								</li>
+								<li><a href="/user/mypage?userId=${sessionScope.user }">마이페이지</a></li>
+								<li><a href="/question/view">문의하기</a></li>
+								<li><a>예약내역</a></li>
+								<li><a href="/user/logout" onclick="return logout()">로그아웃</a></li>
 							</ul></li>
 					</ul>
 				</nav>

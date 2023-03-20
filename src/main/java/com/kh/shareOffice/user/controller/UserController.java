@@ -96,4 +96,5 @@ public class UserController {
 			return "common/error";
 		}
 	}
+	
 }

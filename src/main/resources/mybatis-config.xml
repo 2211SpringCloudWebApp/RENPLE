@@ -6,16 +6,16 @@
 		<setting name="jdbcTypeForNull" value="NULL"></setting>
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.kh.shareOffice.comment.domain.Comment" alias="Comment" />
+		<typeAlias type="com.kh.shareOffice.reviewcomment.ReviewComment" alias="ReviewComment" />
 		<typeAlias type="com.kh.shareOffice.notice.domain.Notice" alias="Notice" />
 		<typeAlias type="com.kh.shareOffice.payment.domain.Payment" alias="Payment" />
 		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.question.domain.Question" alias="Question" />
-		<typeAlias type="com.kh.shareOffice.review.domain.Review" alias="Review" />
+		<typeAlias type="com.kh.shareOffice.review.Review" alias="Review" />
 		<typeAlias type="com.kh.shareOffice.user.domain.User" alias="User" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/comment-mapper.xml" />
+		<mapper resource="mappers/reviewcomment-mapper.xml" />
 		<mapper resource="mappers/notice-mapper.xml" />
 		<mapper resource="mappers/payment-mapper.xml" />
 		<mapper resource="mappers/product-mapper.xml" />

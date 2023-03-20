@@ -16,6 +16,12 @@ public class User {
 		super();
 	}
 
+	public User(String userId, String userPw) {
+		super();
+		this.userId = userId;
+		this.userPw = userPw;
+	}
+
 	public User(String userId, String userPw, String userName, String userEmail, String userPhone,
 			String userAddress, int userType, Timestamp uCreateDate) {
 		super();
