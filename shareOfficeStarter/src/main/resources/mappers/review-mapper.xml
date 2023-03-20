@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewMapper">
+	<resultMap type="Review" id="reviewResultMap">
+		<id property="reviewNo" column="REVIEW_NO"></id>
+		<result property="userId" column="USER_ID"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="reviewLikeCount" column="REVIEW_LIKE_COUNT"/>
+		<result property="reviewTitle" column="REVIEW_TITLE"/>
+		<result property="reviewContent" column="REVIEW_CONTENT"/>
+		<result property="reviewRating" column="REVIEW_RATING"/>
+		<result property="viewCount" column="VIEW_COUNT"/>
+		<result property="rCreateDate" column="R_CREATE_DATE"/>
+		<result property="reviewFilename" column="REVIEW_FILENAME"/>
+		<result property="reviewFilepath" column="REVIEW_FILEPATH"/>
+	</resultMap>
+	<!-- 쿼리문 작성 부분 -->
+	<insert id="insertReview">
+		INSERT INTO REVIEW_TBL VALUES(SEQ_REVIEW_NO.NEXTVAL, #{userId}, #{productNo}, DEFAULT, #{reviewTitle}, #{reviewContent}, #{reviewRating}, DEFAULT, DEFAULT, #{reviewFilename}, #{reviewFilepath})
+	</insert>
+	<update id="updateReview">
+		UPDATE REVIEW_TBL SET REVIEW_TITLE = #{reviewTitle}, REVIEW_CONTENT = #{reviewContent}, REVIEW_RATING = #{reviewRating}, R_CREATE_DATE = DEFAULT, REVIEW_FILENAME = #{reviewFilename}, REVIEW_FILEPATH = #{reviewFilepath} WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<update id="viewCount">
+		UPDATE REVIEW_TBL SET VIEW_COUNT = VIEW_COUNT + 1 WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<update id="updateLikeCount">
+		UPDATE REVIEW_TBL SET REVIEW_LIKE_COUNT = REVIEW_LIKE_COUNT +1 
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<delete id="deleteReview">
+		DELETE FROM REVIEW_TBL WHERE REVIEW_NO = #{reviewNo}
+	</delete>
+	<select id="selectOneByNo" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL WHERE REVIEW_NO = #{reviewNo}
+	</select>
+	
+	<!-- 리스트 관련 -->
+	<select id="selectReviewList" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL ORDER BY REVIEW_NO DESC
+	</select>
+	<select id="selectReviewListByOld" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL ORDER BY REVIEW_NO ASC
+	</select>
+	<select id="selectReviewListByViewCount" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL ORDER BY VIEW_COUNT DESC
+	</select>
+	<select id="selectReviewListByLikeCount" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL ORDER BY REVIEW_LIKE_COUNT DESC
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW_TBL
+	</select>
+	<select id="selectListByKeyword" resultMap="reviewResultMap">
+		SELECT * FROM REVIEW_TBL 
+		<if test="searchCondition == 'title'">
+			WHERE REVIEW_TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE REVIEW_CONTENT LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE USER_ID LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY R_CREATE_DATE DESC
+	</select>
+	<select id="getSearchListCount" resultType="_int">
+		SELECT COUNT(*) FROM REVIEW_TBL 
+		<choose>
+			<when test="searchCondition == 'title'">
+				WHERE REVIEW_TITLE LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'content'">
+				WHERE REVIEW_CONTENT LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'writer'">
+				WHERE USER_ID LIKE '%' || #{searchValue} || '%'
+			</when>
+		</choose>
+	</select>
+</mapper>

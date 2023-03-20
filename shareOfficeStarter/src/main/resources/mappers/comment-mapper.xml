@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CommentMapper">
+	<resultMap type="Comment" id="commentResultMap">
+		<id property="commentNo" column="COMMENT_NO"></id>
+		<result property="commentContent" column="COMMENT_CONTENT" />
+		<result property="commentDate" column="COMMENT_DATE" />
+		<result property="questionNo" column="QUESTION_NO" />
+		<result property="userId" column="USER_ID" />
+		<!-- 아래는 question꺼 가져온것 -->
+		<result property="questionTitle" column="QUESTION_TITLE" />
+		<result property="questionContent" column="QUESTION_CONTENT" />
+		<result property="qCreateDate" column="Q_CREATE_DATE" />
+		<result property="questionFilename" column="QUESTION_FILENAME" />
+		<result property="questionFilepath" column="QUESTION_FILEPATH" />
+	</resultMap>
+
+	<!-- 쿼리문 작성 부분 -->
+	<insert id="insertComment">
+		INSERT INTO COMMENT_TBL VALUES(SEQ_COMMENTNO.NEXTVAL,
+		#{commentContent}, DEFAULT, #{questionNo}, #{userId})
+	</insert>
+
+	<select id="selectCnQAll" resultMap="commentResultMap">
+		SELECT Q.QUESTION_NO, Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE, Q.QUESTION_FILENAME,
+		Q.QUESTION_FILEPATH,
+		C.COMMENT_NO, C.COMMENT_CONTENT, C.COMMENT_DATE
+		FROM QUESTION_TBL Q
+		LEFT JOIN COMMENT_TBL C
+		ON C.QUESTION_NO =
+		Q.QUESTION_NO
+		<choose>
+			<when test="searchCondition == 'all'">
+				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%' OR Q.QUESTION_TITLE
+				LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'userId'">
+				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'questionTitle'">
+				WHERE Q.QUESTION_TITLE LIKE '%' || #{searchValue} || '%'
+			</when>
+		</choose>
+		ORDER BY Q.Q_CREATE_DATE DESC
+	</select>
+
+
+	<select id="selectOneByNo" resultMap="commentResultMap">
+		SELECT *
+		FROM COMMENT_TBL
+		WHERE QUESTION_NO = #{questionNo}
+	</select>
+
+	<delete id="deleteComment">
+		DELETE FROM COMMENT_TBL
+		WHERE COMMENT_NO =
+		#{commentNo}
+	</delete>
+
+	<update id="updateComment">
+		UPDATE COMMENT_TBL
+		SET COMMENT_CONTENT =
+		#{commentContent}
+		WHERE COMMENT_NO = #{commentNo}
+	</update>
+
+	<select id="getListCnt" resultType="_int">
+		SELECT COUNT(*)
+		FROM QUESTION_TBL Q
+		LEFT JOIN COMMENT_TBL C
+		ON
+		C.QUESTION_NO = Q.QUESTION_NO
+		<choose>
+			<when test="searchCondition == 'all'">
+				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%' OR
+				Q.QUESTION_TITLE
+				LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'userId'">
+				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%'
+			</when>
+			<when test="searchCondition == 'questionTitle'">
+				WHERE Q.QUESTION_TITLE LIKE '%' || #{searchValue} ||
+				'%'
+			</when>
+		</choose>
+	</select>
+	
+	<select id="totalCnt" resultType="_int">
+		SELECT COUNT(*) FROM COMMENT_TBL
+	</select>
+	
+	<select id="selectCommentOk" resultMap="commentResultMap">
+		SELECT Q.QUESTION_NO, Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE, Q.QUESTION_FILENAME,
+		Q.QUESTION_FILEPATH,
+		C.COMMENT_NO, C.COMMENT_CONTENT, C.COMMENT_DATE
+		FROM QUESTION_TBL Q
+		LEFT JOIN COMMENT_TBL C
+		ON C.QUESTION_NO =
+		Q.QUESTION_NO 
+		WHERE C.COMMENT_DATE IS NOT NULL
+		ORDER BY C.COMMENT_DATE DESC
+	</select>
+	
+	<select id="selectCommentNotOk" resultMap="commentResultMap">
+		SELECT Q.QUESTION_NO, Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE, Q.QUESTION_FILENAME,
+		Q.QUESTION_FILEPATH,
+		C.COMMENT_NO, C.COMMENT_CONTENT, C.COMMENT_DATE
+		FROM QUESTION_TBL Q
+		LEFT JOIN COMMENT_TBL C
+		ON C.QUESTION_NO =
+		Q.QUESTION_NO 
+		WHERE C.COMMENT_DATE IS NULL
+		ORDER BY C.COMMENT_DATE DESC
+	</select>
+
+</mapper>

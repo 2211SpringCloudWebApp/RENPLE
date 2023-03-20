@@ -1,0 +1,52 @@
+#container a:link, #container a:visited {
+    color: ghostwhite;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
+
+#outter {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.35)), url(../img/review/background.webp);
+    background-size: cover;
+}
+
+#container {
+    padding-top : 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
+}
+
+#maintitle {
+    color: ghostwhite;
+    text-align: center;
+    font-size: 18px;
+}
+
+#input-area {
+    display: flex;
+    justify-content : center;
+}
+
+#reviewTitle, #reviewRating {
+    border: 1px solid bisque;
+    background-color: floralwhite;
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+}
+
+#reviewContent {
+    border: 1px solid bisque;
+    background-color: floralwhite;
+    border-radius: 5px;
+    width: 500px;
+    height: 300px;
+}
+
+#button-area {
+    display: flex;
+    justify-content : space-evenly;
+}
