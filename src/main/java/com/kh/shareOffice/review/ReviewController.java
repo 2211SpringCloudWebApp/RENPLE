@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.shareOffice.reviewComment.ReviewComment;
-import com.kh.shareOffice.reviewComment.ReviewCommentService;
+import com.kh.shareOffice.reviewcomment.ReviewComment;
+import com.kh.shareOffice.reviewcomment.ReviewCommentService;
 
 @Controller
 public class ReviewController {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReviewCommentMapper">
+	<resultMap type="ReviewComment" id="reviewCommentResultMap">
+		<id property="commentNo" column="COMMENT_NO"></id>
+		<result property="userId" column="USER_ID"/>
+		<result property="reviewNo" column="REVIEW_NO"/>
+		<result property="commentContent" column="COMMENT_CONTENT"/>
+		<result property="commentCreateDate" column="COMMENT_CREATE_DATE"/>
+		<result property="commentUpdateDate" column="COMMENT_UPDATE_DATE"/>
+	</resultMap>
+	
+	<!-- 쿼리문 작성 부분 -->
+	<select id="selectCommentList" resultMap="reviewCommentResultMap">
+		SELECT * FROM REVIEW_COMMENT_TBL WHERE REVIEW_NO = #{reviewNo} ORDER BY COMMENT_NO ASC
+	</select>
+	
+	<insert id="insertComment">
+		INSERT INTO REVIEW_COMMENT_TBL VALUES(
+		SEQ_REVIEW_COMMENT_NO.NEXTVAL, 
+		#{userId}, 
+		#{reviewNo}, 
+		#{commentContent}, 
+		DEFAULT, 
+		DEFAULT)
+	</insert>
+	
+	<delete id="deleteComment">
+		DELETE FROM REVIEW_COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
+	</delete>
+	
+	<update id="updateComment">
+		UPDATE REVIEW_COMMENT_TBL SET COMMENT_CONTENT = #{commentContent}, COMMENT_UPDATE_DATE = DEFAULT, REVIEW_NO = #{reviewNo} WHERE COMMENT_NO = #{commentNo}
+	</update>
+	
+</mapper>
