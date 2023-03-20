@@ -2,6 +2,7 @@ package com.kh.shareOffice.reservation.store;
 
 import java.util.List;
 
+import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.user.domain.User;

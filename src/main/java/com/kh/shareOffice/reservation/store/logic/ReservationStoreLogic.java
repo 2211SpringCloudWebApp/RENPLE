@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.store.ReservationStore;
@@ -77,6 +78,6 @@ public class ReservationStoreLogic implements ReservationStore{
 		List<ReservationList> rList = session.selectList("ReservationMapper.selectAllReservationList");
 		return rList;
 	}
-	
+
 	
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.shareOffice.Alert;
+import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
@@ -143,6 +144,7 @@ public class ReservationController {
 			return "";
 		}
 	}
+	
 	// 관리자 - 예약 내역 목록 조회
 	@RequestMapping(value = "/reservation/admin/adminReservationList", method = RequestMethod.GET)
 	public String adminReservationList(HttpServletRequest request,  Model model) {
@@ -158,38 +160,20 @@ public class ReservationController {
 			return "reservation/admin/adminReservationList";
 		}
 	}	
-//	// 관리자 - 예약 내역 목록 조회
-//	@RequestMapping(value = "/reservation/admin/adminReservationList", method = RequestMethod.GET)
-//	public String adminReservationList(HttpServletRequest request,  Model model) {
-//		HttpSession session = request.getSession();
-//		String userId = (String)session.getAttribute("user");
-//		User user = rService.selectOneById(userId);
-//		if(userId == null) {  // 로그인 안하고 접근시 로그인페이지 이동
-//			return "redirect:/user/login";
-//		} else if(user.getUserType() == 1) {  // 관리자가 아니고 접근시 홈페이지로 이동
-//			return "redirect:/";
-//		} else {
-//			List<ReservationList> rList = rService.selectReservationList(userId);
-//			model.addAttribute("rList", rList);
-//			return "reservation/admin/adminReservationList";
-//		}
-//	}
 	
 	// 관리자 - 예약 내역 상세 조회
 	@RequestMapping(value = "/reservation/admin/adminReservationDetail", method = RequestMethod.GET)
 	public String adminReservationDetail(HttpServletRequest request, Model model
 			, @RequestParam(value = "orderNo", defaultValue = "0") int orderNo 
 			) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
-		User user = rService.selectOneById(userId);
+		String checkAdmin = checkAdmin(request);
 		
-		if(userId == null) {                 // 로그인 안하고 URL에 직접 접근할 경우 로그인 페이지로 되돌림
+		if(checkAdmin.equals("notLogin")) {  
 			return "redirect:/user/login";
-		} else if(user.getUserType() == 1) { // 관리자가 아닌데 접근시 홈페이지로 이동
+		} else if(checkAdmin.equals("notAdmin")) {  
 			return "redirect:/";
 		} else if(orderNo == 0) {            // 예약 상세정보를 URL에 직접 접근할경우 리스트로 되돌림.
-			List<ReservationList> rList = rService.selectReservationList(userId);
+			List<ReservationList> rList = rService.selectAllReservationList();
 			model.addAttribute("rList", rList);
 			return "reservation/admin/adminReservationList";
 		} else {
@@ -202,28 +186,19 @@ public class ReservationController {
 	// 관리자 - 예약 취소
 	@RequestMapping(value = "/reservation/adminDelete", method = RequestMethod.GET)
 	public String adminReservationDelete(int orderNo, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
-		User user = rService.selectOneById(userId);
+		String checkAdmin = checkAdmin(request);
 		
-		if(userId == null) {		// 로그인 안하고 URL에 직접 접근할 경우 로그인 페이지로 되돌림
+		if(checkAdmin.equals("notLogin")) {  
 			return "redirect:/user/login";
-		} else if(user.getUserType() == 1) {  // 관리자가 아니고 접근시 홈페이지로 이동
+		} else if(checkAdmin.equals("notAdmin")) {  
 			return "redirect:/";
-		}
-		else {
+		} else {
 			rService.deleteReservation(orderNo);	// 예약취소
-			List<ReservationList> rList = rService.selectReservationList(userId);
+			List<ReservationList> rList = rService.selectAllReservationList();
 			model.addAttribute("rList", rList);
 			return "/reservation/admin/adminReservationList";
 		}
 	}	
 	
-	// 관리자 - 상품 목록 조회
-	@RequestMapping(value = "/reservation/admin/adminProductList", method = RequestMethod.GET)
-	public String adminProductList() {
-		
-		
-		return "/reservation/detail/adminProductList";
-	}
+	
 }

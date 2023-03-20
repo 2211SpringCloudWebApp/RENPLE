@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.reservation.domain.Order;
 import com.kh.shareOffice.reservation.domain.ReservationList;
 import com.kh.shareOffice.reservation.service.ReservationService;
@@ -65,6 +66,7 @@ public class ReservationServiceImpl implements ReservationService{
 		List<ReservationList> rList = rStore.selectAllReservationList();
 		return rList;
 	}
+
 
 	
 }

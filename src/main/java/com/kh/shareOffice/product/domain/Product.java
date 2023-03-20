@@ -7,7 +7,7 @@ public class Product {
 	private String productName;
 	private int productPrice;
 	private String productDescription;
-	private int productSize;	// String -> int
+	private String productSize;	
 	private int productUserMax;
 	private int productUserMin;
 	private Timestamp pCreateDate;
@@ -48,11 +48,11 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
-	public int getProductSize() {
+	public String getProductSize() {
 		return productSize;
 	}
 
-	public void setProductSize(int productSize) {
+	public void setProductSize(String productSize) {
 		this.productSize = productSize;
 	}
 
@@ -86,5 +86,7 @@ public class Product {
 				+ ", productDescription=" + productDescription + ", productSize=" + productSize + ", productUserMax="
 				+ productUserMax + ", productUserMin=" + productUserMin + ", pCreateDate=" + pCreateDate + "]";
 	}
+	
+	
 	
 }

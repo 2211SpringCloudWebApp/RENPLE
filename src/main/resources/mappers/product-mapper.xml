@@ -9,8 +9,31 @@
 		<result property="productSize" column="PRODUCT_SIZE"/>
 		<result property="productUserMax" column="PRODUCT_USER_MAX"/>
 		<result property="productUserMin" column="PRODUCT_USER_MIN"/>
-		<result property="pRentalDate" column="P_CREATE_DATE"/>
+		<result property="pCreateDate" column="P_CREATE_DATE"/>
 	</resultMap>
 	
-	<!-- 쿼리문 작성 부분 -->
+	<select id="selectAllProduct" resultMap="productResultMap">
+		SELECT * FROM PRODUCT_TBL
+	</select>
+	
+	<select id="selectOneByProductNo" resultMap="productResultMap">
+		SELECT * FROM PRODUCT_TBL WHERE PRODUCT_NO = #{productNo}
+	</select>
+	
+	<insert id="insertProduct">
+		INSERT INTO PRODUCT_TBL 
+		VALUES(SEQ_PRODUCTNO.NEXTVAL, #{productName}, #{productPrice}, #{productDescription}, #{productSize}, #{productUserMax}, #{productUserMin}, DEFAULT)
+	</insert>
+	
+	<delete id="deleteProduct">
+		DELETE FROM PRODUCT_TBL WHERE PRODUCT_NO = #{productNo}
+	</delete>
+	
+	<update id="modifyProduct">
+		UPDATE PRODUCT_TBL 
+		SET PRODUCT_NO = #{productNo}, PRODUCT_NAME = #{productName}, PRODUCT_PRICE = #{productPrice}, PRODUCT_DESCRIPTION = #{productDescription},
+		PRODUCT_SIZE = #{productSize}, PRODUCT_USER_MAX = #{productUserMax}, PRODUCT_USER_MIN = #{productUserMin}, P_CREATE_DATE = #{pCreateDate}
+		WHERE PRODUCT_NO = #{productNo} 
+	</update>
+	
 </mapper>
