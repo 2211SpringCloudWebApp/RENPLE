@@ -108,13 +108,8 @@ nav img {
 						<li class="dropdown"><a>게시판 관리</a>
 							<ul>
 								<li><a href="/review/list">후기 관리</a></li>
-<<<<<<< HEAD
 								<li><a href="/notice/listAdmin">공지 관리</a></li>
 								<li><a href="/comment/list">문의 관리</a></li>
-=======
-								<li><a>공지 관리</a></li>
-								<li><a>문의 관리</a></li>
->>>>>>> refs/remotes/origin/hyosung0320
 							</ul></li>
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
@@ -131,15 +126,9 @@ nav img {
 					<ul>
 						<li><img src="../../resources/img/main/logo.png" alt="logo"
 							onclick="goHome()"></li>
-<<<<<<< HEAD
 						<li><a href="/officeMap">예약</a></li>
 						<li><a href="/review/list">후기</a></li>
 						<li><a href="/notice/view">공지</a></li>
-=======
-						<li><a>예약</a></li>
-						<li><a href="/review/list">후기</a></li>
-						<li><a>공지</a></li>
->>>>>>> refs/remotes/origin/hyosung0320
 						<li class="dropdown"><a><b>${name }</b>님</a>
 							<ul>
 								<li><a href="/user/mypage?userId=${sessionScope.user }">마이페이지</a></li>

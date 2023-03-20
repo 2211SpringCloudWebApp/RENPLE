@@ -14,12 +14,8 @@
 		<typeAlias type="com.kh.shareOffice.reservation.ReservationList" alias="ReservationList" />
 		<typeAlias type="com.kh.shareOffice.reservation.Product" alias="Product" />
 		<typeAlias type="com.kh.shareOffice.review.Review" alias="Review" />
-		<typeAlias type="com.kh.shareOffice.reviewComment.ReviewComment" alias="ReviewComment" />
-		<typeAlias type="com.kh.shareOffice.payment.domain.Payment" alias="Payment" />
-		<typeAlias type="com.kh.shareOffice.product.domain.Product" alias="Product" />
-		<typeAlias type="com.kh.shareOffice.question.domain.Question" alias="Question" />
+		<typeAlias type="com.kh.shareOffice.reviewcomment.ReviewComment" alias="ReviewComment" />
 		<typeAlias type="com.kh.shareOffice.review.Review" alias="Review" />
-		<typeAlias type="com.kh.shareOffice.user.domain.User" alias="User" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/user-mapper.xml" />
