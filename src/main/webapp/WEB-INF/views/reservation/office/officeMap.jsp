@@ -81,7 +81,7 @@
               <div class="shop-title">
                 <div><h4>강남1호점</h4></div>
                 <div class="line-2">2</div>
-                <div class="line-12">12</div>
+                <div class="line-12">신</div>
               </div>
               <div class="shop-location">강남역 2, 3번 출구 도보 1분 거리</div>
             </div>
@@ -93,7 +93,7 @@
               <div class="shop-title">
                 <div><h4>강남2호점</h4></div>
                 <div class="line-2">2</div>
-                <div class="line-12">12</div>
+                <div class="line-12">신</div>
               </div>
               <div class="shop-location">강남역 4번 출구 도보 5분 거리</div>
             </div>
@@ -116,7 +116,7 @@
               <div class="shop-title">
                 <div><h4>신논현점</h4></div>
                 <div class="line-9">9</div>
-                <div class="line-12">12</div>
+                <div class="line-12">신</div>
               </div>
               <div class="shop-location">신논현역 6번 출구 도보 2분 거리</div>
             </div>
@@ -144,8 +144,7 @@
               <div class="shop-location">남부터미널역 3번 출구 도보 5분 거리</div>
             </div>
           </div>
-
-          <div class="list-item" data-value="서울 영등포구 의사당대로 지하 101">
+          <div class="list-item" onclick="location.href='/yeouido'" data-value="서울 영등포구 의사당대로 지하 101">
             <button>바로가기</button>
             <div class="shop">
               <div class="shop-title">
@@ -156,8 +155,7 @@
               <div class="shop-location">여의도역 3번 출구 도보 3분 거리</div>
             </div>
           </div>
-
-          <div class="list-item" data-value="서울 동작구 남부순환로 지하 2089">
+          <div class="list-item" onclick="location.href='/sadang'" data-value="서울 동작구 남부순환로 지하 2089">
             <button>바로가기</button>
             <div class="shop">
               <div class="shop-title">

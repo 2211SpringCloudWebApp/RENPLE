@@ -80,7 +80,7 @@
                   <span class="ico-requ">*</span>
                 </dt>
                 <dd class="flex">
-                  <input type="text" id="orderName" name="orderName" required="required">
+                  <input type="text" id="orderName" name="orderName" value="${user.userName }" required="required">
                 </dd>
               </dl>
 			  
@@ -103,11 +103,11 @@
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone2" name="Phone2" id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
+                    <input name="phone2" name="Phone2" value="${phone2 } id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone3" name="Phone3" id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
+                    <input name="phone3" name="Phone3" value="${phone3 } id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
                   </div>
                 </dd>
               </dl>
@@ -118,7 +118,7 @@
                   <span class="ico-requ">*</span>
                 </dt>
                 <dd class="flex">
-                  <input type="email" name="orderEmail" id="orderEmail" required="required">
+                  <input type="email" name="orderEmail" value="${user.userEmail } id="orderEmail" required="required">
                 </dd>
               </dl>
 
@@ -330,7 +330,8 @@
     //  ------------------------------------
     
     function iamport(){
-    	
+    	var orderName = document.querySelector("#orderName").value
+    	var orderEmail = document.querySelector("#orderEmail").value
 		//가맹점 식별코드
 		IMP.init('imp34880640');
 		IMP.request_pay({
@@ -339,8 +340,8 @@
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '렌플 - 강남1호점 ' ,     //결제창에서 보여질 이름
 		    amount : 10,        //실제 결제되는 가격
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자',
+		    buyer_email : orderEmail,
+		    buyer_name : orderName,
 		    buyer_tel : '010-1234-5678',
 		    buyer_addr : '서울 강남구 도곡동',
 		    buyer_postcode : '123-456'

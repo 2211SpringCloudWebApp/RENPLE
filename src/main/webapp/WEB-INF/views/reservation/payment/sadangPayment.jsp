@@ -43,10 +43,10 @@
           <h3>예약 공간</h3>
           <div class="space-info">
             <div class="info-photo">
-              <h4>교대점</h4>
-              <span><img src="/resources/img/reservation/reser_gyodae.jpg"></span>
+              <h4>사당점</h4>
+              <span><img src="/resources/img/reservation/reser_sadang.jpg"></span>
               <p>
-                1. 교대역 3분 거리! <br>
+                1. 사당역 3분 거리! <br>
                 2. 미팅룸 ,푸드바, 프린팅 스테이션, 사무 가구 구비 <br>
                 3. 외부음식 및 주류 반입, 포장, 배달 가능. <br>
                 4. 간단한 조리 가능. <br>
@@ -62,7 +62,7 @@
             </li>
             <li>
               <span class="tit">> &nbsp;&nbsp;예약인원</span>
-              <span class="data">최소 2명 ~ 최대 40명</span>
+              <span class="data">최소 2명 ~ 최대 70명</span>
             </li>
           </ul>
 
@@ -186,7 +186,7 @@
               <li>
                 <span class="info-pay-col1">예약인원</span>
                 <span class="info-pay-col2">
-               	  <input type="number" name="orderUserCount" id="reservationUserCount" class="totalCount" max="40" min="2" placeholder="0명"
+               	  <input type="number" name="orderUserCount" id="reservationUserCount" class="totalCount" max="70" min="2" placeholder="0명"
                	  	     onkeyup="this.value=this.value.replace(/[^0-9]/g,''); totalCount()" required="required" />
                 </span>
                 
@@ -199,19 +199,17 @@
               </li>
               <li id="pay-result">
                 <span id="pay-result-left">\</span>
-                <span id="pay-result-right">239,000</span>
+                <span id="pay-result-right">280,000</span>
               </li>
             </ul>
             <input type="button" id="payment" value="결제" onclick="iamport()">
           </div>
         </div>
       </div>
-      
       <input type="hidden" name="userId" value="${sessionScope.user }">
-      <input type="hidden" name="productNo" value="21">
+      <input type="hidden" name="productNo" value="25">
       <button type="submit" id="submit"></button>
     </form>
-    
    	 	<!-- 예약된 날짜들 hidden으로 값 생성한뒤 JS에서 사용.  -->
 	    <c:forEach var="date" items="${rList}">
 	    	<input type="hidden" class="date" value="${date }">
@@ -230,9 +228,9 @@
   		  if (value < 2) {
   		    inputNumber.value = 2;
   		    alert('2보다 작은 값을 입력할 수 없습니다.');
-  		  } else if (value > 40) {
-  		    inputNumber.value = 40;
-  		    alert('40보다 큰 값을 입력할 수 없습니다.');
+  		  } else if (value > 70) {
+  		    inputNumber.value = 70;
+  		    alert('70보다 큰 값을 입력할 수 없습니다.');
   		  }
   		});
   	}
@@ -337,8 +335,8 @@
 		    pg : 'kicc',         // pg사
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : '렌플 - 교대점 ' ,     //결제창에서 보여질 이름
-		    amount : 20,        //실제 결제되는 가격
+		    name : '렌플 - 사당점 ' ,     //결제창에서 보여질 이름
+		    amount : 10,        //실제 결제되는 가격
 		    buyer_email : orderEmail,
 		    buyer_name : orderName,
 		    buyer_tel : '010-1234-5678',
