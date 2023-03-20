@@ -15,8 +15,8 @@
 			<form action="/question/insert" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" value="${sessionScope.user}" name="userId">
-				제목 : <input type="text" name="questionTitle"> <br> 내용 :
-				<textarea rows="" col="" name="questionContent"></textarea>
+				제목 :<input type="text" name="questionTitle"> <br> 내용 :
+				<textarea rows="10" col="" name="questionContent"></textarea>
 				<br> 첨부파일 : <input type="file" name="uploadFile" id="fileImage"><br>
 				<div id="Container" contentEditable="false"></div>
 				<div class="content-btn">

@@ -6,7 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항 수정</title>
-<link rel="stylesheet" href="../../../resources/noticeCss/modify.css">
+<link rel="stylesheet" href="../../../resources/questionCss/modify.css">
+<style>
+	#inner{
+	padding-top: 2vh;
+    border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	margin: 0 auto;
+	height: 55vh;
+	width: 60vw;
+	line-height : 8vh;
+}
+</style>
 </head>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -16,7 +27,7 @@
 	<form action="/question/update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="questionNo" value="${qna.questionNo }">
 		제목 : <input type="text" name="questionTitle" value="${qna.questionTitle }"><br>
-		내용 : <textarea name="questionContent">${qna.questionContent }</textarea><br>
+		내용 : <textarea name="questionContent" rows="10">${qna.questionContent }</textarea><br>
 	    아이디 : <input type="text" name="userId" value="${qna.userId}" readonly> <br>
 		
 		<c:if test="${qna.questionFilename eq null }">
@@ -27,7 +38,7 @@
 			<button>
 				<a href="javascript:void(0);" onclick="removeCheckImg('${qna.questionFilename}', ${qna.questionNo});">파일삭제</a>
 			</button>
-			<img class="img" src="../../../resources/questionUploadFiles/${qna.questionFilename }" alt="문의 이미지">
+			<img class="img" src="/resources/questionUploadFiles/${qna.questionFilename }" alt="문의 이미지">
 		</c:if>
 		<br>
 		<div class="content-btn">

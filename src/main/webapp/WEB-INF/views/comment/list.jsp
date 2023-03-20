@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../../resources/mainCss/table.css">
+<title>문의 관리</title>
+<link rel="stylesheet" href="../../../resources/mainCss/table.css">
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<form action="/comment/list" method="get">

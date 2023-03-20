@@ -44,7 +44,7 @@ input {
 
 .content-btn {
 	text-align: center;
-	margin-top: 1vh;
+    margin-top: 3vh;
 }
 
 .content-btn button {
@@ -71,4 +71,11 @@ button+button {
 
 #Container {
 	height: 150px;
+}
+textarea {
+	resize : none;
+	height : 50%;
+}
+input, textarea {
+	width : 50%;
 }

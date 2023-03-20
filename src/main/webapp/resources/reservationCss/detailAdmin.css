@@ -20,40 +20,42 @@ body {
 	width: 70vw;
 	margin: 0 auto;
 }
-
 h1 {
 	text-align: center;
 }
-form h1 {
-    text-align: center;
-}
-
-form table {
-   	padding-top: 2vh;
-   	padding-bottom: 2vh;
+#inner{
+	padding-top: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 70vh;
+	height: 60vh;
 	width: 60vw;
-	text-align: center;
-}
-form a{
-	text-decoration: none;
-	color: black;
-}
-form table a:hover{
-	color: #BDC8A6;
+	line-height : 3vh;
 }
 
-form .content-btn {
-	text-align: center;
-	margin-top : 3vh;
+a {
+	text-decoration : none;	
+	color : black;
+	text-align : center;
 }
 
-form .content-btn button {
+.content-btn {
+	text-align: center;
+	margin-top : 15px;
+}
+
+.content-btn button {
 	width: 150px;
 	height: 40px;;
 	background-color : #e5e5cb;
 	border: none;
+}
+.content-btn input {
+	width: 150px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+}
+button + button {
+	margin-left : 3vh;
 }

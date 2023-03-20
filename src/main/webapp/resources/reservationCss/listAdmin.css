@@ -8,50 +8,39 @@
 
 * {
     font-family: 'Chosunilbo_myungjo';
+    text-align: center;
 }
-
-body {
-	margin: 0;
-}
-
 #outter {
 	padding-top : 72px;
 	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
-
 h1 {
-	text-align: center;
-}
-form h1 {
     text-align: center;
 }
-
-form table {
-   	padding-top: 2vh;
-   	padding-bottom: 2vh;
+table {
+	padding : 20px;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
 	height: 70vh;
 	width: 60vw;
-	text-align: center;
 }
-form a{
-	text-decoration: none;
-	color: black;
-}
-form table a:hover{
-	color: #BDC8A6;
+a {
+	text-decoration : none;	
+	color : black;
 }
 
-form .content-btn {
+table a:hover {
+	color : #BDC8A6;
+}
+.content-btn {
 	text-align: center;
-	margin-top : 3vh;
+	margin-top : 15px;
 }
 
-form .content-btn button {
+.content-btn button {
 	width: 150px;
 	height: 40px;;
 	background-color : #e5e5cb;
