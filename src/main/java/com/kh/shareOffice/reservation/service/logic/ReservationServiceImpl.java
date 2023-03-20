@@ -67,6 +67,12 @@ public class ReservationServiceImpl implements ReservationService{
 		return rList;
 	}
 
+	@Override
+	public int modifyReservation(Order order) {
+		int result = rStore.modifyReservation(order);
+		return result;
+	}
+
 
 	
 }

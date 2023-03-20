@@ -79,5 +79,11 @@ public class ReservationStoreLogic implements ReservationStore{
 		return rList;
 	}
 
+	@Override
+	public int modifyReservation(Order order) {
+		int result = session.update("ReservationMapper.modifyReservation", order);
+		return result;
+	}
+
 	
 }

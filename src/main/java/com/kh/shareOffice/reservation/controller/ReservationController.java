@@ -106,6 +106,16 @@ public class ReservationController {
 		}		
 	}
 	
+	// 예약 정보 수정
+	@RequestMapping(value = "/reservation/detail/reservationModify", method = RequestMethod.POST)
+	public String reservationModify(Order order, Model model) {
+		System.out.println(order);
+		int result = rService.modifyReservation(order);
+		ReservationList order2 = rService.selectOneByOrderNo(order.getOrderNo());
+		model.addAttribute("order", order2);
+		return "reservation/detail/reservationDetail";
+		
+	}
 	// 예약 취소
 	@RequestMapping(value = "/reservation/delete", method = RequestMethod.GET)
 	public String reservationDelete(Model model, HttpServletRequest request

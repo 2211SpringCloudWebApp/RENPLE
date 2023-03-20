@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <title>강남 1호점 - 렌플</title>
+  <title>교대점 - 렌플</title>
   <link rel="stylesheet" href="/resources/reservationCss/office.css">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,16 +32,16 @@
       <!-- The slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="/resources/img/reservation/gangnam1_main_1.png" class="rounded" >
+          <img src="/resources/img/reservation/pc_gyodae1_main_1.png" class="rounded" >
         </div>
         <div class="carousel-item">
-          <img src="/resources/img/reservation/gangnam1_main_3.png" class="rounded" >
+          <img src="/resources/img/reservation/pc_gyodae1_main_2.png" class="rounded" >
         </div>
         <div class="carousel-item">
-          <img src="/resources/img/reservation/gangnam1_main_4.png" class="rounded" >
+          <img src="/resources/img/reservation/pc_gyodae1_main_4.png" class="rounded" >
         </div>
         <div class="carousel-item">
-          <img src="/resources/img/reservation/gangnam1_main_5.png" class="rounded" >
+          <img src="/resources/img/reservation/pc_gyodae1_main_5.png" class="rounded" >
         </div>
       </div>
 
@@ -90,34 +90,34 @@
             <section>
               <div id="detail-2-review-1">
                 <a href="" target="_blank">
-                  <img src="/resources/img/reservation/gangnam1_review_1.png">
+                  <img src="/resources/img/reservation/pc_gyodae1_review_1.png">
                   <div>
                     <span class="detail-span-top">
-                      14인 기업
+                      3인 기업
                     </span>
                     <p>
-                    간식, 마스크, 건강검진권 증정 등 다양한 이벤트 덕분에 업무 중
-									  순간에 환기가 됩니다. 패스트파이브는 아낌없이 주는 나무 같아요!
+                      넓고 쾌적한 라운지에 나오면 기분전환도 되고 쉴 수 있는 공간이 많아요.<br>
+				  	  이용하는데 불편함 없도록 다과나 회의실이 있어서 업무에 도움 돼요.
                     </p>
-                      <span class="detail-span-bottom" style="border-right: 1px solid #e4e4e4; padding-right: 15px;">강남1호점</span>
-                      <span class="detail-span-bottom" style="padding-left: 15px;">신희채님 </span>
+                      <span class="detail-span-bottom" style="border-right: 1px solid #e4e4e4; padding-right: 15px;">교대점</span>
+                      <span class="detail-span-bottom" style="padding-left: 15px;">전효성님 </span>
                   </div>
                 </a>  
 
               </div>
               <div id="detail-2-review-2">
                 <a href="" target="_blank">
-                  <img src="/resources/img/reservation/gangnam1_review_2.png">
+                  <img src="/resources/img/reservation/pc_gyodae1_review_2.png">
                   <div>
                     <span class="detail-span-top">
-                      14인 기업
+                      10인 기업
                     </span>
                     <p>
-                    간식, 마스크, 건강검진권 증정 등 다양한 이벤트 덕분에 업무 중
-									  순간에 환기가 됩니다. 패스트파이브는 아낌없이 주는 나무 같아요!
+                      현재 회사의 가장 큰 매력 포인트 중 하나가 패파에 입주해 있었다는 점이다.<br> 
+                      그만큼 쾌적하고 세련된 시설이 내 마음을 훔쳐가 버렸다.
                     </p>
-                      <span class="detail-span-bottom" style="border-right: 1px solid #e4e4e4; padding-right: 15px;">강남1호점</span>
-                      <span class="detail-span-bottom" style="padding-left: 15px;">김은지님 </span>
+                      <span class="detail-span-bottom" style="border-right: 1px solid #e4e4e4; padding-right: 15px;">교대점</span>
+                      <span class="detail-span-bottom" style="padding-left: 15px;">유현주님 </span>
                   </div>
                 </a>
 
@@ -131,21 +131,21 @@
             <div>
               <ul>
                 <li class="detail-subway-2">2 </li>
-                <li class="detail-subway-sin"> 신 </li>
+                <li class="detail-subway-3"> 3 </li>
               </ul>
-              <h1>강남 1호점</h1>
+              <h1>교대점</h1>
               <dl>
                 <div>
                   <dt> <img src="/resources/img/reservation/map_pin.svg" > </dt>
-                  <dd> <span>강남구 강남대로 382</span> </dd>
+                  <dd> <span>서울특별시 서초구 서초1동 1669-12</span> </dd>
                 </div>
                 <div>
                   <dt> <img src="/resources/img/reservation/tram.svg"> </dt>
-                  <dd> <span>강남역 2, 3번 출구 도보 1분 거리</span> </dd>
+                  <dd> <span>교대역 8번 출구 도보 3분 거리</span> </dd>
                 </div>
                 <div>
                   <dt> <img src="/resources/img/reservation/corporate_fare.svg" > </dt>
-                  <dd> <span>300평 규모, 총 2개 층</span> </dd>
+                  <dd> <span>128평 규모</span> </dd>
                 </div>
                 <div>
                   <dt> <img src="/resources/img/reservation/tram.svg" > </dt>
@@ -153,11 +153,11 @@
                 </div>
                 <div>
                   <dt> <img src="/resources/img/reservation/map_pin.svg"> </dt>
-                  <dd> <span>최대 인원 수 : 80명</span> </dd>
+                  <dd> <span>최대 인원 수 : 40명</span> </dd>
                 </div>
               </dl>
             </div>
-            <button onclick="location.href='/gangnam1/payment'"> 예약하기 </button>
+            <button onclick="location.href='/gyodae/payment'"> 예약하기 </button>
           </header>
         </div>
       </div>

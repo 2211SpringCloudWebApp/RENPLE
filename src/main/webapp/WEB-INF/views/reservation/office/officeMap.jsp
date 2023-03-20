@@ -122,7 +122,7 @@
             </div>
           </div>
 
-          <div class="list-item" data-value="서울 서초구 서초대로 지하 294">
+          <div class="list-item" onclick="location.href='/gyodae'"data-value="서울 서초구 서초대로 지하 294">
             <button>바로가기</button>
             <div class="shop">
               <div class="shop-title">

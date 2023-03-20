@@ -194,6 +194,48 @@ ul, li{
     font-weight: 700;
     background-color: #D4003B;
   }
+  .detail-subway-3{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #F18815;
+  }
+  .detail-subway-4{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #00A5DE;
+  }
+  .detail-subway-5{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #996CAC;
+  }
+  .detail-subway-9{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #BDB092;
+  }
+  
+  
 #detail-header h1{
   font-size: 39px;
   font-weight: 700;
@@ -245,3 +287,5 @@ ul, li{
     height: 56px !important;
     margin-top: 30px;
   }
+  
+ 

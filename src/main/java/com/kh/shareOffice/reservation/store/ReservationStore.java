@@ -25,5 +25,7 @@ public interface ReservationStore {
 
 	List<ReservationList> selectAllReservationList();
 
+	int modifyReservation(Order order);
+
 
 }
