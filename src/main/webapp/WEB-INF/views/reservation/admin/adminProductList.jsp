@@ -19,12 +19,16 @@
 	<div style="margin: 0 auto !important;
 	     width: 1300px !important;
 	     margin-bottom: 100px !important;">
+	     <div id="outter">
 		<h1 style="margin-top:100px; text-align: center;">상품 리스트 조회</h1>
+		<div id="inner">
 		<table class="table table-hover" style="margin-top: 100px;">
 			<tr>
 				<td></td>
 			</tr>
 		</table>
+		</div>
+		</div>
     </div>
     <jsp:include page="../../footer.jsp"></jsp:include>
 </body>

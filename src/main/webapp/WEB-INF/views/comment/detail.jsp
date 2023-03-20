@@ -7,43 +7,70 @@
 <head>
 <meta charset="UTF-8">
 <title>문의 답변</title>
+<link rel="stylesheet"
+	href="../../../resources/questionCss/detailAdmin.css">
 </head>
 <body>
-	<h1>문의 답변</h1>
-	제목 : ${question.questionTitle }
-	<br> 내용 : ${question.questionContent }
-	<br> 아이디 : ${question.userId }
-	<br>
-	<c:if test="${not empty notice.noticeFilename}">
-				첨부파일 : ${notice.noticeFilename }
-		<br>
-		<img class="img"
-			src="../../../resources/noticeUploadFiles/${notice.noticeFilename }"
-			alt="공지 이미지">
-	</c:if>
-
-	<form action="/comment/insert" method="post">
-		<input type="hidden" name="userId" value="${question.userId }">
-		<input type="hidden" name="questionNo" value="${question.questionNo }">
-		<c:if test="${comment.commentContent eq null}">
-			<textarea rows="10" cols="30" name="commentContent"></textarea>
-			<br>
-			<button type="submit">댓글 작성</button>
-		</c:if>
-		<c:if test="${comment.commentContent ne null}">
-			<textarea rows="10" cols="30" name="commentContent">${comment.commentContent }</textarea>
-			<br>
-			<button type="button" onclick="deleteChk();">삭제</button>
-			<button type="button" onclick="updateChk();">수정</button>
-		</c:if>
-
-	</form>
-
-	<br>
-	<br>
-
-	<a href="/comment/list">목록으로</a>
-
+	<jsp:include page="../header.jsp"></jsp:include>
+	<div id="outter">
+		<h1>문의 답변</h1>
+		<div id="inner">
+			<div id="qna">
+				<c:if test="${not empty question.questionFilename}">
+					<div id="question" style="display: flex">
+						<div class="notImg" style="width: 50%">
+							아이디 : ${question.userId }<br> 제목 : ${question.questionTitle }<br>
+							내용 : ${question.questionContent }<br> 첨부파일 :
+							${question.questionFilename }<br>
+						</div>
+						<div class="img" style="width: 50%">
+							<img class="img"
+								src="../../../resources/questionUploadFiles/${question.questionFilename }"
+								alt="문의 이미지">
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${empty question.questionFilename}">
+					<div id="question">
+						<div class="notImg" style="width: 100%">
+							아이디 : ${question.userId }<br> 제목 : ${question.questionTitle }<br>
+							내용 : ${question.questionContent }<br>
+						</div>
+					</div>
+				</c:if>
+				<div id="answer">
+					<div class="notImg2">
+						<form action="/comment/insert" method="post">
+							<input type="hidden" name="userId" value="${question.userId }">
+							<input type="hidden" name="questionNo"
+								value="${question.questionNo }">
+							<c:if test="${comment.commentContent eq null}">
+								<textarea placeholder="댓글을 작성해주세요" rows="10" cols="80"
+									name="commentContent"></textarea>
+								<div class="content-btn">
+									<button type="submit">댓글 작성</button>
+								</div>
+							</c:if>
+							<c:if test="${comment.commentContent ne null}">
+								<textarea rows="10" cols="80" name="commentContent">${comment.commentContent }</textarea>
+								<br>
+								<div class="content-btn">
+									<button type="button" onclick="deleteChk();">삭제</button>
+									<button type="button" onclick="updateChk();">수정</button>
+								</div>
+							</c:if>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-btn">
+			<button>
+				<a href="/comment/list">목록으로</a>
+			</button>
+		</div>
+	</div>
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		function deleteChk() {
 			if (confirm("정말로 삭제하시겠습니까?")) {

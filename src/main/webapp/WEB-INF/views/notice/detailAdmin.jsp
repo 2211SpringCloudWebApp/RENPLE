@@ -23,7 +23,7 @@
 			내용 : ${notice.noticeContent }<br>
 <!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
 			<c:if test="${not empty notice.noticeFilename}">
-				첨부파일 : ${notice.noticeFilename }<br>
+				첨부파일 : ${notice.noticeFilename }
 				<img class="img" src="../../../resources/noticeUploadFiles/${notice.noticeFilename }" alt="공지 이미지">
 			</c:if>
 		</div>
