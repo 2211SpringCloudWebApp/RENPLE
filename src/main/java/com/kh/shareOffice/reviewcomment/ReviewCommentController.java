@@ -26,10 +26,7 @@ public class ReviewCommentController {
 			
 			try {
 				int result = cService.deleteComment(commentNo);
-//				int reviewNo = cService.selectReviewNoByCommentNo(commentNo);
-				System.out.println(reviewNo);
 				if(result > 0) {
-					System.out.println(reviewNo);
 					return "redirect:/review/detail?reviewNo=" + reviewNo;
 				}
 				else {

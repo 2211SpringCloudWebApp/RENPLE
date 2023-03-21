@@ -70,7 +70,7 @@ public class UserController {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user.getUserId());
 				user = uService.selectUserById(userId);
-				model.addAttribute("name", user.getUserName());
+				session.setAttribute("name", user.getUserName());
 				return "home";
 			} else {
 				Alert alert = new Alert("/user/login", "아이디 또는 비밀번호를 다시 확인해주세요");
