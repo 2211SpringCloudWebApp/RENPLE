@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
-import com.kh.shareOffice.user.controller.User;
 
 @Controller
 @RequestMapping("/user")
