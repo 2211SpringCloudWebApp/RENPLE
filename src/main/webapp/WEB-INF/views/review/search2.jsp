@@ -61,14 +61,40 @@
 				</tbody>
 				<tfoot>
 					<tr align="center">
-						<td colspan="6">
+						<!-- 페이징 영역 -->
+						<td colspan="6" align="center">
+							<c:if test="${pi.currentPage != 1}">
+								<a href="/review/list?page=1&searchValue=${search.searchValue }&searchCondition=${search.searchCondition }"><span> 처음 </span></a>
+							</c:if>
+							<c:if test="${pi.currentPage != 1}">
+								<a href="/review/list?page=${pi.currentPage - 1 }&searchValue=${search.searchValue}&searchCondition=${search.searchCondition}"><span> 이전 </span></a>
+							</c:if>
 							<c:forEach begin="${pi.startNavi }" end="${pi.endNavi }" var="p">
 								<c:url var="pageUrl" value="/review/list">
-									<c:param name="page" value="${p }"></c:param>
+									<c:param name="page" value="${p}" />
+									<c:param name="searchValue" value="${search.searchValue }" />
+									<c:param name="searchCondition" value="${search.searchCondition }" />
 								</c:url>
-								<a href="${pageUrl }">${p }</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="${pageUrl }">
+									<c:if test="${p eq pi.currentPage }">
+										<span style="font-size: larger;">${p }</span>
+									</c:if>
+									<c:if test="${p ne pi.currentPage }">
+										${p }
+									</c:if>
+								</a>
 							</c:forEach>
-						</td>				
+							<c:if test="${pi.currentPage != pi.maxPage }">
+								<a href="/review/list?page=${pi.currentPage + 1 }&searchValue=${search.searchValue }&searchCondition=${search.searchCondition }">
+									<span> 다음 </span>
+								</a>
+							</c:if>
+							<c:if test="${pi.currentPage != pi.maxPage }">
+								<a href="/review/list?page=${pi.maxPage }&searchValue=${search.searchValue}&searchCondition=${search.searchCondition}">
+									<span> 마지막 </span>
+								</a>
+							</c:if>
+						</td>
 					</tr>
 				</tfoot>
 			</table>

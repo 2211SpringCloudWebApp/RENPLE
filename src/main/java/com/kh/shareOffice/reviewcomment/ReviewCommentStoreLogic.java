@@ -22,8 +22,8 @@ public class ReviewCommentStoreLogic implements ReviewCommentStore{
 	}
 
 	@Override
-	public int deleteComment(SqlSession session, ReviewComment comment) {
-		int result = session.delete("ReviewCommentMapper.deleteComment", comment);
+	public int deleteComment(SqlSession session, int commentNo) {
+		int result = session.delete("ReviewCommentMapper.deleteComment", commentNo);
 		return result;
 	}
 
@@ -31,6 +31,12 @@ public class ReviewCommentStoreLogic implements ReviewCommentStore{
 	public List<ReviewComment> selectCommentList(SqlSession session, int reviewNo) {
 		List<ReviewComment> cList = session.selectList("ReviewCommentMapper.selectCommentList", reviewNo);
 		return cList;
+	}
+
+	@Override
+	public int selectReviewNoByCommentNo(SqlSession session, int commentNo) {
+		int result = session.selectOne("ReviewCommentMapper.selectReviewNoByCommentNo", commentNo);
+		return result;
 	}
 
 }

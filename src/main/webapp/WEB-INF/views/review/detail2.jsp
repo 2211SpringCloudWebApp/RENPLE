@@ -10,10 +10,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<link rel="stylesheet" href="../../../resources/reviewCss/detail.css">
 		<style>
-			.link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
-			.link-icon.twitter { background-image: url(/resources/img/review/icon-twitter.png); background-repeat: no-repeat; }
-			.link-icon.facebook { background-image: url(/resources/img/review/icon-facebook.png); background-repeat: no-repeat; } 
-			.link-icon.like-btn { background-image: url(/resources/img/review/likeup.png); background-repeat: no-repeat; } 
+			.link-icon.twitter {
+				background-image: url(/resources/img/review/twitter.png);
+				background-repeat: no-repeat;
+				width: 75px;
+				height: 50px;
+			}
+			.link-icon.facebook {
+				background-image: url(/resources/img/review/facebook.png);
+				background-repeat: no-repeat;
+				width: 75px;
+				height: 50px;
+			}
+			.link-icon.like-btn {
+				background-image: url(/resources/img/review/like.png);
+				background-repeat: no-repeat;
+				width: 75px;
+				height: 50px;
+			}
 			input[type=number]{
 			    margin-bottom: 0;
 			    margin-left: 8px;
@@ -86,6 +100,16 @@
 			</div>
 			<c:if test="${review.reviewFilename eq null }">
 				<div id="main-contant-noimg">
+					<div id="ratingStar">
+						<label style="color: white;">
+				        	<input type="hidden" name="reviewRating" value="${review.reviewRating }" step="0.1" min="0.1" max="5" readonly/>
+				        </label>
+				        <div class="rating-wrap">
+				       		<div class="rating">
+				       			<div class="overlay"></div>
+				        	</div>
+				        </div>
+					</div>
 					<p>
 						${review.reviewContent }
 					</p>
@@ -99,7 +123,7 @@
 				<div id="text-area">
 					<div id="ratingStar">
 						<label style="color: white;">
-				        	<input type="number" name="reviewRating" value="${review.reviewRating }" step="0.1" min="0.1" max="5" readonly/>
+				        	<input type="hidden" name="reviewRating" value="${review.reviewRating }" step="0.1" min="0.1" max="5" readonly/>
 				        </label>
 				        <div class="rating-wrap">
 				       		<div class="rating">
@@ -115,15 +139,16 @@
 		</c:if>
 			<br>
 			<div id="button-area2">
-				<a id="btnTwitter" class="link-icon twitter" style="Color: white;" href="javascript:shareTwitter();">Twitter</a>&nbsp;&nbsp;&nbsp;
-				<a id="btnFacebook" class="link-icon facebook" style="Color: white;" href="javascript:shareFacebook();">facebook</a> &nbsp;&nbsp;&nbsp;
+				<a id="btnTwitter" class="link-icon twitter" style="Color: white;" href="javascript:shareTwitter();"></a>&nbsp;&nbsp;&nbsp;
+				<a id="btnFacebook" class="link-icon facebook" style="Color: white;" href="javascript:shareFacebook();"></a> &nbsp;&nbsp;&nbsp;
 				<c:if test="${user == null }">
-					<button type="button" class="link-icon like-btn" onclick="alert('로그인이 필요한 기능입니다.');">Like!</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="link-icon like-btn" style="cursor: pointer;"
+						onclick="alert('로그인이 필요한 기능입니다.');"></a>
 				</c:if>
 				<c:if test="${user != null }">
-					<form action="/review/likeUp" method="post">
-						<button type="button" class="link-icon like-btn">좋아요</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</form>
+					<input type="hidden" name="reviewNo" value="${review.reviewNo }">
+					<a class="link-icon like-btn" style="cursor: pointer;"
+						onclick="location.href = '/review/likeUp?reviewNo=${review.reviewNo }'"></a>
 				</c:if>
 			</div>
 			<button type="button" class="btn btn-secondary" onclick="location.href='/review/list'">후기 목록</button>
@@ -158,6 +183,24 @@
 				</div>
 			</c:if>
 			
+<!-- 			<button type='button' id="modal_btn">모달창아 나와랏</button> -->
+<!-- 			<div class="black_bg"></div> -->
+<!-- 			<div class="modal_wrap"> -->
+<!-- 			    <div class="modal_close"><a href="#">close</a></div> -->
+<!-- 			    <div> -->
+<%-- 			        <c:if test="${user == reviewcomment.userId || user == 'admin' }"> --%>
+<!-- 						<div id="modifyDiv"> -->
+<!-- 							<form action="/reviewcomment/modify" method="post"> -->
+<%-- 								<input type="hidden" id="commentNo" name="commentNo" value=${reviewcomment.commentNo }> --%>
+<%-- 								<input type="hidden" id="userId" name="userId" value="${user }"> --%>
+<%-- 								<input type="hidden" id="reviewNo" name="reviewNo" value="${reviewcomment.reviewNo }"> --%>
+<%-- 								<input type="text" id="commentContent" name="commentContent" value="${reviewcomment.commentContent }" placeholder="수정할 내용을 입력해주세요."> --%>
+<!-- 								<input type="submit" class="btn btn-secondary commentsubmit" value="수정"> -->
+<!-- 							</form> -->
+<!-- 						</div> -->
+<%-- 					</c:if> --%>
+<!-- 			    </div> -->
+<!-- 			</div> -->
 			
 			
 			
@@ -170,8 +213,19 @@
 							<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
 							<td>작성 날짜 : <fmt:formatDate value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
 							<c:if test="${user == reviewcomment.userId || user == 'admin'}">
-<!-- 								<td>&nbsp;<button onclick="toggleBtn1()">수정</button></td> -->
-								<td>&nbsp;<button onclick="commentRemoveCheck(${reviewcomment.commentNo});">삭제</button></td>
+								<td>&nbsp;<button onclick="toggleBtn1()">수정</button></td>
+								<td>&nbsp;<button onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button></td>
+								<td>
+									<div id="modifyDiv" style="visibility: visible">
+										<form action="/reviewcomment/modify" method="post">
+											<input type="hidden" id="commentNo" name="commentNo" value=${reviewcomment.commentNo }>
+											<input type="hidden" id="userId" name="userId" value="${user }">
+											<input type="hidden" id="reviewNo" name="reviewNo" value="${reviewcomment.reviewNo }">
+											<input type="text" id="commentContent" name="commentContent" value="${reviewcomment.commentContent }" placeholder="수정할 내용을 입력해주세요.">
+											<input type="submit" class="btn btn-secondary commentsubmit" value="수정">
+										</form>
+									</div>
+								</td>
 							</c:if>
 						</tr>
 						<tr>
@@ -185,7 +239,7 @@
 						<td></td>
 							<td colspan="3">
 								<c:if test="${user == reviewcomment.userId || user == 'admin' }">
-									<div id="modifyDiv" style="visibility: visible;">
+									<div id="modifyDiv" style="visibility: hidden;">
 										<form action="/reviewcomment/modify" method="post">
 											<input type="hidden" id="commentNo" name="commentNo" value=${reviewcomment.commentNo }>
 											<input type="hidden" id="userId" name="userId" value="${user }">
@@ -213,18 +267,19 @@
 					location.href = "/review/remove?reviewNo=" + reviewNo;
 				}
 			}
-			function commentRemoveCheck(commentNo) {
+			function commentRemoveCheck(commentNo, reviewNo) {
 				if(confirm("댓글을 삭제 하시겠습니까?")) {
-					location.href = "/reviewcomment/remove?commentNo=" + commentNo; 
+					
+					location.href = "/reviewcomment/remove?commentNo=" + commentNo + "&reviewNo=" + reviewNo; 
 				}
 			}
 			
 			function shareTwitter() {
-				var sendURL = "http://127.0.0.1:9999/review/detail.do?reviewNo=" + ${review.reviewNo};
+				var sendURL = "http://127.0.0.1:9999/review/detail?reviewNo=" + ${review.reviewNo};
 				window.open("https://twitter.com/intent/tweet?text=&url" + sendURL);				
 			}
 			function shareFacebook() {
-			    var sendUrl = "http://127.0.0.1:9999/review/detail.do?reviewNo=" + ${review.reviewNo};
+			    var sendUrl = "http://127.0.0.1:9999/review/detail?reviewNo=" + ${review.reviewNo};
 			    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 			}
 			
@@ -297,6 +352,9 @@
 	                document.querySelector('input[name=reviewRating]').value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
 	            })
 	        })
+// =================================================================================================
+// =================================================================================================
+// =================================================================================================
 		</script>
 	</body>
 </html>

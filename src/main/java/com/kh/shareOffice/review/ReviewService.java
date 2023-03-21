@@ -87,6 +87,6 @@ public interface ReviewService {
 	 * 후기글 좋아요 Service
 	 * @param review
 	 */
-	public void updateReviewLike(Integer reviewNo) throws Exception;
+	public void updateReviewLike(int reviewNo) throws Exception;
 
 }

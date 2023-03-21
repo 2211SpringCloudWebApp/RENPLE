@@ -20,7 +20,7 @@ public interface ReviewCommentStore {
 	 * @param commentNo
 	 * @return int
 	 */
-	public int deleteComment(SqlSession session, ReviewComment comment);
+	public int deleteComment(SqlSession session, int commentNo);
 
 	/**
 	 * 댓글 수정 Store
@@ -36,5 +36,13 @@ public interface ReviewCommentStore {
 	 * @return List<Comment>
 	 */
 	public List<ReviewComment> selectCommentList(SqlSession session, int reviewNo);
+
+	/**
+	 * 댓글번호로 글번호 가져오기
+	 * @param session
+	 * @param commentNo
+	 * @return int
+	 */
+	public int selectReviewNoByCommentNo(SqlSession session, int commentNo);
 
 }

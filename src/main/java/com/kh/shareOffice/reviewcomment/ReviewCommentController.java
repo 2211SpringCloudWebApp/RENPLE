@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReviewCommentController {
@@ -17,15 +18,19 @@ public class ReviewCommentController {
 		@RequestMapping(value = "/reviewcomment/remove", method = RequestMethod.GET)
 		public String commentRemove(
 				
-				@ModelAttribute ReviewComment comment
+				@RequestParam ("commentNo") int commentNo
+				, @RequestParam ("reviewNo") int reviewNo
 				,Model model
 				
 				) {
 			
 			try {
-				int result = cService.deleteComment(comment);
+				int result = cService.deleteComment(commentNo);
+//				int reviewNo = cService.selectReviewNoByCommentNo(commentNo);
+				System.out.println(reviewNo);
 				if(result > 0) {
-					return "redirect:/review/detail?reviewNo=" + comment.getReviewNo();
+					System.out.println(reviewNo);
+					return "redirect:/review/detail?reviewNo=" + reviewNo;
 				}
 				else {
 					model.addAttribute("msg", "댓글이 정상적으로 삭제되지 않았습니다.");

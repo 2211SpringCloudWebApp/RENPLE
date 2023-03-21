@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,9 +23,8 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 		<div id="container">
 			<div class="mainTitle">
-				<p><b>후기게시판 목록</b></p>
+				<h1>후기게시판</h1>
 			</div>
-
 			<div class="listnav">
 				<div class="search-area">
 					<form action="/review/search" method="get">
@@ -39,13 +39,13 @@
 					</form>
 				</div>
 				<div class="sortbtn" role="group">
-					<button type="button" class="btn btn-danger" onclick="location.href='/review/list'">최신순</button>
-					<button type="button" class="btn btn-warning" onclick="location.href='/review/listbyold'">오래된순</button>
-					<button type="button" class="btn btn-success" onclick="location.href='/review/listbyview'">조회수순</button>
-					<button type="button" class="btn btn-primary" onclick="location.href='/review/listbylike'">좋아요순</button>
+					<button type="button" onclick="location.href='/review/list'">최신순</button>
+					<button type="button" onclick="location.href='/review/listbyold'">오래된순</button>
+					<button type="button" onclick="location.href='/review/listbyview'">조회수순</button>
+					<button type="button" onclick="location.href='/review/listbylike'">좋아요순</button>
 				</div>
 			</div>
-			<table class="table table-hover" id="list-tbl">
+			<table id="list-tbl">
 				<thead>
 					<tr>
 						<th>No. 〒</th>
@@ -58,11 +58,11 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${rList }" var="review" varStatus="i">
-						<tr onclick="location.href='/review/detail?reviewNo=${review.reviewNo }'" style="cursor: pointer;">
+						<tr onclick="location.href='/review/detail?reviewNo=${review.reviewNo }'" id="listtr" style="cursor: pointer;">
 							<td class="review-number">${i.count }</td>
 							<td>${review.reviewTitle }</td>
 							<td>${review.userId }</td>
-							<td>${review.rCreateDate }</td>
+							<td><fmt:formatDate value="${review.rCreateDate }" pattern="yyyy-MM-dd" /></td>
 							<td>${review.reviewLikeCount }</td>
 							<td>${review.viewCount }</td>
 						</tr>
@@ -70,13 +70,37 @@
 				</tbody>
 				<tfoot>
 					<tr align="center">
-						<td colspan="6">
+						<!-- 페이징 영역 -->
+						<td colspan="6" align="center">
+							<c:if test="${pi.currentPage != 1}">
+								<a class="page" href="/review/list?page=1"><span> 처음 </span></a>
+							</c:if>
+							<c:if test="${pi.currentPage != 1}">
+								<a class="page" href="/review/list?page=${pi.currentPage - 1 }"><span> 이전 </span></a>
+							</c:if>
 							<c:forEach begin="${pi.startNavi }" end="${pi.endNavi }" var="p">
 								<c:url var="pageUrl" value="/review/list">
-									<c:param name="page" value="${p }"></c:param>
+									<c:param name="page" value="${p}" />
 								</c:url>
-								<a href="${pageUrl }">${p }</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a class="page" href="${pageUrl }">
+									<c:if test="${p eq pi.currentPage }">
+										<span style="font-size: larger;">${p }</span>
+									</c:if>
+									<c:if test="${p ne pi.currentPage }">
+										${p }
+									</c:if>
+								</a>
 							</c:forEach>
+							<c:if test="${pi.currentPage != pi.maxPage }">
+								<a class="page" href="/review/list?page=${pi.currentPage + 1 }">
+									<span> 다음 </span>
+								</a>
+							</c:if>
+							<c:if test="${pi.currentPage != pi.maxPage }">
+								<a class="page" href="/review/list?page=${pi.maxPage }">
+									<span> 마지막 </span>
+								</a>
+							</c:if>
 						</td>				
 					</tr>
 				</tfoot>
