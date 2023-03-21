@@ -28,7 +28,9 @@ public class OfficeController {
 	
 	// 강남 1호점
 	@RequestMapping(value = "/gangnam1", method = RequestMethod.GET)
-	public String gangnam1() {
+	public String gangnam1(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
 		return "reservation/office/gangnam1";
 	}
 	
@@ -59,7 +61,9 @@ public class OfficeController {
 	
 	// 교대점
 	@RequestMapping(value = "/gyodae", method = RequestMethod.GET)
-	public String gyodae() {
+	public String gyodae(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
 		return "reservation/office/gyodae";
 	}
 	
@@ -88,7 +92,9 @@ public class OfficeController {
 
 	// 여의도점
 	@RequestMapping(value = "/yeouido", method = RequestMethod.GET)
-	public String yeouido() {
+	public String yeouido(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
 		return "reservation/office/yeouido";
 	}
 	
@@ -117,7 +123,9 @@ public class OfficeController {
 	
 	// 사당점
 	@RequestMapping(value = "/sadang", method = RequestMethod.GET)
-	public String sadang() {
+	public String sadang(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
 		return "reservation/office/sadang";
 	}
 	

@@ -13,6 +13,91 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    #modal.modal-overlay {
+       width: 100%;
+       height: 100%;
+       position: absolute;
+       left: 0;
+       top: 0;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+       background: rgba(255, 255, 255, 0.4); 
+       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+       backdrop-filter: blur(1.5px);
+       -webkit-backdrop-filter: blur(1.5px);
+       border-radius: 10px;
+       border: 1px solid rgba(255, 255, 255, 0.18);
+       z-index: 100;
+       display: none;
+   }
+   #modal .modal-window {
+       background: #f1f1f1;
+       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+       backdrop-filter: blur( 13.5px );
+       -webkit-backdrop-filter: blur( 13.5px );
+       border-radius: 10px;
+       border: 1px solid rgba( 255, 255, 255, 0.18 );
+       width: 500px;
+       height: 550px;
+       position: relative;
+       top: -50px;
+       padding: 10px;
+   }
+   #modal .title {
+       padding-left: 180px;
+       display: inline;
+       text-shadow: 1px 1px 2px gray;
+       color: black;
+       
+   }
+   #modal .title h1 {
+       display: inline;
+   }
+   #modal .close-area {
+       display: inline;
+       float: right;
+       padding-right: 10px;
+       cursor: pointer;
+       text-shadow: 1px 1px 2px gray;
+       color: black;
+       font-size: 33px;
+   }
+   
+   #modal .content {
+       margin-top: 20px;
+       padding: 0px 10px;
+       text-shadow: 1px 1px 2px gray;
+       color: black;
+   }
+   #input-main {
+   	margin-top: 50px;
+   }
+   .input-box{
+   	margin-bottom: 20px;
+   }
+   .modal-input{
+   	width: 100%;
+   	height: 50px;
+   	padding: 0px 20px;
+	font-size: 22px;
+   }
+   #input-find{
+   	padding: 0px 20px;
+   	text-align: right;
+   	margin-bottom: 50px;
+	margin-top: 50px;
+   }
+   #input-find a{
+   	display: inline;
+   }
+   #loginBtn{
+   	margin-bottom: 20px;
+   }
+   
+    </style>
 </head>
 
 <body>
@@ -20,6 +105,45 @@
   <jsp:include page="../../header.jsp"></jsp:include>
   
   <main>
+<!-- 비로그인으로 예약 버튼 클릭시 모달창 띄우기 -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+			<div class="title">
+                <h1>로그인</h1>
+            </div>
+            <div onclick="closeModal()" class="close-area">X</div>
+            
+            <form action="/user/modalLogin" method="post">
+	            <input type="hidden" name="modal" value="yeouido">  <!-- 수정 -->
+				<div id="inner">
+					<div id="input-main">
+						<div class="input-box">
+							<input type="text" id="name" class="modal-input" name="userId" placeholder="아이디를 입력해주세요" required autofocus>
+						</div>
+						<div class="input-box">
+							<input type="password" id="pw" class="modal-input" name="userPw" placeholder="비밀번호를 입력해주세요" required>
+						</div>
+					</div>
+					
+					<div id="input-find">
+						<a href="#">아이디 찾기</a>
+						<span>|</span>
+						<a href="#">비밀번호 찾기</a>
+					</div>
+					<div id="input-btn">
+						<button type="submit" class="modal-input" id="loginBtn">
+							<span>로그인</span>
+						</button>
+						<button type="button" class="modal-input" onclick="location.href='/user/enroll'">
+							<span>회원가입</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+    </div>
+    <!-- ---------------------------------------------- -->
+    
     <div id="demo" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ul class="carousel-indicators">
@@ -157,7 +281,7 @@
                 </div>
               </dl>
             </div>
-            <button onclick="location.href='/yeouido/payment'"> 예약하기 </button>
+            <button onclick="reservation('${sessionScope.user}');"> 예약하기 </button>
           </header>
         </div>
       </div>
@@ -165,6 +289,32 @@
   </main>
  <jsp:include page="../../footer.jsp"></jsp:include>
  </div>
+<script>
+	 $(document).ready(function() {
+	     var modal = document.querySelector("#modal");
+	     modal.style.display = "none";
+	 })	
+	 
+	 function reservation(userId) {
+		    if (userId == null || userId == '') {
+		        const modal = document.querySelector("#modal");
+		        openModal();
+		    } else {
+		        location.href = "/gangnam1/yeouido"; 
+		    }
+		}
+	 
+	function openModal(){
+		document.querySelector("body").style.overflow="hidden";
+		window.scrollTo(0,0);
+        modal.style.display = "flex"
+        
+  	}
+	function closeModal(){
+  		document.querySelector("body").style.overflow="visible";
+        modal.style.display = "none"
+    }
+</script>
 </body>
 
 </html>

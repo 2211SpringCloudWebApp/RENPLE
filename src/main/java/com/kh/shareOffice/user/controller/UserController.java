@@ -57,8 +57,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, String userId, String userPw, @ModelAttribute User user,
-			Model model) {
+	public String login(HttpServletRequest request, String userId, String userPw, @ModelAttribute User user, Model model) 
+	{
 		try {
 			int result = uService.login(user);
 			if (result > 0) {
@@ -78,7 +78,53 @@ public class UserController {
 			return "common/error";
 		}
 	}
-
+	public String modal(String returnModal) {
+		if(returnModal.equals("gangnam1")) {
+			return "/gangnam1/payment";
+		} else if(returnModal.equals("gyodae")) {
+			return "/gyodae/payment";
+		} else if(returnModal.equals("sadang")) {
+			return "/sadang/payment";
+		} else {
+			return "/yeouido/payment";
+		}
+	}
+	
+	// 상은 - modalLogin 추가
+	@RequestMapping(value = "/modalLogin", method = RequestMethod.POST)
+	public String modalLogin(HttpServletRequest request, String userId, String userPw, 
+			@ModelAttribute User user, String modal, Model model) {
+		try {
+			int result = uService.login(user);
+			if (result > 0) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user.getUserId());
+				user = uService.selectUserById(user.getUserId());
+				model.addAttribute("name", user.getUserName());
+				
+				if(modal.equals("gangnam1")) {
+					return "redirect:/gangnam1/payment";
+				} else if(modal.equals("gyodae")) {
+					return "redirect:/gyodae/payment";
+				} else if(modal.equals("sadang")) {
+					return "redirect:/sadang/payment";
+				} else {
+					return "redirect:/yeouido/payment";
+				}
+				
+			} else {
+				Alert alert = new Alert("/gangnam1", "아이디 또는 비밀번호를 다시 확인해주세요");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+	
+	
 	// 로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request, Model model) {
