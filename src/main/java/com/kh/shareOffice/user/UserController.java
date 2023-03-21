@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
+import com.kh.shareOffice.user.controller.User;
 
 @Controller
 @RequestMapping("/user")
@@ -149,7 +150,7 @@ public class UserController {
 			return "common/error";
 		}
 	}
-	
+
 	// 아이디 찾기
 	@RequestMapping("findId")
 	public String findId() {
@@ -231,7 +232,8 @@ public class UserController {
 
 	}
 
-	// ========================================== 관리자 전용 ==========================================
+	// ========================================== 관리자 전용
+	// ==========================================
 
 	// 회원조회 + 페이징 + 조건부 검색
 	@RequestMapping("/selectSearchAll")
@@ -281,7 +283,7 @@ public class UserController {
 		PageInfo pi = new PageInfo(currPage, boardLimit, naviLimit, startNavi, endNavi, totalCnt, lastPage);
 		return pi;
 	}
-	
+
 	// 회원 상세보기
 	@RequestMapping("/select")
 	public String selectUser(Model model, String userId) {
@@ -324,9 +326,44 @@ public class UserController {
 		}
 	}
 
-	// ========================================== ajax ========================================== 
+	// 상은 - modalLogin 추가
+	@RequestMapping(value = "/modalLogin", method = RequestMethod.POST)
+	public String modalLogin(HttpServletRequest request, String userId, String userPw, @ModelAttribute User user,
+			String modal, Model model) {
+		try {
+			int result = uService.login(user);
+			if (result > 0) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user.getUserId());
+				user = uService.selectUserById(user.getUserId());
+				model.addAttribute("name", user.getUserName());
+
+				if (modal.equals("gangnam1")) {
+					return "redirect:/gangnam1/payment";
+				} else if (modal.equals("gyodae")) {
+					return "redirect:/gyodae/payment";
+				} else if (modal.equals("sadang")) {
+					return "redirect:/sadang/payment";
+				} else {
+					return "redirect:/yeouido/payment";
+				}
+
+			} else {
+				Alert alert = new Alert("/gangnam1", "아이디 또는 비밀번호를 다시 확인해주세요");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// ========================================== ajax
+	// ==========================================
 	// produces = "application/json; charset=UTF-8" 사용으로 jackson-databind 라이브러리 생략
-	
+
 	// 아이디 중복 체크
 	@RequestMapping(value = "/idChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody

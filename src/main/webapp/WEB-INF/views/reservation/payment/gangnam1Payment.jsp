@@ -103,11 +103,11 @@
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone2" name="Phone2" value="${phone2 } id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
+                    <input name="phone2" name="Phone2" value="${phone2 }" id="orderPhone2"  maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 중간자리" type="tel">
                   </div>
                   <span>-</span>
                   <div class="phone-col">
-                    <input name="phone3" name="Phone3" value="${phone3 } id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
+                    <input name="phone3" name="Phone3" value="${phone3 }" id="orderPhone3" maxlength="4" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" required="required" title="휴대폰 뒷자리" type="tel">
                   </div>
                 </dd>
               </dl>
@@ -118,7 +118,7 @@
                   <span class="ico-requ">*</span>
                 </dt>
                 <dd class="flex">
-                  <input type="email" name="orderEmail" value="${user.userEmail } id="orderEmail" required="required">
+                  <input type="email" name="orderEmail" value="${user.userEmail }" id="orderEmail" required="required">
                 </dd>
               </dl>
 
