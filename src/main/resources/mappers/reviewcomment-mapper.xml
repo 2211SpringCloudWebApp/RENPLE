@@ -15,6 +15,10 @@
 		SELECT * FROM REVIEW_COMMENT_TBL WHERE REVIEW_NO = #{reviewNo} ORDER BY COMMENT_NO ASC
 	</select>
 	
+	<select id="selectReviewNoByCommentNo" resultType="int">
+		SELECT REVIEW_NO FROM REVIEW_COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
+	</select>
+	
 	<insert id="insertComment">
 		INSERT INTO REVIEW_COMMENT_TBL VALUES(
 		SEQ_REVIEW_COMMENT_NO.NEXTVAL, 

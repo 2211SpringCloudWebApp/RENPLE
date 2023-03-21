@@ -21,8 +21,8 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 	}
 
 	@Override
-	public int deleteComment(ReviewComment comment) {
-		int result = cStore.deleteComment(session, comment);
+	public int deleteComment(int commentNo) {
+		int result = cStore.deleteComment(session, commentNo);
 		return result;
 	}
 
@@ -36,6 +36,12 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 	public List<ReviewComment> selectCommentList(int reviewNo) throws Exception {
 		List<ReviewComment> cList = cStore.selectCommentList(session, reviewNo);
 		return cList;
+	}
+
+	@Override
+	public int selectReviewNoByCommentNo(int commentNo) {
+		int result = cStore.selectReviewNoByCommentNo(session, commentNo);
+		return result;
 	}
 
 }

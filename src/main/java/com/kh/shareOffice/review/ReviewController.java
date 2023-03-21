@@ -253,7 +253,6 @@ public class ReviewController {
 	public String reviewDetailView(
 			
 			@RequestParam("reviewNo") int reviewNo
-//			, @RequestParam(value = "userId", required = false) String userId 
 			, Model model
 			
 			) {
@@ -378,15 +377,34 @@ public class ReviewController {
 //	==========================================================================================
 //	======================================= 게시글 좋아요 =======================================
 //	==========================================================================================
-	@RequestMapping(value = "/review/likeUp", method = RequestMethod.POST)
-	public void likeUp(
+//	@RequestMapping(value = "/review/likeUp", method = RequestMethod.POST)
+//	public void likeUp(
+//			
+//			@RequestParam(value="reviewNo", required=false) Integer reviewNo
+//			, Model model
+//			
+//			) throws Exception {
+//		
+//		rService.updateReviewLike(reviewNo);
+//	}
+	
+	@RequestMapping("/review/likeUp")
+	public String likeUp(
 			
-			@RequestParam(value="reviewNo", required=false) Integer reviewNo
+			@RequestParam(value = "reviewNo", required = false) int reviewNo
 			, Model model
 			
 			) throws Exception {
 		
 		rService.updateReviewLike(reviewNo);
+		return "redirect:/review/detail.do?reviewNo=" + reviewNo;
 	}
 	
 }
+
+
+
+
+
+
+
