@@ -24,7 +24,7 @@
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 40vh;
+	height: 60vh;
 	width: 60vw;
 	line-height : 8vh;
 }
@@ -40,7 +40,7 @@ a {
 }
 
 .content-btn button {
-	width: 150px;
+	width: 150p;
 	height: 40px;;
 	background-color : #e5e5cb;
 	border: none;
@@ -59,4 +59,7 @@ textarea {
 }
 input, textarea {
 	width : 30%;
+}
+img {
+	height : 30%;
 }

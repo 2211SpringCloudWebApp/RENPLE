@@ -31,12 +31,11 @@
 						첨부파일 : ${question.questionFilename }
 						<br>
 							<img class="img"
-								src="/resources/questionUploadFiles/${question.questionFilename }"
+								src="../../../resources/questionUploadFiles/${question.questionFilename }"
 								alt="문의 이미지">
 						</c:if>
 					</div>
 				</div>
-				<hr style="width : 50%;">
 				<div id="answer">
 					<div class="img">
 						<img src="../../../resources/img/question/answer.gif" />

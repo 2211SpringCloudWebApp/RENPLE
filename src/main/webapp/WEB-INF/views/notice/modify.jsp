@@ -16,6 +16,7 @@
 		<div id="inner">
 			<form action="/notice/modify" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="noticeNo" value="${notice.noticeNo }">
+				<input type="hidden" name="noticeFilename" value="${notice.noticeFilename }">
 				제목 : <input type="text" name="noticeTitle" value="${notice.noticeTitle }"><br>
 				내용 : <textarea rows="10" cols="50" name="noticeContent">${notice.noticeContent }</textarea><br>
 

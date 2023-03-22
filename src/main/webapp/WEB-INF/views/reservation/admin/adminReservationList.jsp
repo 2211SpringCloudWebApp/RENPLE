@@ -6,7 +6,7 @@
 
 <head>
   <title>관리자 - 예약 내역 리스트</title>
-  <link rel="stylesheet" href="../../../resources/reservationCss₩/listAdmin.css">
+  <link rel="stylesheet" href="../../../resources/reservationCss/listAdmin.css">
   <meta charset="utf-8">
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
