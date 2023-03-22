@@ -28,8 +28,7 @@
 		Q_CREATE_DATE = DEFAULT,
 		QUESTION_FILENAME = #{questionFilename},
 		QUESTION_FILEPATH = #{questionFilepath}
-		WHERE QUESTION_NO =
-		#{questionNo}
+		WHERE QUESTION_NO = #{questionNo}
 	</update>
 
 	<delete id="deleteQuestion">

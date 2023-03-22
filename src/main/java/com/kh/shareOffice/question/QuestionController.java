@@ -166,6 +166,7 @@ public class QuestionController {
 			, @RequestParam("questionNo") int questionNo
 			,@RequestParam("questionTitle") String questionTitle
 			,@RequestParam("questionContent") String questionContent
+			,@RequestParam("questionFilename") String questionFilename
 			,@RequestParam("userId") String userId
 			,Model model
 			,@RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile
@@ -183,6 +184,10 @@ public class QuestionController {
 					// notice에 새로운 파일 이름, 파일 경로 set
 					qna.setQuestionFilename(reloadFile.getOriginalFilename());
 					qna.setQuestionFilepath(modifyPath);
+				}else {
+					qna.setQuestionFilename(null);
+					qna.setQuestionFilepath(null);
+
 				}
 			}
 			int result = qService.updateQuestion(qna);

@@ -15,6 +15,7 @@
 	<div id="inner">
 	<form action="/question/update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="questionNo" value="${qna.questionNo }">
+		<input type="hidden" name=questionFilename value="${qna.questionFilename }">
 		제목 : <input type="text" name="questionTitle" value="${qna.questionTitle }"><br>
 		내용 : <textarea name="questionContent">${qna.questionContent }</textarea><br>
 	    아이디 : <input type="text" name="userId" value="${qna.userId}" readonly> <br>
@@ -28,6 +29,7 @@
 				<a href="javascript:void(0);" onclick="removeCheckImg('${qna.questionFilename}', ${qna.questionNo});">파일삭제</a>
 			</button>
 			<img class="img" src="../../../resources/questionUploadFiles/${qna.questionFilename }" alt="문의 이미지">
+			
 		</c:if>
 		<br>
 		<div class="content-btn">
