@@ -300,7 +300,7 @@
 		        const modal = document.querySelector("#modal");
 		        openModal();
 		    } else {
-		        location.href = "/gangnam1/yeouido"; 
+		        location.href = "/yeouido/payment"; 
 		    }
 		}
 	 

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.reservation.domain.Order;
+import com.kh.shareOffice.reservation.domain.PageInfo;
 import com.kh.shareOffice.reservation.domain.ReservationList;
+import com.kh.shareOffice.reservation.domain.SearchBoard;
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.reservation.store.ReservationStore;
 import com.kh.shareOffice.reservation.store.logic.ReservationStoreLogic;
@@ -71,6 +73,57 @@ public class ReservationServiceImpl implements ReservationService{
 	public int modifyReservation(Order order) {
 		int result = rStore.modifyReservation(order);
 		return result;
+	}
+
+	// 페이징
+	@Override
+	public int getOrderListCount(String userId) {
+		int result = rStore.getOrderListCount(userId);
+		return result;
+	}
+	// 페이징
+	@Override
+	public List<ReservationList> selectOrderBoard(PageInfo pi, String userId) {
+		List<ReservationList> rList = rStore.selectOrderBoard(pi, userId);
+		return rList;
+	}
+
+	// 검색
+	@Override
+	public int getOrderSearchListCount(SearchBoard searchBoard) {
+		int result = rStore.getOrderSearchListCount(searchBoard);
+		return result;
+	}
+
+	@Override
+	public List<ReservationList> selectReservationListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		List<ReservationList> rList = rStore.selectReservationListByKeyword(pi, searchBoard);
+		return rList;
+	}
+
+	// 관리자 - 예약 목록 페이징
+	@Override
+	public int getAdminOrderListCount() {
+		int result = rStore.getAdminOrderListCount();
+		return result;
+	}
+
+	@Override
+	public List<ReservationList> selectAdminOrderBoard(PageInfo pi) {
+		List<ReservationList> rList = rStore.selectAdminOrderBoard(pi);
+		return rList;
+	}
+
+	@Override
+	public int getAdminOrderSearchListCount(SearchBoard searchBoard) {
+		int result = rStore.getAdminOrderSearchListCount(searchBoard);
+		return result;
+	}
+
+	@Override
+	public List<ReservationList> selectAdminReservationListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		List<ReservationList> rList = rStore.selectAdminReservationListByKeyword(pi, searchBoard);
+		return rList;
 	}
 
 

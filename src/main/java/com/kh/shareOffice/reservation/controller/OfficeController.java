@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.service.UserService;
 
 @Controller
 public class OfficeController {
@@ -20,8 +21,12 @@ public class OfficeController {
 	@Autowired
 	private ReservationService rService;
 	
+	@Autowired
+	private UserService uService;
+	
 	@RequestMapping(value = "/officeMap", method = RequestMethod.GET)
-	public String officeMap() {	
+	public String officeMap(Model model, HttpServletRequest request) {	
+		getUserName(model, request);
 		return "reservation/office/officeMap";
 	}
 	
@@ -29,8 +34,7 @@ public class OfficeController {
 	// 강남 1호점
 	@RequestMapping(value = "/gangnam1", method = RequestMethod.GET)
 	public String gangnam1(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
+		getUserName(model, request);
 		return "reservation/office/gangnam1";
 	}
 	
@@ -50,7 +54,7 @@ public class OfficeController {
 		User user = rService.selectOneById(userId);
 		String phone2 = user.getUserPhone().substring(3,7);
 		String phone3 = user.getUserPhone().substring(7);
-		model.addAttribute("rList", rList);
+		model.addAttribute("name", user.getUserName());
 		model.addAttribute("user", user);
 		model.addAttribute("phone2", phone2);
 		model.addAttribute("phone3", phone3);
@@ -61,9 +65,8 @@ public class OfficeController {
 	
 	// 교대점
 	@RequestMapping(value = "/gyodae", method = RequestMethod.GET)
-	public String gyodae(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
+	public String gyodae(Model model, HttpServletRequest request) {
+		getUserName(model, request);
 		return "reservation/office/gyodae";
 	}
 	
@@ -83,6 +86,7 @@ public class OfficeController {
 		User user = rService.selectOneById(userId);
 		String phone2 = user.getUserPhone().substring(3,7);
 		String phone3 = user.getUserPhone().substring(7);
+		model.addAttribute("name", user.getUserName());
 		model.addAttribute("rList", rList);
 		model.addAttribute("user", user);
 		model.addAttribute("phone2", phone2);
@@ -92,9 +96,8 @@ public class OfficeController {
 
 	// 여의도점
 	@RequestMapping(value = "/yeouido", method = RequestMethod.GET)
-	public String yeouido(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
+	public String yeouido(Model model, HttpServletRequest request) {
+		getUserName(model, request);
 		return "reservation/office/yeouido";
 	}
 	
@@ -114,6 +117,7 @@ public class OfficeController {
 		User user = rService.selectOneById(userId);
 		String phone2 = user.getUserPhone().substring(3,7);
 		String phone3 = user.getUserPhone().substring(7);
+		model.addAttribute("name", user.getUserName());
 		model.addAttribute("rList", rList);
 		model.addAttribute("user", user);
 		model.addAttribute("phone2", phone2);
@@ -123,9 +127,8 @@ public class OfficeController {
 	
 	// 사당점
 	@RequestMapping(value = "/sadang", method = RequestMethod.GET)
-	public String sadang(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("user");
+	public String sadang(Model model, HttpServletRequest request) {
+		getUserName(model, request);
 		return "reservation/office/sadang";
 	}
 	
@@ -145,11 +148,24 @@ public class OfficeController {
 		User user = rService.selectOneById(userId);
 		String phone2 = user.getUserPhone().substring(3,7);
 		String phone3 = user.getUserPhone().substring(7);
+		model.addAttribute("name", user.getUserName());
 		model.addAttribute("rList", rList);
 		model.addAttribute("user", user);
 		model.addAttribute("phone2", phone2);
 		model.addAttribute("phone3", phone3);
 		return "reservation/payment/sadangPayment";
 	}
+	
+	
+	// 헤더의 name 값 연결 메소드
+	public void getUserName(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
+		if(userId != null) {
+			User user = uService.selectUserById(userId);
+			model.addAttribute("name", user.getUserName());
+		}
+	}
+	
 	
 }

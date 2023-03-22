@@ -300,7 +300,7 @@
 		        const modal = document.querySelector("#modal");
 		        openModal();
 		    } else {
-		        location.href = "/gangnam1/sadang"; 
+		        location.href = "/sadang/payment"; 
 		    }
 		}
 	 

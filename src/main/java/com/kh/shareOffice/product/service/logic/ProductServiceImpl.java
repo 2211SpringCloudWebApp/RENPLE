@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.product.service.ProductService;
 import com.kh.shareOffice.product.store.ProductStore;
+import com.kh.shareOffice.reservation.domain.PageInfo;
+import com.kh.shareOffice.reservation.domain.SearchBoard;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -43,5 +45,29 @@ public class ProductServiceImpl implements ProductService{
 	public int modifyProduct(Product product) {
 		int result = pStore.modifyProduct(product);
 		return result;
+	}
+
+	@Override
+	public int getAdminProductListCount() {
+		int result = pStore.getAdminProductListCount();
+		return result;
+	}
+
+	@Override
+	public List<Product> selectAdminProductBoard(PageInfo pi) {
+		List<Product> pList = pStore.selectAdminProductBoard(pi);
+		return pList;
+	}
+
+	@Override
+	public int getAdminProductSearchListCount(SearchBoard searchBoard) {
+		int totalCount = pStore.getAdminProductSearchListCount(searchBoard);
+		return totalCount;
+	}
+
+	@Override
+	public List<Product> selectAdminProductListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		List<Product> pList = pStore.selectAdminProductListByKeyword(pi, searchBoard);
+		return pList;
 	}
 }

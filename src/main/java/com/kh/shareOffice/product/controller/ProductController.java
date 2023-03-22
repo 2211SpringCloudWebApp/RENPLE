@@ -8,14 +8,20 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.product.service.ProductService;
+import com.kh.shareOffice.reservation.domain.PageInfo;
+import com.kh.shareOffice.reservation.domain.ReservationList;
+import com.kh.shareOffice.reservation.domain.SearchBoard;
 import com.kh.shareOffice.reservation.service.ReservationService;
 import com.kh.shareOffice.user.domain.User;
+import com.kh.shareOffice.user.service.UserService;
 
 @Controller
 public class ProductController {
@@ -24,6 +30,11 @@ public class ProductController {
 	private ProductService pService;
 	@Autowired
 	private ReservationService rService;
+	@Autowired
+	private UserService uService;
+	
+	PageInfo pi = null;
+	
 	
 /* ============== 관리자 ============= */
 	
@@ -41,18 +52,69 @@ public class ProductController {
 		}
 	}
 	
-	// 관리자 - 상품 목록 조회
+	// 상품 내역 목록 조회 (페이징)
 	@RequestMapping(value = "/reservation/admin/adminProductList", method = RequestMethod.GET)
-	public String adminProductList(Model model, HttpServletRequest request) {
+	public String adminProductList(
+			   HttpServletRequest request
+			,  Model model
+			, @RequestParam(value="page", required=false, defaultValue="1") Integer page
+			) {
+		
 		String checkAdmin = checkAdmin(request);
 		if(checkAdmin.equals("notLogin")) {  
 			return "redirect:/user/login";
 		} else if(checkAdmin.equals("notAdmin")) {  
 			return "redirect:/";
 		} else {
-			List<Product> pList = pService.selectAllProduct();
-			model.addAttribute("pList", pList);
-			return "/reservation/admin/adminProductList";
+			HttpSession session = request.getSession();
+			String userId = (String)session.getAttribute("user");
+			int totalCount = pService.getAdminProductListCount();
+			pi = this.getPageInfo(page, totalCount);
+			List<Product> pList = pService.selectAdminProductBoard(pi);
+			if(!pList.isEmpty()) {
+				model.addAttribute("userId", userId);
+				model.addAttribute("pi", pi);
+				model.addAttribute("pList", pList);
+			}
+			getUserName(model, request);
+			return "reservation/admin/adminProductList";
+		}
+	}	
+	
+	// 상품 내역 (검색) 
+	@RequestMapping(value = "/reservation/admin/adminSearchProduct", method=RequestMethod.GET)
+	public String getAdminOrderSearchListCount( 	// searchLesson.jsp 에서 select로 검색하게 해주는 메소드
+			@ModelAttribute SearchBoard searchBoard
+			, HttpServletRequest request
+			, @RequestParam(value="page", required=false, defaultValue="1") Integer page
+			,Model model) {
+		
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
+		if(userId == null || userId == "") {
+			return "redirect:/user/login";
+		} else {
+			int totalCount = pService.getAdminProductSearchListCount(searchBoard);
+			pi = this.getPageInfo(page, totalCount);
+			try {
+				List<Product> pList = pService.selectAdminProductListByKeyword(pi, searchBoard);
+				System.out.println(pList);
+				if(!pList.isEmpty()) {
+					model.addAttribute("pi", pi);
+					model.addAttribute("searchBoard", searchBoard);
+					model.addAttribute("pList", pList);
+					model.addAttribute("userId", userId);
+					getUserName(model, request);
+					
+					return "reservation/admin/searchAdminProductList";
+				} else {
+					getUserName(model, request);
+					return "reservation/admin/searchAdminProductList";
+				}
+			} catch (Exception e) {
+				getUserName(model, request);
+				return "reservation/admin/searchAdminProductList";
+			}
 		}
 	}
 	
@@ -112,6 +174,35 @@ public class ProductController {
 		Product product2 = pService.selectOneByProductNo(product.getProductNo());
 		model.addAttribute("product", product2);
 		return "/reservation/admin/adminProductDetail";
-		
 	}
+	
+	
+	// 페이징 처리
+	private PageInfo getPageInfo(int currentPage, int totalCount) {
+		PageInfo pi = null;
+		int boardLimit = 10; 	// 한 페이지 당 게시글 갯수
+		int naviLimit = 5;		// 한 페이지 당 pageNavi 수
+		int maxPage;			// 페이지의 마지막 번호
+		int startNavi;			// pageNavi 시작값
+		int endNavi;			// pageNavi 끝값
+		
+		maxPage = (int)((double)totalCount/boardLimit+0.9);
+		startNavi = (((int)((double)currentPage/naviLimit+0.9))-1)*naviLimit+1;
+		endNavi = startNavi + naviLimit - 1;
+		if(endNavi > maxPage) {
+			endNavi = maxPage;
+		}
+		pi = new PageInfo(currentPage, boardLimit, naviLimit, startNavi, endNavi, totalCount, maxPage);
+		return pi;
+	}
+	// 헤더의 name 값 연결 메소드
+	public void getUserName(Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
+		if(userId != null) {
+			User user = uService.selectUserById(userId);
+			model.addAttribute("name", user.getUserName());
+		}
+	}
+	
 }

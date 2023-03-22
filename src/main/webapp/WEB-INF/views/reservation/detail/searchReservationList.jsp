@@ -49,44 +49,49 @@
 			<div id="select">
 			    <form action="/reservation/detail/searchReservation" method="get">      
 			        <select name="searchCondition">
-			            <option value="all">전체</option>
-			            <option value="writer">예약자</option>
-			            <option value="product">지점</option>
+			            <option value="all" <c:if test="${searchBoard.searchCondition == 'all' }">selected</c:if>>전체</option>
+			            <option value="writer" <c:if test="${searchBoard.searchCondition == 'writer' }">selected</c:if>>예약자</option>
+			            <option value="product" <c:if test="${searchBoard.searchCondition == 'product' }">selected</c:if>>지점</option>
 			        </select>
 			        <input type="hidden" name="userId" value="${userId }">
-			        <input type="text" name="searchValue" value="${keyword }"placeholder="검색">
+			        <input type="text" name="searchValue" value="${searchBoard.searchValue }"placeholder="검색">
 			        <input type="submit" id="search-btn" name="search-btn"value="검색">
 			        <c:if test="${pi.currentPage - 1 != 0}">
-							<a href="/reservation/detail/reservationList?page=1" class="naviBtn"> ◀️◀️ </a>
+							<a href="/reservation/detail/searchReservation?page=1&searchValue=${searchBoard.searchValue }&searchCondition=${searchBoard.searchCondition }" class="naviBtn"> ◀️◀️ </a>
 						</c:if>
 							<!--'<' 누르면 현재페이지 -1 한 페이지를 보여주기 -->
 						<c:if test="${pi.currentPage - 1 != 0}">
-							<a href="/reservation/detail/reservationList?page=${pi.currentPage - 1 }" class="naviBtn"> ◀️ </a>
+							<a href="/reservation/detail/searchReservation?page=${pi.currentPage - 1 }&searchValue=${searchBoard.searchValue }&searchCondition=${searchBoard.searchCondition }" class="naviBtn"> ◀️ </a>
 						</c:if>
 						<c:if test="${pi.currentPage - 1 == 0}">
 							<a href="javascript:void(0)" class="naviBtn"> ◀️ </a>
 						</c:if>
 							<!--ㄴ 현재페이지 - 1 해서 0이 아닐때만 이전으로 이동 0 이면 a링크 동작 x -->
 						<c:forEach begin="${pi.startNavi }" end="${pi.endNavi }" var="p">
-							<c:url var="pageUrl" value="/reservation/detail/reservationList">
-							<c:param name="page" value="${p }"></c:param>
+							<c:url var="pageUrl" value="/reservation/detail/searchReservation">
+								<c:param name="page" value="${p }"></c:param>
+								<c:param name="searchValue" value="${searchBoard.searchValue }"></c:param>
+								<c:param name="searchCondition" value="${searchBoard.searchCondition }"></c:param>
 							</c:url>
 							<a href="${pageUrl }" class="naviBtn">${p }</a>&nbsp;
 						</c:forEach>
 							<!--현재페이지 + 1 이 최대페이지랑 똑같을때까지 '>' 이걸 보여주겠다 -->
 						<c:if test="${pi.currentPage + 1 <= pi.maxPage}">
-							<a href="/reservation/detail/reservationList?page=${pi.currentPage + 1 }" class="naviBtn"> ▶️ </a>
+							<a href="/reservation/detail/searchReservation?page=${pi.currentPage + 1 }&searchValue=${searchBoard.searchValue }&searchCondition=${searchBoard.searchCondition }" class="naviBtn"> ▶️ </a>
 						</c:if>
 							<!--근데 현재페이지가 최대페이지랑 같다면 a링크는 동작하지 x -->
 						<c:if test="${pi.currentPage == pi.maxPage}">
 							<a href="javascript:void(0)" class="naviBtn"> ▶️ </a>
 						</c:if>
 						<c:if test="${pi.currentPage + 1 <= pi.maxPage}">
-							<a href="/reservation/detail/reservationList?page=${pi.maxPage }" class="naviBtn"> ▶️▶️ </a>
+							<a href="/reservation/detail/searchReservation?page=${pi.maxPage }&searchValue=${searchBoard.searchValue }&searchCondition=${searchBoard.searchCondition }" class="naviBtn"> ▶️▶️ </a>
 						</c:if>
 			    </form>
 			</div>
 		</div>	  
+	  
+	  
+	  
 	  
   </div>
   <jsp:include page="../../footer.jsp"></jsp:include>
