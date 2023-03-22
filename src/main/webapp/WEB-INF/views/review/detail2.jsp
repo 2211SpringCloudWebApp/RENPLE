@@ -6,9 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>후기글 상세</title>
+<title>후기글 상세 - ${review.reviewTitle }</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../../../resources/reviewCss/detail.css">
+<link rel="icon" href="data:,">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
 .link-icon.twitter {
 	background-image: url(/resources/img/review/twitter.png);
@@ -31,55 +33,49 @@
 	height: 50px;
 }
 
-input[type=number] {
-	margin-bottom: 0;
-	margin-left: 8px;
-	padding: 6px 8px;
-	font-size: 1em;
-	border: none;
-	border-radius: 4px;
+input[type=number]{
+    margin-bottom: 0;
+    margin-left: 8px;
+    padding: 6px 8px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
 }
-
-.rating-wrap {
-	padding: 10px;
-	display: flex;
+.rating-wrap{
+    padding: 10px;
+    display: flex;
 }
-
 .rating {
-	display: flex;
-	align-items: center;
-	position: relative;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
-
 .star {
-	width: 30px;
-	height: 30px;
-	margin-right: 2px;
+    width: 30px;
+    height: 30px;
+    margin-right: 2px;
 }
-
-.starcolor {
-	fill: #ff8844;
+.starcolor{
+    fill: #ff8844;
 }
-
 .star:last-of-type {
-	margin-right: 0;
+    margin-right: 0;
 }
-
 .overlay {
-	background-color: #000;
-	opacity: 0.5;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 1;
-	transition: all 0.3s ease-in-out;
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
 }
-
-@
-supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
-	opacity: unset;
-}
+@supports (mix-blend-mode: color) {
+    .overlay{
+        mix-blend-mode: color;
+        opacity: unset;
+    }
 }
 </style>
 <script
@@ -121,13 +117,13 @@ supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
 						name="reviewRating" value="${review.reviewRating }" step="0.1"
 						min="0.1" max="5" readonly />
 					</label>
-					<div class="rating-wrap">
-						<div class="rating">
-							<div class="overlay"></div>
-						</div>
-					</div>
+					&nbsp;<div class="rating-wrap">
+						&nbsp;<div class="rating">
+						&nbsp;<div class="overlay"></div>
+					&nbsp;</div>
+				&nbsp;</div>
 				</div>
-				<p>${review.reviewContent }</p>
+				<p class="reviewContent">${review.reviewContent }</p>
 			</div>
 		</c:if>
 		<c:if test="${review.reviewFilename ne null }">
@@ -143,13 +139,13 @@ supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
 							name="reviewRating" value="${review.reviewRating }" step="0.1"
 							min="0.1" max="5" readonly />
 						</label>
-						<div class="rating-wrap">
-							<div class="rating">
-								<div class="overlay"></div>
-							</div>
-						</div>
+						&nbsp;<div class="rating-wrap">
+							&nbsp;<div class="rating">
+							&nbsp;<div class="overlay"></div>
+						&nbsp;</div>
+					&nbsp;</div>
 					</div>
-					<p id="reviewContent">${review.reviewContent }</p>
+					<p class="reviewContent">${review.reviewContent }</p>
 				</div>
 			</div>
 		</c:if>
@@ -208,30 +204,31 @@ supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
 		<div id="commentList">
 			<table id="comment-tbl">
 				<c:forEach items="${cList }" var="reviewcomment" varStatus="i">
-					<tr>
-						<td>${i.count }.&nbsp;&nbsp;</td>
-						<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
-						<td>작성 날짜 : <fmt:formatDate
-								value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
-						<c:if test="${user == reviewcomment.userId || user == 'admin'}">
-							<td>&nbsp;
-								<button onclick="toggleBtn1(${reviewcomment.commentNo})">수정</button>
-							</td>
-							<td>&nbsp;
-								<button
-									onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button>
-							</td>
-						</c:if>
-					</tr>
+					<c:if test="${reviewcomment.commentType == 0 }">
+						<tr onclick="toggleBtn2(${reviewcomment.commentNo})" style="cursor: pointer;">
+							<td>${i.count }.&nbsp;&nbsp;</td>
+							<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
+							<td>작성 날짜 : <fmt:formatDate
+									value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
+							<c:if test="${user == reviewcomment.userId || user == 'admin'}">
+								<td>&nbsp;
+									<button onclick="toggleBtn1(${reviewcomment.commentNo})">수정</button>
+								</td>
+								<td>&nbsp;
+									<button onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button>
+								</td>
+							</c:if>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
+						</tr>
+					</c:if>
 					<tr>
 						<td></td>
-						<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td colspan="4" style="visibility: hidden;"
-							id="${reviewcomment.commentNo }"><c:if
-								test="${user == reviewcomment.userId || user == 'admin' }">
+						<td colspan="4" style="display: none;"
+							id="${reviewcomment.commentNo }">
+							<c:if test="${user == reviewcomment.userId || user == 'admin' }">
 								<div class="modifyDiv">
 									<form action="/reviewcomment/modify" method="post">
 										<input type="hidden" id="commentNo" name="commentNo"
@@ -240,13 +237,53 @@ supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
 										<input type="hidden" id="reviewNo" name="reviewNo"
 											value="${reviewcomment.reviewNo }"> <input
 											type="text" id="commentContent" name="commentContent"
-											value="${reviewcomment.commentContent }" style="width: 90%"
+											value="${reviewcomment.commentContent }"
 											placeholder="수정할 내용을 입력해주세요."> 
-										<input type="submit" class="btn btn-secondary commentsubmit" value="완료">
+										<input type="submit" class="commentsubmit" value="수정">
 									</form>
 								</div>
-							</c:if></td>
+							</c:if>
+						</td>
 					</tr>
+					<tr>
+						<td></td>
+						<td colspan="3" style="display: none;"
+							id="${reviewcomment.commentNo }write">
+							<c:if test="${user == reviewcomment.userId || user == 'admin' }">
+								<div class="modifyDiv">
+									<form action="/reviewcomment/writewrite" method="post">
+										<input type="hidden" id="commentNo" name="commentNo"
+											value=${reviewcomment.commentNo }> <input
+											type="hidden" id="userId" name="userId" value="${user }">
+										<input type="hidden" id="reviewNo" name="reviewNo"
+											value="${reviewcomment.reviewNo }">내용 입력 <input
+											type="text" id="commentContent" name="commentContent"
+											placeholder="내용을 입력해주세요."> 
+										<input type="submit" class="commentsubmit" value="입력">
+									</form>
+								</div>
+							</c:if>
+						</td>
+						<c:if test="${reviewcomment.commentType == 1 }">
+							<tr>
+								<td></td>
+								<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
+								<td>작성 날짜 : <fmt:formatDate
+										value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
+								<c:if test="${user == reviewcomment.userId || user == 'admin'}">
+									<td>&nbsp;
+										<button onclick="toggleBtn1(${reviewcomment.commentNo})">수정</button>
+									</td>
+									<td>&nbsp;
+										<button onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button>
+									</td>
+								</c:if>
+							</tr>
+							<tr>
+								<td></td>
+								<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
+							</tr>	
+						</c:if>
 				</c:forEach>
 			</table>
 		</div>
@@ -282,17 +319,33 @@ supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
 				alert(sample);
 			}
 			
+			// num = ${reviewcomment.commentNo}
 			function toggleBtn1(num) {
 			  const btn1 = document.getElementById(num.toString());
 				  
-				  // btn1 숨기기 (visibility: hidden)
-				if(btn1.style.visibility !== 'hidden') {
-				    btn1.style.visibility = 'hidden';
+				  // btn1 숨기기
+				if(btn1.style.display !== 'none') {
+				    btn1.style.display = 'none';
 				  }
-				  // btn` 보이기 (visibility: visible)
+				  // btn1 보이기
 				  else {
-				    btn1.style.visibility = 'visible';
+				    btn1.style.display = 'block';
 				  }
+			}
+			// num = ${reviewcomment.commentNo}
+			function toggleBtn2(num) {
+				var write = 'write';
+				const btn2 = document.getElementById(num.toString() + wrtie);
+				  
+					  
+				// btn2 숨기기
+				if(btn2.style.display !== 'none') {
+				    btn2.style.display = 'none';
+				}
+				// btn2 보이기
+				else {
+				    btn2.style.display = 'block';
+				}
 			}
 
 		// =================================================================================================

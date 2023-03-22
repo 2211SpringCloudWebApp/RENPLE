@@ -8,6 +8,14 @@ body {
     background-size: cover;
 }
 
+button {
+	width: 100px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+	border-radius: 10px;
+}
+
 textarea {
     width: 100%;
     height: 6.25em;

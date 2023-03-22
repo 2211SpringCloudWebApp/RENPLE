@@ -10,6 +10,13 @@ public interface ReviewCommentService {
 	 * @return int
 	 */
 	public int insertComment(ReviewComment comment);
+	
+	/**
+	 * 대댓글 작성 Service
+	 * @param comment
+	 * @return int
+	 */
+	public int insertCommentComment(ReviewComment comment);
 
 	/**
 	 * 댓글 삭제 Service
@@ -30,12 +37,7 @@ public interface ReviewCommentService {
 	 * @return List<Comment>
 	 */
 	public List<ReviewComment> selectCommentList(int reviewNo) throws Exception;
+	
 
-	/**
-	 * 댓글번호로 글번호 불러오기
-	 * @param commentNo
-	 * @return int
-	 */
-	public int selectReviewNoByCommentNo(int commentNo);
 
 }

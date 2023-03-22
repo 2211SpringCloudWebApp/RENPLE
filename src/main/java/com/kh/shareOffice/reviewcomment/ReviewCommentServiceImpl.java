@@ -19,6 +19,12 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 		int result = cStore.insertComment(session, comment);
 		return result;
 	}
+	
+	@Override
+	public int insertCommentComment(ReviewComment comment) {
+		int result = cStore.insertCommentComment(session, comment);
+		return result;
+	}
 
 	@Override
 	public int deleteComment(int commentNo) {
@@ -33,15 +39,11 @@ public class ReviewCommentServiceImpl implements ReviewCommentService{
 	}
 
 	@Override
-	public List<ReviewComment> selectCommentList(int reviewNo) throws Exception {
+	public List<ReviewComment> selectCommentList(int reviewNo) {
 		List<ReviewComment> cList = cStore.selectCommentList(session, reviewNo);
 		return cList;
 	}
 
-	@Override
-	public int selectReviewNoByCommentNo(int commentNo) {
-		int result = cStore.selectReviewNoByCommentNo(session, commentNo);
-		return result;
-	}
+
 
 }

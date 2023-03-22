@@ -145,14 +145,34 @@ public class ReviewController {
 			return "common/error";
 		}
 		
+	}
+//	==========================================================================================
+//	======================================== 댓글 작성 =========================================
+//	==========================================================================================
+	@RequestMapping(value = "/reviewcomment/writewrite", method = RequestMethod.POST)
+	public String commentCommentWrite(
+			
+			@ModelAttribute ReviewComment comment
+			, Model model
+			
+			) {
 		
+		try {
+			int result = cService.insertCommentComment(comment);
+			if(result > 0) {
+				return "redirect:/review/detail?reviewNo=" + comment.getReviewNo();
+			}
+			else {
+				model.addAttribute("msg", "댓글 작성 실패");
+				return "common/error";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
 		
 	}
-	
-	
-	
-	
-	
 //	==========================================================================================
 //	======================================== 후기글 수정 ========================================
 //	==========================================================================================	
@@ -247,7 +267,7 @@ public class ReviewController {
 		}
 	}
 //	==========================================================================================
-//	====================================== 후기글 상세 조회 ======================================
+//	=============================== 후기글 상세 조회 및 댓글 목록 조회 ===============================
 //	==========================================================================================
 	@RequestMapping(value = "/review/detail", method = RequestMethod.GET)
 	public String reviewDetailView(

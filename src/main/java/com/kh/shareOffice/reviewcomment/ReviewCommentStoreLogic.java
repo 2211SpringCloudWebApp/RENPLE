@@ -14,6 +14,12 @@ public class ReviewCommentStoreLogic implements ReviewCommentStore{
 		int result = session.insert("ReviewCommentMapper.insertComment", comment);
 		return result;
 	}
+	
+	@Override
+	public int insertCommentComment(SqlSession session, ReviewComment comment) {
+		int result = session.insert("ReviewCommentMapper.insertCommentComment", comment);
+		return result;
+	}
 
 	@Override
 	public int updateComment(SqlSession session, ReviewComment comment) {
@@ -33,10 +39,5 @@ public class ReviewCommentStoreLogic implements ReviewCommentStore{
 		return cList;
 	}
 
-	@Override
-	public int selectReviewNoByCommentNo(SqlSession session, int commentNo) {
-		int result = session.selectOne("ReviewCommentMapper.selectReviewNoByCommentNo", commentNo);
-		return result;
-	}
 
 }

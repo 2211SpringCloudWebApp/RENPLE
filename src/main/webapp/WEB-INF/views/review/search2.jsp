@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>검색 결과</title>
     	<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
+    	<link rel="icon" href="data:,">
 		<style>
 			table {
 				border : 1px solid black;

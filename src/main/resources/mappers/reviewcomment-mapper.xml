@@ -6,6 +6,7 @@
 		<result property="userId" column="USER_ID"/>
 		<result property="reviewNo" column="REVIEW_NO"/>
 		<result property="commentContent" column="COMMENT_CONTENT"/>
+		<result property="commentType" column="COMMENT_TYPE"/>
 		<result property="commentCreateDate" column="COMMENT_CREATE_DATE"/>
 		<result property="commentUpdateDate" column="COMMENT_UPDATE_DATE"/>
 	</resultMap>
@@ -19,6 +20,10 @@
 		SELECT REVIEW_NO FROM REVIEW_COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
 	</select>
 	
+	<select id="selectOneByCommentNo" resultMap="reviewCommentResultMap">
+		SELECT * FROM REVIEW_COMMENT_TBL WHERE COMMENT_NO = #{commentNo}
+	</select>
+	
 	<insert id="insertComment">
 		INSERT INTO REVIEW_COMMENT_TBL VALUES(
 		SEQ_REVIEW_COMMENT_NO.NEXTVAL, 
@@ -26,8 +31,20 @@
 		#{reviewNo}, 
 		#{commentContent}, 
 		DEFAULT, 
+		DEFAULT, 
 		DEFAULT)
 	</insert>
+	<insert id="insertCommentComment">
+		INSERT INTO REVIEW_COMMENT_TBL VALUES(
+		SEQ_REVIEW_COMMENT_NO.NEXTVAL, 
+		#{userId}, 
+		#{reviewNo}, 
+		#{commentContent}, 
+		1, 
+		DEFAULT, 
+		DEFAULT)
+	</insert>
+	
 	
 	<delete id="deleteComment">
 		DELETE FROM REVIEW_COMMENT_TBL WHERE COMMENT_NO = #{commentNo}

@@ -13,6 +13,14 @@ body {
     background-size: cover;
 }
 
+button {
+	width: 100px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+	border-radius: 10px;
+}
+
 #container {
     width: 60%;
     margin: auto;

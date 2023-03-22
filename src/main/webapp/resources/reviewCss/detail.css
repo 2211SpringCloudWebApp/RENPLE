@@ -8,6 +8,14 @@ body {
     background-size: cover;
 }
 
+button {
+	width: 100px;
+	height: 40px;;
+	background-color : #e5e5cb;
+	border: none;
+	border-radius: 10px;
+}
+
 #container {
     width: 60%;
     margin: auto;
@@ -88,7 +96,7 @@ body {
     border-radius: 10px;
 }
 #text-area {
-    width: 50%;
+    width: 60%;
     height: inherit;
     float: left;
 }
@@ -108,8 +116,9 @@ body {
     padding-top: 30px;
 }
 
-#reviewContent {
-	font-size: 25px;
+.reviewContent {
+	font-size: 20px;
+	line-height: 35px;
 }
 
 .comment-area {
