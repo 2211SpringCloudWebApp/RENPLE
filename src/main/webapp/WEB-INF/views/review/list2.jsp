@@ -8,6 +8,7 @@
 		<meta charset="UTF-8">
 		<title>후기글 목록</title>
     	<link rel="stylesheet" href="../../../resources/reviewCss/list.css">
+    	<link rel="icon" href="data:,">
 		<style>
 			table {
 				border : 1px solid black;
@@ -23,7 +24,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 		<div id="container">
 			<div class="mainTitle">
-				<h1>후기게시판</h1>
+				<h1>후기 게시판</h1>
 			</div>
 			<div class="listnav">
 				<div class="search-area">
@@ -58,7 +59,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${rList }" var="review" varStatus="i">
-						<tr onclick="location.href='/review/detail?reviewNo=${review.reviewNo }'" id="listtr" style="cursor: pointer;">
+						<tr onclick="location.href='/review/detail?reviewNo=${review.reviewNo }&commentNo=${comment.commentNo }'" id="listtr" style="cursor: pointer;">
 							<td class="review-number">${i.count }</td>
 							<td>${review.reviewTitle }</td>
 							<td>${review.userId }</td>

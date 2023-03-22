@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>후기 수정</title>
     	<link rel="stylesheet" href="../../../../resources/reviewCss/write.css">
+    	<link rel="icon" href="data:,">
     	<style>
     		input[type=number]{
 	            margin-bottom: 0;

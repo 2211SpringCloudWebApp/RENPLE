@@ -7,78 +7,85 @@ public class ReviewComment {
     private String userId;
     private int reviewNo;
     private String commentContent;
+    private int commentType;
     private Timestamp commentCreateDate;
     private Timestamp commentUpdateDate;
 
     public ReviewComment() {}
 
-    public ReviewComment(int commentNo, String userId, int reviewNo, String commentContent, Timestamp commentCreateDate,
-            Timestamp commentUpdateDate) {
-        super();
-        this.commentNo = commentNo;
-        this.userId = userId;
-        this.reviewNo = reviewNo;
-        this.commentContent = commentContent;
-        this.commentCreateDate = commentCreateDate;
-        this.commentUpdateDate = commentUpdateDate;
-    }
+	public ReviewComment(int commentNo, String userId, int reviewNo, String commentContent, int commentType,
+			Timestamp commentCreateDate, Timestamp commentUpdateDate) {
+		super();
+		this.commentNo = commentNo;
+		this.userId = userId;
+		this.reviewNo = reviewNo;
+		this.commentContent = commentContent;
+		this.commentType = commentType;
+		this.commentCreateDate = commentCreateDate;
+		this.commentUpdateDate = commentUpdateDate;
+	}
 
-    public int getCommentNo() {
-        return commentNo;
-    }
+	public int getCommentNo() {
+		return commentNo;
+	}
 
-    public void setCommentNo(int commentNo) {
-        this.commentNo = commentNo;
-    }
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
 
-    public String getUserId() {
-        return userId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public int getReviewNo() {
-        return reviewNo;
-    }
+	public int getReviewNo() {
+		return reviewNo;
+	}
 
-    public void setReviewNo(int reviewNo) {
-        this.reviewNo = reviewNo;
-    }
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
+	}
 
-    public String getCommentContent() {
-        return commentContent;
-    }
+	public String getCommentContent() {
+		return commentContent;
+	}
 
-    public void setCommentContent(String commentContent) {
-        this.commentContent = commentContent;
-    }
+	public void setCommentContent(String commentContent) {
+		this.commentContent = commentContent;
+	}
 
-    public Timestamp getCommentCreateDate() {
-        return commentCreateDate;
-    }
+	public int getCommentType() {
+		return commentType;
+	}
 
-    public void setCommentCreateDate(Timestamp commentCreateDate) {
-        this.commentCreateDate = commentCreateDate;
-    }
+	public void setCommentType(int commentType) {
+		this.commentType = commentType;
+	}
 
-    public Timestamp getCommentUpdateDate() {
-        return commentUpdateDate;
-    }
+	public Timestamp getCommentCreateDate() {
+		return commentCreateDate;
+	}
 
-    public void setCommentUpdateDate(Timestamp commentUpdateDate) {
-        this.commentUpdateDate = commentUpdateDate;
-    }
+	public void setCommentCreateDate(Timestamp commentCreateDate) {
+		this.commentCreateDate = commentCreateDate;
+	}
 
-    @Override
-    public String toString() {
-        return "Comment [commentNo=" + commentNo + ", userId=" + userId + ", reviewNo=" + reviewNo + ", commentContent="
-                + commentContent + ", commentCreateDate=" + commentCreateDate + ", commentUpdateDate="
-                + commentUpdateDate + "]";
-    }
+	public Timestamp getCommentUpdateDate() {
+		return commentUpdateDate;
+	}
 
+	public void setCommentUpdateDate(Timestamp commentUpdateDate) {
+		this.commentUpdateDate = commentUpdateDate;
+	}
 
-
+	@Override
+	public String toString() {
+		return "ReviewComment [commentNo=" + commentNo + ", userId=" + userId + ", reviewNo=" + reviewNo
+				+ ", commentContent=" + commentContent + ", commentType=" + commentType + ", commentCreateDate="
+				+ commentCreateDate + ", commentUpdateDate=" + commentUpdateDate + "]";
+	}
 
 }
