@@ -36,4 +36,47 @@
 		WHERE PRODUCT_NO = #{productNo} 
 	</update>
 	
+	
+	
+	
+	
+	
+	<select id="getAdminProductListCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_TBL
+	</select>
+	
+	<select id="selectAdminProductBoard" resultMap="productResultMap">
+		SELECT * FROM PRODUCT_TBL ORDER BY PRODUCT_NO DESC
+	</select>
+	
+	<select id="getAdminProductSearchListCount" resultType="_int">	
+		SELECT COUNT(*) FROM PRODUCT_TBL
+			<choose>
+				<when test="searchCondition == 'product'">
+					WHERE PRODUCT_NAME LIKE '%' || #{searchValue} || '%'
+				</when>
+				<when test="searchCondition == 'number'">
+					WHERE PRODUCT_NO LIKE '%' || #{searchValue} || '%'
+				</when>
+				<otherwise>
+					WHERE PRODUCT_NAME LIKE '%' || #{searchValue} || '%' OR PRODUCT_NO LIKE '%' || #{searchValue} || '%'
+				</otherwise>
+			</choose> 
+	</select>
+
+	<select id="selectAdminProductListByKeyword" resultMap="productResultMap">
+		SELECT * FROM PRODUCT_TBL
+			<choose>
+				<when test="searchCondition == 'product'">
+					WHERE PRODUCT_NAME LIKE '%' || #{searchValue} || '%'
+				</when>
+				<when test="searchCondition == 'number'">
+					WHERE PRODUCT_NO LIKE '%' || #{searchValue} || '%'
+				</when>
+				<otherwise>
+					WHERE PRODUCT_NAME LIKE '%' || #{searchValue} || '%' OR PRODUCT_NO LIKE '%' || #{searchValue} || '%'
+				</otherwise>
+			</choose> 		
+	</select>
+	
 </mapper>

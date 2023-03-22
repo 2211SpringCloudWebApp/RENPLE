@@ -7,27 +7,37 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 수정</title>
-<link rel="stylesheet" href="../../resources/noticeCss/modify.css">
+<link rel="stylesheet" href="../../../resources/noticeCss/modify.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<div id="outter">
 		<h1>공지사항 수정</h1>
 		<div id="inner">
-			<form action="/notice/modify" method="post" enctype="multipart/form-data">
+			<form action="/notice/modify" method="post"
+				enctype="multipart/form-data">
 				<input type="hidden" name="noticeNo" value="${notice.noticeNo }">
-				제목 : <input type="text" name="noticeTitle" value="${notice.noticeTitle }"><br>
-				내용 : <textarea rows="10" cols="50" name="noticeContent">${notice.noticeContent }</textarea><br>
+				<input type="hidden" name="noticeFilename"
+					value="${notice.noticeFilename }"> 제목 : <input type="text"
+					name="noticeTitle" value="${notice.noticeTitle }"><br>
+				내용 :
+				<textarea rows="10" cols="50" name="noticeContent">${notice.noticeContent }</textarea>
+				<br>
 
 				<c:if test="${notice.noticeFilename eq null }">
-					첨부파일 : <input type="file" name="reloadFile" value="${notice.noticeFilename }">
+					첨부파일 : <input type="file" name="reloadFile"
+						value="${notice.noticeFilename }">
 				</c:if>
 				<c:if test="${notice.noticeFilename ne null }">
 					첨부파일 : <a href="/notice?noticeNo=${notice.noticeNo }">${notice.noticeFilename }</a>
 					<button>
-						<a href="javascript:void(0);" onclick="removeCheckImg('${notice.noticeFilename}', ${notice.noticeNo});">파일삭제</a>
+						<a href="javascript:void(0);"
+							onclick="removeCheckImg('${notice.noticeFilename}', ${notice.noticeNo});">파일삭제</a>
 					</button>
-				<img class="img" src="../../../resources/noticeUploadFiles/${notice.noticeFilename }" alt="공지 이미지">
+					<br>
+					<img class="img"
+						src="../../../resources/noticeUploadFiles/${notice.noticeFilename }"
+						alt="공지 이미지">
 				</c:if>
 
 				<div class="content-btn">

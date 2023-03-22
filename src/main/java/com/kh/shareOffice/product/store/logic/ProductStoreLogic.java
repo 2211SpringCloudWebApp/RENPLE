@@ -2,12 +2,15 @@ package com.kh.shareOffice.product.store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.shareOffice.product.domain.Product;
 import com.kh.shareOffice.product.store.ProductStore;
+import com.kh.shareOffice.reservation.domain.PageInfo;
+import com.kh.shareOffice.reservation.domain.SearchBoard;
 
 @Repository
 public class ProductStoreLogic implements ProductStore{
@@ -44,6 +47,36 @@ public class ProductStoreLogic implements ProductStore{
 		int result = session.update("ProductMapper.modifyProduct", product);
 		return result;
 	}
-	
-	
+
+	@Override
+	public int getAdminProductListCount() {
+		int result = session.selectOne("ProductMapper.getAdminProductListCount");
+		return result;
+	}
+
+	@Override
+	public List<Product> selectAdminProductBoard(PageInfo pi) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Product> pList = session.selectList("ProductMapper.selectAdminProductBoard", null, rowBounds);
+		return pList;
+	}
+
+	@Override
+	public int getAdminProductSearchListCount(SearchBoard searchBoard) {
+		int result = session.selectOne("ProductMapper.getAdminProductSearchListCount", searchBoard);
+		return result;
+	}
+
+	@Override
+	public List<Product> selectAdminProductListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Product> pList = session.selectList("ProductMapper.selectAdminProductListByKeyword",searchBoard, rowBounds);
+		return pList;
+	}
 }

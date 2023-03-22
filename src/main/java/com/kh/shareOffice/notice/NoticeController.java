@@ -135,6 +135,7 @@ public class NoticeController {
 			, @RequestParam("noticeNo") int noticeNo
 			, @RequestParam("noticeTitle") String noticeTitle
 			, @RequestParam("noticeContent") String noticeContent
+			, @RequestParam("noticeFilename") String noticeFilename
 			, @RequestParam(value="reloadFile", required=false) MultipartFile reloadFile
 			, Model model
 			, HttpServletRequest request) {

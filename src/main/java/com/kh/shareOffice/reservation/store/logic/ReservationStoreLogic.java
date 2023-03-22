@@ -2,12 +2,15 @@ package com.kh.shareOffice.reservation.store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.shareOffice.reservation.Order;
 import com.kh.shareOffice.reservation.ReservationList;
+import com.kh.shareOffice.reservation.domain.PageInfo;
+import com.kh.shareOffice.reservation.domain.SearchBoard;
 import com.kh.shareOffice.reservation.store.ReservationStore;
 import com.kh.shareOffice.user.User;
 
@@ -83,6 +86,72 @@ public class ReservationStoreLogic implements ReservationStore{
 		int result = session.update("ReservationMapper.modifyReservation", order);
 		return result;
 	}
+
+	@Override
+	public int getOrderListCount(String userId) {
+		int result = session.selectOne("ReservationMapper.getOrderListCount", userId);
+		return result;
+	}
+
+	@Override
+	public int getOrderSearchListCount(SearchBoard searchBoard) {
+		int result = session.selectOne("ReservationMapper.getOrderSearchListCount", searchBoard);
+		return result;
+	}
+	
+	@Override
+	public List<ReservationList> selectOrderBoard(PageInfo pi, String userId) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectOrderBoard", userId, rowBounds);
+		return rList;
+	}
+
+	@Override
+	public List<ReservationList> selectReservationListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectReservationListByKeyword",searchBoard, rowBounds);
+		return rList;
+	}
+
+	@Override
+	public int getAdminOrderListCount() {
+		int result = session.selectOne("ReservationMapper.getAdminOrderListCount");
+		return result;
+	}
+
+	@Override
+	public List<ReservationList> selectAdminOrderBoard(PageInfo pi) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectAdminOrderBoard", null, rowBounds);
+		return rList;
+	}
+
+	@Override
+	public int getAdminOrderSearchListCount(SearchBoard searchBoard) {
+		int result = session.selectOne("ReservationMapper.getAdminOrderSearchListCount", searchBoard);
+		return result;
+	}
+
+	@Override
+	public List<ReservationList> selectAdminReservationListByKeyword(PageInfo pi, SearchBoard searchBoard) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<ReservationList> rList = session.selectList("ReservationMapper.selectAdminReservationListByKeyword",searchBoard, rowBounds);
+		return rList;
+	}
+
+
 
 	
 }

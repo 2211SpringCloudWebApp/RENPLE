@@ -65,15 +65,15 @@
 		SELECT RESERVATION_DATE FROM ORDER_TBL WHERE PRODUCT_NO = #{productNo}
 	</select>
 	
-	<!-- 예약 내역 리스트 조회 
-		 예약번호, 예약자, 예약인원, 예약날짜, 상품이름, 상품가격, 결제날짜 -->
+	<!-- 예약 내역 리스트 조회  ( 페이징처리로 대체 )
+		 예약번호, 예약자, 예약인원, 예약날짜, 상품이름, 상품가격, 결제날짜 
 	<select id="selectReservationList" resultMap="ReservationListResultMap">
 		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
 		(O.ORDER_DATE)
 		FROM ORDER_TBL O 
 		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
 		WHERE USER_ID = #{userId}
-	</select>
+	</select> -->
 	
 	<!-- 주문번호로 예약 정보 가져오기 -->
 	<select id="selectOneByOrderNo" resultMap="ReservationListResultMap">
@@ -108,5 +108,106 @@
 	<update id="modifyReservation">
 		UPDATE ORDER_TBL SET ORDER_REQUEST = #{orderRequest} WHERE ORDER_NO = #{orderNo}
 	</update>
+	
+	
+	<!-- 페이징, 검색 -->
+	
+	<select id="getOrderListCount" resultType="_int">
+		SELECT COUNT(*) FROM ORDER_TBL WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="getOrderSearchListCount" resultType="_int">	
+		SELECT COUNT(*) FROM ORDER_TBL O
+		                JOIN PRODUCT_TBL P 
+		                  ON O.PRODUCT_NO = P.PRODUCT_NO
+			<choose>
+				<when test="searchCondition == 'writer'">
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%' AND O.USER_ID = #{userId}
+				</when>
+				<when test="searchCondition == 'product'">
+					WHERE P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%' AND O.USER_ID = #{userId}
+				</when>
+				<otherwise>
+					WHERE (O.ORDER_NAME LIKE '%' || #{searchValue} || '%' OR P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%') AND O.USER_ID = #{userId}
+				</otherwise>
+			</choose> 
+	</select>
+	
+	<select id="selectReservationListByKeyword" resultMap="ReservationListResultMap">
+		SELECT * FROM ORDER_TBL O
+		                JOIN PRODUCT_TBL P 
+		                  ON O.PRODUCT_NO = P.PRODUCT_NO
+			<choose>
+				<when test="searchCondition == 'writer'">
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%' AND O.USER_ID = #{userId}
+				</when>
+				<when test="searchCondition == 'product'">
+					WHERE P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%' AND O.USER_ID = #{userId}
+				</when>
+				<otherwise>
+					WHERE (O.ORDER_NAME LIKE '%' || #{searchValue} || '%' OR P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%') AND O.USER_ID = #{userId}
+				</otherwise>
+			</choose> 		
+	</select>
+	
+	<select id="selectOrderBoard" resultMap="ReservationListResultMap"> 
+		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
+		(O.ORDER_DATE)
+		FROM ORDER_TBL O 
+		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
+		WHERE USER_ID = #{userId}
+	</select> 
+	<!-- 관리자 페이징 -->
+	<select id="getAdminOrderListCount" resultType="_int">
+		SELECT COUNT(*) FROM ORDER_TBL
+	</select>
+	
+	<select id="selectAdminOrderBoard" resultMap="ReservationListResultMap"> 
+		SELECT O.ORDER_NO, O.ORDER_NAME, O.ORDER_USERCOUNT, O.RESERVATION_DATE, P.PRODUCT_NAME, P.PRODUCT_PRICE, 
+		(O.ORDER_DATE)
+		FROM ORDER_TBL O 
+		JOIN PRODUCT_TBL P ON O.PRODUCT_NO = P.PRODUCT_NO
+		ORDER BY O.ORDER_NO DESC
+	</select>
+	
+	
+	
+	<select id="getAdminOrderSearchListCount" resultType="_int">	
+		SELECT COUNT(*) FROM ORDER_TBL O
+		                JOIN PRODUCT_TBL P 
+		                  ON O.PRODUCT_NO = P.PRODUCT_NO
+			<choose>
+				<when test="searchCondition == 'writer'">
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%'
+				</when>
+				<when test="searchCondition == 'product'">
+					WHERE P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%'
+				</when>
+				<otherwise>
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%' OR P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%'
+				</otherwise>
+			</choose> 
+	</select>
+
+	<select id="selectAdminReservationListByKeyword" resultMap="ReservationListResultMap">
+		SELECT * FROM ORDER_TBL O
+		                JOIN PRODUCT_TBL P 
+		                  ON O.PRODUCT_NO = P.PRODUCT_NO
+			<choose>
+				<when test="searchCondition == 'writer'">
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%' 
+				</when>
+				<when test="searchCondition == 'product'">
+					WHERE P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%' 
+				</when>
+				<otherwise>
+					WHERE O.ORDER_NAME LIKE '%' || #{searchValue} || '%' OR P.PRODUCT_NAME LIKE '%' || #{searchValue} || '%'
+				</otherwise>
+			</choose> 		
+	</select>
+	
+	
+	
+	
 	
 </mapper>

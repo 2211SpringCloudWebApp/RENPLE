@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 작성</title>
-<link rel="stylesheet" href="../../resources/noticeCss/write.css">
+<link rel="stylesheet" href="../../../resources/noticeCss/write.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -13,16 +13,24 @@
 		<h1>공지사항 작성</h1>
 		<div id="inner">
 			<form action="/notice/write" method="post" enctype="multipart/form-data">
-				제목 : <input type="text" name="noticeTitle"><br> 
-				내용 : <textarea name="noticeContent" rows="10" cols="50"></textarea><br>
-				첨부파일 : <input type="file" name="uploadFile" id="fileImage"><br>
-				<div id="Container" contentEditable="false"></div>
-				<div class="content-btn">
-					<input type="submit" value="등록">
-					<input type="reset" value="취소">
+				<div id="contents">
+					<div id="content1">
+						제목 : <input type="text" name="noticeTitle">
+					</div>
+					<div id="content2">
+						내용 : <textarea name="noticeContent" rows="10" cols="50"></textarea>
+					</div>
+					<div id="content3">
+						첨부파일 : <input type="file" name="uploadFile" id="fileImage">
+					</div>
+					<div id="Container"></div>
 				</div>
-			</form>
 		</div>
+		<div class="content-btn">
+			<input type="submit" value="등록"> <input type="reset"
+				value="취소">
+		</div>
+		</form>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 	<script>

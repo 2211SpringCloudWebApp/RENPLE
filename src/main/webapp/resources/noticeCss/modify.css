@@ -24,7 +24,7 @@
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
-	height: 40vh;
+	min-height: 60vh;
 	width: 60vw;
 	line-height : 8vh;
 }
@@ -36,7 +36,7 @@ a {
 
 .content-btn {
 	text-align: center;
-	margin-top : 5vh;
+	margin-top : 3vh;
 }
 
 .content-btn button {
@@ -59,4 +59,7 @@ textarea {
 }
 input, textarea {
 	width : 30%;
+}
+img{
+	height: 200px;
 }
