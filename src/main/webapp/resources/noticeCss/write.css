@@ -29,7 +29,10 @@
 
 #inner {
 	height: 80%;
-	background-color: red;
+	padding: 2vh 0;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	box-sizing: border-box;
 }
 
 #contents, form {
@@ -38,24 +41,57 @@
 
 #content1 {
 	height: 10%;
+	font-size: large;
 }
+	#content1 input{
+		height: 80%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: large;
+	}
 
 #content2 {
 	height: 40%;
+	font-size: large;
+	display: flex;
 }
+	#content2 textarea{
+		height: 80%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: large;
+	}
 
 #content3 {
 	height: 10%;
+	font-size: large;
 }
+		#content3 input{
+		height: 85%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: large;
+	}
 
-#content3 {
+#Container {
 	height: 40%;
 }
 
-#content3 img {
+#Container img {
 	max-width: 100%;
 	max-height: 100%;
 	object-fit: contain;
+}
+
+#content1 input, #content2 textarea {
+	border: 0;
+	border-bottom: 1px solid black;
 }
 
 a {
@@ -88,12 +124,4 @@ input, textarea {
 	height: 40px;;
 	background-color: #e5e5cb;
 	border: none;
-}
-
-button+button {
-	margin-left: 3vh;
-}
-
-textarea {
-	resize: none;
 }
