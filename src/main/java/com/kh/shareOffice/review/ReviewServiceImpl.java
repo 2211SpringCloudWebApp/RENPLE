@@ -86,4 +86,10 @@ public class ReviewServiceImpl implements ReviewService{
 		rStore.updateLikeCount(session, reviewNo);
 	}
 
+	@Override
+	public int updateFileStatus(int reviewNo) {
+		int result = rStore.updateFileStatus(session, reviewNo);
+		return result;
+	}
+
  }

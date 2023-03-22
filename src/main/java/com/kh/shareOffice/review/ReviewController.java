@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.shareOffice.Alert;
 import com.kh.shareOffice.reviewcomment.ReviewComment;
 import com.kh.shareOffice.reviewcomment.ReviewCommentService;
 
@@ -55,6 +56,33 @@ public class ReviewController {
 			delFile.delete();
 		}
 	}
+//	==========================================================================================
+//	======================================= 첨부파일 삭제 =======================================
+//	==========================================================================================
+	// 업로드된 파일만 삭제
+		@RequestMapping(value="/review/removeFile", method=RequestMethod.GET)
+		private String deleteUploadFile(
+				
+				@RequestParam String reviewFilename
+				, @RequestParam int reviewNo
+				, HttpServletRequest request
+				, Model model) throws Exception {
+			
+			this.deleteFile(reviewFilename, request);
+			int result = rService.updateFileStatus(reviewNo);
+			if(result > 0) {
+				Alert alert = new Alert("/review/modifyView?reviewNo="+reviewNo , "삭제 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}else {
+				model.addAttribute("msg", "파일이 삭제되지 않았습니다.");
+				return "common/error";
+			}
+			
+		}
+	
+	
+	
 //	==========================================================================================
 //	======================================== 페이징 관련 ========================================
 //	==========================================================================================
@@ -147,7 +175,7 @@ public class ReviewController {
 		
 	}
 //	==========================================================================================
-//	======================================== 댓글 작성 =========================================
+//	======================================== 대댓글 작성 =========================================
 //	==========================================================================================
 	@RequestMapping(value = "/reviewcomment/writewrite", method = RequestMethod.POST)
 	public String commentCommentWrite(
@@ -181,6 +209,7 @@ public class ReviewController {
 			
 			@ModelAttribute Review review
 			, @RequestParam(value = "reloadFile", required = false) MultipartFile reloadFile
+			, @RequestParam("reviewFilename") String reviewFilename
 			, HttpServletRequest request
 			, Model model
 			
@@ -188,7 +217,7 @@ public class ReviewController {
 		
 		try {
 			// 수정할 때, 새로 업로드된 파일이 있는 경우
-				if(!reloadFile.isEmpty()) {
+				if(reloadFile != null && !reloadFile.isEmpty()) {
 					// 기존 업로드 된 파일 체크 후
 					if(review.getReviewFilename() != null) {
 						// 기존 파일 삭제

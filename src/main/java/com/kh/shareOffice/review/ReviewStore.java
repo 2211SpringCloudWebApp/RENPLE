@@ -111,4 +111,6 @@ public interface ReviewStore {
 	 */
 	public void updateLikeCount(SqlSession session, int reviewNo) throws Exception;
 
+	public int updateFileStatus(SqlSession session, int reviewNo);
+
 }

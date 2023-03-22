@@ -6,7 +6,7 @@
 		<result property="userId" column="USER_ID"/>
 		<result property="reviewNo" column="REVIEW_NO"/>
 		<result property="commentContent" column="COMMENT_CONTENT"/>
-		<result property="commentType" column="COMMENT_TYPE"/>
+		<result property="parentNo" column="PARENT_NO"/>
 		<result property="commentCreateDate" column="COMMENT_CREATE_DATE"/>
 		<result property="commentUpdateDate" column="COMMENT_UPDATE_DATE"/>
 	</resultMap>
@@ -30,7 +30,7 @@
 		#{userId}, 
 		#{reviewNo}, 
 		#{commentContent}, 
-		DEFAULT, 
+		NULL, 
 		DEFAULT, 
 		DEFAULT)
 	</insert>
@@ -40,7 +40,7 @@
 		#{userId}, 
 		#{reviewNo}, 
 		#{commentContent}, 
-		1, 
+		#{parentNo}, 
 		DEFAULT, 
 		DEFAULT)
 	</insert>

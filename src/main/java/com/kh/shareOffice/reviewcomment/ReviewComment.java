@@ -7,20 +7,20 @@ public class ReviewComment {
     private String userId;
     private int reviewNo;
     private String commentContent;
-    private int commentType;
+    private int parentNo;
     private Timestamp commentCreateDate;
     private Timestamp commentUpdateDate;
 
     public ReviewComment() {}
 
-	public ReviewComment(int commentNo, String userId, int reviewNo, String commentContent, int commentType,
+	public ReviewComment(int commentNo, String userId, int reviewNo, String commentContent, int parentNo,
 			Timestamp commentCreateDate, Timestamp commentUpdateDate) {
 		super();
 		this.commentNo = commentNo;
 		this.userId = userId;
 		this.reviewNo = reviewNo;
 		this.commentContent = commentContent;
-		this.commentType = commentType;
+		this.parentNo = parentNo;
 		this.commentCreateDate = commentCreateDate;
 		this.commentUpdateDate = commentUpdateDate;
 	}
@@ -57,12 +57,12 @@ public class ReviewComment {
 		this.commentContent = commentContent;
 	}
 
-	public int getCommentType() {
-		return commentType;
+	public int getParentNo() {
+		return parentNo;
 	}
 
-	public void setCommentType(int commentType) {
-		this.commentType = commentType;
+	public void setParentNo(int parentNo) {
+		this.parentNo = parentNo;
 	}
 
 	public Timestamp getCommentCreateDate() {
@@ -84,8 +84,11 @@ public class ReviewComment {
 	@Override
 	public String toString() {
 		return "ReviewComment [commentNo=" + commentNo + ", userId=" + userId + ", reviewNo=" + reviewNo
-				+ ", commentContent=" + commentContent + ", commentType=" + commentType + ", commentCreateDate="
+				+ ", commentContent=" + commentContent + ", parentNo=" + parentNo + ", commentCreateDate="
 				+ commentCreateDate + ", commentUpdateDate=" + commentUpdateDate + "]";
 	}
+
+    
+	
 
 }

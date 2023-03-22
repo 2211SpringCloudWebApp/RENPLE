@@ -89,4 +89,6 @@ public interface ReviewService {
 	 */
 	public void updateReviewLike(int reviewNo) throws Exception;
 
+	public int updateFileStatus(int reviewNo);
+
 }
