@@ -14,7 +14,7 @@
 		<div id="inner">
 			<form action="/notice/write" method="post" enctype="multipart/form-data">
 				제목 : <input type="text" name="noticeTitle"><br> 
-				내용 : <textarea name="noticeContent" rows="5" cols="30"></textarea><br>
+				내용 : <textarea name="noticeContent" rows="10" cols="50"></textarea><br>
 				첨부파일 : <input type="file" name="uploadFile" id="fileImage"><br>
 				<div id="Container" contentEditable="false"></div>
 				<div class="content-btn">

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -8,6 +8,17 @@
 <meta charset="UTF-8">
 <title>공지사항 상세</title>
 <link rel="stylesheet" href="../../../resources/noticeCss/detail.css">
+<style>
+	#inner{
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+    border-bottom: 1px solid black;
+	border-top: 1px solid black;
+	height: 60vh;
+	width: 60vw;
+	line-height : 2vh;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -20,10 +31,13 @@
 			제목 : ${notice.noticeTitle }<br>
 			작성일자 : ${notice.nCreateDate }<br> 
 			내용 : ${notice.noticeContent }<br>
-			<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
-			<c:if test="${not empty notice.noticeFilename}">
-				첨부파일 : ${notice.noticeFilename }<br>
-			</c:if>
+			<div id="inner2">
+	<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
+				<c:if test="${not empty notice.noticeFilename}">
+					첨부파일 : ${notice.noticeFilename }<br>
+					<img class="img" src="../../../resources/noticeUploadFiles/${notice.noticeFilename }" alt="공지 이미지">
+				</c:if>
+			</div>
 		</div>
 		<div class="content-btn">
 			<button>

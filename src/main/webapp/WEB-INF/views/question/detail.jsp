@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항 상세</title>
-<link rel="stylesheet"
-	href="../../../resources/questionCss/detailAdmin.css">
+<link rel="stylesheet" href="../../../resources/questionCss/detail.css">
 </head>
 
 <body>
@@ -28,10 +27,18 @@
 						<c:if test="${not empty question.questionFilename}">
 						첨부파일 : ${question.questionFilename }<br>
 							<img class="img" src="../../../resources/questionUploadFiles/${question.questionFilename }" alt="문의 이미지">
+						첨부파일 : ${question.questionFilename }
+						<br>
+							<img class="img"
+								src="/resources/questionUploadFiles/${question.questionFilename }"
+								alt="문의 이미지">
 						</c:if>
 					</div>
 				</div>
 				<div id="answer">
+					<div class="img">
+						<img src="../../../resources/img/question/answer.gif" />
+					</div>
 					<div class="notImg">
 						<c:if test="${not empty question.commentContent }">
 							답변 : ${question.commentContent }

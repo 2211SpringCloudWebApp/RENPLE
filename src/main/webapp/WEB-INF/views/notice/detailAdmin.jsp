@@ -14,18 +14,22 @@
 	
 	<div id="outter">
 		<h1>공지사항 상세</h1>
-		<p>레플의 새로운 소식들과 유용한 정보들을 확인해 보세요.</p>
+		<p>렌플의 새로운 소식들과 유용한 정보들을 확인해 보세요.</p>
 		<div id="inner">
-			번호 : ${notice.noticeNo }<br>
-			제목 : ${notice.noticeTitle }<br>
-			작성자 : 관리자<br>
-			작성일자 : ${notice.nCreateDate } <br> 
-			내용 : ${notice.noticeContent }<br>
-<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
-			<c:if test="${not empty notice.noticeFilename}">
-				첨부파일 : ${notice.noticeFilename }
-				<img class="img" src="../../../resources/noticeUploadFiles/${notice.noticeFilename }" alt="공지 이미지">
-			</c:if>
+			<div id="inner1">
+				번호 : ${notice.noticeNo }<br>
+				제목 : ${notice.noticeTitle }<br>
+				작성자 : 관리자<br>
+				작성일자 : ${notice.nCreateDate } <br> 
+				내용 : ${notice.noticeContent }<br>
+			</div>
+			<div id="inner2">
+	<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
+				<c:if test="${not empty notice.noticeFilename}">
+					첨부파일 : ${notice.noticeFilename }<br>
+					<img class="img" src="../../../resources/noticeUploadFiles/${notice.noticeFilename }" alt="공지 이미지">
+				</c:if>
+			</div>
 		</div>
 		<div class="content-btn">
 			<button>
