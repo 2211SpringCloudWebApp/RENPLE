@@ -213,7 +213,7 @@
             <p>지점 리얼 후기</p>
             <section>
               <div id="detail-2-review-1">
-                <a href="" target="_blank">
+                <a href="/review/detail?reviewNo=91" >
                   <img src="/resources/img/reservation/pc_guro1_review_1.png">
                   <div>
                     <span class="detail-span-top">
@@ -230,7 +230,7 @@
 
               </div>
               <div id="detail-2-review-2">
-                <a href="" target="_blank">
+                <a href="/review/detail?reviewNo=92">
                   <img src="/resources/img/reservation/pc_guro1_review_2.png">
                   <div>
                     <span class="detail-span-top">

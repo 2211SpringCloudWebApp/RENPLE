@@ -154,7 +154,7 @@ public class ReservationController {
 			) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("user");
-		List<Order> checkOrderNo = rService.selectOrderNo(userId);
+//		List<Order> checkOrderNo = rService.selectOrderNo(userId);
 		
 		if(userId == null) {	// 로그인 안하고 URL에 직접 접근할 경우 로그인 페이지로 되돌림
 			return "redirect:/user/login";
@@ -174,7 +174,6 @@ public class ReservationController {
 	// 예약 정보 수정
 	@RequestMapping(value = "/reservation/detail/reservationModify", method = RequestMethod.POST)
 	public String reservationModify(Order order, Model model, HttpServletRequest request) {
-		int result = rService.modifyReservation(order); 
 		ReservationList order2 = rService.selectOneByOrderNo(order.getOrderNo());
 		model.addAttribute("order", order2);
 		getUserName(model, request);
@@ -310,22 +309,29 @@ public class ReservationController {
 	}	
 	
 	// 관리자 - 예약 취소
-	@RequestMapping(value = "/reservation/adminDelete", method = RequestMethod.GET)
-	public String adminReservationDelete(int orderNo, Model model, HttpServletRequest request) {
-		String checkAdmin = checkAdmin(request);
-		
-		if(checkAdmin.equals("notLogin")) {  
-			return "redirect:/user/login";
-		} else if(checkAdmin.equals("notAdmin")) {  
-			return "redirect:/";
-		} else {
-			rService.deleteReservation(orderNo);	// 예약취소
-			List<ReservationList> rList = rService.selectAllReservationList();
-			model.addAttribute("rList", rList);
-			getUserName(model, request);
-			return "/reservation/admin/adminReservationList";
-		}
-	}	
+    @RequestMapping(value = "/reservation/adminDelete", method = RequestMethod.GET)
+    public String adminReservationDelete(int orderNo, Model model, HttpServletRequest request
+            , @RequestParam(value="page", required=false, defaultValue="1") Integer page) {
+        String checkAdmin = checkAdmin(request);
+
+        if(checkAdmin.equals("notLogin")) {
+            return "redirect:/user/login";
+        } else if(checkAdmin.equals("notAdmin")) {
+            return "redirect:/";
+        } else {
+            rService.deleteReservation(orderNo);    // 예약취소
+
+            int totalCount = rService.getAdminOrderListCount();
+            pi = this.getPageInfo(page, totalCount);
+            List<ReservationList> rList = rService.selectAdminOrderBoard(pi);
+            if(!rList.isEmpty()) {
+                model.addAttribute("pi", pi);
+                model.addAttribute("rList", rList);
+            }
+            getUserName(model, request);
+            return "reservation/admin/adminReservationList";
+        }
+    }	
 	
 	// =============== 메소드 =================
 	// 헤더의 name 값 연결 메소드

@@ -45,11 +45,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<div class="content-btn">
-			<button
-				onclick="location.href='/reservation/admin/adminProductRegisterView'">
-				상품등록</button>
-		</div>
 	</div>
 	<div id="select">
 		<form action="/reservation/admin/adminSearchProduct" method="get">
@@ -97,9 +92,6 @@
 					class="naviBtn"> ▶️▶️ </a>
 			</c:if>
 		</form>
-
-	</div>
-	</div>
 	</div>
 
 	<jsp:include page="../../footer.jsp"></jsp:include>

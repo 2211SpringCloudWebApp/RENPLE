@@ -215,7 +215,7 @@
             <p>지점 리얼 후기</p>
             <section>
               <div id="detail-2-review-1">
-                <a href="" target="_blank">
+                <a href="/review/detail?reviewNo=93">
                   <img src="/resources/img/reservation/gangnam1_review_1.png">
                   <div>
                     <span class="detail-span-top">
@@ -232,15 +232,15 @@
 
               </div>
               <div id="detail-2-review-2">
-                <a href="" target="_blank">
+                <a href="/review/detail?reviewNo=94">
                   <img src="/resources/img/reservation/gangnam1_review_2.png">
                   <div>
                     <span class="detail-span-top">
                       14인 기업
                     </span>
                     <p>
-                    간식, 마스크, 건강검진권 증정 등 다양한 이벤트 덕분에 업무 중
-									  순간에 환기가 됩니다. 패스트파이브는 아낌없이 주는 나무 같아요!
+                    엘레비이터 속도 / 사무실의 폭 / 쉬는 공간 / 회의실 / 주차장 등등의 <br>
+                     컨디션이 가장 좋았던 터라 모두가 압도적으로 마음에 든다 했죠!
                     </p>
                       <span class="detail-span-bottom" style="border-right: 1px solid #e4e4e4; padding-right: 15px;">강남1호점</span>
                       <span class="detail-span-bottom" style="padding-left: 15px;">김은지님 </span>
