@@ -189,6 +189,7 @@ public class ReservationController {
 	@RequestMapping(value = "/reservation/delete", method = RequestMethod.GET)
 	public String reservationDelete(Model model, HttpServletRequest request
 			, @RequestParam(value = "orderNo", defaultValue = "0") int orderNo
+			, @RequestParam(value="page", required=false, defaultValue="1") Integer page
 			) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("user");
@@ -196,16 +197,28 @@ public class ReservationController {
 		if(userId == null) {
 			return "redirect:/user/login";
 		} else if(orderNo == 0) {    // URL에 직접 접근할경우 리스트로 되돌림.
-			List<ReservationList> rList = rService.selectReservationList(userId);
-			model.addAttribute("rList", rList);
+			int totalCount = rService.getOrderListCount(userId);
+			pi = this.getPageInfo(page, totalCount);
+			List<ReservationList> rList = rService.selectOrderBoard(pi, userId);
+			if(!rList.isEmpty()) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("rList", rList);
+				model.addAttribute("userId", userId);
+			}
 			getUserName(model, request);
 			return "reservation/detail/reservationList";
 		} else {
 			rService.deleteReservation(orderNo);	// 예약취소
-			List<ReservationList> rList = rService.selectReservationList(userId);
-			model.addAttribute("rList", rList);
+			int totalCount = rService.getOrderListCount(userId);
+			pi = this.getPageInfo(page, totalCount);
+			List<ReservationList> rList = rService.selectOrderBoard(pi, userId);
+			if(!rList.isEmpty()) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("rList", rList);
+				model.addAttribute("userId", userId);
+			}
 			getUserName(model, request);
-			return "/reservation/detail/reservationList";
+			return "reservation/detail/reservationList";
 		}
 	}
 	
