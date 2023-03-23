@@ -5,13 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문의 관리</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="../../../resources/mainCss/table.css">
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<form action="/comment/list" method="get">
 		<div id="outter">
 			<h1>문의 관리</h1>
+			<div id=selectBox>
+				<button type="button" onclick="location.href='/comment/selectOk'">답변 YES</button>
+				<button type="button" onclick="location.href='/comment/selectNotOk'">답변 NO</button>
+			</div>
 			<table>
 				<thead>
 					<tr>

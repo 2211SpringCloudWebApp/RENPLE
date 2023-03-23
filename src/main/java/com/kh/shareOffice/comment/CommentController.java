@@ -39,7 +39,7 @@ public class CommentController {
 			Search search = new Search(searchValue, searchCondition);
 			int totalCnt = cService.getListCnt(search);
 			PageInfo pi = this.getPageInfo(page, totalCnt);
-			List<Comment> commentList = cService.selectCnQAll(search);
+			List<Comment> commentList = cService.selectCnQAll(pi, search);
 			if (commentList.size() == 0) {
 				Alert alert = new Alert("/", "문의내역이 존재하지 않습니다");
 				model.addAttribute("alert", alert);
@@ -71,6 +71,54 @@ public class CommentController {
 		}
 		PageInfo pi = new PageInfo(currPage, boardLimit, naviLimit, startNavi, endNavi, totalCnt, lastPage);
 		return pi;
+	}
+
+	// 문의 답변 등록만 보기
+	@RequestMapping("/selectOk")
+	public String selectOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			Model model) {
+		try {
+			int totalCnt = cService.totalCnt();
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<Comment> commentList = cService.selectCommentOk(pi);
+			if (commentList.size() != 0) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("commentList", commentList);
+				return "comment/list";
+			} else {
+				Alert alert = new Alert("/comment/list", "답변 등록 문의가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 문의 답변 미등록만 보기
+	@RequestMapping("/selectNotOk")
+	public String selectNotOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+			Model model) {
+		try {
+			int totalCnt = cService.totalCnt();
+			PageInfo pi = this.getPageInfo(page, totalCnt);
+			List<Comment> commentList = cService.selectCommentNotOk(pi);
+			if (commentList.size() != 0) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("commentList", commentList);
+				return "comment/list";
+			} else {
+				Alert alert = new Alert("/comment/list", "답변 미등록 문의가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
 	}
 
 	// 문의 상세 보기

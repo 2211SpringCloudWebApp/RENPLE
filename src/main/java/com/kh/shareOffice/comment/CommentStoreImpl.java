@@ -2,10 +2,12 @@ package com.kh.shareOffice.comment;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.shareOffice.PageInfo;
 import com.kh.shareOffice.Search;
 
 @Repository
@@ -21,8 +23,12 @@ public class CommentStoreImpl implements CommentStore{
 	}
 
 	@Override
-	public List<Comment> selectCnQAll(Search search) {
-		List<Comment> commetList = session.selectList("CommentMapper.selectCnQAll", search);
+	public List<Comment> selectCnQAll(PageInfo pi,Search search) {
+		int limit = pi.getBoardLimit();
+		int currentPage = pi.getCurrentPage();
+		int offset = (currentPage - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		List<Comment> commetList = session.selectList("CommentMapper.selectCnQAll", search, rowBounds);
 		return commetList;
 	}
 
@@ -48,6 +54,24 @@ public class CommentStoreImpl implements CommentStore{
 	public int getListCnt(Search search) {
 		int result = session.selectOne("CommentMapper.getListCnt", search);
 		return result;
+	}
+
+	@Override
+	public int totalCnt() {
+		int result = session.selectOne("CommentMapper.totalCnt");
+		return result;
+	}
+
+	@Override
+	public List<Comment> selectCommentOk(PageInfo pi) {
+		List<Comment> list = session.selectList("CommentMapper.selectCommentOk", pi);
+		return list;
+	}
+
+	@Override
+	public List<Comment> selectCommentNotOk(PageInfo pi) {
+		List<Comment> list = session.selectList("CommentMapper.selectCommentNotOk", pi);
+		return list;
 	}
 
 }
