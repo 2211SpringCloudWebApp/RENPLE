@@ -15,6 +15,7 @@ button {
 	background-color : #e5e5cb;
 	border: none;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 #container {

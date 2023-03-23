@@ -27,6 +27,10 @@
 	<update id="updateLikeCount">
 		UPDATE REVIEW_TBL SET REVIEW_LIKE_COUNT = REVIEW_LIKE_COUNT + 1 WHERE REVIEW_NO = #{reviewNo}
 	</update>
+	<update id="updateReviewFile">
+		UPDATE REVIEW_TBL SET REVIEW_FILENAME = NULL,
+		REVIEW_FILEPATH = NULL WHERE REVIEW_NO = #{reviewNo}
+	</update>
 	<delete id="deleteReview">
 		DELETE FROM REVIEW_TBL WHERE REVIEW_NO = #{reviewNo}
 	</delete>

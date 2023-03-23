@@ -66,6 +66,7 @@
 				<form action="/review/modify" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="userId" value="${user }">
 				<input type="hidden" name="reviewNo" value="${review.reviewNo }">
+				<input type="hidden" name="reviewFilename" value="${review.reviewFilename }">
 				<input type="text" id="reviewTitle" name="reviewTitle" value="${review.reviewTitle }" placeholder="  제목" required> <br><br>
 				
 				<label style="color: white;">
@@ -78,13 +79,29 @@
 		        </div>
 				
 				<textarea name="reviewContent" id="reviewContent" placeholder="  내용" required>${review.reviewContent }</textarea> <br><br>
-				<input type="file" name="reloadFile" value="${review.reviewFilename }"> &nbsp;&nbsp; ${review.reviewFilename }<br><br>
+				
+				<c:if test="${review.reviewFilename eq null }">
+					첨부파일 : <input type="file" name="reloadFile" value="${review.reviewFilename }">
+				</c:if>
+				<c:if test="${review.reviewFilename ne null }">
+					첨부파일 : <a href="/review?reviewNo=${review.reviewNo }">${review.reviewFilename }</a>
+					<button>
+						<a href="javascript:void(0);" onclick="removeCheckImg('${review.reviewFilename}', ${review.reviewNo});">파일삭제</a>
+					</button>
+					<br>
+					<img class="uploadedimg" src="../../../resources/img/review/uploadimg/${review.reviewFilename }" alt="리뷰이미지">
+					<br>
+					<br>
+				</c:if>
+				
 				<div id="button-area">
 					<button type="submit" class="btn btn-secondary">수정하기</button>
 					<button type="button" class="btn btn-light" onclick="goBack();">게시글로 돌아가기</button>
 				</div>
 				</form>
 			</div>
+			<br>
+			<br>
 		</div>
 		<jsp:include page="../footer.jsp"></jsp:include>
 		<script>
@@ -136,6 +153,11 @@
 	                document.querySelector('input[name=reviewRating]').value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
 	            })
 	        })
+	        function removeCheckImg(reviewFilename, reviewNo) {
+			if(confirm("정말 삭제하시겠습니까?")) {
+				location.href="/review/removeFile?reviewFilename="+reviewFilename+"&reviewNo="+reviewNo;
+			}
+		}
 		</script>
 	</body>
 </html>

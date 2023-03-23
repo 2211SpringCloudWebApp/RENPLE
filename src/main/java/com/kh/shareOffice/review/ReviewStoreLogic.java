@@ -105,4 +105,10 @@ public class ReviewStoreLogic implements ReviewStore{
 		session.update("ReviewMapper.updateLikeCount", reviewNo);
 	}
 
+	@Override
+	public int updateFileStatus(SqlSession session, int reviewNo) {
+		int result = session.update("ReviewMapper.updateReviewFile", reviewNo);
+		return result;
+	}
+
 }
