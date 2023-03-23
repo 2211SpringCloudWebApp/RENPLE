@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>이용자 조회</title>
 </head>
-<link rel="stylesheet" href="../../resources/mainCss/table.css">
+<link rel="stylesheet" href="../../../resources/mainCss/table.css">
 <style>
 a:after, a:link {
 	text-decoration-line: none;

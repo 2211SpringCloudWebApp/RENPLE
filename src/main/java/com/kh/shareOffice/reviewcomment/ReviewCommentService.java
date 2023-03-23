@@ -12,13 +12,6 @@ public interface ReviewCommentService {
 	public int insertComment(ReviewComment comment);
 	
 	/**
-	 * 대댓글 작성 Service
-	 * @param comment
-	 * @return int
-	 */
-	public int insertCommentComment(ReviewComment comment);
-
-	/**
 	 * 댓글 삭제 Service
 	 * @param commentNo
 	 * @return int

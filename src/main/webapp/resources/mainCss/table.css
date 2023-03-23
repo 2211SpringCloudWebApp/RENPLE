@@ -14,34 +14,28 @@ body {
 	margin: 0;
 }
 
-#selectBox {
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 10px;
-}
-
-#selectBox button:first-child {
-	margin-right: 20px;
-}
-
-form {
+#outter {
 	padding-top : 72px;
 	height: calc(100vh - 72px);
 	width: 70vw;
 	margin: 0 auto;
 }
 
+h1 {
+	text-align: center;
+}
 form h1 {
     text-align: center;
 }
 
 form table {
    	padding-top: 2vh;
+   	padding-bottom: 2vh;
     border-bottom: 1px solid black;
 	border-top: 1px solid black;
 	margin: 0 auto;
 	height: 70vh;
-	width: 100%;
+	width: 60vw;
 	text-align: center;
 }
 form a{

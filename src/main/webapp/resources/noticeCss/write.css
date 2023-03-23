@@ -104,6 +104,10 @@ input, textarea {
 	width: 50%
 }
 
+textarea {
+	resize: none;
+}
+
 .content-btn {
 	height: 10%;
 	justify-content: space-evenly;

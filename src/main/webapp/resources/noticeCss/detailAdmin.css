@@ -32,6 +32,7 @@ a {
 
 #inner {
 	height: 70%;
+	width: 70vw;
 	padding: 2vh 0;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
@@ -39,26 +40,30 @@ a {
 }
 
 #content1 {
-	height: 10%;
+	height: 5%;
 }
 
 #content2 {
-	height: 10%;
+	height: 5%;
 }
 
 #content3 {
-	height: 10%;
+	height: 5%;
 }
 
 #content4 {
-	height: 10%;
+	height: 5%;
 }
 
 #content5 {
+	height: 20%;
+}
+
+#content6 {
 	height: 60%;
 }
 
-	#content5 img {
+	#content6 img {
 	max-width: 90%;
 	max-height: 90%;
 	object-fit: contain;

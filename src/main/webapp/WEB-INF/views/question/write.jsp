@@ -11,20 +11,28 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	<div id="outter">
 		<h1>문의사항 작성</h1>
-		<div id="inner">
-			<form action="/question/insert" method="post"
-				enctype="multipart/form-data">
-				<input type="hidden" value="${sessionScope.user}" name="userId">
-				제목 :<input type="text" name="questionTitle"> <br> 내용 :
-				<textarea rows="10" col="" name="questionContent"></textarea>
-				<br> 첨부파일 : <input type="file" name="uploadFile" id="fileImage"><br>
-				<div id="Container" contentEditable="false"></div>
+		<p>문의를 남기시면 확인 후 답변드리겠습니다.</p>
+		<form action="/question/insert" method="post" enctype="multipart/form-data">
+			<div id="inner">	
+				<div id="contents">
+					<div id="content1">
+						<input type="hidden" value="${sessionScope.user}" name="userId">
+						제목 :<input type="text" name="questionTitle" required="required">
+					</div>
+					<div id="content2">
+						내용 : <textarea name="questionContent" required="required"></textarea>
+					</div>
+					<div id="content3">
+						첨부파일 : <input type="file" name="uploadFile" id="fileImage">
+					</div>
+					<div id="Container" contentEditable="false"></div>
+				</div>
 				<div class="content-btn">
 					<input type="submit" value="작성완료"> <input type="reset"
 						value="취소">
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 	<script>

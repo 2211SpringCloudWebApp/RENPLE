@@ -15,11 +15,11 @@
 			<div id="inner">
 				<div id="contents">
 					<div id="content1">
-						제목 : <input type="text" name="noticeTitle">
+						제목 : <input type="text" name="noticeTitle" required="required">
 					</div>
 					<div id="content2">
 						내용 :
-						<textarea name="noticeContent" rows="10" cols="50"></textarea>
+						<textarea name="noticeContent" rows="10" cols="50" required="required"></textarea>
 					</div>
 					<div id="content3">
 						첨부파일 : <input type="file" name="uploadFile" id="fileImage">

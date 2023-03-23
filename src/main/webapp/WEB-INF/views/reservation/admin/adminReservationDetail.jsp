@@ -75,7 +75,7 @@
 		</div>
 			<div class="content-btn">
 				<input type="button" value="예약취소" onclick="deleteCheck(${order.orderNo});" class='btn btn-warning'/>
-				<input type="button" value="리스트" onclick="location.href='/reservation/admin/adminReservationList'" class='btn btn-success'/>
+				<input type="button" value="목록" onclick="location.href='/reservation/admin/adminReservationList'" class='btn btn-success'/>
 			</div>
 	</div>
 	<jsp:include page="../../footer.jsp"></jsp:include>

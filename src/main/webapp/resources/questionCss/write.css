@@ -19,17 +19,76 @@
 }
 
 #outter h1, p {
-	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	height: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 #inner {
-	padding-top: 2vh;
-	border-bottom: 1px solid black;
+	height: 70%;
+	padding: 2vh 0;
 	border-top: 1px solid black;
-	margin: 0 auto;
-	height: 55vh;
-	width: 60vw;
-	line-height: 11vh;
+	border-bottom: 1px solid black;
+	box-sizing: border-box;
+}
+
+#contents, form {
+	height: 100%;
+}
+
+#content1 {
+	height: 10%;
+	font-size: large;
+}
+	#content1 input{
+		height: 80%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+#content2 {
+	height: 40%;
+	font-size: large;
+	display: flex;
+}
+	#content2 textarea{
+		height: 80%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+#content3 {
+	height: 10%;
+	font-size: large;
+}
+		#content3 input{
+		height: 85%;
+		width: 85%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+#Container {
+	height: 40%;
+}
+
+#Container img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+#content1 input, #content2 textarea {
+	border: 0;
+	border-bottom: 1px solid black;
 }
 
 a {
@@ -38,13 +97,17 @@ a {
 	text-align: center;
 }
 
-input {
-	margin-left: 20px;
+textarea {
+	resize : none;
 }
 
 .content-btn {
-	text-align: center;
-    margin-top: 3vh;
+	height: 10%;
+	justify-content: space-evenly;
+	align-content: space-between;
+	display: flex;
+	align-items: center;
+	margin-top : 3.5vh;
 }
 
 .content-btn button {
@@ -59,23 +122,4 @@ input {
 	height: 40px;;
 	background-color: #e5e5cb;
 	border: none;
-}
-
-button+button {
-	margin-left: 3vh;
-}
-
-#Container img {
-	height: 100%;
-}
-
-#Container {
-	height: 150px;
-}
-textarea {
-	resize : none;
-	height : 50%;
-}
-input, textarea {
-	width : 50%;
 }

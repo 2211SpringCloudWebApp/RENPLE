@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세</title>
-<link rel="stylesheet" href="../../../resources/noticeCss/detail.css">
+<link rel="stylesheet" href="../../../resources/noticeCss/detailAdmin.css">
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -16,14 +16,22 @@
 		<h1>공지사항 상세</h1>
 		<p>렌플의 새로운 소식들과 유용한 정보들을 확인해 보세요.</p>
 		<div id="inner">
-			<div id="inner1">
-				번호 : ${notice.noticeNo }<br>
-				제목 : ${notice.noticeTitle }<br>
-				작성자 : 관리자<br>
-				작성일자 : ${notice.nCreateDate } <br> 
-				내용 : ${notice.noticeContent }<br>
+			<div id="content1">
+				번호 : ${notice.noticeNo }
 			</div>
-			<div id="inner2">
+			<div id="content2">
+				제목 : ${notice.noticeTitle }
+			</div>
+			<div id="content3">
+				작성자 : 관리자
+			</div>
+			<div id="content4">
+				작성일자 : ${notice.nCreateDate }
+			</div>
+			<div id="content5">
+				내용 : ${notice.noticeContent }
+			</div>
+			<div id="content6">
 	<!-- 			첨부파일이 있을 경우에만 첨부파일을 보여줄 수 있도록 하는 코드 -->
 				<c:if test="${not empty notice.noticeFilename}">
 					첨부파일 : ${notice.noticeFilename }<br>
