@@ -13,8 +13,6 @@ public interface UserStore {
 
 	User selectUserById(String userId);
 	
-	int updateUser(User user);
-
 	User findPw(User user);
 
 	int updatePw(User user);
@@ -36,5 +34,7 @@ public interface UserStore {
 	User findId(User user);
 
 	int checkMyEmail(User user);
+
+	int bye(String userId);
 	
 }

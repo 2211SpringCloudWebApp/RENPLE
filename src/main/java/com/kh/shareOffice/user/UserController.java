@@ -104,6 +104,55 @@ public class UserController {
 		}
 	}
 
+	// 회원탈퇴
+	@RequestMapping("/bye")
+	public String bye(Model model, HttpServletRequest request, String userId) {
+		try {
+			int result = uService.bye(userId);
+			if (result > 0) {
+				// 세션까지 반환 하도록
+				HttpSession session = request.getSession();
+				if (session != null) {
+					session.invalidate();
+					Alert alert = new Alert("/", "회원탈퇴 성공했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				} else {
+					return "home";
+				}
+			} else {
+				Alert alert = new Alert("/user/mypage?userId=" + userId, "회원탈퇴 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 관리자가 이용자 회원 탈퇴시키기
+	@RequestMapping("/byeBye")
+	public String byeBye(Model model, HttpServletRequest request, String userId) {
+		try {
+			int result = uService.bye(userId);
+			if (result > 0) {
+				Alert alert = new Alert("/", "이용자 탈퇴 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/mypage?userId=" + userId, "이용자 탈퇴 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 	// 마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(@RequestParam("userId") String userId, Model model) {
@@ -129,10 +178,10 @@ public class UserController {
 	}
 
 	// 정보 수정
+	// 바꾸는것 : 비번, 이메일, 휴대폰, 주소
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(@ModelAttribute User user, @RequestParam("userId") String userId,
-			@RequestParam("userPw") String userPw, @RequestParam("userName") String userName,
-			@RequestParam("userEmail") String userEmail, @RequestParam("userAddress") String userAddress, Model model) {
+	public String modify(@ModelAttribute User user, String userId, String userPw, String userEmail, String userPhone,
+			String userAddress, Model model) {
 		try {
 			int result = uService.modify(user);
 			if (result > 0) {
@@ -142,6 +191,29 @@ public class UserController {
 
 			} else {
 				Alert alert = new Alert("/", "정보 수정 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 관리자가 회원 정보 수정
+	// 바꾸는것 : 비번, 이메일, 휴대폰, 주소
+	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
+	public String modifyUser(@ModelAttribute User user, String userId, String userPw, String userEmail,
+			String userPhone, String userAddress, Model model) {
+		try {
+			int result = uService.modify(user);
+			if (result > 0) {
+				Alert alert = new Alert("/user/selectSearchAll", "회원정보 수정 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/selectAll", "회원정보 수정 실패했습니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			}
@@ -305,29 +377,6 @@ public class UserController {
 		}
 	}
 
-	// 관리자가 회원 정보 수정
-	// 바꾸는것 : 비번, 이메일, 휴대폰, 주소
-	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-	public String modifyUser(@ModelAttribute User user, String userId, String userPw, String userEmail,
-			String userPhone, String userAddress, Model model) {
-		try {
-			int result = uService.updateUser(user);
-			if (result > 0) {
-				Alert alert = new Alert("/user/selectSearchAll", "회원정보 수정 성공했습니다");
-				model.addAttribute("alert", alert);
-				return "common/alert";
-			} else {
-				Alert alert = new Alert("/user/selectAll", "회원정보 수정 실패했습니다");
-				model.addAttribute("alert", alert);
-				return "common/alert";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("msg", e.getMessage());
-			return "common/error";
-		}
-	}
-
 	// 상은 - modalLogin 추가
 	@RequestMapping(value = "/modalLogin", method = RequestMethod.POST)
 	public String modalLogin(HttpServletRequest request, String userId, String userPw, @ModelAttribute User user,
@@ -416,7 +465,7 @@ public class UserController {
 			result = -3;
 		} else if (result2 > 0) {
 			return 0;
-		} else if(result2 <= 0) {
+		} else if (result2 <= 0) {
 			return result;
 		}
 

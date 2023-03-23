@@ -33,12 +33,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUser(User user) {
-		int result = uStore.updateUser(user);
-		return result;
-	}
-
-	@Override
 	public User findPw(User user) {
 		User getUser = uStore.findPw(user);
 		return getUser;
@@ -101,6 +95,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int checkMyEmail(User user) {
 		int result = uStore.checkMyEmail(user);
+		return result;
+	}
+
+	@Override
+	public int bye(String userId) {
+		int result = uStore.bye(userId);
 		return result;
 	}
 }

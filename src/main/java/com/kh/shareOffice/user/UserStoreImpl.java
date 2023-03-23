@@ -35,12 +35,6 @@ public class UserStoreImpl implements UserStore{
 	}
 	
 	@Override
-	public int updateUser(User user) {
-		int result = session.update("UserMapper.updateUser", user);
-		return result;
-	}
-
-	@Override
 	public User findPw(User user) {
 		User getUser = session.selectOne("UserMapper.findPw", user);
 		return getUser;
@@ -115,7 +109,11 @@ public class UserStoreImpl implements UserStore{
 		int result = session.selectOne("UserMapper.checkMyEmail", user);
 		return result;
 	}
-	
-	
 
+	@Override
+	public int bye(String userId) {
+		int result = session.delete("UserMapper.bye", userId);
+		return result;
+	}
+	
 }

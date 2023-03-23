@@ -99,7 +99,7 @@ h1 {
 	text-align: center;
 }
 
-#enroll-btn {
+#enroll-btn, .modify-btn {
 	height: 45px;
 	width: 40%;
 	background-color: #e5e5cb;

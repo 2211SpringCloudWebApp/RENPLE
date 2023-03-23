@@ -139,14 +139,24 @@
 				</div>
 			</div>
 			<div id="enroll-box">
-				<button type="submit" id="enroll-btn">
-					<span>수정하기</span>
+				<button type="submit" class="modify-btn">
+					<span>임의수정</span>
+				</button>
+				<button type="button" class="modify-btn" onclick="bye()">
+					<span>임의탈퇴</span>
 				</button>
 			</div>
 		</div>
 	</form>
 	<jsp:include page="../footer.jsp"></jsp:include>
 	<script type="text/javascript">
+		function bye() {
+			if (confirm("주의!! 정말로 삭제하시겠습니까?")) {
+				var userId = $('input[name=userId]').val();
+				location.href = '/user/byeBye?userId=' + userId;
+			}
+		}
+
 		/* 이미 이메일 중복을 거치고 와서 초기값으로 필터링 할 필요 x */
 		/* var emailChkNum = -100; */
 		/* 이메일 중복 확인 */
@@ -210,13 +220,11 @@
 				alert("비밀번호를 입력하세요.");
 				userPw.focus();
 				return false;
-			} 
-			else if (userPw.val().length < 8 || userPw.val().length > 20) {
+			} else if (userPw.val().length < 8 || userPw.val().length > 20) {
 				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
 				userPw.focus();
 				return false;
-			} 
-			else if (!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+			} else if (!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
 					.test(userPw.val())) {
 				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
 				userPw.focus();
@@ -252,13 +260,13 @@
 				userAddress.focus();
 				return false;
 			}
-						
+
 			if (emailChkNum != 0) {
 				alert("사용 불가능한 이메일입니다.");
 				userEmail.focus();
 				return false;
 			}
-			
+
 			// 모두 통과해야 제출 가능
 			return true;
 		}
