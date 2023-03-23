@@ -65,21 +65,27 @@ public class ReservationController {
 	public String payment(Order order, Model model, HttpServletRequest request
 			,@RequestParam("phone1") String phone1
 			,@RequestParam("phone2") String phone2
-			,@RequestParam("phone3") String phone3)
+			,@RequestParam("phone3") String phone3
+			, @RequestParam(value="page", required=false, defaultValue="1") Integer page )
 	{
 			String orderPhone = phone1+phone2+phone3;
 			order.setOrderPhone(orderPhone);			
 			rService.insertOrder(order);
-			
 			HttpSession session = request.getSession();
 			String userId = (String)session.getAttribute("user");
-			List<ReservationList> rList = rService.selectReservationList(userId);
-			model.addAttribute("rList", rList);
+			
+			int totalCount = rService.getOrderListCount(userId);
+			pi = this.getPageInfo(page, totalCount);
+			List<ReservationList> rList = rService.selectOrderBoard(pi, userId);
+			if(!rList.isEmpty()) {
+				model.addAttribute("pi", pi);
+				model.addAttribute("rList", rList);
+				model.addAttribute("userId", userId);
+			}
 			getUserName(model, request);
 			return "reservation/detail/reservationList";
 			
 	}
-	
 	// 예약 내역 목록 조회 (페이징)
 	@RequestMapping(value = "/reservation/detail/reservationList", method = RequestMethod.GET)
 	public String reservationList(

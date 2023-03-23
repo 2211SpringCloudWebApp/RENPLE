@@ -155,7 +155,36 @@ public class OfficeController {
 		model.addAttribute("phone3", phone3);
 		return "reservation/payment/sadangPayment";
 	}
+	// 구로점
+	@RequestMapping(value = "/guro", method = RequestMethod.GET)
+	public String guro(Model model, HttpServletRequest request) {
+		getUserName(model, request);
+		return "reservation/office/guro";
+	}
 	
+	@RequestMapping(value = "/guro/payment", method = RequestMethod.GET)
+	public String guroPayment(Model model, HttpServletRequest request) {
+		/* 비로그인시 로그인 페이지로 되돌림 */
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("user");
+		if(userId == null) {
+			return "redirect:/user/login";
+		}
+		
+		/* 달력 - 예약된 날짜들 선택 불가 */
+		/* rList의 item엔 예약된 날짜들이 있음*/
+		int ProductNo = 41;
+		List<String> rList = rService.selectReservationDateList(ProductNo);
+		User user = rService.selectOneById(userId);
+		String phone2 = user.getUserPhone().substring(3,7);
+		String phone3 = user.getUserPhone().substring(7);
+		model.addAttribute("name", user.getUserName());
+		model.addAttribute("rList", rList);
+		model.addAttribute("user", user);
+		model.addAttribute("phone2", phone2);
+		model.addAttribute("phone3", phone3);
+		return "reservation/payment/guroPayment";
+	}
 	
 	// 헤더의 name 값 연결 메소드
 	public void getUserName(Model model, HttpServletRequest request) {
