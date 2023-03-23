@@ -95,20 +95,24 @@ input[type=number]{
 			<c:url var="rModify" value="/review/modifyView">
 				<c:param name="reviewNo" value="${review.reviewNo }" />
 			</c:url>
+			<div id=buttonBox>
+			<button type="button" class="btn btn-secondary"
+			onclick="location.href='/review/list'">후기 목록</button>
 			<c:choose>
 				<c:when test="${user == review.userId || user == 'admin'}">
 					<button type="button" class="btn btn-secondary"
-						onclick="location.href='${rModify}'">후기 수정</button>&nbsp;&nbsp;&nbsp;
+						onclick="location.href='${rModify}'">후기 수정</button>
 						<button type="button" class="btn btn-danger"
 						onclick="removeCheck(${review.reviewNo});">후기 삭제</button>
 				</c:when>
 				<c:otherwise>
 					<button type="button" class="btn btn-secondary"
-						onclick="javascript:btn('회원정보가 다릅니다.')">후기 수정</button>&nbsp;&nbsp;&nbsp;
+						onclick="javascript:btn('회원정보가 다릅니다.')">후기 수정</button>
 						<button type="button" class="btn btn-danger"
 						onclick="javascript:btn('회원정보가 다릅니다.')">후기 삭제</button>
 				</c:otherwise>
 			</c:choose>
+		</div>
 		</div>
 		<c:if test="${review.reviewFilename eq null }">
 			<div id="main-contant-noimg">
@@ -165,8 +169,6 @@ input[type=number]{
 					onclick="location.href = '/review/likeUp?reviewNo=${review.reviewNo }'"></a>
 			</c:if>
 		</div>
-		<button type="button" class="btn btn-secondary"
-			onclick="location.href='/review/list'">후기 목록</button>
 		<br> <br>
 	</div>
 

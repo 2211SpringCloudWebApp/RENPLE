@@ -129,4 +129,10 @@
 		FROM USER_TBL 
 		WHERE USER_NAME = #{userName} AND USER_EMAIL = #{userEmail} AND USER_PHONE = #{userPhone}
 	</select>
+	
+	<select id="checkMyEmail" resultType="_int">
+		SELECT COUNT(*) 
+		FROM USER_TBL 
+		WHERE USER_ID = #{userId} AND USER_EMAIL = #{userEmail}
+	</select>
 </mapper>

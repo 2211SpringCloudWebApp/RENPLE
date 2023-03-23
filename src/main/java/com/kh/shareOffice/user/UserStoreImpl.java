@@ -109,6 +109,12 @@ public class UserStoreImpl implements UserStore{
 		User getUser = session.selectOne("UserMapper.findId", user);
 		return getUser;
 	}
+
+	@Override
+	public int checkMyEmail(User user) {
+		int result = session.selectOne("UserMapper.checkMyEmail", user);
+		return result;
+	}
 	
 	
 

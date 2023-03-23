@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<link rel="stylesheet" href="../../resources/userCss/enroll.css">
+<link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <style>
 @font-face {
 	font-family: 'Chosunilbo_myungjo';

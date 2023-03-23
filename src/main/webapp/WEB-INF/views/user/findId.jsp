@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link rel="stylesheet" href="../../resources/userCss/enroll.css">
+<link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <style>
 #outter {
     padding-top: 72px;

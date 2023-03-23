@@ -35,4 +35,6 @@ public interface UserService {
 
 	User findId(User user);
 
+	int checkMyEmail(User user);
+
 }

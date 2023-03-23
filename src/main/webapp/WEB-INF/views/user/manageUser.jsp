@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 상세 페이지</title>
-<link rel="stylesheet" href="../../resources/userCss/enroll.css">
+<link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
@@ -29,7 +29,7 @@
 	display: none;
 }
 
-#email_already, #pw_not_ok {
+#email_not_ok2, #email_not_ok3, #email_not_ok4 {
 	color: #6A82FB;
 	display: none;
 }
@@ -38,8 +38,8 @@
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<!-- <form action="/user/select" method="post" onsubmit="retutn totalChk()"> -->
-	<form action="/user/modifyUser" method="post">
+	<form action="/user/modifyUser" method="post" autocomplete="off"
+		onsubmit="return totalChk();">
 		<div id="outter">
 			<h1>회원 상세 페이지</h1>
 			<div id="required">
@@ -76,13 +76,9 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="password" name="reUserPw"
-									value="${user.userPw}" required
-									oninput = "checkPw()">
+									value="${user.userPw}" required>
 							</div>
 						</div>
-					</div>
-					<div class="chkMessge">
-						<span id="pw_not_ok">비밀번호가 일치하지 않습니다</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -102,18 +98,14 @@
 						<div class="content-text">
 							<div>
 								<input class="input-box" type="text" name="userEmail"
-									value="${user.userEmail}" required>
+									value="${user.userEmail}" required onchange="chkEmail()">
 							</div>
-						</div>
-						<div class="content-btn">
-							<button type="button" onclick="chkEmail()">
-								<span>중복확인</span>
-							</button>
 						</div>
 					</div>
 					<div class="chkMessge">
-						<span id="email_ok">사용 가능한 이메일입니다</span> 
-						<span id="email_already">사용 불가능한 이메일입니다</span>
+						<span id="email_ok">사용 가능한 이메일입니다</span> <span id="email_not_ok2">최대
+							길이는 50자입니다.</span> <span id="email_not_ok3">이메일 형식이 올바르지 않습니다.</span><span
+							id="email_not_ok4">중복된 이메일입니다. 새로운 이메일을 입력하세요.</span>
 					</div>
 					<div class="content">
 						<div class="content-name">
@@ -147,7 +139,7 @@
 				</div>
 			</div>
 			<div id="enroll-box">
-				<button id="enroll-btn">
+				<button type="submit" id="enroll-btn">
 					<span>수정하기</span>
 				</button>
 			</div>
@@ -155,47 +147,45 @@
 	</form>
 	<jsp:include page="../footer.jsp"></jsp:include>
 	<script type="text/javascript">
-		/* 비밀번호 확인 */
-		function checkPw() {
-			var pw = $('input[name=userPw]').val();
-			var repw = $('input[name=reUserPw]').val();
-			$.ajax({
-				url : '/user/pwChk',
-				type : 'post',
-				data : {
-					"userPw" : pw,
-					"reUserPw" : repw
-				},
-				success : function(data) { 
-					if (data == 0) { 
-						$('#pw_not_ok').css("display", "none");
-					} else {
-						$('#pw_not_ok').css("display", "inline-block");
-					}
-				},
-				error : function() {
-					alert("에러발생");
-				}
-			});
-		};
-		
+		/* 이미 이메일 중복을 거치고 와서 초기값으로 필터링 할 필요 x */
+		/* var emailChkNum = -100; */
 		/* 이메일 중복 확인 */
 		function chkEmail() {
-			var email = $('input[name=userEmail]').val();
+			var userEmail = $('input[name=userEmail]').val();
+			var userId = $('input[name=userId]').val();
 			$.ajax({
-				url : '/user/emailChk',
+				url : '/user/emailChk2',
 				type : 'post',
 				data : {
-					"userEmail" : email
+					userEmail : userEmail,
+					userId : userId
 				},
-				success : function(data) { 
-					if (data == 0) { 
+				success : function(data) {
+					if (data == 0) { // result가 1이 아니면(0일 경우) -> 사용 가능한 아이디 
 						$('#email_ok').css("display", "inline-block");
-						$('#email_already').css("display", "none");
-					} else {
-						$('#email_already').css("display", "inline-block");
+						$('#email_not_ok2').css("display", "none");
+						$('#email_not_ok3').css("display", "none");
+						$('#email_not_ok4').css("display", "none");
+						/* emailChkNum = data; */
+					} else if (data == -2) {
 						$('#email_ok').css("display", "none");
+						$('#email_not_ok2').css("display", "inline-block");
+						$('#email_not_ok3').css("display", "none");
+						$('#email_not_ok4').css("display", "none");
+						/* emailChkNum = data; */
+					} else if (data == -3) {
+						$('#email_ok').css("display", "none");
+						$('#email_not_ok2').css("display", "none");
+						$('#email_not_ok3').css("display", "inline-block");
+						$('#email_not_ok4').css("display", "none");
+						/* emailChkNum = data; */
+					} else if (data > 0) { // result가 1일 경우 -> 이미 존재하는 이메일
+						$('#email_ok').css("display", "none");
+						$('#email_not_ok2').css("display", "none");
+						$('#email_not_ok3').css("display", "none");
+						$('#email_not_ok4').css("display", "inline-block");
 						$('input[name=userEmail]').val('');
+						/* emailChkNum = data; */
 					}
 				},
 				error : function() {
@@ -203,11 +193,75 @@
 				}
 			});
 		};
-		
+
 		/* 유효성 체크 통과시 회원가입이 가능하게함 */
-		/* function totalChk() {
+		function totalChk() {
+
+			var userId = $("input[name=userId]");
+			var userPw = $("input[name=userPw]");
+			var reUserPw = $("input[name=reUserPw]");
+			var userName = $("input[name=userName]");
+			var userEmail = $("input[name=userEmail]");
+			var userPhone = $("input[name=userPhone]");
+			var userAddress = $("#address");
+			var userDetailAddress = $("#detailAddress")
+
+			if (userPw.val() == '') {
+				alert("비밀번호를 입력하세요.");
+				userPw.focus();
+				return false;
+			} 
+			else if (userPw.val().length < 8 || userPw.val().length > 20) {
+				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
+				userPw.focus();
+				return false;
+			} 
+			else if (!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+					.test(userPw.val())) {
+				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
+				userPw.focus();
+				return false;
+			}
+
+			if (userPw.val() != reUserPw.val()) {
+				alert("비밀번호가 일치하지 않습니다.");
+				reUserPw.focus();
+				return false;
+			}
+
+			// 이메일 유효성 ajax로 처리
+			if (userEmail.val() == '') {
+				alert("이메일 주소를 입력하세요.");
+				userEmail.focus();
+				return false;
+			}
+
+			if (userPhone.val() == '') {
+				alert("휴대번호를 입력하세요.");
+				userPhone.focus();
+				return false;
+			} else if (!/^(01[016789]{1})[0-9]{3,4}[0-9]{4}$/.test(userPhone
+					.val())) {
+				alert("휴대번호가 올바르지 않습니다.");
+				userPhone.focus();
+				return false;
+			}
+
+			if (userAddress.val() == '') {
+				alert("주소를 입력하세요.");
+				userAddress.focus();
+				return false;
+			}
+						
+			if (emailChkNum != 0) {
+				alert("사용 불가능한 이메일입니다.");
+				userEmail.focus();
+				return false;
+			}
+			
+			// 모두 통과해야 제출 가능
 			return true;
-		} */
+		}
 	</script>
 </body>
 

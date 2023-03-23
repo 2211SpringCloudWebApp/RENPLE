@@ -34,5 +34,7 @@ public interface UserStore {
 	int modify(User user);
 
 	User findId(User user);
+
+	int checkMyEmail(User user);
 	
 }

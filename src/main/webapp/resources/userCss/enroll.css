@@ -16,8 +16,8 @@ body {
 }
 
 #outter {
-	padding-top: 15vh;
-	height: 85vh;
+	padding-top : 30vh;
+	height: calc(100vh - 72px);
 	width: 50vw;
 	margin: 0 auto;
 }

@@ -97,4 +97,10 @@ public class UserServiceImpl implements UserService{
 		User getUser = uStore.findId(user);
 		return getUser;
 	}
+
+	@Override
+	public int checkMyEmail(User user) {
+		int result = uStore.checkMyEmail(user);
+		return result;
+	}
 }

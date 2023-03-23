@@ -2,6 +2,8 @@ package com.kh.shareOffice.user;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -304,8 +306,9 @@ public class UserController {
 	}
 
 	// 관리자가 회원 정보 수정
+	// 바꾸는것 : 비번, 이메일, 휴대폰, 주소
 	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-	public String modifyUser(@ModelAttribute User user, String userId, String userPw, String userName, String userEmail,
+	public String modifyUser(@ModelAttribute User user, String userId, String userPw, String userEmail,
 			String userPhone, String userAddress, Model model) {
 		try {
 			int result = uService.updateUser(user);
@@ -368,6 +371,13 @@ public class UserController {
 	@ResponseBody
 	public int idCheck(String userId) {
 		int result = uService.checkId(userId);
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{4,20}$");
+		Matcher matcher = pattern.matcher(userId);
+
+		if ((userId.length() < 4 || userId.length() > 20) || !matcher.matches()) {
+			return -2;
+		}
+
 		return result;
 	}
 
@@ -376,17 +386,41 @@ public class UserController {
 	@ResponseBody
 	public int emailCheck(String userEmail) {
 		int result = uService.checkEmail(userEmail);
+		Pattern pattern = Pattern
+				.compile("^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$");
+		Matcher matcher = pattern.matcher(userEmail);
+
+		if (userEmail.length() > 50) {
+			return -2;
+		} else if (!matcher.matches()) {
+			return -3;
+		}
+
 		return result;
 	}
 
-	// 회원가입시 비밀번호 확인 체크
-	@RequestMapping(value = "/pwChk", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	// 관리자가 회원 정보 수정(이메일)
+	@RequestMapping(value = "/emailChk2", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public int pwCheck(String userPw, @RequestParam("reUserPw") String reUserPw) {
-		int result = -1;
-		if (userPw.equals(reUserPw)) {
-			result = 0;
+	public int emailCheck(String userEmail, String userId, @ModelAttribute User user) {
+		int result = uService.checkEmail(userEmail);
+		// 기존 이메일과 동일하게 변경 할 수 있도록
+		int result2 = uService.checkMyEmail(user);
+		Pattern pattern = Pattern
+				.compile("^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$");
+		Matcher matcher = pattern.matcher(userEmail);
+
+		if (userEmail.length() > 50) {
+			result = -2;
+		} else if (!matcher.matches()) {
+			result = -3;
+		} else if (result2 > 0) {
+			return 0;
+		} else if(result2 <= 0) {
+			return result;
 		}
+
 		return result;
 	}
+
 }

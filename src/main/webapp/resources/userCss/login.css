@@ -16,8 +16,7 @@ body {
 }
 
 #outter {
-	padding-top: 20vh;
-	/* 헤더 공간 */
+	padding-top: 30vh;
 	height: 80vh;
 	width: 50vw;
 	margin: 0 auto;
