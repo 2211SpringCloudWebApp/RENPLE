@@ -21,14 +21,14 @@
 #outter h1, p {
 	margin-top: 0px;
 	margin-bottom: 0px;
-	height: 10%;
+	height: 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
 #inner {
-	height: 70%;
+	height: 80%;
 	padding: 2vh 0;
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
@@ -89,6 +89,7 @@
 #content1 input, #content2 textarea {
 	border: 0;
 	border-bottom: 1px solid black;
+	font-size: large;
 }
 
 a {

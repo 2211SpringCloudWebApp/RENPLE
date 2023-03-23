@@ -23,7 +23,7 @@ public class CommentStoreImpl implements CommentStore{
 	}
 
 	@Override
-	public List<Comment> selectCnQAll(PageInfo pi,Search search) {
+	public List<Comment> selectCnQAll(PageInfo pi, Search search) {
 		int limit = pi.getBoardLimit();
 		int currentPage = pi.getCurrentPage();
 		int offset = (currentPage - 1) * limit;
@@ -57,8 +57,14 @@ public class CommentStoreImpl implements CommentStore{
 	}
 
 	@Override
-	public int totalCnt() {
-		int result = session.selectOne("CommentMapper.totalCnt");
+	public int totalCntNotOk() {
+		int result = session.selectOne("CommentMapper.totalCntNotOk");
+		return result;
+	}
+
+	@Override
+	public int totalCntOK() {
+		int result = session.selectOne("CommentMapper.totalCntOK");
 		return result;
 	}
 

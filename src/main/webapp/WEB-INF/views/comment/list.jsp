@@ -5,7 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>문의 관리</title>
+<style>
+#outter {
+	padding-top: 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#selectBox {
+	height: 3vh;
+}
+
+</style>
 <link rel="stylesheet" href="../../../resources/mainCss/table.css">
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -13,8 +30,10 @@
 		<div id="outter">
 			<h1>문의 관리</h1>
 			<div id=selectBox>
-				<button type="button" onclick="location.href='/comment/selectOk'">답변 YES</button>
-				<button type="button" onclick="location.href='/comment/selectNotOk'">답변 NO</button>
+				<button type="button" onclick="location.href='/comment/selectOk'">답변
+					YES</button>
+				<button type="button" onclick="location.href='/comment/selectNotOk'">답변
+					NO</button>
 			</div>
 			<table>
 				<thead>
@@ -35,7 +54,14 @@
 							<td>${comment.userId }</td>
 							<td>${comment.questionTitle }</td>
 							<td>${comment.qCreateDate }</td>
-							<td>${comment.commentDate }</td>
+							<c:choose>
+								<c:when test="${comment.commentDate eq null}">
+									<td>-</td>
+								</c:when>
+								<c:otherwise>
+									<td>${comment.commentDate }</td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</tbody>

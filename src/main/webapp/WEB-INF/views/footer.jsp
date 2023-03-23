@@ -33,7 +33,7 @@ footer a {
 	list-style: none;
 	color: #fff;
 	background-image: url("../../resources/img/main/num5.jpg");
-	height: 100vh;
+	height: calc(100vh - 72px);
 	background-size: cover;
 	background-position: center;
 }

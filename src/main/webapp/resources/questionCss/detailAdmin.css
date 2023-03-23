@@ -11,6 +11,10 @@
 	font-family: 'Chosunilbo_myungjo';
 }
 
+body{
+	margin: 0;
+}
+
 #outter {
 	padding-top: 72px;
 	height: calc(100vh - 72px);
@@ -18,7 +22,7 @@
 	margin: 0 auto;
 }
 
-#outter h1, p {
+#outter h1, #outter p {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	height: 10%;

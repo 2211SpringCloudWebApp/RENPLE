@@ -19,7 +19,9 @@ public interface CommentStore {
 
 	int getListCnt(Search search);
 
-	int totalCnt();
+	int totalCntNotOk();
+
+	int totalCntOK();
 
 	List<Comment> selectCommentOk(PageInfo pi);
 

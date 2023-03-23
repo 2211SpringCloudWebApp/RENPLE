@@ -17,7 +17,7 @@
 				<div id="contents">
 					<div id="content1">
 						<input type="hidden" value="${sessionScope.user}" name="userId">
-						제목 :<input type="text" name="questionTitle" required="required">
+						제목 :<input type="text" name="questionTitle" required="required" autofocus="autofocus">
 					</div>
 					<div id="content2">
 						내용 : <textarea name="questionContent" required="required"></textarea>

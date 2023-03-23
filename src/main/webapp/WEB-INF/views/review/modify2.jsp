@@ -61,7 +61,8 @@
 	</c:if>
 	<jsp:include page="../header.jsp"></jsp:include>
 		<div id="container">
-			<p id="maintitle"><b>후기 수정</b></p>
+			<!-- <p id="maintitle"><b>후기 수정</b></p> -->
+			<h1 style="color: white; text-align: center">후기 수정</h1>
 			<div id="input-area">
 				<form action="/review/modify" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="userId" value="${user }">
@@ -81,10 +82,10 @@
 				<textarea name="reviewContent" id="reviewContent" placeholder="  내용" required>${review.reviewContent }</textarea> <br><br>
 				
 				<c:if test="${review.reviewFilename eq null }">
-					첨부파일 : <input type="file" name="reloadFile" value="${review.reviewFilename }">
+					<input type="file" name="reloadFile" value="${review.reviewFilename }" style="color: white;">
 				</c:if>
 				<c:if test="${review.reviewFilename ne null }">
-					첨부파일 : <a href="/review?reviewNo=${review.reviewNo }">${review.reviewFilename }</a>
+					<a href="/review?reviewNo=${review.reviewNo }">${review.reviewFilename }</a>
 					<button>
 						<a href="javascript:void(0);" onclick="removeCheckImg('${review.reviewFilename}', ${review.reviewNo});">파일삭제</a>
 					</button>

@@ -1,17 +1,16 @@
 * {
-    margin: 0;
     padding: 0;
 }
 
 body {
     background-image: url(../img/review/background.webp);
     background-size: cover;
+    margin: 0;
 }
 
 button {
-	width: 100px;
+	width: 125px;
 	height: 40px;;
-	background-color : #e5e5cb;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
@@ -26,8 +25,10 @@ textarea {
 
 #container {
     width: 60%;
-    margin: auto;
-    margin-top: 150px;
+	margin: auto;
+	margin-top: 20vh;
+	box-sizing: border-box;
+	height: calc(100vh - 72px);
 }
 
 #container::before {
@@ -60,7 +61,6 @@ textarea {
 
 #reviewTitle, #reviewRating {
     border: 1px solid bisque;
-    background-color: floralwhite;
     border-radius: 5px;
     width: 500px;
     height: 40px;
@@ -68,7 +68,6 @@ textarea {
 
 #reviewContent {
     border: 1px solid bisque;
-    background-color: floralwhite;
     border-radius: 5px;
     width: 500px;
     height: 300px;
@@ -82,4 +81,5 @@ textarea {
 #button-area {
     display: flex;
     justify-content : space-evenly;
+    margin-top: 20px;
 }

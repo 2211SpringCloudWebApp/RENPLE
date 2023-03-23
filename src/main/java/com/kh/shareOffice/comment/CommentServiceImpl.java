@@ -51,8 +51,14 @@ public class CommentServiceImpl implements CommentService{
 	}
 	
 	@Override
-	public int totalCnt() {
-		int result = cStore.totalCnt();
+	public int totalCntNotOk() {
+		int result = cStore.totalCntNotOk();
+		return result;
+	}
+	
+	@Override
+	public int totalCntOK() {
+		int result = cStore.totalCntOK();
 		return result;
 	}
 

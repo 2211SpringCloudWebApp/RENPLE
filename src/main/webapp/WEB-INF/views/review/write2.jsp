@@ -107,7 +107,8 @@
 		</c:if>
 		<jsp:include page="../header.jsp"></jsp:include>
 		<div id="container">
-			<p id="maintitle"><strong>후기 작성</strong></p>
+			<!-- <p id="maintitle"><strong>후기 작성</strong></p> -->
+			<h1 style="color: white; text-align: center">후기 작성</h1>
 			<br>
 			<div id="input-area">
 				<form action="/review/write" method="post" enctype="multipart/form-data">
@@ -125,7 +126,7 @@
 		        </div>
 				
 				<textarea name="reviewContent" id="reviewContent" placeholder="  내용 (최대 1000자까지 입력가능)" required></textarea> <br><br>
-				<input type="file" name="uploadFile"> <br><br>
+				<input type="file" name="uploadFile" style="color: white;"> <br><br>
 				<div id="button-area">
 					<button type="submit" class="btn btn-secondary">작성</button>
 					<button type="reset" class="btn btn-light">취소</button>

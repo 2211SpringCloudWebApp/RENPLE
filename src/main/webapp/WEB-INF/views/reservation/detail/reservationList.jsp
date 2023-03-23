@@ -47,7 +47,7 @@
 	    </table>
 		<div>
 			<div id="select">
-			    <form action="/reservation/detail/searchReservation" method="get">      
+			    <form action="/reservation/detail/searchReservation" method="get" style="text-align: center">      
 			        <select name="searchCondition">
 			            <option value="all">전체</option>
 			            <option value="writer">예약자</option>

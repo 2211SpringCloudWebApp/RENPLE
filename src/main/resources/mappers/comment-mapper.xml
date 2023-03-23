@@ -32,14 +32,15 @@
 		Q.QUESTION_NO
 		<choose>
 			<when test="searchCondition == 'all'">
-				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%' OR Q.QUESTION_TITLE
-				LIKE '%' || #{searchValue} || '%'
+				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%'
+				OR Q.QUESTION_TITLE LIKE '%' || #{searchValue} || '%'
 			</when>
 			<when test="searchCondition == 'userId'">
 				WHERE Q.USER_ID LIKE '%' || #{searchValue} || '%'
 			</when>
 			<when test="searchCondition == 'questionTitle'">
-				WHERE Q.QUESTION_TITLE LIKE '%' || #{searchValue} || '%'
+				WHERE Q.QUESTION_TITLE LIKE '%' || #{searchValue} ||
+				'%'
 			</when>
 		</choose>
 		ORDER BY Q.Q_CREATE_DATE DESC
@@ -86,33 +87,51 @@
 			</when>
 		</choose>
 	</select>
-	
-	<select id="totalCnt" resultType="_int">
-		SELECT COUNT(*) FROM COMMENT_TBL
+
+	<select id="totalCntOK" resultType="_int">
+		SELECT COUNT(*) FROM
+		QUESTION_TBL Q LEFT JOIN COMMENT_TBL C ON C.QUESTION_NO =
+		Q.QUESTION_NO WHERE C.COMMENT_DATE IS NOT NULL
 	</select>
-	
+
+	<select id="totalCntNotOk" resultType="_int">
+		SELECT COUNT(*) FROM
+		QUESTION_TBL Q
+		LEFT JOIN COMMENT_TBL C ON C.QUESTION_NO =
+		Q.QUESTION_NO
+		WHERE C.COMMENT_DATE IS NULL
+	</select>
+
 	<select id="selectCommentOk" resultMap="commentResultMap">
-		SELECT Q.QUESTION_NO, Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
-		Q.Q_CREATE_DATE, Q.QUESTION_FILENAME,
+		SELECT Q.QUESTION_NO,
+		Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE,
+		Q.QUESTION_FILENAME,
 		Q.QUESTION_FILEPATH,
-		C.COMMENT_NO, C.COMMENT_CONTENT, C.COMMENT_DATE
+		C.COMMENT_NO,
+		C.COMMENT_CONTENT, C.COMMENT_DATE
 		FROM QUESTION_TBL Q
-		LEFT JOIN COMMENT_TBL C
+		LEFT JOIN
+		COMMENT_TBL C
 		ON C.QUESTION_NO =
-		Q.QUESTION_NO 
+		Q.QUESTION_NO
 		WHERE C.COMMENT_DATE IS NOT NULL
 		ORDER BY C.COMMENT_DATE DESC
 	</select>
-	
+
 	<select id="selectCommentNotOk" resultMap="commentResultMap">
-		SELECT Q.QUESTION_NO, Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
-		Q.Q_CREATE_DATE, Q.QUESTION_FILENAME,
+		SELECT Q.QUESTION_NO,
+		Q.USER_ID, Q.QUESTION_TITLE, Q.QUESTION_CONTENT,
+		Q.Q_CREATE_DATE,
+		Q.QUESTION_FILENAME,
 		Q.QUESTION_FILEPATH,
-		C.COMMENT_NO, C.COMMENT_CONTENT, C.COMMENT_DATE
+		C.COMMENT_NO,
+		C.COMMENT_CONTENT, C.COMMENT_DATE
 		FROM QUESTION_TBL Q
-		LEFT JOIN COMMENT_TBL C
+		LEFT JOIN
+		COMMENT_TBL C
 		ON C.QUESTION_NO =
-		Q.QUESTION_NO 
+		Q.QUESTION_NO
 		WHERE C.COMMENT_DATE IS NULL
 		ORDER BY C.COMMENT_DATE DESC
 	</select>

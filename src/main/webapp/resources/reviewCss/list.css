@@ -1,54 +1,58 @@
-* p:not(){
-    margin: 0;
-    padding: 0;
+* p:not() {
+	margin: 0;
+	padding: 0;
 }
 
-/* a:link, a:visited { */
-/*     color: ghostwhite; */
-/*     text-decoration: none; */
-/* } */
+table a:link, table a:visited {
+	color: ghostwhite;
+	text-decoration: none
+}
 
 body {
-    background-image: url(../img/review/background.webp);
-    background-size: cover;
+	background-image: url(../img/review/background.webp);
+	background-size: cover;
+	margin: 0;
 }
 
 button {
 	width: 100px;
 	height: 40px;;
-	background-color : #e5e5cb;
+	background-color: #e5e5cb;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
 }
 
 #container {
-    width: 60%;
-    margin: auto;
-    margin-top: 100px;
+	width: 60%;
+	margin: auto;
+	margin-top: 20vh;
+	box-sizing: border-box;
+	height: calc(100vh - 72px);
 }
+
 #container::before {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url(../img/review/background.webp);
-    background-size: cover;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-    z-index: -1;
-    content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(../img/review/background.webp);
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	-moz-filter: blur(5px);
+	-o-filter: blur(5px);
+	-ms-filter: blur(5px);
+	filter: blur(5px);
+	z-index: -1;
+	content: "";
 }
 
 .mainTitle {
-/*     font-weight: 500; */
-    text-align: center;
-    color: ghostwhite;
-    padding-bottom: 20px;
+	/*     font-weight: 500; */
+	text-align: center;
+	color: ghostwhite;
+	padding-bottom: 20px;
 }
 
 .listnav {
@@ -58,61 +62,60 @@ button {
 }
 
 .search-area {
-    width: 200px;
-    height: 45px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    /* background-color: beige; */
-    margin-left: 50px;
-    margin-top : 20px;
-}
-    .search-area form {
-        float: left;
-    }
-
-    .searchOption {
-        background-color: transparent;
-        color: ghostwhite;
-    }
-
-    .searchValue {
-        width: 80px;
-        height: 40px;
-        border: none;
-        background-color: transparent;
-    }
-    .searchValue::placeholder {
-        color: ghostwhite;
-    }
-
-    .searchBtn{
-        width: 40px;
-        height: 40px;
-        border-right: 1px solid gray;
-        /* background-color: gray; */
-    }
-
-.listnav {
+	width: 200px;
+	height: 45px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	/* background-color: beige; */
+	margin-left: 50px;
+	margin-top: 20px;
 }
 
+.search-area form {
+	float: left;
+}
+
+.searchOption {
+	background-color: transparent;
+	color: ghostwhite;
+}
+
+.searchValue {
+	width: 80px;
+	height: 40px;
+	border: none;
+	background-color: transparent;
+}
+
+.searchValue::placeholder {
+	color: ghostwhite;
+}
+
+.searchBtn {
+	width: 40px;
+	height: 40px;
+	border-right: 1px solid gray;
+	/* background-color: gray; */
+}
 
 .listnav .sortbtn {
-    float: right;
+	float: right;
 }
 
 #list-tbl {
 	border: none;
-    margin: auto;
-    width: 100%;
-    margin-top: 20px;
+	margin: auto;
+	width: 100%;
+	margin-top: 20px;
 }
 
 #list-tbl th, td {
 	border: none;
-    color: ghostwhite;
-    text-align: center;
-    height: 46px;
+	color: ghostwhite;
+	text-align: center;
+	height: 46px;
 }
+
 #list-tbl td {
 	border: none;
 }
@@ -122,14 +125,12 @@ button {
 }
 
 .button-area {
-    padding-top: 10px;
-    padding-left: 30px;
-    padding-bottom: 20px;
+	padding-top: 10px;
+	padding-left: 30px;
+	padding-bottom: 20px;
 }
 
 .page {
 	color: ghostwhite;
-    text-decoration: none;
+	text-decoration: none;
 }
-
-

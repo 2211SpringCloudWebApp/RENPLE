@@ -23,18 +23,18 @@
 		<jsp:include page="../header.jsp"></jsp:include>
 		<div id="container">
 			<div class="mainTitle">
-				<p><b>게시글 검색 결과</b></p>
+				<h1>게시글 검색 결과</h1>
 			</div>
 			<div class="search-area">
 				<form action="/review/search" method="get">
-					<input TYPE="IMAGE" src="../../../resources/img/review/list-search-icon.png" name="Submit" value="Submit" class="searchBtn" align="absmiddle">
+					<input TYPE="IMAGE" src="../../../resources/img/review/question-mark.png" name="Submit" value="Submit" class="searchBtn" align="absmiddle">
 					<select name="searchCondition" class="searchOption">
 						<option value="all">전체</option>
 						<option value="writer">작성자</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
-					<input type="text" name="searchValue" class="searchValue" value="" placeholder="게시글 검색">
+					<input type="text" name="searchValue" class="searchValue" value="" placeholder="게시글 검색" style="color: ghostwhite;">
 				</form>
 			</div>
 			<table class="table table-hover" id="list-tbl">

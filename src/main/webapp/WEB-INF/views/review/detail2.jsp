@@ -33,49 +33,55 @@
 	height: 50px;
 }
 
-input[type=number]{
-    margin-bottom: 0;
-    margin-left: 8px;
-    padding: 6px 8px;
-    font-size: 1em;
-    border: none;
-    border-radius: 4px;
+input[type=number] {
+	margin-bottom: 0;
+	margin-left: 8px;
+	padding: 6px 8px;
+	font-size: 1em;
+	border: none;
+	border-radius: 4px;
 }
-.rating-wrap{
-    padding: 10px;
-    display: flex;
+
+.rating-wrap {
+	padding: 10px;
+	display: flex;
 }
+
 .rating {
-    display: flex;
-    align-items: center;
-    position: relative;
+	display: flex;
+	align-items: center;
+	position: relative;
 }
+
 .star {
-    width: 30px;
-    height: 30px;
-    margin-right: 2px;
+	width: 30px;
+	height: 30px;
+	margin-right: 2px;
 }
-.starcolor{
-    fill: #ff8844;
+
+.starcolor {
+	fill: #ff8844;
 }
+
 .star:last-of-type {
-    margin-right: 0;
+	margin-right: 0;
 }
+
 .overlay {
-    background-color: #000;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    transition: all 0.3s ease-in-out;
+	background-color: #000;
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	transition: all 0.3s ease-in-out;
 }
-@supports (mix-blend-mode: color) {
-    .overlay{
-        mix-blend-mode: color;
-        opacity: unset;
-    }
+
+@
+supports (mix-blend-mode: color) { .overlay { mix-blend-mode:color;
+	opacity: unset;
+}
 }
 </style>
 <script
@@ -85,6 +91,7 @@ input[type=number]{
 	<!-- 		헤더 영역 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 
+	<div id=outter>
 
 	<!-- 		=== === === 메인 영역 === === === -->
 	<div id="container">
@@ -96,23 +103,23 @@ input[type=number]{
 				<c:param name="reviewNo" value="${review.reviewNo }" />
 			</c:url>
 			<div id=buttonBox>
-			<button type="button" class="btn btn-secondary"
-			onclick="location.href='/review/list'">후기 목록</button>
-			<c:choose>
-				<c:when test="${user == review.userId || user == 'admin'}">
-					<button type="button" class="btn btn-secondary"
-						onclick="location.href='${rModify}'">후기 수정</button>
+				<button type="button" class="btn btn-secondary"
+					onclick="location.href='/review/list'">후기 목록</button>
+				<c:choose>
+					<c:when test="${user == review.userId || user == 'admin'}">
+						<button type="button" class="btn btn-secondary"
+							onclick="location.href='${rModify}'">후기 수정</button>
 						<button type="button" class="btn btn-danger"
-						onclick="removeCheck(${review.reviewNo});">후기 삭제</button>
-				</c:when>
-				<c:otherwise>
-					<button type="button" class="btn btn-secondary"
-						onclick="javascript:btn('회원정보가 다릅니다.')">후기 수정</button>
+							onclick="removeCheck(${review.reviewNo});">후기 삭제</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-secondary"
+							onclick="javascript:btn('회원정보가 다릅니다.')">후기 수정</button>
 						<button type="button" class="btn btn-danger"
-						onclick="javascript:btn('회원정보가 다릅니다.')">후기 삭제</button>
-				</c:otherwise>
-			</c:choose>
-		</div>
+							onclick="javascript:btn('회원정보가 다릅니다.')">후기 삭제</button>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 		<c:if test="${review.reviewFilename eq null }">
 			<div id="main-contant-noimg">
@@ -120,12 +127,16 @@ input[type=number]{
 					<label style="color: white;"> <input type="hidden"
 						name="reviewRating" value="${review.reviewRating }" step="0.1"
 						min="0.1" max="5" readonly />
-					</label>
-					&nbsp;<div class="rating-wrap">
-						&nbsp;<div class="rating">
-						&nbsp;<div class="overlay"></div>
-					&nbsp;</div>
-				&nbsp;</div>
+					</label> &nbsp;
+					<div class="rating-wrap">
+						&nbsp;
+						<div class="rating">
+							&nbsp;
+							<div class="overlay"></div>
+							&nbsp;
+						</div>
+						&nbsp;
+					</div>
 				</div>
 				<p class="reviewContent">${review.reviewContent }</p>
 			</div>
@@ -142,12 +153,16 @@ input[type=number]{
 						<label style="color: white;"> <input type="hidden"
 							name="reviewRating" value="${review.reviewRating }" step="0.1"
 							min="0.1" max="5" readonly />
-						</label>
-						&nbsp;<div class="rating-wrap">
-							&nbsp;<div class="rating">
-							&nbsp;<div class="overlay"></div>
-						&nbsp;</div>
-					&nbsp;</div>
+						</label> &nbsp;
+						<div class="rating-wrap">
+							&nbsp;
+							<div class="rating">
+								&nbsp;
+								<div class="overlay"></div>
+								&nbsp;
+							</div>
+							&nbsp;
+						</div>
 					</div>
 					<p class="reviewContent">${review.reviewContent }</p>
 				</div>
@@ -183,11 +198,12 @@ input[type=number]{
 		<c:if test="${user != null }">
 			<div style="color: white;" class="commentwrite">
 				<form action="/reviewcomment/write" method="post">
-					<input type="hidden" id="reviewNo" name="reviewNo" value=${review.reviewNo }> 
-					<input type="hidden" id="userId" name="userId" value="${user }"> 
-					작성자 : ${user }&nbsp;
-					<input type="text" id="commentContent" name="commentContent" placeholder="내용을 입력해주세요."> 
-					<input type="submit" class="btn btn-secondary commentsubmit" value="작성">
+					<input type="hidden" id="reviewNo" name="reviewNo"
+						value=${review.reviewNo }> <input type="hidden"
+						id="userId" name="userId" value="${user }"> 작성자 : ${user }&nbsp;
+					<input type="text" id="commentContent" name="commentContent"
+						placeholder="내용을 입력해주세요."> <input type="submit"
+						class="btn btn-secondary commentsubmit" value="작성">
 				</form>
 			</div>
 		</c:if>
@@ -205,77 +221,56 @@ input[type=number]{
 		<div id="commentList">
 			<table id="comment-tbl">
 				<c:forEach items="${cList }" var="reviewcomment" varStatus="i">
-				
-					<c:if test="${reviewcomment.parentNo == 0 }">
-						<tr onclick="toggleBtn2(${reviewcomment.commentNo})" style="cursor: pointer;">
-							<td>${i.count }.&nbsp;&nbsp;</td>
-							<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
-							<td>작성 날짜 : <fmt:formatDate value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
-							<c:if test="${user == reviewcomment.userId || user == 'admin'}">
-								<td>&nbsp;<button onclick="toggleBtn1(${reviewcomment.commentNo})">수정</button></td>
-								<td>&nbsp;<button onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button></td>
-							</c:if>
-						</tr>
-						<tr>
-							<td></td>
-							<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
-						</tr>
-					</c:if>
-					<br>
-					<c:if test="${reviewcomment.parentNo == reviewcomment.commentNo }">
-						<tr>
-							<td>&nbsp;</td>
-							<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
-							<td>작성 날짜 : <fmt:formatDate value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
-							<c:if test="${user == reviewcomment.userId || user == 'admin'}">
-								<td>&nbsp;<button onclick="#">수정</button></td>
-								<td>&nbsp;<button onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button></td>
-							</c:if>
-							<td></td>
-							<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
-						<tr>
-					</c:if>
-					
+
+					<tr>
+						<td>${i.count }.&nbsp;&nbsp;</td>
+						<td>작성자 : ${reviewcomment.userId }&nbsp;</td>
+						<td>작성 날짜 : <fmt:formatDate
+								value="${reviewcomment.commentCreateDate}" pattern="yyyy-MM-dd" /></td>
+						<c:if test="${user == reviewcomment.userId || user == 'admin'}">
+							<td>&nbsp;
+								<button onclick="toggleBtn1(${reviewcomment.commentNo})">수정</button>
+							</td>
+							<td>&nbsp;
+								<button
+									onclick="commentRemoveCheck(${reviewcomment.commentNo}, ${review.reviewNo });">삭제</button>
+							</td>
+						</c:if>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="4"><b>↳ ${reviewcomment.commentContent }</b></td>
+					</tr>
+
 					<c:if test="${user == reviewcomment.userId || user == 'admin' }">
 						<tr>
 							<td></td>
-							<td colspan="4" style="display: none;" id="${reviewcomment.commentNo }">
+							<td colspan="4" style="display: none;"
+								id="${reviewcomment.commentNo }">
 								<div class="modifyDiv">
 									<form action="/reviewcomment/modify" method="post">
-										<input type="hidden" id="commentNo" name="commentNo" value=${reviewcomment.commentNo }> 
-										<input type="hidden" id="userId" name="userId" value="${user }">
-										<input type="hidden" id="reviewNo" name="reviewNo" value="${reviewcomment.reviewNo }"> 
-										<input type="text" id="commentContent" name="commentContent" value="${reviewcomment.commentContent }" placeholder="수정할 내용을 입력해주세요."> 
-										<input type="submit" class="commentsubmit" value="수정">
+										<input type="hidden" id="commentNo" name="commentNo"
+											value=${reviewcomment.commentNo }> <input
+											type="hidden" id="userId" name="userId" value="${user }">
+										<input type="hidden" id="reviewNo" name="reviewNo"
+											value="${reviewcomment.reviewNo }"> <input
+											type="text" id="commentContent" name="commentContent"
+											value="${reviewcomment.commentContent }"
+											placeholder="수정할 내용을 입력해주세요."> <input type="submit"
+											class="commentsubmit" value="수정" style="background-color: #e5e5cb;">
 									</form>
 								</div>
 							</td>
 						</tr>
 					</c:if>
-					
-					<c:if test="${user != null }">
-						<tr>
-							<td></td>
-							<td colspan="4" style="display: none;" id="${reviewcomment.commentNo }write">
-								<div class="modifyDiv">
-									<form action="/reviewcomment/writewrite" method="post">
-										<input type="hidden" id="commentNo" name="commentNo" value=${reviewcomment.commentNo }> 
-										<input type="hidden" id="userId" name="userId" value="${user }">
-										<input type="hidden" id="reviewNo" name="reviewNo" value="${reviewcomment.reviewNo }">
-										<input type="hidden" id="parentNo" name="parentNo" value="${reviewcomment.commentNo }">
-										대댓글 입력 <input type="text" id="commentContent" name="commentContent" placeholder="내용을 입력해주세요."> 
-										<input type="submit" class="commentsubmit" value="입력">
-									</form>
-								</div>
-							</td>
-						</tr>	
-					</c:if>
-					
+
 				</c:forEach>
 			</table>
 		</div>
 	</div>
 	
+	</div>
+
 
 	<!-- 		푸터 영역 -->
 	<jsp:include page="../footer.jsp"></jsp:include>

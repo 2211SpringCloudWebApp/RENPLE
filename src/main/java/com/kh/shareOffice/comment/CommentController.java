@@ -32,13 +32,11 @@ public class CommentController {
 	// 조인이 들어감
 	@RequestMapping("/list")
 	public String list(Model model, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-			@RequestParam(value = "searchCondition", required = false, defaultValue = "all") String searchCondition,
-			@RequestParam(value = "searchValue", required = false, defaultValue = "") String searchValue) {
+			@ModelAttribute Search search) {
 		try {
-			// search에는 키워드와 키워드값이 포함되어있는 상태
-			Search search = new Search(searchValue, searchCondition);
 			int totalCnt = cService.getListCnt(search);
 			PageInfo pi = this.getPageInfo(page, totalCnt);
+			System.out.println(pi);
 			List<Comment> commentList = cService.selectCnQAll(pi, search);
 			if (commentList.size() == 0) {
 				Alert alert = new Alert("/", "문의내역이 존재하지 않습니다");
@@ -78,7 +76,7 @@ public class CommentController {
 	public String selectOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
 			Model model) {
 		try {
-			int totalCnt = cService.totalCnt();
+			int totalCnt = cService.totalCntOK();
 			PageInfo pi = this.getPageInfo(page, totalCnt);
 			List<Comment> commentList = cService.selectCommentOk(pi);
 			if (commentList.size() != 0) {
@@ -102,9 +100,10 @@ public class CommentController {
 	public String selectNotOk(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
 			Model model) {
 		try {
-			int totalCnt = cService.totalCnt();
+			int totalCnt = cService.totalCntNotOk();
 			PageInfo pi = this.getPageInfo(page, totalCnt);
 			List<Comment> commentList = cService.selectCommentNotOk(pi);
+			System.out.println(commentList);
 			if (commentList.size() != 0) {
 				model.addAttribute("pi", pi);
 				model.addAttribute("commentList", commentList);
@@ -166,7 +165,6 @@ public class CommentController {
 	@RequestMapping("/update")
 	public String update(@ModelAttribute Comment comment, int commentNo, String commentContent, Model model) {
 		try {
-			System.out.println(comment);
 			int result = cService.updateComment(comment);
 			if (result > 0) {
 				Alert alert = new Alert("/comment/list", "댓글 수정 성공했습니다");
