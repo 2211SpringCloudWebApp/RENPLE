@@ -8,22 +8,19 @@
 <title>비밀번호 찾기</title>
 <link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <style>
-@font-face {
-	font-family: 'Chosunilbo_myungjo';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* {
-	font-family: 'Chosunilbo_myungjo';
+#outter {
+	height: 100vh;
+	width: 50vw;
+	box-sizing: border-box; margin : 0 auto;
+	padding-top: 35vh;
+	box-sizing: border-box;
+	margin: 0 auto;
+	margin: 0 auto;
 }
 </style>
 </head>
-
 <body>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<form action="/user/findPw" method="post">
 		<div id="outter">
 			<h1>비밀번호 찾기</h1>
@@ -82,6 +79,7 @@
 			</div>
 		</div>
 	</form>
+	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
 
 </html>

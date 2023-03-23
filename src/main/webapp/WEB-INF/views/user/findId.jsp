@@ -8,13 +8,11 @@
 <link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <style>
 #outter {
-    padding-top: 72px;
-    height: calc(100vh - 72px);
+    height: 100vh;
     width: 50vw;
+    box-sizing: border-box;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-top: 35vh;
 }
 </style>
 </head>

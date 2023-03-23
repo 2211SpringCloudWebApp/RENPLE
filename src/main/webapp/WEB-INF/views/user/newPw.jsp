@@ -5,81 +5,87 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
-<link rel="stylesheet" href="../../resources/userCss/login.css">
+<link rel="stylesheet" href="../../../resources/userCss/enroll.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-@font-face {
-	font-family: 'Chosunilbo_myungjo';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* {
-	font-family: 'Chosunilbo_myungjo';
-}
-
-#pw_not_ok {
-	color: #695D58;
-	display: none;
+#outter {
+    height: 100vh;
+    width: 50vw;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding-top: 35vh;
 }
 </style>
 </head>
 <body>
-	<form action="/user/userPw" method="post">
+	<jsp:include page="../header.jsp"></jsp:include>
+	<form action="/user/userPw" method="post" onsubmit="return totalChk()">
 		<div id="outter">
 			<h1>비밀번호 변경</h1>
-			<input type="hidden" name="userId" value="${user.userId }">
 			<div id="inner">
-				<div id="input-main">
-					<div class="input-box">
-						<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요"
-							required>
+				<input type="hidden" name="userId" value="${user.userId }">
+				<div class="content">
+					<div class="content-name">
+						<label>비밀번호</label>
+					</div>
+					<div class="content-text">
+						<div>
+							<input class="input-box" type="password" name="userPw"
+								placeholder="비밀번호를 입력해주세요">
+						</div>
 					</div>
 				</div>
-				<div id="input-main">
-					<div class="input-box">
-						<input type="password" name="reUserPw" placeholder="비밀번호를 한번 더 입력해주세요"
-							required oninput = "checkPw()">
+				<div class="content">
+					<div class="content-name">
+						<label>비밀번호 확인</label>
+					</div>
+					<div class="content-text">
+						<div>
+							<input class="input-box" type="password" name="reUserPw"
+								placeholder="비밀번호를 한번 더 입력해주세요">
+						</div>
 					</div>
 				</div>
-				<div class="chkMessge" style="text-align: center;">
-						<span id="pw_not_ok" style="margin-bottom: 10px;">비밀번호가 일치하지 않습니다</span>
-				</div>
-				<div id="input-btn">
-					<button type="submit">
-						<span>완료</span>
-					</button>
-				</div>
+			</div>
+			<div id="enroll-box">
+				<button id="enroll-btn">
+					<span>완료</span>
+				</button>
 			</div>
 		</div>
 	</form>
+	<jsp:include page="../footer.jsp"></jsp:include>
+
 	<script type="text/javascript">
-		function checkPw() {
-			var pw = $('input[name=userPw]').val();
-			var repw = $('input[name=reUserPw]').val();
-			$.ajax({
-				url : '/user/pwChk',
-				type : 'post',
-				data : {
-					"userPw" : pw,
-					"reUserPw" : repw
-				},
-				success : function(data) { 
-					if (data == 0) { 
-						$('#pw_not_ok').css("display", "none");
-					} else {
-						$('#pw_not_ok').css("display", "inline-block");
-					}
-				},
-				error : function() {
-					alert("에러발생");
-				}
-			});
-		};	
+		function totalChk() {
+
+			var userPw = $("input[name=userPw]");
+			var reUserPw = $("input[name=reUserPw]");
+
+			if (userPw.val() == '') {
+				alert("비밀번호를 입력하세요.");
+				userPw.focus();
+				return false;
+			} else if (userPw.val().length < 8 || userPw.val().length > 20) {
+				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
+				userPw.focus();
+				return false;
+			} else if (!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/
+					.test(userPw.val())) {
+				alert("비밀번호는 영문 대소문자, 숫자 그리고 특수문자 조합으로 8~20자리 사용해야 합니다.");
+				userPw.focus();
+				return false;
+			}
+
+			if (userPw.val() != reUserPw.val()) {
+				alert("비밀번호가 일치하지 않습니다.");
+				reUserPw.focus();
+				return false;
+			}
+			
+			return;
+		}
 	</script>
 </body>
 </html>

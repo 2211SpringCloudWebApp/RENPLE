@@ -13,6 +13,18 @@
 a:after, a:link {
 	text-decoration-line: none;
 }
+
+#outter {
+	padding-top: 72px;
+	height: calc(100vh - 72px);
+	width: 70vw;
+	margin: 0 auto;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 </style>
 
 <body>

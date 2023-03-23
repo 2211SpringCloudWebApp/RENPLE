@@ -11,19 +11,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style>
-@font-face {
-	font-family: 'Chosunilbo_myungjo';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
-* {
-	font-family: 'Chosunilbo_myungjo';
-}
-
 #email_ok {
 	color: #008000;
 	display: none;
@@ -32,6 +19,10 @@
 #email_not_ok2, #email_not_ok3, #email_not_ok4 {
 	color: #6A82FB;
 	display: none;
+}
+
+.content-text {
+    width: 75%;
 }
 </style>
 </head>
