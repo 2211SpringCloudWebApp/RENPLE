@@ -39,7 +39,7 @@
 
 				</div>
 				<div class="box11">
-					<img src="../../resources/img/main/rabbit.png" alt="rabbit1"
+					<img src="../../resources/img/main/macRabbit.png" alt="rabbit1"
 						class="rabbit1">
 				</div>
 			</div>
