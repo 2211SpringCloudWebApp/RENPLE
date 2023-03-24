@@ -26,9 +26,9 @@ button {
 #container {
 	width: 60%;
 	margin: auto;
-	margin-top: 20vh;
+	margin-top: 10vh;
 	box-sizing: border-box;
-	height: calc(100vh - 72px);
+	height: 100vh;
 }
 
 #container::before {

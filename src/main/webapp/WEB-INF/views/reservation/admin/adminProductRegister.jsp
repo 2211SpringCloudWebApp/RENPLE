@@ -24,27 +24,27 @@
 			<table class="table table-hover" style="margin-top: 100px;">
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="productName"></td>
+					<td><input type="text" name="productName" required></td>
 				</tr>
 				<tr>
 					<td>가격</td>
-					<td><input type="text" name="productPrice"></td>
+					<td><input type="text" name="productPrice" required></td>
 				</tr>
 				<tr>
 					<td>설명</td>
-					<td><input type="text" name="productDescription"></td>
+					<td><input type="text" name="productDescription" required></td>
 				</tr>
 				<tr>
 					<td>크기</td>
-					<td><input type="text" name="productSize"></td>
+					<td><input type="text" name="productSize" required></td>
 				</tr>
 				<tr>
 					<td>최대인원</td>
-					<td><input type="text" name="productUserMax"></td>
+					<td><input type="text" name="productUserMax" required></td>
 				</tr>
 				<tr>
 					<td>최소인원</td>
-					<td><input type="text" name="productUserMin"></td>
+					<td><input type="text" name="productUserMin" required></td>
 				</tr>
 				<tr>
 					<td colspan="6">

@@ -31,7 +31,7 @@
 						않았나요?</p>
 					<br> <strong>
 						<p style="font-size: 30px; color: #3C2A21;">
-							사무실이 아닌, 카페도 아닌<br> 레플로 출근하세요!
+							사무실이 아닌, 카페도 아닌<br>렌플로 출근하세요!
 						</p> <br>
 						<p style="font-size: 20px; color: #D5CEA3;">
 					</strong> 내가 원하는 정보들만 모아서<br> 내가 원하는 시간에 이용이 가능합니다.
@@ -45,12 +45,12 @@
 			</div>
 			<div id="box2">
 				<p style="font-size: 20px; color: #3C2A21;">1일 무료 체험 이용해보고 결정하세요</p>
-				<p style="font-size: 15px; color: white;">회원가입 후 레플을 만나보세요!</p>
+				<p style="font-size: 15px; color: white;">회원가입 후 렌플을 만나보세요!</p>
 				<p style="font-size: 30px; color: #3C2A21;">
 					공유게시판에서 실이용자들의<br>생생한 후기를 볼 수 있습니다.
 				</p>
 				<div id="box21">
-					<p>회원 전용 사이트로 레플의 모든 것을 자유롭게 경험하세요.</p>
+					<p>회원 전용 사이트로 렌플의 모든 것을 자유롭게 경험하세요.</p>
 				</div>
 				<div id="box22">
 					<p>
@@ -59,18 +59,18 @@
 				</div>
 			</div>
 			<div id="box3">
-				<p>근사한 업무 공간, 레플의 회원이 되어보세요!</p>
+				<p>근사한 업무 공간, 렌플의 회원이 되어보세요!</p>
 				<p>내 라이프에 맞춰 이용한 시간만큼 결제할 수 있어요.</p>
 				<img src="../../resources/img/main/ticket.png" alt="ticket"
 					class="ticket">
 				<div>
 					<button class="box3-btn" type="button">
-						<a href="#">더 많은 회원권 보러가기</a>
+						<a href="/officeMap">더 많은 회원권 보러가기</a>
 					</button>
 				</div>
 			</div>
 			<div id="box4">
-				<p style="text-align: center; font-size: 30px;">레플의 지점을 둘러보세요</p>
+				<p style="text-align: center; font-size: 30px;">렌플의 지점을 둘러보세요</p>
 				<p style="text-align: center; font-size: 15px;">당신의 집 근처 사무실을
 					만나보세요</p>
 				<div id="slideShow">
