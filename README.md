@@ -69,12 +69,12 @@
 ![아이디찾기](https://user-images.githubusercontent.com/119269754/227854427-d5d1c45f-120d-466f-9c44-2ca2b0b78ba5.PNG)
 <br>
 
-### 4. 숙소 리스트	
+### 4. 비밀번호찾기
 ![비밀번호찾기](https://user-images.githubusercontent.com/119269754/227854430-b96c6ace-c76a-4de7-87b7-57aee43fc4aa.PNG)
 
   <br>
 ### 5. 지점 선택
-![지점선택](https://user-images.githubusercontent.com/119269754/227854439-9c0bd677-8867-49d7-aee0-356f05f9de
+![지점선택](https://user-images.githubusercontent.com/119269754/227855204-e7818eb2-50af-4688-b7f0-44f79f7fd7f9.PNG)
 
 ### 6. 지점 상세페이지	
 ![상세페이지](https://user-images.githubusercontent.com/119269754/227854445-3c68ae07-78b7-4e9c-8273-24976b35293c.PNG)
