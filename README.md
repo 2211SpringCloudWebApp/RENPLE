@@ -85,22 +85,10 @@
 ### 8. 후기 게시판
 ![후기게시판](https://user-images.githubusercontent.com/119269754/227854467-13ec3c01-e447-421f-9d6c-9d285d419966.PNG)
 
-### 9. 채팅	
+### 9. 댓글	
 ![댓글](https://user-images.githubusercontent.com/119269754/227854478-bcb722ac-cff3-408a-827a-06f223f48cfb.jpg)
 
 ### 10. 공지 게시판
 ![공지게시판](https://user-images.githubusercontent.com/119269754/227854485-c9efc0fb-34e8-4738-a3d2-3b40f07bf425.PNG)
   
-### 10. 공지 게시판
-![공지사항상세](https://user-images.githubusercontent.com/119269754/227854500-551e5ce5-3c20-4d35-9541-a914707b31c4.PNG)
-  
-### 10. 공지 게시판
-![문의사항](https://user-images.githubusercontent.com/119269754/227854514-ef088e2f-ad93-4aeb-ae43-64e525dcecbf.jpg)
 
-
-
-
-
-<!--Readme 참고 사이트-->
-<!--https://github.com/n0hack/readme-template/blob/main/README.md-->
-<!--https://github.com/n0hack/readme-template-->
