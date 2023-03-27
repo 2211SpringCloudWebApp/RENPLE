@@ -57,15 +57,11 @@
 |관리자 페이지| 후기관리, 공지관리, 문의관리 (조회, 삭제, 검색)
 
 ### 1. 로그인
-<p align="center">
-  <img src="./Readme_assets/login.jpg">
-<p>
+
 <br>
 
 ### 2. 회원가입
-<p align="center">
-  <img src="./Readme_assets/join.jpg">
-<p>
+
 <br>
 
 ### 3. 마이페이지	
