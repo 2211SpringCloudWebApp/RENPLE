@@ -1,6 +1,5 @@
 <h1 align="center"> Rental + Place <br>
                     렌플에 오신 것을 환영합니다 :)</h1>
-<br>
 ![메인](https://user-images.githubusercontent.com/119269754/227848104-60e247bd-3082-4cdf-81ea-5543b798a6cd.PNG)
 
 
