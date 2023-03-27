@@ -1,6 +1,6 @@
 <h1 align="center"> Rental + Place <br>
                     렌플에 오신 것을 환영합니다 :)</h1>
-![메인](https://user-images.githubusercontent.com/119269754/227856456-57222fc8-4f64-43ce-84c8-984a1ac2ff10.PNG)
+![메인](https://user-images.githubusercontent.com/119269754/227856544-66e0203e-7577-49dc-9fa5-2920f85a3110.PNG)
 
 
 ## :convenience_store: 프로젝트 소개
