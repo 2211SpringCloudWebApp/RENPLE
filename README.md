@@ -1,4 +1,4 @@
-# GREENAPPLE - 세미프로젝트
+# GREENAPPLE - 세미프로젝트dddd
 ## 요구사항기술서(이용자)
 ![요구사항기술서(이용자)](https://user-images.githubusercontent.com/90540377/227469632-7fd91f45-9521-4d65-b500-1f7644bc31cc.jpg)
 ## 요구사항기술서(관리자)
