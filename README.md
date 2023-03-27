@@ -1,7 +1,7 @@
 <h1 align="center"> Rental + Place <br>
                     렌플에 오신 것을 환영합니다 :)</h1>
 
-  ![팀원소개](https://user-images.githubusercontent.com/119269754/227847290-16754e52-916f-443b-b802-14fa3732133f.PNG)
+
 
 
 
@@ -20,9 +20,7 @@
 
 
 ## 🧑‍🤝‍🧑 멤버 구성
-
-
-
+![팀원소개](https://user-images.githubusercontent.com/119269754/227847290-16754e52-916f-443b-b802-14fa3732133f.PNG)
 
 ## 🧰 개발 환경 
 <p align="center">
