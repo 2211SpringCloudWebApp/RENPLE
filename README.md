@@ -2,7 +2,7 @@
                     렌플에 오신 것을 환영합니다 :)</h1>
                     
 ![메인](https://user-images.githubusercontent.com/119269754/227856544-66e0203e-7577-49dc-9fa5-2920f85a3110.PNG)
-
+![헤더푸터](https://user-images.githubusercontent.com/119269754/227857045-8fd442d1-555c-4ec6-8c2f-06621e5f8065.PNG)
 
 ## :convenience_store: 프로젝트 소개
 ```
