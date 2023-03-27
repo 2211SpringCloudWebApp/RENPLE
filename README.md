@@ -81,7 +81,7 @@
 ### 8. 후기 게시판
 ![후기게시판](https://user-images.githubusercontent.com/119269754/227854467-13ec3c01-e447-421f-9d6c-9d285d419966.PNG)
 
-### 9. 후기 게시판 - 
+### 9. 후기 게시판 - 댓글
 ![댓글](https://user-images.githubusercontent.com/119269754/227854478-bcb722ac-cff3-408a-827a-06f223f48cfb.jpg)
 
 ### 10. 공지 게시판
