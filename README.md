@@ -58,72 +58,44 @@
 |관리자 페이지| 후기관리, 공지관리, 문의관리 (조회, 삭제, 검색)
 
 ### 1. 로그인
-
+![로그인](https://user-images.githubusercontent.com/119269754/227854409-410f64fd-a3c0-4db9-b61d-b1e9047adec9.PNG)
 <br>
 
 ### 2. 회원가입
-
+![회원가입](https://user-images.githubusercontent.com/119269754/227854412-a3297d3d-4560-4d91-8048-38db4107ab63.PNG)
 <br>
 
-### 3. 마이페이지	
-<p align="center">
-  <img src="./Readme_assets/mypage123.png">
-<p>
+### 3. 아이디찾기	
+![아이디찾기](https://user-images.githubusercontent.com/119269754/227854427-d5d1c45f-120d-466f-9c44-2ca2b0b78ba5.PNG)
 <br>
 
 ### 4. 숙소 리스트	
-<p align="center">
-<img src="./Readme_assets/pensionList.jpg">
-</p>
+![비밀번호찾기](https://user-images.githubusercontent.com/119269754/227854430-b96c6ace-c76a-4de7-87b7-57aee43fc4aa.PNG)
 
-### 5. 숙소 상세페이지
-<p align="center">
-<img src="./Readme_assets/pensionDetail.jpg">
-</p>
+  <br>
+### 5. 지점 선택
+![지점선택](https://user-images.githubusercontent.com/119269754/227854439-9c0bd677-8867-49d7-aee0-356f05f9de
 
-<p align="center">
-<img src="./Readme_assets/map.png">
-</p>
+### 6. 지점 상세페이지	
+![상세페이지](https://user-images.githubusercontent.com/119269754/227854445-3c68ae07-78b7-4e9c-8273-24976b35293c.PNG)
 
-<p align="center">
-<img src="./Readme_assets/pensionDetail2.jpg">
-</p>
+### 7. 예약 페이지
+![예약페이지](https://user-images.githubusercontent.com/119269754/227854454-28f6847e-de20-4149-994f-e23e3dac700e.PNG)
 
-### 6. 숙소 예약	
-<p align="center">
-<img src="./Readme_assets/reservation.jpg">
-</p>
+### 8. 후기 게시판
+![후기게시판](https://user-images.githubusercontent.com/119269754/227854467-13ec3c01-e447-421f-9d6c-9d285d419966.PNG)
 
-### 7. 커뮤니티	
+### 9. 채팅	
+![댓글](https://user-images.githubusercontent.com/119269754/227854478-bcb722ac-cff3-408a-827a-06f223f48cfb.jpg)
 
-<p align="center">
-<img src="./Readme_assets/openChat.jpg">
-</p>
-
-### 8. 공지사항 게시판
-<p align="center">
-<img src="./Readme_assets/notice.jpg">
-</p>
-
-
-### 9. 1대1 문의(채팅)	
-<p align="center">
-<img src="./Readme_assets/adminChat.png"/>
-</p>
-
-### 10. 관리자 페이지	
-
-<p align="center">
-<img src="./Readme_assets/adminMain.jpg"/>
-</p>
-
-<p align="center">
-<img src="./Readme_assets/memberAdmin.jpg"/>
-</p>
-
-<p align="center">
-<img src="./Readme_assets/admin2.png"/>
-</p>
+### 10. 공지 게시판
+![공지게시판](https://user-images.githubusercontent.com/119269754/227854485-c9efc0fb-34e8-4738-a3d2-3b40f07bf425.PNG)
+  
+### 10. 공지 게시판
+![공지사항상세](https://user-images.githubusercontent.com/119269754/227854500-551e5ce5-3c20-4d35-9541-a914707b31c4.PNG)
+  
+### 10. 공지 게시판
+![문의사항](https://user-images.githubusercontent.com/119269754/227854514-ef088e2f-ad93-4aeb-ae43-64e525dcecbf.jpg)
 
 
 
