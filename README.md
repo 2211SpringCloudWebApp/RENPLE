@@ -72,19 +72,30 @@
 
 ### 5. 예약 - 지점 선택
 ![지점선택](https://user-images.githubusercontent.com/119269754/227855461-9e68c7cc-1640-42ab-9c48-3d5c7019485b.PNG)
+  
 ### 6. 예약 - 상세페이지	
 ![상세페이지](https://user-images.githubusercontent.com/119269754/227854445-3c68ae07-78b7-4e9c-8273-24976b35293c.PNG)
 
 ### 7. 예약 - 결제페이지
 ![예약페이지](https://user-images.githubusercontent.com/119269754/227854454-28f6847e-de20-4149-994f-e23e3dac700e.PNG)
 
-### 8. 후기 게시판
+### 8. 예약 - 목록
+![예약내역](https://user-images.githubusercontent.com/119269754/227858157-4c1c6363-f5af-4b3b-81c6-796e98538950.PNG)
+  
+### 9. 후기 게시판
 ![후기게시판](https://user-images.githubusercontent.com/119269754/227854467-13ec3c01-e447-421f-9d6c-9d285d419966.PNG)
 
-### 9. 후기 게시판 - 댓글
+### 10. 후기 게시판 - 댓글
 ![댓글](https://user-images.githubusercontent.com/119269754/227854478-bcb722ac-cff3-408a-827a-06f223f48cfb.jpg)
 
-### 10. 공지 게시판
+### 11. 공지 게시판
 ![공지게시판](https://user-images.githubusercontent.com/119269754/227854485-c9efc0fb-34e8-4738-a3d2-3b40f07bf425.PNG)
   
-
+### 12. 공지 게시판 - 상세
+![공지사항상세](https://user-images.githubusercontent.com/119269754/227857272-76f4a1ae-1866-4e5f-b03c-799a436eae07.PNG)
+  
+### 13. 문의하기
+<img width="1493" alt="문의사항 목록" src="https://user-images.githubusercontent.com/119269754/227858169-f02bb8b2-7cde-47a1-b2cb-4868de610131.png">
+  
+### 14. 문의하기 - 상세
+<img width="1493" alt="문의사항 상세" src="https://user-images.githubusercontent.com/119269754/227858186-abb1fb7d-ad4c-48f9-af54-912db4202ada.png">
